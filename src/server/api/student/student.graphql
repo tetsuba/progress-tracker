@@ -1,0 +1,28 @@
+
+type StudentType {
+    id: String
+    firstName: String
+    lastName: String
+    DOB: String
+    teacherID: String
+}
+
+input StudentIdInput {
+    id: String
+}
+
+input NewStudentInput {
+    firstName: String
+    lastName: String
+    DOB: String
+    teacherID: String
+}
+
+extend type Query {
+    students: [StudentType]
+    getStudent(input: StudentIdInput!): StudentType!
+}
+
+extend type Mutation {
+    addNewStudent(input: NewStudentInput!): StudentType!
+}

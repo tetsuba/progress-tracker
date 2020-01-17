@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@Home renders default 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="mt-5 row"
+  >
+    <div
+      className="col"
+    >
+      <h1>
+        Welcome to Progress Tracker...
+      </h1>
+    </div>
+  </div>
+  <div
+    className="mt-5 row"
+  >
+    <div
+      className="col"
+    />
+    <div
+      className="col"
+    >
+      <a
+        className="btn btn-primary btn-lg"
+        href="/login"
+        onClick={[Function]}
+      >
+        Login
+      </a>
+    </div>
+    <div
+      className="col"
+    >
+      <a
+        className="btn btn-primary btn-lg"
+        href="/register"
+        onClick={[Function]}
+      >
+        Register
+      </a>
+    </div>
+    <div
+      className="col"
+    />
+  </div>
+</div>
+`;

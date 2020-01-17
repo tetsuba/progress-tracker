@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@Login renders default 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="mt-5 row"
+  >
+    <div
+      className="col"
+    >
+      <h1>
+        Login
+      </h1>
+    </div>
+  </div>
+  <div
+    className="mt-5 row"
+  >
+    <div
+      className="col"
+    >
+      <form
+        className=""
+        onSubmit={[Function]}
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            className="form-label"
+            htmlFor="formBasicEmail"
+          >
+            Email address
+          </label>
+          <input
+            className="form-control"
+            id="formBasicEmail"
+            name="email"
+            onChange={[Function]}
+            placeholder="Enter email"
+            required={true}
+            type="email"
+            value=""
+          />
+          <div
+            className="invalid-feedback"
+          >
+            
+          </div>
+        </div>
+        <div
+          className="form-group"
+        >
+          <label
+            className="form-label"
+            htmlFor="formBasicPassword"
+          >
+            Password
+          </label>
+          <input
+            className="form-control"
+            id="formBasicPassword"
+            name="password"
+            onChange={[Function]}
+            placeholder="Password"
+            required={true}
+            type="password"
+            value=""
+          />
+          <div
+            className="invalid-feedback"
+          >
+            
+          </div>
+        </div>
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,47 @@
+
+type UserType {
+    id: String
+    firstName: String
+    lastName: String
+    email: String
+    password: String
+    country: String
+}
+
+type UserLoginType {
+    id: String
+    firstName: String
+    lastName: String
+    token: String
+    email: String
+}
+
+input NewUserInput {
+    firstName: String
+    lastName: String
+    email: String
+    password: String
+    country: String
+}
+
+input LoginUserInput {
+    email: String
+    password: String
+}
+
+input UserDataInput {
+    id: String
+    firstName: String
+    lastName: String
+}
+
+type Query {
+    getUsers: [UserType]
+    isUserSessionExpired(token: String): UserType!
+}
+
+type Mutation {
+    newUser(input: NewUserInput!): UserType!
+    userLogin(input: LoginUserInput!): UserLoginType!
+    updateUserData(input: UserDataInput!): UserLoginType!
+}
