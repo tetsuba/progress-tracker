@@ -12,21 +12,22 @@ const server = new ApolloServer({
     typeDefs: require('./api/typeDefs'),
     resolvers: require('./api/resolvers'),
     context: ({ req }) => {
-        console.log('authorization: ', req.headers.authorization)
-        if (!req.headers.authorization) return null
+        console.log('authorization: ', req.headers.authorization);
+        if (!req.headers.authorization) return null;
         // get the user token from the headers
         const token = req.headers.authorization || '';
-            try {
-                const payload = jwt.verify(token, process.env.REACT_APP_JWT_SECRET);
-                console.log('@@@@ payload --- ', payload)
-                return payload;
+        try {
+            const payload = jwt.verify(token, process.env.REACT_APP_JWT_AUTH_SECRET);
+            console.log('@@@@ payload --- ', payload);
+            return payload;
 
-            } catch(error) {
-                console.log('@@@@ error --- ', error)
-                return { error }
-            }
+        } catch(error) {
+            console.log('@@@@ error --- ', error);
+            return { error }
+        }
     },
     formatError: (err) => {
+        console.log('+ SERVER - formatError: ', err);
         return getErrorCode(err.message)
     }
 });

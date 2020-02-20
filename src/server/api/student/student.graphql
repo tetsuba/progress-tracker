@@ -18,7 +18,7 @@ input NewStudentInput {
     teacherID: String
 }
 
-extend type Query {
+type Query {
     students: [StudentType]
     getStudent(input: StudentIdInput!): StudentType!
 }

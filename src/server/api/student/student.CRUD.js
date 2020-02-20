@@ -1,6 +1,8 @@
+// This order can not be changed
 const mongoose = require('mongoose');
 require('./student.modal');
 const Student = mongoose.model('student');
+// -----------------------------
 
 function findAllStudents() {
     return Student.find({})

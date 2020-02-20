@@ -1,6 +1,6 @@
 import React, {Fragment } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { Routes } from './Routes';
+import { Routes } from './routes/Routes';
 
 // COMPONENTS
 import { GlobalModal } from './components/Modal/GlobalModal';

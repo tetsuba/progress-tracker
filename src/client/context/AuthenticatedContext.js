@@ -1,4 +1,4 @@
-import React, { Component, useContext } from 'react';
+import React, { Component } from 'react';
 
 export const AuthenticatedContext = React.createContext({
     authenticated: false,

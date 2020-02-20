@@ -16,6 +16,10 @@ type UserLoginType {
     email: String
 }
 
+type UserVerifyType {
+    confirmation: String
+}
+
 input NewUserInput {
     firstName: String
     lastName: String
@@ -29,14 +33,18 @@ input LoginUserInput {
     password: String
 }
 
+input UserEmailInput {
+    email: String
+}
+
 input UserDataInput {
     id: String
     firstName: String
     lastName: String
 }
 
-type Query {
-    getUsers: [UserType]
+extend type Query {
+    getUserData: UserType!
     isUserSessionExpired(token: String): UserType!
 }
 
@@ -44,4 +52,6 @@ type Mutation {
     newUser(input: NewUserInput!): UserType!
     userLogin(input: LoginUserInput!): UserLoginType!
     updateUserData(input: UserDataInput!): UserLoginType!
+    verifyEmail(input: UserEmailInput!): UserVerifyType!
+    sendPasswordResetConfirmation(input: UserEmailInput!): UserVerifyType!
 }

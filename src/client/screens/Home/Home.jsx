@@ -3,8 +3,8 @@ import React from 'react';
 import {Col, Container, Row} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
-const Home = () => {
-    console.log('----- HOME')
+const Home = (props) => {
+    console.log('----- HOME', props)
     return (
         <Container>
             <Row className="mt-5">

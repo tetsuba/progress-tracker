@@ -1,28 +1,56 @@
+// This order can not be changed
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
 require('./user.modal');
 const User = mongoose.model('user');
+// -----------------------------
+
+const { createToken } = require('../token/token.CRUD');
+const { sendMail } = require('../../utils/email/sendEmail');
 const { errorName } = require('../../errorHandling');
-const { createToken } = require('../../server.utils');
+const { createAuthToken } = require('../../utils/token');
+
+async function findEmail(data, templateName) {
+    try {
+        const user = await User.findOne({ email: data.email });
+
+        // ERROR - User not found
+        if (!user) {
+            throw new Error(errorName.EMAIL_DOES_NOT_EXIST)
+        }
+
+        // ERROR - User is verified
+        if (user.isVerified) {
+            throw new Error(errorName.EMAIL_VERIFIED);
+        }
+
+        const obj = await createToken(user);
+        sendMail(obj.token, templateName);
+
+        return {
+            confirmation: 'Please check your email and confirm.'
+        }
+
+    } catch(error) {
+        return error
+    }
+
+}
 
 async function findUser(data) {
     try {
-        console.log('findUser', data);
-
-        if (!data.email) {
-            throw new Error(errorName.INCORRECT_USER_DETAILS)
-            return null
-        }
-
         const user = await User.findOne({ email: data.email });
 
+        // ERROR - User is not found or password does not match
         if (!user || user.password !== data.password) {
             throw new Error(errorName.INCORRECT_USER_DETAILS)
         }
 
-        const token = createToken(user);
+        // ERROR - Email address not verified
+        if (!user.isVerified) {
+            throw new Error(errorName.EMAIL_NOT_VERIFIED)
+        }
 
-        console.log('findUser', user, token);
+        const token = createAuthToken(user);
 
         return {
             firstName: user.firstName,
@@ -32,24 +60,27 @@ async function findUser(data) {
             token
         }
     } catch(error) {
-        console.log('findUser error', error);
         return error
     }
 }
 
 // RegisterUser
 async function createNewUser(data) {
-    const user = await User.findOne({ email: data.email});
+    try {
+        const user = await User.findOne({ email: data.email});
 
-    if(user) {
-        // TODO: how to handle this error better.
-        return new Error('User exists')
+        // ERROR - User is not found or password does not match
+        if (user) {
+            throw new Error(errorName.EMAIL_ALREADY_EXIST)
+        }
+
+        const newUser = await User.create(data);
+        const obj = await createToken(newUser);
+        sendMail(obj.token);
+        return { success: 'success' };
+    } catch(err) {
+        return err
     }
-
-    // TODO: investigate which lib to use for authentication
-    // TODO:  look into this https://www.apollographql.com/docs/react/v2.5/recipes/authentication/
-    const newUser = await User.create(data);
-    return { ...newUser, id: newUser._id };
 }
 
 async function updateUser(data) {
@@ -64,11 +95,23 @@ async function updateUser(data) {
         console.log('findUser error', e);
         return e;
     }
+}
 
+async function userVerified(id) {
+    try {
+        const user = await User.findById(id);
+        user.isVerified = true;
+        return await user.save()
+    } catch (e) {
+        console.log('userVerified error', e);
+        return e;
+    }
 }
 
 module.exports = {
     findUser,
     createNewUser,
     updateUser,
+    userVerified,
+    findEmail,
 };

@@ -1,4 +1,4 @@
-const { createNewUser, findUser, updateUser } = require('./user.CRUD');
+const { createNewUser, findUser, updateUser, findEmail } = require('./user.CRUD');
 
 module.exports = {
     Query: {
@@ -12,14 +12,17 @@ module.exports = {
                 return e
             }
         },
-        getUsers: async (_, args, context) => {
+        getUserData: async (_, args, context) => {
+            console.log('@@@@@@@@@@@@ getUserData: ', context)
             try {
-                if (!context.user) return null;
-                return await findUser({})
-            } catch (err) {
-                return err
+                return await findUser({
+                    email: context.user,
+                    password: context.password,
+                })
+            } catch (e) {
+                return e
             }
-        },
+        }
     },
 
     Mutation: {
@@ -41,6 +44,22 @@ module.exports = {
         updateUserData: async (_, args, context, info) => {
             try {
                 return await updateUser(args.input)
+            } catch (err) {
+                return err
+            }
+        },
+
+        verifyEmail: async (_, args, context) => {
+            try {
+                return await findEmail({ email: args.input.email }, 'confirmEmail');
+            } catch (err) {
+                return err
+            }
+        },
+
+        sendPasswordResetConfirmation: async (_, args, context) => {
+            try {
+                return await findEmail({ email: args.input.email }, 'resetPassword');
             } catch (err) {
                 return err
             }

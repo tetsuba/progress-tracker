@@ -1,49 +1,61 @@
-import React, {Fragment, useContext, useState} from 'react';
+// TODO: verify email and update email address
+//  https://codemoto.io/coding/nodejs/email-verification-node-express-mongodb
+
+// TODO: Change password
+
+
+import React, { useState } from 'react';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 
 // COMPONENTS
-import {Col, Container, Row, Button, Form} from 'react-bootstrap';
-import {BreadCrumbs} from '../../components/BreadCrumbs/BreadCrumbs';
+import { Col, Container, Row } from 'react-bootstrap';
+import { BreadCrumbs } from '../../components/BreadCrumbs/BreadCrumbs';
+import { Loading } from '../../components/Loading/Loading';
 
-// CONTEXT
-import { UserContext } from '../../context/UserContext';
-import { useMutation } from '@apollo/react-hooks';
+// FORM
+import MyAccountForm from '../../components/Form/MyAccountForm';
+
+// QUERY
+import { GET_USER_QUERY } from '../../api/user/user.query';
+
+// MUTATION
 import { UPDATE_USER_MUTATION } from './MyAccount.mutation';
 
+// BREADCRUMBS
+const crumbs = [
+    { path: '/', name: 'Home' },
+    { path: '', name: 'My Account' },
+];
+
 const MyAccount = () => {
-    const [updateUserData] = useMutation(UPDATE_USER_MUTATION);
-    const {firstName, lastName, userId, email, userUpdate} = useContext(UserContext);
-    const [data, setData] = useState({showForm: false});
-    const [userInputs, setUserInputs] = useState({firstName: firstName, lastName: lastName});
-    const crumbs = [
-        { path: '/', name: 'Home' },
-        { path: '', name: 'My Account' },
-    ];
+    const [formElement, setFormElement] = useState({ show: false });
+    const { loading, data } = useQuery(GET_USER_QUERY);
+    const [updateUserData] = useMutation(
+        UPDATE_USER_MUTATION,
+        {
+            refetchQueries: [{query: GET_USER_QUERY}]
+        }
+    );
 
-    const handleInputChange = (event) => {
-        event.preventDefault();
-        const { name, value } = event.target;
-        setUserInputs(userInputs => ({
-            ...userInputs,
-            [name]: value
-        }));
-    };
-
-    function handleSubmit(e) {
+    function handleSubmit(e, inputs) {
         e.preventDefault();
         const input = {
-            ...userInputs,
-            id: userId,
+            ...inputs,
+            id: data.getUserData.id,
         };
 
         updateUserData({ variables: { input } })
-            .then(({data}) => {
-                // userUpdate(data.updateUserData);
-                setData({showForm: false})
+            .then(() => {
+                setFormElement({show: false})
             })
             .catch((error) => {
                 console.log('Login error', error.graphQLErrors)
+                // TODO: Setup error handling for this form.
             })
     }
+
+    if (loading) return <Loading />;
+    const { getUserData: user } = data;
 
     return (
         <Container>
@@ -52,67 +64,20 @@ const MyAccount = () => {
                     <BreadCrumbs crumbs={crumbs} />
                 </Row>
             </Row>
-            <Form onSubmit={(e) => handleSubmit(e)}>
-                <Form.Group as={Row} controlId="formPlaintextFirstName">
-                    <Form.Label column sm="2">
-                        First Name:
-                    </Form.Label>
-                    <Col sm="10">
-                        <Form.Control
-                            required
-                            type="text"
-                            name="firstName"
-                            placeholder={firstName}
-                            onChange={handleInputChange}
-                            value={userInputs.firstName}
-                            readOnly={!data.showForm}
-                        />
-                    </Col>
-                </Form.Group>
 
-                <Form.Group as={Row} controlId="formPlaintextPassword">
-                    <Form.Label column sm="2">
-                        Last Name:
-                    </Form.Label>
-                    <Col sm="10">
-                        <Form.Control
-                            required
-                            type="input"
-                            name="lastName"
-                            placeholder={lastName}
-                            value={userInputs.lastName}
-                            onChange={handleInputChange}
-                            readOnly={!data.showForm}
-                        />
-                    </Col>
-                </Form.Group>
-                {
-                    data.showForm
-                        ? (
-                            <Fragment>
-                                <Button
-                                    variant="secondary"
-                                    onClick={() => {
-                                        setUserInputs({firstName, lastName});
-                                        setData(data => ({...data, showForm: false}))
-                                    }}
-                                >Cancel</Button>
-                                <Button variant="primary" type="submit">Save</Button>
-                            </Fragment>
-                        )
-                        : <Button
-                            variant="primary"
-                            onClick={() => setData(data => ({...data, showForm: true}))}
-                        >Edit</Button>
-                }
-            </Form>
+            <MyAccountForm
+                handleSubmit={handleSubmit}
+                user={user}
+                showForm={formElement.show}
+                setShowForm={setFormElement}
+            />
 
-            <Row className="mt-4">
+            <Row className="mt-5">
                 <Col>
                     Email:
                 </Col>
                 <Col>
-                    { email }
+                    { user.email }
                 </Col>
             </Row>
             <Row className="mt-4">

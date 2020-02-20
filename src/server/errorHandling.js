@@ -1,7 +1,12 @@
 
 const errorName = {
     UNAUTHORIZED: 'UNAUTHORIZED',
-    INCORRECT_USER_DETAILS: 'INCORRECT_USER_DETAILS'
+    INCORRECT_USER_DETAILS: 'INCORRECT_USER_DETAILS',
+    TOKEN_EXPIRED: 'TOKEN_EXPIRED',
+    EMAIL_DOES_NOT_EXIST: 'EMAIL_DOES_NOT_EXIST',
+    EMAIL_VERIFIED: 'EMAIL_VERIFIED',
+    EMAIL_NOT_VERIFIED: 'EMAIL_NOT_VERIFIED',
+    EMAIL_ALREADY_EXIST: 'EMAIL_ALREADY_EXIST',
 };
 
 
@@ -16,14 +21,39 @@ const errorType = {
         statusCode: 403,
         name: 'incorrect_user_details',
     },
+    TOKEN_EXPIRED: {
+        message: 'Token has expired',
+        statusCode: 410,
+        name: 'token_expired',
+    },
+    EMAIL_DOES_NOT_EXIST: {
+        message: 'Email address does not exist',
+        statusCode: 404,
+        name: 'email_does_not_exist',
+    },
+    EMAIL_VERIFIED: {
+        message: 'Email verified already. Please goto login.',
+        statusCode: 400, //  check to see if correct
+        name: 'email_verified',
+    },
+    EMAIL_NOT_VERIFIED: {
+        message: 'Email not verified.',
+        statusCode: 401, //  unauthorized
+        name: 'email_not_verified',
+    },
+    EMAIL_ALREADY_EXIST: {
+        message: 'Email already exist',
+        statusCode: 401, //  unauthorized
+        name: 'email_already_exist',
+    },
 };
 
 const getErrorCode = (errorName) => {
     return errorType[errorName]
-}
+};
 
 module.exports = {
     errorType,
     errorName,
     getErrorCode,
-}
+};

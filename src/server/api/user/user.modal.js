@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-// TODO: Create user schema -- No id. Is this correct?
-
 const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
@@ -21,9 +19,12 @@ const userSchema = new mongoose.Schema({
     },
     country: {
         type: String,
-        required: true,
+        required: false,
     },
-    emailConfirmation: Boolean,
-});
+    isVerified: {
+        type: Boolean,
+        default: false
+    },
+}, { _id: true });
 
 mongoose.model('user', userSchema);

@@ -1,41 +1,40 @@
-import React, { useState, useContext } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, {useContext, useState} from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { Col, Container, Form, Row, Button } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 
-import gql from 'graphql-tag';
-import { UserContext } from '../../context/UserContext';
-
-const AddNewUserMutation = gql`
-    mutation NewUser($input: NewUserInput!) {
-        newUser(input: $input) {
-            id
-        }
-    }
-`;
+import RegisterForm from '../../components/Form/RegisterForm';
+import { REGISTER_USER_MUTATION } from '../../api/user/user.mutation';
 
 const Register = () => {
-    const { addUserId, loggedIn } = useContext(UserContext);
-    const [inputs, setInputs] = useState({});
-    const [addNewUser] = useMutation(AddNewUserMutation);
+    const [addNewUser] = useMutation(REGISTER_USER_MUTATION);
+    const [success, setSuccess] = useState(false)
+    const [errors, setErrors] = useState({
+        email: '',
+        password: '',
+        firstName: '',
+        lastName: '',
+        message: ''
+    });
 
-    const handleInputChange = (event) => {
-        event.persist();
-        setInputs(inputs => ({...inputs, [event.target.name]: event.target.value}));
-    };
-
-    const handleSubmit = (e) => {
+    const handleSubmit = (e, inputs) => {
         e.preventDefault();
         addNewUser({ variables: { input: inputs } })
             .then(({ data }) => {
-                addUserId(data.newUser.id)
+                setSuccess(true)
             })
-            .catch((err) => console.log(err))
-    };
+            .catch((err) => {
+                const error = err.graphQLErrors[0];
+                console.log(error);
 
-    if (loggedIn) {
-        return <Redirect to="/myAccount"/>
-    }
+                if(error.name === 'email_already_exist') {
+                    setErrors({
+                        ...error,
+                        email: error.message,
+                    });
+                }
+
+            })
+    };
 
     return (
         <Container>
@@ -46,72 +45,18 @@ const Register = () => {
             </Row>
             <Row className="mt-5">
                 <Col>
-                    <Form onSubmit={(e) => handleSubmit(e)}>
-                        <Form.Row>
-                            <Form.Group as={Col} controlId="formGridEmail">
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control
-                                    type="email"
-                                    placeholder="Enter email"
-                                    onChange={handleInputChange}
-                                    value={inputs.email}
-                                    name="email"
-                                />
-                            </Form.Group>
+                    { success
+                        ? (
+                            <h3>Please check your email to validate your email address.</h3>
+                        )
+                        : (
+                            <RegisterForm
+                                handleSubmit={handleSubmit}
+                                errors={errors}
+                            />
+                        )
+                    }
 
-                            <Form.Group as={Col} controlId="formGridPassword">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    placeholder="Password"
-                                    onChange={handleInputChange}
-                                    value={inputs.password}
-                                    name="password"
-                                />
-                            </Form.Group>
-                        </Form.Row>
-
-                        <Form.Row>
-                            <Form.Group as={Col} controlId="formGridFirstName">
-                                <Form.Label>First Name</Form.Label>
-                                <Form.Control
-                                    placeholder="First Name"
-                                    onChange={handleInputChange}
-                                    value={inputs.firstName}
-                                    name="firstName"
-                                />
-                            </Form.Group>
-
-                            <Form.Group as={Col} controlId="formGridLastName">
-                                <Form.Label>Last Name</Form.Label>
-                                <Form.Control
-                                    placeholder="Last Name"
-                                    onChange={handleInputChange}
-                                    value={inputs.lastName}
-                                    name="lastName"
-                                />
-                            </Form.Group>
-                        </Form.Row>
-
-                        <Form.Group controlId="formGridCountry">
-                            <Form.Label>State</Form.Label>
-                            <Form.Control
-                                as="select"
-                                value={inputs.country}
-                                onChange={handleInputChange}
-                                name="country"
-                            >
-                                <option>Choose...</option>
-                                <option>UK</option>
-                                <option>ASIA</option>
-                                <option>AFRICA</option>
-                            </Form.Control>
-                        </Form.Group>
-
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
-                    </Form>
                 </Col>
             </Row>
         </Container>
