@@ -18,5 +18,20 @@ module.exports = {
                 return err
             }
         },
+
+        confirmPasswordReset: async (_, args, context) => {
+            try {
+                const userId = await getUserId(args.token);
+                if (userId.message) {
+                    throw new Error(userId.message);
+                    return;
+                }
+                return {
+                    userId,
+                }
+            } catch (err) {
+                return err
+            }
+        },
     }
 };

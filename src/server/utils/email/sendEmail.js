@@ -38,7 +38,7 @@ module.exports = {
 
         const mailOptions = {
             from: process.env.REACT_APP_NODE_MAIL_ADDRESS,
-            to: 'ryanmarchock@gmail.com',
+            to: 'tetsubalimited@gmail.com',
             subject: emailTemplate[template].subject,
             html: emailTemplate[template].html,
         };

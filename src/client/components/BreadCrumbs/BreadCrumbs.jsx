@@ -2,7 +2,7 @@ import React from 'react';
 import { Breadcrumb } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-export const BreadCrumbs = ({crumbs}) => {
+const BreadCrumbs = ({crumbs}) => {
 
     function addCrumb({ path, name }) {
         return path
@@ -27,4 +27,6 @@ export const BreadCrumbs = ({crumbs}) => {
             <Crumbs/>
         </Breadcrumb>
     )
-}
+};
+
+export default BreadCrumbs;

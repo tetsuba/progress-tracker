@@ -3,7 +3,7 @@ import React  from 'react';
 import {Col, Container, ProgressBar, Row} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import gql from 'graphql-tag';
-import {BreadCrumbs} from '../../../components/BreadCrumbs/BreadCrumbs';
+import BreadCrumbs from '../../../components/BreadCrumbs/BreadCrumbs';
 
 export const STUDENT_QUERY = gql`
     query($input: StudentIdInput!){

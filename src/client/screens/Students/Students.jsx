@@ -13,7 +13,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 // CONTEXT
 import { ModalContext } from '../../components/Modal/ModalContext';
-import {BreadCrumbs} from '../../components/BreadCrumbs/BreadCrumbs';
+import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs';
 
 export const STUDENTS_QUERY = gql`
     {

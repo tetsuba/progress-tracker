@@ -1,67 +1,74 @@
-import React, {Fragment, useState} from 'react';
-import { Button, Form } from 'react-bootstrap';
-import { useMutation } from '@apollo/react-hooks';
-import { SEND_PASSWORD_RESET_CONFIRMATION_MUTATION } from '../../api/user/user.mutation';
+import React, { useState } from 'react';
 
-const ResetPasswordForm = ({ defaultEmail = ''}) => {
-    const [ sendPasswordResetConfirmation ] = useMutation(SEND_PASSWORD_RESET_CONFIRMATION_MUTATION);
-    const [inputs, setInputs] = useState({email: defaultEmail});
-    const [error, setError] = useState({message: ''});
-    const [success, setSuccess] = useState('');
+import { Button, Form, Row } from 'react-bootstrap';
+import PasswordStrength from "../PasswordStrength/PasswordStrength";
+import {handleInputChange, passwordMatchError, passwordsMatched} from "./form-utils";
 
-    const handleInputChange = (event) => {
-        event.persist();
-        setInputs(inputs => (
-            {...inputs, [event.target.name]: event.target.value})
-        );
-    };
+const ResetPasswordForm = ({ userId }) => {
+    const [inputs, setInputs] = useState({password1: '', password2: ''});
+    const [error] = useState({message: ''});
+
+    console.log('userId:', userId)
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (inputs.password1 !== inputs.password2) {
+            return;
+        }
 
-        sendPasswordResetConfirmation({ variables: { input: inputs } })
-            .then(({ data }) => {
-                setSuccess(data.sendPasswordResetConfirmation.confirmation)
-            })
-            .catch((error) => {
-                const message = error.graphQLErrors[0].message;
-                setError({ message })
-            })
+        // sendPasswordResetConfirmation({ variables: { input: inputs } })
+        //     .then(({ data }) => {
+        //         setSuccess(data.sendPasswordResetConfirmation.confirmation)
+        //     })
+        //     .catch((error) => {
+        //         const message = error.graphQLErrors[0].message;
+        //         setError({ message })
+        //     })
     };
 
-    return success
-        ? (
-            <Fragment>
-                <h3>Please check your email.</h3>
-            </Fragment>
-        )
-        :(
-            <Fragment>
-                <h3>Reset your password</h3>
-                <Form onSubmit={(e) => handleSubmit(e)}>
-                    <Form.Group controlId="formBasicEmail">
-                        <Form.Control
-                            required
-                            type="email"
-                            placeholder="Enter email"
-                            name="email"
-                            onChange={handleInputChange}
-                            value={inputs.email}
-                            isInvalid={!!error.message}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            {error.message}
-                        </Form.Control.Feedback>
-                        <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-                        </Form.Text>
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Reset Password
-                    </Button>
-                </Form>
-            </Fragment>
-        )
+    return (
+        <Row>
+            <Form
+                className="w-100"
+                onSubmit={(e) => handleSubmit(e)}
+            >
+                <Form.Group controlId="formPassword1">
+                    <Form.Control
+                        required
+                        type="password"
+                        placeholder="Password"
+                        name="password1"
+                        onChange={(e) => handleInputChange(e, setInputs)}
+                        value={inputs.password1}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                        { error.message }
+                    </Form.Control.Feedback>
+                    <PasswordStrength password={inputs.password1}  />
+                </Form.Group>
+                <Form.Group controlId="formPassword2">
+                    <Form.Control
+                        required
+                        type="password"
+                        placeholder="Password"
+                        name="password2"
+                        onChange={(e) => handleInputChange(e, setInputs)}
+                        value={inputs.password2}
+                        isInvalid={passwordMatchError(inputs)}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                        Password does not match!!!
+                    </Form.Control.Feedback>
+                    <Form.Text className="text-muted">
+                        { `Matching password ${inputs.password2.length} of ${inputs.password1.length }` }
+                    </Form.Text>
+                </Form.Group>
+                <Button variant="primary" type="submit" disabled={passwordsMatched(inputs)}>
+                    Reset Password
+                </Button>
+            </Form>
+        </Row>
+    )
 };
 
 export default ResetPasswordForm

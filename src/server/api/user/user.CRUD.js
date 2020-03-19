@@ -19,7 +19,7 @@ async function findEmail(data, templateName) {
         }
 
         // ERROR - User is verified
-        if (user.isVerified) {
+        if (user.isVerified && templateName === 'confirmEmail') {
             throw new Error(errorName.EMAIL_VERIFIED);
         }
 
@@ -104,6 +104,17 @@ async function userVerified(id) {
         return await user.save()
     } catch (e) {
         console.log('userVerified error', e);
+        return e;
+    }
+}
+
+async function resetPassword(id, password) {
+    try {
+        const user = await User.findById(id);
+        user.password = password;
+        return await user.save()
+    } catch (e) {
+        console.log('resetPassword error', e);
         return e;
     }
 }

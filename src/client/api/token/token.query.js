@@ -7,3 +7,13 @@ export const CONFIRM_ACCOUNT_QUERY = gql`
         }
     }
 `;
+
+export const RESET_PASSWORD_CONFIRMATION_QUERY = gql`
+    query ConfirmPasswordReset($token: String!){
+        confirmPasswordReset(token: $token) {
+            userId
+        }
+    }
+`;
+
+

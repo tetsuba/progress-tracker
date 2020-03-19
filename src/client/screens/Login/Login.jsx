@@ -6,7 +6,11 @@ import { AuthenticatedContext } from '../../context/AuthenticatedContext';
 import { LOGIN_MUTATION } from '../../api/user/user.mutation';
 import LoginForm from '../../components/Form/LoginForm';
 import EmailVerificationForm from '../../components/Form/EmailVerificationForm';
-import ResetPasswordForm from '../../components/Form/ResetPasswordForm';
+import EmailPasswordResetForm from '../../components/Form/EmailPasswordResetForm';
+
+// ICONS
+import { faCaretLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Login = () => {
     const [ userLogin, { loading: mutationLoading }] = useMutation(LOGIN_MUTATION);
@@ -27,7 +31,6 @@ const Login = () => {
             })
             .catch((err) => {
                 const error = err.graphQLErrors[0];
-                console.log('Login error', error);
 
                 if(error.name === 'email_not_verified') {
                     setError({
@@ -43,7 +46,7 @@ const Login = () => {
             })
     };
 
-    if (mutationLoading) return <div>Loading</div>
+    if (mutationLoading) return <div>Loading</div>;
 
     return (
         <Container>
@@ -62,11 +65,13 @@ const Login = () => {
                                         <Fragment>
                                             <h3>Login</h3>
                                             <LoginForm error={error} handleSubmit={handleSubmit} />
-                                            <p
+                                            <a
+                                                id="forgotPasswordButton"
+                                                href="javascript:void(0);"
                                                 onClick={() => setResetPassword(true)}
                                             >
                                                 Forgot password?
-                                            </p>
+                                            </a>
                                         </Fragment>
                                     )
                             }
@@ -75,13 +80,19 @@ const Login = () => {
                 }
                 {
                     resetPassword && (
-                        <Col>
-                            <ResetPasswordForm />
-                            <span
-                                onClick={() => setResetPassword(false)}
-                            >back</span>
-                        </Col>
 
+                        <Col>
+                            <EmailPasswordResetForm />
+                            <Row className="mt-3">
+                                <a
+                                    id="backToLoginButton"
+                                    href="javascript:void(0);"
+                                    onClick={() => setResetPassword(false)}
+                                >
+                                    <FontAwesomeIcon icon={faCaretLeft} /> back
+                                </a>
+                            </Row>
+                        </Col>
                     )
                 }
             </Row>

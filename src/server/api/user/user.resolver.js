@@ -64,6 +64,14 @@ module.exports = {
                 return err
             }
         },
+
+        resetPassword: async (_, args, context) => {
+            try {
+                return /// await findEmail({ email: args.input.email }, 'resetPassword');
+            } catch (err) {
+                return err
+            }
+        },
     }
 };
 

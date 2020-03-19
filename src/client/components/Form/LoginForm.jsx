@@ -13,8 +13,11 @@ const LoginForm = ({handleSubmit, error}) => {
     };
 
     return (
-        <Form onSubmit={(e) => handleSubmit(e, inputs)}>
-            <Form.Group controlId="formBasicEmail">
+        <Form
+            id="loginForm"
+            onSubmit={(e) => handleSubmit(e, inputs)}
+        >
+            <Form.Group controlId="loginEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
                     required
@@ -30,7 +33,7 @@ const LoginForm = ({handleSubmit, error}) => {
                 </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
+            <Form.Group controlId="loginPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                     required
@@ -45,7 +48,7 @@ const LoginForm = ({handleSubmit, error}) => {
                     {error.password && error.password.message}
                 </Form.Control.Feedback>
             </Form.Group>
-            <Button variant="primary" type="submit" className="float-right">
+            <Button id="loginButton" variant="primary" type="submit" className="float-right">
                 Submit
             </Button>
         </Form>

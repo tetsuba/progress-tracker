@@ -4,7 +4,7 @@ import { Col, Container, ProgressBar, Row} from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 import {useQuery} from '@apollo/react-hooks';
-import {BreadCrumbs} from '../../components/BreadCrumbs/BreadCrumbs';
+import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs';
 
 export const STUDENT_QUERY = gql`
     query($input: StudentIdInput!){

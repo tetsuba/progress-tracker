@@ -1,5 +1,5 @@
-import React, {Fragment, useState} from 'react';
-import { Button, Form } from 'react-bootstrap';
+import React, {useState} from 'react';
+import { Button, Form, Row } from 'react-bootstrap';
 import { useMutation } from '@apollo/react-hooks';
 import { VERIFY_EMAIL_MUTATION } from '../../api/user/user.mutation';
 
@@ -31,37 +31,37 @@ const EmailVerificationForm = ({ defaultEmail = ''}) => {
 
     return success
         ? (
-            <Fragment>
+            <Row>
                 <h3>Please check your email.</h3>
-            </Fragment>
+            </Row>
         )
         :(
-            <Fragment>
+            <Row>
                 <h3>Email not verified</h3>
                 <p>Please validate your email before logging in</p>
                 <Form onSubmit={(e) => handleSubmit(e)}>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Control
-                        required
-                        type="email"
-                        placeholder="Enter email"
-                        name="email"
-                        onChange={handleInputChange}
-                        value={inputs.email}
-                        isInvalid={!!error.message}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        {error.message}
-                    </Form.Control.Feedback>
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
-            </Form>
-            </Fragment>
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Control
+                            required
+                            type="email"
+                            placeholder="Enter email"
+                            name="email"
+                            onChange={handleInputChange}
+                            value={inputs.email}
+                            isInvalid={!!error.message}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {error.message}
+                        </Form.Control.Feedback>
+                        <Form.Text className="text-muted">
+                            We'll never share your email with anyone else.
+                        </Form.Text>
+                    </Form.Group>
+                    <Button variant="primary" type="submit">
+                        Submit
+                    </Button>
+                </Form>
+            </Row>
     )
 };
 

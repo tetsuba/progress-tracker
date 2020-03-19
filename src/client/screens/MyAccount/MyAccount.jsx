@@ -9,8 +9,8 @@ import { useMutation, useQuery } from '@apollo/react-hooks';
 
 // COMPONENTS
 import { Col, Container, Row } from 'react-bootstrap';
-import { BreadCrumbs } from '../../components/BreadCrumbs/BreadCrumbs';
-import { Loading } from '../../components/Loading/Loading';
+import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs';
+import Loading from '../../components/Loading/Loading';
 
 // FORM
 import MyAccountForm from '../../components/Form/MyAccountForm';

@@ -43,6 +43,11 @@ input UserDataInput {
     lastName: String
 }
 
+input ResetPasswordInput {
+    id: String
+    password: String
+}
+
 extend type Query {
     getUserData: UserType!
     isUserSessionExpired(token: String): UserType!
@@ -54,4 +59,5 @@ type Mutation {
     updateUserData(input: UserDataInput!): UserLoginType!
     verifyEmail(input: UserEmailInput!): UserVerifyType!
     sendPasswordResetConfirmation(input: UserEmailInput!): UserVerifyType!
+    resetPassword(input: ResetPasswordInput!): UserVerifyType!
 }

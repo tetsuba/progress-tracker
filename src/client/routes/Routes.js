@@ -14,7 +14,7 @@ import ProtectedRoute, {USER_SESSION} from './ProtectedRoute';
 import UnProtectedRoute from './UnProtectedRoute';
 import CourseRoutes from '../screens/Course/routes';
 import { useQuery } from '@apollo/react-hooks';
-import { Loading } from '../components/Loading/Loading';
+import Loading from '../components/Loading/Loading';
 import ConfirmAccount from '../screens/ConfirmAccount/ConfirmAccount';
 import ResetPassword from '../screens/ResetPassword/ResetPassword';
 
@@ -45,6 +45,3 @@ export const Routes = () => {
         </Switch>
     )
 };
-// email confirmation route
-// resend
-// password renewal
