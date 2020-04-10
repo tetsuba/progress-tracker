@@ -1,3 +1,6 @@
+const { getUserId, deleteToken } = require('../token/token.CRUD');
+const jwt = require('jsonwebtoken');
+
 // This order can not be changed
 const mongoose = require('mongoose');
 require('./user.modal');
@@ -51,6 +54,14 @@ async function findUser(data) {
         }
 
         const token = createAuthToken(user);
+
+        const payload = jwt.verify(
+            token,
+            process.env.REACT_APP_JWT_AUTH_SECRET
+        )
+
+        console.log("TOKEN: ", token)
+        console.log("payload: ", payload)
 
         return {
             firstName: user.firstName,
@@ -108,11 +119,16 @@ async function userVerified(id) {
     }
 }
 
-async function resetPassword(id, password) {
+async function resetPassword(token, password) {
     try {
+        const id = await getUserId(token);
         const user = await User.findById(id);
         user.password = password;
-        return await user.save()
+        await user.save();
+        await deleteToken(token);
+        return {
+            confirmation: 'New password is saved'
+        }
     } catch (e) {
         console.log('resetPassword error', e);
         return e;
@@ -125,4 +141,5 @@ module.exports = {
     updateUser,
     userVerified,
     findEmail,
+    resetPassword,
 };

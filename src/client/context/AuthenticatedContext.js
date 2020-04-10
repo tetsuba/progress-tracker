@@ -1,31 +1,25 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { useLocalStorage } from "../hooks/hooks";
+import { TOKEN_KEY } from "../const/localStorage";
 
 export const AuthenticatedContext = React.createContext({
     authenticated: false,
     toggle: () => {},
 });
 
-export default class AuthenticatedCxt extends Component {
+export default function AuthenticatedCxt({children}) {
+    const [authenticated, setAuthenticated] = useState(false);
+    const [setLocalStorage] = useLocalStorage(TOKEN_KEY);
 
-    state = {
-        authenticated: false,
-    };
-
-    toggle = (authenticated) => {
-        !authenticated && localStorage.setItem('ptToken', '');
-        this.setState({ authenticated });
-    }
-
-
-    render() {
-        return (
-            <AuthenticatedContext.Provider value={{
-                ...this.state,
-                toggle: this.toggle,
-            }}>
-                { this.props.children }
-            </AuthenticatedContext.Provider>
-        )
-    }
+    return (
+        <AuthenticatedContext.Provider value={{
+            authenticated,
+            toggle: function (auth) {
+                !auth && setLocalStorage('');
+                setAuthenticated(auth);
+            },
+        }}>
+            { children }
+        </AuthenticatedContext.Provider>
+    )
 }
-

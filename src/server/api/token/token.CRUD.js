@@ -16,6 +16,27 @@ async function createToken(user) {
     }
 }
 
+async function findToken(token) {
+    try {
+        const confirm = await Token.findOne({ token });
+        if (!confirm) {
+            throw new Error(errorName.TOKEN_EXPIRED)
+        }
+        return { success: 'token confirmed' }
+    } catch(err) {
+        return err;
+    }
+}
+
+async function deleteToken(token) {
+    try {
+        return await Token.deleteOne({token})
+
+    } catch(err) {
+        return err;
+    }
+}
+
 async function getUserId(token) {
     try {
         const obj = await Token.findOne({ token });
@@ -29,4 +50,6 @@ async function getUserId(token) {
 module.exports = {
     createToken,
     getUserId,
+    deleteToken,
+    findToken,
 };

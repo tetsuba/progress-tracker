@@ -1,4 +1,4 @@
-const { createNewUser, findUser, updateUser, findEmail } = require('./user.CRUD');
+const { createNewUser, findUser, updateUser, findEmail, resetPassword } = require('./user.CRUD');
 
 module.exports = {
     Query: {
@@ -13,7 +13,7 @@ module.exports = {
             }
         },
         getUserData: async (_, args, context) => {
-            console.log('@@@@@@@@@@@@ getUserData: ', context)
+            console.log('@@@@@@@@@@@@ getUserData: ', context);
             try {
                 return await findUser({
                     email: context.user,
@@ -66,8 +66,10 @@ module.exports = {
         },
 
         resetPassword: async (_, args, context) => {
+            console.log('resetPassword: ', args)
+
             try {
-                return /// await findEmail({ email: args.input.email }, 'resetPassword');
+                return await resetPassword(args.input.token, args.input.password);
             } catch (err) {
                 return err
             }

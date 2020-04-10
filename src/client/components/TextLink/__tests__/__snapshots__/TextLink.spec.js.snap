@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Textlink> @Render should render component 1`] = `
+<span
+  id="forgotPasswordButton"
+  onClick={[MockFunction]}
+  style={
+    Object {
+      "color": "#007bff",
+      "cursor": "pointer",
+    }
+  }
+>
+  This is a text link
+</span>
+`;

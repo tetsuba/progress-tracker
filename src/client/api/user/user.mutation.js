@@ -35,3 +35,13 @@ export const REGISTER_USER_MUTATION = gql`
         }
     }
 `;
+
+export const REST_PASSWORD_MUTATION = gql`
+    mutation ResetPassword($input: ResetPasswordInput!) {
+        resetPassword(input: $input) {
+            confirmation
+        }
+    }
+`;
+
+

@@ -1,4 +1,4 @@
-import React, {Fragment } from "react";
+import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Routes } from './routes/Routes';
 
@@ -8,7 +8,7 @@ import { Header } from './components/Header/Header';
 
 const App = () => {
   return (
-      <Fragment>
+      <>
         <Router>
           <div>
             <Header />
@@ -16,7 +16,7 @@ const App = () => {
           </div>
         </Router>
         <GlobalModal/>
-      </Fragment>
+      </>
   );
 };
 

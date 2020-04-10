@@ -1,33 +1,24 @@
 import React, { useState } from 'react';
-import { Button, Form, Row } from 'react-bootstrap';
 import { useMutation } from '@apollo/react-hooks';
+import { Button, Form, Row, Col } from 'react-bootstrap';
+
+// MUTATIONS
 import { SEND_PASSWORD_RESET_CONFIRMATION_MUTATION } from '../../api/user/user.mutation';
 
-const EmailPasswordResetForm = ({ defaultEmail = ''}) => {
+// ICONS
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCaretLeft} from "@fortawesome/free-solid-svg-icons";
+
+// COMPONENT
+import TextLink from "../TextLink/TextLink";
+import {useError, useInputChange, useSuccess} from "../../hooks/hooks";
+
+const EmailPasswordResetForm = ({ defaultEmail = '', resetPassword}) => {
     const [ sendPasswordResetConfirmation ] = useMutation(SEND_PASSWORD_RESET_CONFIRMATION_MUTATION);
-    const [inputs, setInputs] = useState({email: defaultEmail});
-    const [error, setError] = useState({message: ''});
-    const [success, setSuccess] = useState('');
-
-    const handleInputChange = (event) => {
-        event.persist();
-        setInputs(inputs => (
-            {...inputs, [event.target.name]: event.target.value})
-        );
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        sendPasswordResetConfirmation({ variables: { input: inputs } })
-            .then(({ data }) => {
-                setSuccess(data.sendPasswordResetConfirmation.confirmation)
-            })
-            .catch((error) => {
-                const message = error.graphQLErrors[0].message;
-                setError({ message })
-            })
-    };
+    const [inputs, setInputs] = useInputChange({ email: defaultEmail });
+    const [error, setError] = useError({ message: '' });
+    const [success, setSuccess] = useSuccess('sendPasswordResetConfirmation');
+    const options = { variables: { input: inputs } };
 
     return success
         ? (
@@ -36,24 +27,28 @@ const EmailPasswordResetForm = ({ defaultEmail = ''}) => {
             </Row>
         )
         :(
-            <>
+            <Col>
                 <Row>
                     <h3>Reset your password</h3>
                 </Row>
                 <Row>
                     <Form
-                        id="restPasswordForm"
+                        id="EmailPasswordResetForm"
                         className="w-100"
-                        onSubmit={(e) => handleSubmit(e)}
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            sendPasswordResetConfirmation(options)
+                                .then(setSuccess)
+                                .catch(setError)
+                        }}
                     >
-                        <Form.Group controlId="formBasicEmail">
+                        <Form.Group controlId="resetPasswordEmail">
                             <Form.Control
-                                id="resetPasswordEmail"
                                 required
                                 type="email"
                                 placeholder="Enter email"
                                 name="email"
-                                onChange={handleInputChange}
+                                onChange={setInputs}
                                 value={inputs.email}
                                 isInvalid={!!error.message}
                             />
@@ -69,7 +64,15 @@ const EmailPasswordResetForm = ({ defaultEmail = ''}) => {
                         </Button>
                     </Form>
                 </Row>
-            </>
+                { resetPassword && (
+                    <Row className="mt-3">
+                        <TextLink eventHandler={resetPassword}>
+                            <FontAwesomeIcon icon={faCaretLeft} /> back
+                        </TextLink>
+                    </Row>
+                )}
+
+            </Col>
         )
 };
 

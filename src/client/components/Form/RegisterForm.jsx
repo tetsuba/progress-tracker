@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Col, Form } from 'react-bootstrap';
+import PasswordStrength from "../PasswordStrength/PasswordStrength";
 
 const RegisterForm = ({ handleSubmit, errors }) => {
     const [inputs, setInputs] = useState({
@@ -17,8 +18,32 @@ const RegisterForm = ({ handleSubmit, errors }) => {
     return (
         <Form onSubmit={(e) => handleSubmit(e, inputs)}>
             <Form.Row>
-                <Form.Group as={Col} controlId="formEmail">
-                    <Form.Label>Email</Form.Label>
+                <Form.Group as={Col} controlId="registerFirstName">
+                    <Form.Label>First Name</Form.Label>
+                    <Form.Control
+                        placeholder="First Name"
+                        onChange={handleInputChange}
+                        value={inputs.firstName}
+                        name="firstName"
+                        required
+                    />
+                </Form.Group>
+
+                <Form.Group as={Col} controlId="registerLastName">
+                    <Form.Label>Last Name</Form.Label>
+                    <Form.Control
+                        placeholder="Last Name"
+                        onChange={handleInputChange}
+                        value={inputs.lastName}
+                        name="lastName"
+                        required
+                    />
+                </Form.Group>
+            </Form.Row>
+
+            <Form.Row>
+                <Form.Group as={Col} controlId="registerEmail">
+                    <Form.Label>Email Address</Form.Label>
                     <Form.Control
                         type="email"
                         placeholder="Enter email"
@@ -32,8 +57,9 @@ const RegisterForm = ({ handleSubmit, errors }) => {
                         {errors.email}
                     </Form.Control.Feedback>
                 </Form.Group>
-
-                <Form.Group as={Col} controlId="formPassword">
+            </Form.Row>
+            <Form.Row>
+                <Form.Group as={Col} controlId="registerPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                         type="password"
@@ -47,49 +73,11 @@ const RegisterForm = ({ handleSubmit, errors }) => {
                     <Form.Control.Feedback type="invalid">
                         {errors.password}
                     </Form.Control.Feedback>
+                    <PasswordStrength password={inputs.password}  />
                 </Form.Group>
             </Form.Row>
 
-            <Form.Row>
-                <Form.Group as={Col} controlId="formFirstName">
-                    <Form.Label>First Name</Form.Label>
-                    <Form.Control
-                        placeholder="First Name"
-                        onChange={handleInputChange}
-                        value={inputs.firstName}
-                        name="firstName"
-                        required
-                    />
-                </Form.Group>
-
-                <Form.Group as={Col} controlId="formLastName">
-                    <Form.Label>Last Name</Form.Label>
-                    <Form.Control
-                        placeholder="Last Name"
-                        onChange={handleInputChange}
-                        value={inputs.lastName}
-                        name="lastName"
-                        required
-                    />
-                </Form.Group>
-            </Form.Row>
-
-            <Form.Group controlId="formCountry">
-                <Form.Label>State</Form.Label>
-                <Form.Control
-                    as="select"
-                    value={inputs.country}
-                    onChange={handleInputChange}
-                    name="country"
-                >
-                    <option>Choose...</option>
-                    <option>UK</option>
-                    <option>ASIA</option>
-                    <option>AFRICA</option>
-                </Form.Control>
-            </Form.Group>
-
-            <Button variant="primary" type="submit">
+            <Button id="registerButton" variant="primary" type="submit" className="float-right">
                 Submit
             </Button>
         </Form>

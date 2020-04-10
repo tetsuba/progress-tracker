@@ -7,7 +7,7 @@ describe('@Login', () => {
 
     describe('Success', () => {
         it('should redirect user to home page', () => {
-            const props = {email: 'test@test.com', password: '1234'};
+            const props = {email: 'test@test.com', password: '1234qwer'};
             cy
                 .login(props)
                 .location().should((loc) => {

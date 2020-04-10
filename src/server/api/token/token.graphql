@@ -2,11 +2,7 @@ type TokenType {
     success: String
 }
 
-type PasswordResetTokenType {
-    userId: String
-}
-
 extend type Query {
     confirmAccount(token: String): TokenType!
-    confirmPasswordReset(token: String): PasswordResetTokenType!
+    confirmToken(token: String): TokenType!
 }

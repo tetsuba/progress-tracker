@@ -44,7 +44,7 @@ input UserDataInput {
 }
 
 input ResetPasswordInput {
-    id: String
+    token: String
     password: String
 }
 

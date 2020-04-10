@@ -1,16 +1,22 @@
-import React, { useState, useContext, Fragment } from 'react';
+import React, { useState, useContext } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import { UserContext } from '../../context/UserContext';
+
+// CONTEXT
 import { AuthenticatedContext } from '../../context/AuthenticatedContext';
+
+// MUTATION
 import { LOGIN_MUTATION } from '../../api/user/user.mutation';
+
+// COMPONENTS
 import LoginForm from '../../components/Form/LoginForm';
-import EmailVerificationForm from '../../components/Form/EmailVerificationForm';
 import EmailPasswordResetForm from '../../components/Form/EmailPasswordResetForm';
 
-// ICONS
-import { faCaretLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// UTILS
+import { getLoginStatus } from "../../components/Form/form-utils";
+import { useLocalStorage } from "../../hooks/hooks";
+import { TOKEN_KEY } from "../../const/localStorage";
 
 const Login = () => {
     const [ userLogin, { loading: mutationLoading }] = useMutation(LOGIN_MUTATION);
@@ -18,6 +24,7 @@ const Login = () => {
     const { userLoggedIn } = useContext(UserContext);
     const [error, setError] = useState({});
     const [resetPassword, setResetPassword] = useState(false);
+    const [setLocalStorage] = useLocalStorage(TOKEN_KEY);
 
     const handleSubmit = (e, inputs) => {
         e.preventDefault();
@@ -27,15 +34,16 @@ const Login = () => {
                 console.log(data);
                 userLoggedIn(data.userLogin);
                 authenticateUser(true);
-                localStorage.setItem('ptToken', data.userLogin.token)
+                setLocalStorage(data.userLogin.token);
             })
             .catch((err) => {
+                // TODO: rename to not be the same as the state error name
                 const error = err.graphQLErrors[0];
 
                 if(error.name === 'email_not_verified') {
                     setError({
                         ...error,
-                        email: inputs.email,
+                        emailNotVerified: true,
                     });
                 } else {
                     setError({
@@ -46,55 +54,24 @@ const Login = () => {
             })
     };
 
-    if (mutationLoading) return <div>Loading</div>;
-
     return (
         <Container>
             <Row className="mt-5">
-                {
-                    !resetPassword && (
-                        <Col>
-                            {
-                                error.name === 'email_not_verified'
-                                    ? (
-                                        <EmailVerificationForm
-                                            defaultEmail={error.email}
-                                        />
-                                    )
-                                    : (
-                                        <Fragment>
-                                            <h3>Login</h3>
-                                            <LoginForm error={error} handleSubmit={handleSubmit} />
-                                            <a
-                                                id="forgotPasswordButton"
-                                                href="javascript:void(0);"
-                                                onClick={() => setResetPassword(true)}
-                                            >
-                                                Forgot password?
-                                            </a>
-                                        </Fragment>
-                                    )
-                            }
-                        </Col>
-                    )
-                }
-                {
-                    resetPassword && (
-
-                        <Col>
-                            <EmailPasswordResetForm />
-                            <Row className="mt-3">
-                                <a
-                                    id="backToLoginButton"
-                                    href="javascript:void(0);"
-                                    onClick={() => setResetPassword(false)}
-                                >
-                                    <FontAwesomeIcon icon={faCaretLeft} /> back
-                                </a>
-                            </Row>
-                        </Col>
-                    )
-                }
+                {{
+                    loading: (<div>Loading</div>),
+                    form: (
+                        <LoginForm
+                            error={error}
+                            handleSubmit={handleSubmit}
+                            resetPassword={() => setResetPassword(true)}
+                        />
+                    ),
+                    reset: (
+                        <EmailPasswordResetForm
+                            resetPassword={() => setResetPassword(false)}
+                        />
+                    ),
+                }[getLoginStatus(mutationLoading, resetPassword)]}
             </Row>
         </Container>
     )

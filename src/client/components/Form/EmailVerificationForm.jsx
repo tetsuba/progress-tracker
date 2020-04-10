@@ -1,33 +1,19 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Button, Form, Row } from 'react-bootstrap';
 import { useMutation } from '@apollo/react-hooks';
+
+// MUTATIONS
 import { VERIFY_EMAIL_MUTATION } from '../../api/user/user.mutation';
 
-const EmailVerificationForm = ({ defaultEmail = ''}) => {
+// HOOKS
+import { useInputChange, useSuccess, useError } from "../../hooks/hooks";
+
+export default function EmailVerificationForm ({ defaultEmail = ''}) {
     const [ verifyEmail ] = useMutation(VERIFY_EMAIL_MUTATION);
-    const [inputs, setInputs] = useState({email: defaultEmail});
-    const [error, setError] = useState({message: ''});
-    const [success, setSuccess] = useState('');
-
-    const handleInputChange = (event) => {
-        event.persist();
-        setInputs(inputs => (
-            {...inputs, [event.target.name]: event.target.value})
-        );
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        verifyEmail({ variables: { input: inputs } })
-            .then(({ data }) => {
-                setSuccess(data.verifyEmail.confirmation)
-            })
-            .catch((error) => {
-                const message = error.graphQLErrors[0].message;
-                setError({ message })
-            })
-    };
+    const [inputs, setInputs] = useInputChange({ email: defaultEmail });
+    const [error, setError] = useError({ message: '' });
+    const [success, setSuccess] = useSuccess('verifyEmail');
+    const options = { variables: { input: inputs } };
 
     return success
         ? (
@@ -35,18 +21,26 @@ const EmailVerificationForm = ({ defaultEmail = ''}) => {
                 <h3>Please check your email.</h3>
             </Row>
         )
-        :(
+        : (
             <Row>
                 <h3>Email not verified</h3>
                 <p>Please validate your email before logging in</p>
-                <Form onSubmit={(e) => handleSubmit(e)}>
+                <Form
+                    id="EmailVerificationForm"
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        verifyEmail(options)
+                            .then(setSuccess)
+                            .catch(setError)
+                    }}
+                >
                     <Form.Group controlId="formBasicEmail">
                         <Form.Control
                             required
                             type="email"
                             placeholder="Enter email"
                             name="email"
-                            onChange={handleInputChange}
+                            onChange={setInputs}
                             value={inputs.email}
                             isInvalid={!!error.message}
                         />
@@ -62,7 +56,5 @@ const EmailVerificationForm = ({ defaultEmail = ''}) => {
                     </Button>
                 </Form>
             </Row>
-    )
+        );
 };
-
-export default EmailVerificationForm

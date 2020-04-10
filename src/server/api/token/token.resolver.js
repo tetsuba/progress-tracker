@@ -1,4 +1,4 @@
-const { getUserId } = require('./token.CRUD');
+const { getUserId, findToken } = require('./token.CRUD');
 const { userVerified } = require('../user/user.CRUD');
 
 module.exports = {
@@ -19,16 +19,9 @@ module.exports = {
             }
         },
 
-        confirmPasswordReset: async (_, args, context) => {
+        confirmToken: async (_, args, context) => {
             try {
-                const userId = await getUserId(args.token);
-                if (userId.message) {
-                    throw new Error(userId.message);
-                    return;
-                }
-                return {
-                    userId,
-                }
+                return await findToken(args.token);
             } catch (err) {
                 return err
             }
