@@ -1,4 +1,6 @@
 const { createNewUser, findUser, updateUser, findEmail, resetPassword } = require('./user.CRUD');
+const { getEmailMailOptions } = require('../../utils/email/sendEmail.js');
+const { errorName } = require('../../errorHandling');
 
 module.exports = {
     Query: {
@@ -50,24 +52,34 @@ module.exports = {
         },
 
         verifyEmail: async (_, args, context) => {
+            const name = 'confirmEmail';
             try {
-                return await findEmail({ email: args.input.email }, 'confirmEmail');
+                const mailOptions = getEmailMailOptions(name)
+                return await findEmail({ email: args.input.email }, mailOptions);
             } catch (err) {
-                return err
+                if (err.name === 'TypeError') {
+                    console.log(`Property "name": "${name}" is incorrect and can not get mail options`)
+                    return new Error(errorName.INTERNAL_SERVER_ERROR);
+                }
+                return err;
             }
         },
 
         sendPasswordResetConfirmation: async (_, args, context) => {
+            const name = 'resetPassword';
             try {
-                return await findEmail({ email: args.input.email }, 'resetPassword');
+                const mailOptions = getEmailMailOptions(name)
+                return await findEmail({ email: args.input.email }, mailOptions);
             } catch (err) {
-                return err
+                if (err.name === 'TypeError') {
+                    console.log(`Property "name": "${name}" is incorrect and can not get mail options`)
+                    return new Error(errorName.INTERNAL_SERVER_ERROR);
+                }
+                return err;
             }
         },
 
         resetPassword: async (_, args, context) => {
-            console.log('resetPassword: ', args)
-
             try {
                 return await resetPassword(args.input.token, args.input.password);
             } catch (err) {
