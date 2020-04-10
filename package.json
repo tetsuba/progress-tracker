@@ -36,19 +36,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
-    "test:nowatch": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
     "server:dev": "DEV=true node src/server/server.js",
     "server:test": "TEST=true node src/server/server.js",
     "cypress:open": "cypress open",
     "functional": "yarn server:test & yarn start & cypress open"
-
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "",
-      "pre-push": "yarn test:nowatch"
-    }
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -72,7 +64,6 @@
     "cypress": "^4.1.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
-    "husky": "^4.2.5",
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
     "jsdom": "^15.2.1",

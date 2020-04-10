@@ -12,7 +12,7 @@ const { sendMail } = require('../../utils/email/sendEmail');
 const { errorName } = require('../../errorHandling');
 const { createAuthToken } = require('../../utils/token');
 
-async function findEmail(data, mailOptions) {
+async function findEmail(data, templateName) {
     try {
         const user = await User.findOne({ email: data.email });
 
@@ -22,12 +22,12 @@ async function findEmail(data, mailOptions) {
         }
 
         // ERROR - User is verified
-        if (user.isVerified && mailOptions.subject.includes('confirm')) {
+        if (user.isVerified && templateName === 'confirmEmail') {
             throw new Error(errorName.EMAIL_VERIFIED);
         }
 
         const obj = await createToken(user);
-        await sendMail(obj.token, mailOptions);
+        sendMail(obj.token, templateName);
 
         return {
             confirmation: 'Please check your email and confirm.'
@@ -58,7 +58,10 @@ async function findUser(data) {
         const payload = jwt.verify(
             token,
             process.env.REACT_APP_JWT_AUTH_SECRET
-    )
+        )
+
+        console.log("TOKEN: ", token)
+        console.log("payload: ", payload)
 
         return {
             firstName: user.firstName,

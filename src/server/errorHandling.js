@@ -1,5 +1,3 @@
-// Useful resource to look up error codes
-// https://www.restapitutorial.com/httpstatuscodes.html
 
 const errorName = {
     UNAUTHORIZED: 'UNAUTHORIZED',
@@ -9,8 +7,8 @@ const errorName = {
     EMAIL_VERIFIED: 'EMAIL_VERIFIED',
     EMAIL_NOT_VERIFIED: 'EMAIL_NOT_VERIFIED',
     EMAIL_ALREADY_EXIST: 'EMAIL_ALREADY_EXIST',
-    MISSING_MAIL_OPTIONS: 'MISSING_MAIL_OPTIONS',
 };
+
 
 const errorType = {
     UNAUTHORIZED: {
@@ -47,11 +45,6 @@ const errorType = {
         message: 'Email already exist',
         statusCode: 401, //  unauthorized
         name: 'email_already_exist',
-    },
-    INTERNAL_SERVER_ERROR: {
-        message: 'Internal server error. Please try again later.',
-        statusCode: 500, //  Internal server error
-        name: 'Internal_server_error',
     },
 };
 

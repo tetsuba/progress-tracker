@@ -19,57 +19,33 @@ exports[`@Home renders default 1`] = `
     className="mt-5 row"
   >
     <div
-      className="col-sm-4"
+      className="col"
+    />
+    <div
+      className="col"
     >
       <a
-        className="card text-body text-decoration-none"
-        href="/students"
+        className="btn btn-primary btn-lg"
+        href="/login"
         onClick={[Function]}
       >
-        <div
-          className="card-header"
-        >
-          <h1>
-            Students
-          </h1>
-        </div>
-        <div
-          className="card-body"
-        >
-          Students
-        </div>
-        <div
-          className="card-footer"
-        >
-          Number of students
-        </div>
+        Login
       </a>
     </div>
     <div
-      className="col-sm-4"
+      className="col"
     >
       <a
-        className="card text-body text-decoration-none"
-        href="/myAccount"
+        className="btn btn-primary btn-lg"
+        href="/register"
         onClick={[Function]}
       >
-        <div
-          className="card-header"
-        >
-          <h1>
-            My Account
-          </h1>
-        </div>
-        <div
-          className="card-body"
-        >
-          My Account
-        </div>
-        <div
-          className="card-footer"
-        />
+        Register
       </a>
     </div>
+    <div
+      className="col"
+    />
   </div>
 </div>
 `;
