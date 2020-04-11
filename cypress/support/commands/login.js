@@ -38,14 +38,14 @@ Cypress.Commands.add('resetPassword', (email) => {
 
 Cypress.Commands.add('goToResetPassword', (email) => {
     cy
-        .get('#forgotPasswordButton')
+        .get('#TextLink')
         .contains('Forgot password?')
         .click()
 });
 
 Cypress.Commands.add('backToLogin', (email) => {
     cy
-        .get('#backToLoginButton')
+        .get('#TextLink')
         .contains('back')
         .click()
 });

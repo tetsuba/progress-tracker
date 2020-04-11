@@ -59,7 +59,7 @@ describe('@Login', () => {
         it('should display reset password and go back to login', () => {
             cy
                 .goToResetPassword()
-                .get('#restPasswordForm')
+                .get('#EmailPasswordResetForm')
                 .should('be.visible')
                 .backToLogin()
                 .get('#loginForm')

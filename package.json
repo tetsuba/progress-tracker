@@ -47,7 +47,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "",
-      "pre-push": "yarn test:nowatch"
+      "pre-push": "yarn test:nowatch & cypress run --headless"
     }
   },
   "eslintConfig": {
