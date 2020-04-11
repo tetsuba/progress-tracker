@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { Button, Form, Row, Col } from 'react-bootstrap';
 
@@ -13,7 +13,7 @@ import {faCaretLeft} from "@fortawesome/free-solid-svg-icons";
 import TextLink from "../TextLink/TextLink";
 import {useError, useInputChange, useSuccess} from "../../hooks/hooks";
 
-const EmailPasswordResetForm = ({ defaultEmail = '', resetPassword}) => {
+const ForgotMyPasswordForm = ({ defaultEmail = '', resetPassword}) => {
     const [ sendPasswordResetConfirmation ] = useMutation(SEND_PASSWORD_RESET_CONFIRMATION_MUTATION);
     const [inputs, setInputs] = useInputChange({ email: defaultEmail });
     const [error, setError] = useError({ message: '' });
@@ -29,11 +29,14 @@ const EmailPasswordResetForm = ({ defaultEmail = '', resetPassword}) => {
         :(
             <Col>
                 <Row>
-                    <h3>Reset your password</h3>
+                    <h3>Forgot my password</h3>
+                </Row>
+                <Row>
+                    <p>Enter your email address and we will send you a link to reset your password.</p>
                 </Row>
                 <Row>
                     <Form
-                        id="EmailPasswordResetForm"
+                        id="ForgotMyPasswordForm"
                         className="w-100"
                         onSubmit={(e) => {
                             e.preventDefault();
@@ -42,7 +45,7 @@ const EmailPasswordResetForm = ({ defaultEmail = '', resetPassword}) => {
                                 .catch(setError)
                         }}
                     >
-                        <Form.Group controlId="resetPasswordEmail">
+                        <Form.Group controlId="forgotMyPasswordEmail">
                             <Form.Control
                                 required
                                 type="email"
@@ -59,7 +62,7 @@ const EmailPasswordResetForm = ({ defaultEmail = '', resetPassword}) => {
                                 We'll never share your email with anyone else.
                             </Form.Text>
                         </Form.Group>
-                        <Button id="resetPasswordSubmit" variant="primary" type="submit">
+                        <Button id="ForgotMyPasswordSubmit" variant="primary" type="submit">
                             Reset Password
                         </Button>
                     </Form>
@@ -76,4 +79,4 @@ const EmailPasswordResetForm = ({ defaultEmail = '', resetPassword}) => {
         )
 };
 
-export default EmailPasswordResetForm
+export default ForgotMyPasswordForm;

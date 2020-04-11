@@ -11,7 +11,7 @@ import { REST_PASSWORD_MUTATION } from "../../api/user/user.mutation";
 
 // COMPONENTS
 import Loading from "../../components/Loading/Loading";
-import EmailPasswordResetForm from "../../components/Form/EmailPasswordResetForm";
+import ForgotMyPasswordForm from "../../components/Form/ForgotMyPasswordForm";
 import ResetPasswordForm from "../../components/Form/ResetPasswordForm";
 
 // UTILS
@@ -49,7 +49,7 @@ const ResetPassword = () => {
                         </Row>
                         <Row className="mt-5">
                             <Col>
-                                <EmailPasswordResetForm />
+                                <ForgotMyPasswordForm />
                             </Col>
 
                         </Row>

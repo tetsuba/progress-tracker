@@ -11,7 +11,7 @@ import { LOGIN_MUTATION } from '../../api/user/user.mutation';
 
 // COMPONENTS
 import LoginForm from '../../components/Form/LoginForm';
-import EmailPasswordResetForm from '../../components/Form/EmailPasswordResetForm';
+import ForgotMyPasswordForm from '../../components/Form/ForgotMyPasswordForm';
 
 // UTILS
 import { getLoginStatus } from "../../components/Form/form-utils";
@@ -67,7 +67,7 @@ const Login = () => {
                         />
                     ),
                     reset: (
-                        <EmailPasswordResetForm
+                        <ForgotMyPasswordForm
                             resetPassword={() => setResetPassword(false)}
                         />
                     ),
