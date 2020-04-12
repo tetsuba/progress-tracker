@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Login from '../Login';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Login from '../Login'
 // import { LOGIN_MUTATION } from '../Login.mutation';
 
 // import ReactTestUtils from 'react-dom/test-utils';
 
-import { fullRender, fullDomRendering } from '../../../../test/testHelper';
+import { fullRender, fullDomRendering } from '../../../../test/testHelper'
 // import { render } from '@testing-library/react'
 
 //
@@ -22,14 +22,9 @@ import { fullRender, fullDomRendering } from '../../../../test/testHelper';
 //     },
 // ];
 
-
-
 describe('@Login', () => {
-    it('renders default', () => {
-        //const tree = fullRender(Login);
-        // expect(tree.toJSON()).toMatchSnapshot();
-    });
-
+  it('renders default', () => {
+    //const tree = fullRender(Login);
+    // expect(tree.toJSON()).toMatchSnapshot();
+  })
 })
-
-

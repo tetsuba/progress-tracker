@@ -44,11 +44,15 @@
     "cypress:open": "cypress open",
     "cypress:headless": "cypress run --headless",
     "functional": "yarn server:test & yarn start & cypress open",
-    "functional:headless": "start-server-and-test start:server:client http://localhost:3000 cypress:headless"
+    "functional:headless": "start-server-and-test start:server:client http://localhost:3000 cypress:headless",
+    "pretty": "prettier \"src/server/**/*.js\" \"src/client/**/*.js\" \"src/client/**/*.jsx\"",
+    "pretty:check": "yarn pretty --check",
+    "pretty:write": "yarn pretty --write"
+
   },
   "husky": {
     "hooks": {
-      "pre-commit": "",
+      "pre-commit": "yarn pretty:write",
       "pre-push": "yarn test:nowatch"
     }
   },
@@ -72,12 +76,14 @@
     "@testing-library/jest-dom": "^4.2.0",
     "@testing-library/react": "^9.3.2",
     "cypress": "^4.1.0",
+    "cypress-intellij-reporter": "^0.0.4",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "husky": "^4.2.5",
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
     "jsdom": "^15.2.1",
+    "prettier": "2.0.4",
     "react-test-renderer": "16.13.1",
     "start-server-and-test": "^1.10.11"
   }
