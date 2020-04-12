@@ -32,7 +32,7 @@ describe('<ForgotMyPasswordForm>', () => {
     })
 
     it('should render a success message', async () => {
-      let wrapper;
+      let wrapper
       const mocks = [{ request, result }]
 
       await act(async () => {
@@ -56,7 +56,7 @@ describe('<ForgotMyPasswordForm>', () => {
     const errors = [new GraphQLError(errorMessage)]
 
     it('should render an error message if form returns an error', async () => {
-      let wrapper;
+      let wrapper
       const mocks = [{ request, result: { errors } }]
 
       await act(async () => {

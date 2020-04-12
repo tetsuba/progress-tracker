@@ -13,7 +13,7 @@ import { CONFIRM_TOKEN_QUERY } from '../../../api/token/token.query'
 
 jest.mock('react-router-dom', () => ({
   useParams: jest.fn().mockReturnValue({ token: 'token1234' }),
-  Link: ({children}) => children,
+  Link: ({ children }) => children,
 }))
 
 describe('<ResetPasswordForm>', () => {
@@ -52,7 +52,7 @@ describe('<ResetPasswordForm>', () => {
       await act(async () => {
         wrapper = graphRenderer(ResetPassword, mocks, {})
         await delay()
-      });
+      })
 
       wrapper.update()
       expect(wrapper.find(ResetPassword)).toMatchSnapshot()
@@ -87,7 +87,7 @@ describe('<ResetPasswordForm>', () => {
       await act(async () => {
         wrapper = graphRenderer(ResetPassword, mocks, {})
         await delay()
-      });
+      })
 
       wrapper.update()
 
@@ -126,7 +126,7 @@ describe('<ResetPasswordForm>', () => {
 
       await act(async () => {
         wrapper = graphRenderer(ResetPassword, mocks, {})
-        await delay();
+        await delay()
       })
 
       wrapper.update()

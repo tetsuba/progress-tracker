@@ -29,7 +29,7 @@ describe('<EmailVerificationForm>', () => {
     })
 
     it('should render success message', async () => {
-      let wrapper;
+      let wrapper
       const mocks = [{ request, result }]
 
       await act(async () => {
