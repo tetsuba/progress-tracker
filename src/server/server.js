@@ -13,7 +13,7 @@ const server = new ApolloServer({
   resolvers: require('./api/resolvers'),
   context: ({ req }) => {
     console.log('authorization: ', req.headers.authorization)
-
+    // TODO: return a proper error
     if (!req.headers.authorization) return null
 
     try {

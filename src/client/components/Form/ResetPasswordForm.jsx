@@ -28,7 +28,7 @@ const ResetPasswordForm = ({ resetPassword, token }) => {
 
   return (
     <>
-      <Row className="mt-5">
+      <Row className="mt-5 mb-1">
         <h1>Reset Password</h1>
       </Row>
       <Row>
@@ -41,7 +41,8 @@ const ResetPasswordForm = ({ resetPassword, token }) => {
             resetPassword(options)
           }}
         >
-          <Form.Group controlId="newPassword">
+          <Form.Group controlId="newPassword" className="mb-3">
+            <Form.Label>New password</Form.Label>
             <Form.Control
               required
               type="password"
@@ -52,7 +53,8 @@ const ResetPasswordForm = ({ resetPassword, token }) => {
             />
             <PasswordStrength password={inputs.newPassword} />
           </Form.Group>
-          <Form.Group controlId="confirmPassword">
+          <Form.Group controlId="confirmPassword" className="mb-3">
+            <Form.Label>Confirm password</Form.Label>
             <Form.Control
               required
               type="password"
