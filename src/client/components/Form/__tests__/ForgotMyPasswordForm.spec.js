@@ -32,16 +32,20 @@ describe('<ForgotMyPasswordForm>', () => {
     })
 
     it('should render a success message', async () => {
+      let wrapper;
       const mocks = [{ request, result }]
-      const wrapper = graphRenderer(ForgotMyPasswordForm, mocks, props)
 
-      act(() => {
+      await act(async () => {
+        wrapper = graphRenderer(ForgotMyPasswordForm, mocks, props)
+        await delay()
+      })
+
+      await act(async () => {
         wrapper.find(id).get(0).props.onSubmit({
           preventDefault: jest.fn(),
         })
       })
 
-      await delay()
       wrapper.update()
       expect(wrapper.find(ForgotMyPasswordForm)).toMatchSnapshot()
     })
@@ -52,16 +56,20 @@ describe('<ForgotMyPasswordForm>', () => {
     const errors = [new GraphQLError(errorMessage)]
 
     it('should render an error message if form returns an error', async () => {
+      let wrapper;
       const mocks = [{ request, result: { errors } }]
-      const wrapper = graphRenderer(ForgotMyPasswordForm, mocks, props)
 
-      act(() => {
+      await act(async () => {
+        wrapper = graphRenderer(ForgotMyPasswordForm, mocks, props)
+        await delay()
+      })
+
+      await act(async () => {
         wrapper.find(id).get(0).props.onSubmit({
           preventDefault: jest.fn(),
         })
       })
 
-      await delay()
       wrapper.update()
       wrapper.find({ type: 'invalid' }).forEach((message) => {
         expect(message.prop('children')).toEqual(errorMessage)
