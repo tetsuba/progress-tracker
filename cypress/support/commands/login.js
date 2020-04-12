@@ -28,11 +28,11 @@ Cypress.Commands.add('loginInputsNotInValid', () => {
         .should('not.have.class', 'is-invalid')
 });
 
-Cypress.Commands.add('resetPassword', (email) => {
+Cypress.Commands.add('forgotMyPasswordSubmit', (email) => {
+    const input = { name: 'email', value: email }
     cy
-        .get('#resetPasswordEmail')
-        .type(email)
-        .get('#resetPasswordSubmit')
+        .textInput(input)
+        .get('#ForgotMyPasswordSubmit')
         .click()
 });
 

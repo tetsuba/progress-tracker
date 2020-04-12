@@ -97,14 +97,14 @@ describe('<ResetPasswordForm>', () => {
 
             act(() => {
                 wrapper.update();
-                updateInput(wrapper, 'password1', '1234');
+                updateInput(wrapper, 'newPassword', '1234');
             });
 
             await delay();
 
             act(() => {
                 wrapper.update();
-                updateInput(wrapper, 'password2', '1234');
+                updateInput(wrapper, 'confirmPassword', '1234');
             });
 
 

@@ -125,7 +125,12 @@ async function resetPassword(token, password) {
         const user = await User.findById(id);
         user.password = password;
         await user.save();
-        await deleteToken(token);
+
+        // Don not delete token when running functional tests
+        if (!process.env.TEST) {
+            await deleteToken(token);
+        }
+
         return {
             confirmation: 'New password is saved'
         }

@@ -24,8 +24,8 @@ describe('<ResetPasswordForm>', () => {
 
         it('should disable button if passwords do not match', () => {
             const wrapper = testRenderer(ResetPasswordForm, props);
-            updateInput(wrapper, 'password1', '123456');
-            updateInput(wrapper, 'password2', '123457');
+            updateInput(wrapper, 'newPassword', '123456');
+            updateInput(wrapper, 'confirmPassword', '123457');
             expect(
                 wrapper.find({type: 'submit'}).prop('disabled')
             ).toBeTruthy()
@@ -33,9 +33,9 @@ describe('<ResetPasswordForm>', () => {
     });
 
     describe('@Events', () => {
-        it('should update password1 input with event onChange', async () => {
+        it('should update newPassword input with event onChange', async () => {
             const wrapper = testRenderer(ResetPasswordForm, props);
-            const name = 'password1';
+            const name = 'newPassword';
             const value = '123456';
             updateInput(wrapper, name, value)
             expect(
@@ -43,9 +43,9 @@ describe('<ResetPasswordForm>', () => {
             ).toEqual(value)
         });
 
-        it('should update password2 input with event onChange', async () => {
+        it('should update confirmPassword input with event onChange', async () => {
             const wrapper = testRenderer(ResetPasswordForm, [], props);
-            const name = 'password2';
+            const name = 'confirmPassword';
             const value = '123456';
             updateInput(wrapper, name, value)
             expect(
@@ -64,11 +64,11 @@ describe('<ResetPasswordForm>', () => {
     describe('@Error', () => {
         it('should render an error message if passwords do not match', async() => {
             const wrapper = testRenderer(ResetPasswordForm, props);
-            updateInput(wrapper, 'password1', '123456');
-            updateInput(wrapper, 'password2', '123457');
+            updateInput(wrapper, 'newPassword', '123456');
+            updateInput(wrapper, 'confirmPassword', '123457');
             expect(
                 wrapper.find({type: 'invalid'}).prop('children')
-            ).toEqual('Password does not match!!!')
+            ).toEqual('Passwords do not match!!!')
         })
     })
 });

@@ -33,6 +33,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:server:client": "npm run server:test & npm start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
@@ -41,13 +42,15 @@
     "server:dev": "DEV=true node src/server/server.js",
     "server:test": "TEST=true node src/server/server.js",
     "cypress:open": "cypress open",
-    "functional": "yarn server:test & yarn start & cypress open"
-
+    "cypress:headless": "cypress run --headless",
+    "functional": "yarn server:test & yarn start & cypress open",
+    "functional:headless": "npm run server:test & npm start & cypress run --headless",
+    "functional:prepush": "start-server-and-test start:clent:server http://localhost:3000 cypress:headless"
   },
   "husky": {
     "hooks": {
       "pre-commit": "",
-      "pre-push": "yarn test:nowatch & cypress run --headless"
+      "pre-push": "npm test:nowatch & npm run functional:prepush"
     }
   },
   "eslintConfig": {
@@ -76,6 +79,7 @@
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
     "jsdom": "^15.2.1",
-    "react-test-renderer": "16.13.1"
+    "react-test-renderer": "16.13.1",
+    "start-server-and-test": "^1.10.11"
   }
 }

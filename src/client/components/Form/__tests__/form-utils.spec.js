@@ -2,24 +2,24 @@ import { passwordMatchError, passwordsDoNotMatched, getLoginStatus } from "../fo
 
 describe('@form-utils', () => {
     describe('passwordMatchError', () => {
-        it('should return an false if password2 length is zero', () => {
+        it('should return an false if confirmPassword length is zero', () => {
             const passwords = {
-                password1: '',
-                password2: '',
+                newPassword: '',
+                confirmPassword: '',
             };
             expect(passwordMatchError(passwords)).toBeFalsy()
         });
         it('should return an true if passwords do not match', () => {
             const passwords = {
-                password1: '1234',
-                password2: '1235',
+                newPassword: '1234',
+                confirmPassword: '1235',
             };
             expect(passwordMatchError(passwords)).toBeTruthy()
         });
         it('should return an false if passwords match', () => {
             const passwords = {
-                password1: '1234',
-                password2: '1234',
+                newPassword: '1234',
+                confirmPassword: '1234',
             };
             expect(passwordMatchError(passwords)).toBeFalsy()
         })
@@ -28,16 +28,16 @@ describe('@form-utils', () => {
     describe('passwordsDoNotMatched', () => {
         it('should return false if passwords match', () => {
             const passwords = {
-                password1: '1234',
-                password2: '1234',
+                newPassword: '1234',
+                confirmPassword: '1234',
             };
             expect(passwordsDoNotMatched(passwords)).toBeFalsy()
         });
 
         it('should return true if passwords do not match', () => {
             const passwords = {
-                password1: '1234',
-                password2: '1235',
+                newPassword: '1234',
+                confirmPassword: '1235',
             };
             expect(passwordsDoNotMatched(passwords)).toBeTruthy()
         });

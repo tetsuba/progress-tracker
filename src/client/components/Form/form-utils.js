@@ -7,13 +7,13 @@ export const handleInputChange = (event, setInputs) => {
     );
 };
 
-export const passwordMatchError = ({password1, password2}) => {
-    if (password2.length === 0) return false;
-    return !password1.startsWith(password2);
+export const passwordMatchError = ({newPassword, confirmPassword}) => {
+    if (confirmPassword.length === 0) return false;
+    return !newPassword.startsWith(confirmPassword);
 };
 
-export const passwordsDoNotMatched = ({password1, password2}) =>
-    !(password1 === password2);
+export const passwordsDoNotMatched = ({newPassword, confirmPassword}) =>
+    !(newPassword === confirmPassword);
 
 // Read this for more information
 // https://www.robinwieruch.de/conditional-rendering-react#multiple-conditional-renderings-in-react

@@ -1,21 +1,31 @@
 
-Cypress.Commands.add('passwordStrength', (password, strength) => {
-    const passwordInput = { name: 'password1', value: password };
-
+Cypress.Commands.add('passwordStrength', (strength) => {
     cy
-        .textInput(passwordInput)
         .get('.progress-bar')
         .contains(strength)
+        .end()
 });
 
-// Cypress.Commands.add('passwordStrength', (password, strength) => {
-//     const badPassword = { name: 'password1', value: '123456' };
-//     const weakPassword = { name: 'password1', value: 'tiger12' };
-//     const goodPassword = { name: 'password1', value: 'G@@dPassw0rD' };
-//     const strongPassword = { name: 'password1', value: 'G@@dPassw0d' };
-//     cy
-//         .textInput(badPassword)
-//         .textInput(weakPassword)
-//         .textInput(goodPassword)
-//         .textInput(strongPassword)
-// });
+Cypress.Commands.add('submitPassword', (newPassword, confirmPassword, strength) => {
+    cy
+        .fillResetPasswordForm(newPassword, confirmPassword, strength)
+        .submitForm('#ResetPasswordSubmit')
+        .successMessage('#ResetPasswordSuccess')
+        .end()
+});
+
+Cypress.Commands.add('fillResetPasswordForm', (newPassword, confirmPassword, strength) => {
+    cy
+        .formIsVisible('#ResetPasswordForm')
+        .textInput({ name: 'newPassword', value: newPassword })
+        .passwordStrength(strength)
+        .textInput({ name: 'confirmPassword', value: confirmPassword })
+        .end()
+});
+
+Cypress.Commands.add('passwordMatchError', () => {
+    cy
+        .get('.invalid-feedback')
+        .contains('Passwords do not match!!!')
+        .end()
+});
