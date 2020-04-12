@@ -7,7 +7,7 @@ describe('@Login', () => {
 
     describe('Success', () => {
         it('should redirect user to home page', () => {
-            const props = {email: 'test@test.com', password: '1234qwer'};
+            const props = {email: 'testLogin@test.com', password: '1234qwer'};
             cy
                 .login(props)
                 .location().should((loc) => {
@@ -50,7 +50,7 @@ describe('@Login', () => {
         it('should display an error if an email does not exist', () => {
             cy
                 .goToResetPassword()
-                .resetPassword('wrong@email.com')
+                .forgotMyPasswordSubmit('wrong@email.com')
                 .get('.invalid-feedback')
                 .contains('Email address does not exist')
         })
@@ -59,7 +59,7 @@ describe('@Login', () => {
         it('should display reset password and go back to login', () => {
             cy
                 .goToResetPassword()
-                .get('#restPasswordForm')
+                .get('#ForgotMyPasswordForm')
                 .should('be.visible')
                 .backToLogin()
                 .get('#loginForm')

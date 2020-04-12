@@ -5,7 +5,7 @@ export default function TextLink({eventHandler, children}) {
     return (
         <span
             style={styles}
-            id="forgotPasswordButton"
+            id="TextLink"
             onClick={eventHandler}
         >
             { children }

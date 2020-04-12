@@ -26,8 +26,11 @@ async function findEmail(data, mailOptions) {
             throw new Error(errorName.EMAIL_VERIFIED);
         }
 
-        const obj = await createToken(user);
-        await sendMail(obj.token, mailOptions);
+        // Do not send an email when running functional tests
+        if (!process.env.TEST) {
+            const obj = await createToken(user);
+            await sendMail(obj.token, mailOptions);
+        }
 
         return {
             confirmation: 'Please check your email and confirm.'
@@ -122,7 +125,12 @@ async function resetPassword(token, password) {
         const user = await User.findById(id);
         user.password = password;
         await user.save();
-        await deleteToken(token);
+
+        // Don not delete token when running functional tests
+        if (!process.env.TEST) {
+            await deleteToken(token);
+        }
+
         return {
             confirmation: 'New password is saved'
         }

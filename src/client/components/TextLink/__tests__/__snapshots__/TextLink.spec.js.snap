@@ -2,7 +2,7 @@
 
 exports[`<Textlink> @Render should render component 1`] = `
 <span
-  id="forgotPasswordButton"
+  id="TextLink"
   onClick={[MockFunction]}
   style={
     Object {

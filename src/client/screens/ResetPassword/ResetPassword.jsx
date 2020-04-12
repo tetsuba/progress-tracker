@@ -36,7 +36,7 @@ const ResetPassword = () => {
                     />
                 ),
                 success: (
-                    <Row>
+                    <Row id="ResetPasswordSuccess">
                         <h3>
                             Password updated. Please <Link to="/login">click here</Link> to login
                         </h3>

@@ -11,13 +11,13 @@ import { useInputChange } from "../../hooks/hooks";
 import PasswordStrength from "../PasswordStrength/PasswordStrength";
 
 const ResetPasswordForm = ({ resetPassword, token }) => {
-    const [inputs, setInputs] = useInputChange({password1: '', password2: ''});
+    const [inputs, setInputs] = useInputChange({newPassword: '', confirmPassword: ''});
 
     const options = {
         variables: {
             input: {
                 token: token,
-                password: inputs.password1
+                password: inputs.newPassword
             }
         }
     };
@@ -34,39 +34,43 @@ const ResetPasswordForm = ({ resetPassword, token }) => {
                     className="w-100"
                     onSubmit={(e) => {
                         e.preventDefault();
-                        if (inputs.password1 !== inputs.password2) return;
+                        if (inputs.newPassword !== inputs.confirmPassword) return;
                         resetPassword(options)
                     }}
                 >
-                    <Form.Group controlId="formPassword1">
+                    <Form.Group controlId="newPassword">
                         <Form.Control
                             required
                             type="password"
                             placeholder="Password"
-                            name="password1"
+                            name="newPassword"
                             onChange={setInputs}
-                            value={inputs.password1}
+                            value={inputs.newPassword}
                         />
-                        <PasswordStrength password={inputs.password1}  />
+                        <PasswordStrength password={inputs.newPassword}  />
                     </Form.Group>
-                    <Form.Group controlId="formPassword2">
+                    <Form.Group controlId="confirmPassword">
                         <Form.Control
                             required
                             type="password"
                             placeholder="Password"
-                            name="password2"
+                            name="confirmPassword"
                             onChange={setInputs}
-                            value={inputs.password2}
+                            value={inputs.confirmPassword}
                             isInvalid={passwordMissMatchError}
                         />
                         <Form.Control.Feedback type="invalid">
-                            { passwordMissMatchError && 'Password does not match!!!' }
+                            { passwordMissMatchError && 'Passwords do not match!!!' }
                         </Form.Control.Feedback>
                         <Form.Text className="text-muted">
-                            { `Matching password ${inputs.password2.length} of ${inputs.password1.length }` }
+                            { `Matching password ${inputs.confirmPassword.length} of ${inputs.newPassword.length }` }
                         </Form.Text>
                     </Form.Group>
-                    <Button variant="primary" type="submit" disabled={passwordsDoNotMatched(inputs)}>
+                    <Button
+                        id="ResetPasswordSubmit"
+                        variant="primary"
+                        type="submit"
+                        disabled={passwordsDoNotMatched(inputs)}>
                         Reset Password
                     </Button>
                 </Form>
