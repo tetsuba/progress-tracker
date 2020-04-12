@@ -13,7 +13,7 @@ import { CONFIRM_TOKEN_QUERY } from '../../../api/token/token.query'
 
 jest.mock('react-router-dom', () => ({
   useParams: jest.fn().mockReturnValue({ token: 'token1234' }),
-  Link: 'Link',
+  Link: ({ children }) => children,
 }))
 
 describe('<ResetPasswordForm>', () => {
@@ -49,11 +49,11 @@ describe('<ResetPasswordForm>', () => {
       let wrapper
       const mocks = [{ request: requestQuery, result: resultQuery }]
 
-      // act(() => {
-      wrapper = graphRenderer(ResetPassword, mocks, {})
-      // });
+      await act(async () => {
+        wrapper = graphRenderer(ResetPassword, mocks, {})
+        await delay()
+      })
 
-      await delay()
       wrapper.update()
       expect(wrapper.find(ResetPassword)).toMatchSnapshot()
     })
@@ -84,37 +84,33 @@ describe('<ResetPasswordForm>', () => {
         resetPasswordMock,
       ]
 
-      act(() => {
+      await act(async () => {
         wrapper = graphRenderer(ResetPassword, mocks, {})
+        await delay()
       })
 
-      await delay()
+      wrapper.update()
 
       act(() => {
-        wrapper.update()
         updateInput(wrapper, 'newPassword', '1234')
       })
 
-      await delay()
+      wrapper.update()
 
       act(() => {
-        wrapper.update()
         updateInput(wrapper, 'confirmPassword', '1234')
       })
 
-      act(() => {
-        wrapper.update()
-        wrapper.find('#ResetPasswordForm').get(0).props.onSubmit({
+      wrapper.update()
+
+      await act(async () => {
+        await wrapper.find('#ResetPasswordForm').get(0).props.onSubmit({
           preventDefault: jest.fn(),
         })
       })
 
-      await delay()
-
-      act(() => {
-        wrapper.update()
-        expect(wrapper.find(ResetPassword)).toMatchSnapshot()
-      })
+      wrapper.update()
+      expect(wrapper.find(ResetPassword)).toMatchSnapshot()
     })
 
     it('should render "error"', async () => {
@@ -128,11 +124,11 @@ describe('<ResetPasswordForm>', () => {
         },
       ]
 
-      act(() => {
+      await act(async () => {
         wrapper = graphRenderer(ResetPassword, mocks, {})
+        await delay()
       })
 
-      await delay()
       wrapper.update()
       expect(wrapper.find(ResetPassword)).toMatchSnapshot()
     })

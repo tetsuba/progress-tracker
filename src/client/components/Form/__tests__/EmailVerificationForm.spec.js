@@ -29,16 +29,20 @@ describe('<EmailVerificationForm>', () => {
     })
 
     it('should render success message', async () => {
+      let wrapper
       const mocks = [{ request, result }]
-      const wrapper = graphRenderer(EmailVerificationForm, mocks, props)
 
-      act(() => {
+      await act(async () => {
+        wrapper = graphRenderer(EmailVerificationForm, mocks, props)
+        await delay()
+      })
+
+      await act(async () => {
         wrapper.find(id).get(0).props.onSubmit({
           preventDefault: jest.fn(),
         })
       })
 
-      await delay()
       wrapper.update()
       expect(wrapper.find(EmailVerificationForm)).toMatchSnapshot()
     })
@@ -49,17 +53,22 @@ describe('<EmailVerificationForm>', () => {
     const errors = [new GraphQLError(errorMessage)]
 
     it('should render an error message if form returns an error', async () => {
+      let wrapper
       const mocks = [{ request, result: { errors } }]
-      const wrapper = graphRenderer(EmailVerificationForm, mocks, props)
 
-      act(() => {
+      await act(async () => {
+        wrapper = graphRenderer(EmailVerificationForm, mocks, props)
+        await delay()
+      })
+
+      await act(async () => {
         wrapper.find(id).get(0).props.onSubmit({
           preventDefault: jest.fn(),
         })
       })
 
-      await delay()
       wrapper.update()
+
       wrapper.find({ type: 'invalid' }).forEach((message) => {
         expect(message.prop('children')).toEqual(errorMessage)
       })
