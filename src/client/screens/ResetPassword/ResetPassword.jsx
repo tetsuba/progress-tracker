@@ -16,8 +16,9 @@ import ResetPasswordForm from '../../components/Form/ResetPasswordForm'
 
 // UTILS
 import { getRestPasswordStatus } from '../../components/Form/form-utils'
+import Box from '../../components/Box/Box';
 
-const ResetPassword = () => {
+export default function ResetPassword() {
   let { token } = useParams()
   token = decodeURIComponent(token)
   const variables = { token }
@@ -27,41 +28,40 @@ const ResetPassword = () => {
   )
 
   return (
-    <Container>
+    <Container className="pt-5">
       {
         {
           loading: <Loading />,
           form: (
-            <ResetPasswordForm resetPassword={resetPassword} token={token} />
+              <ResetPasswordForm
+                resetPassword={resetPassword}
+                token={token}
+              />
           ),
           success: (
-            <Row id="ResetPasswordSuccess">
-              <h3>
-                Password updated. Please <Link to="/login">click here</Link> to
-                login
-              </h3>
+            <Row>
+              <Col>
+                <h3 id="ResetPasswordSuccess">
+                  Password updated. Please <Link to="/login">click here</Link> to
+                  login
+                </h3>
+              </Col>
             </Row>
           ),
           /* token expired */
           error: (
-            <>
-              <Row className="mt-5">
-                <p>
-                  Your last request to reset password has expired. Please send
-                  another request to reset your password.
-                </p>
-              </Row>
-              <Row className="mt-5">
-                <Col>
-                  <ForgotMyPasswordForm />
-                </Col>
-              </Row>
-            </>
+            <ForgotMyPasswordForm>
+              <h3 class="text-danger">
+                This session has expired!
+              </h3>
+              <p>
+                Enter your email address and we will send
+                you a link to reset your password.
+              </p>
+            </ForgotMyPasswordForm>
           ),
         }[getRestPasswordStatus(confirmation, resetPasswordOptions)]
       }
     </Container>
   )
 }
-
-export default ResetPassword

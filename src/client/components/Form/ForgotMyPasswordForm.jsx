@@ -12,8 +12,9 @@ import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
 // COMPONENT
 import TextLink from '../TextLink/TextLink'
 import { useError, useInputChange, useSuccess } from '../../hooks/hooks'
+import Box from '../Box/Box';
 
-const ForgotMyPasswordForm = ({ defaultEmail = '', resetPassword }) => {
+const ForgotMyPasswordForm = ({ children, defaultEmail = '', resetPassword }) => {
   const [sendPasswordResetConfirmation] = useMutation(
     SEND_PASSWORD_RESET_CONFIRMATION_MUTATION
   )
@@ -27,57 +28,54 @@ const ForgotMyPasswordForm = ({ defaultEmail = '', resetPassword }) => {
       <h3>Please check your email.</h3>
     </Row>
   ) : (
-    <Col>
+    <Box max={500}>
       <Row>
-        <h3>Forgot my password</h3>
+        <Col>
+          { children }
+          <Form
+            id="ForgotMyPasswordForm"
+            className="w-100"
+            onSubmit={(e) => {
+              e.preventDefault()
+              sendPasswordResetConfirmation(options)
+                .then(setSuccess)
+                .catch(setError)
+            }}
+          >
+            <Form.Group controlId="forgotMyPasswordEmail">
+              <Form.Control
+                required
+                type="email"
+                placeholder="@"
+                name="email"
+                onChange={setInputs}
+                value={inputs.email}
+                isInvalid={!!error.message}
+              />
+              <Form.Control.Feedback type="invalid">
+                {error.message}
+              </Form.Control.Feedback>
+              <Form.Text className="text-muted">
+                We'll never share your email with anyone else.
+              </Form.Text>
+            </Form.Group>
+            <Button
+              id="ForgotMyPasswordSubmit"
+              className="float-right"
+              variant="primary"
+              type="submit"
+            >
+              Reset Password
+            </Button>
+          </Form>
+          { resetPassword && (
+            <TextLink eventHandler={resetPassword}>
+              <FontAwesomeIcon icon={faCaretLeft} /> back
+            </TextLink>
+          )}
+        </Col>
       </Row>
-      <Row>
-        <p>
-          Enter your email address and we will send you a link to reset your
-          password.
-        </p>
-      </Row>
-      <Row>
-        <Form
-          id="ForgotMyPasswordForm"
-          className="w-100"
-          onSubmit={(e) => {
-            e.preventDefault()
-            sendPasswordResetConfirmation(options)
-              .then(setSuccess)
-              .catch(setError)
-          }}
-        >
-          <Form.Group controlId="forgotMyPasswordEmail">
-            <Form.Control
-              required
-              type="email"
-              placeholder="Enter email"
-              name="email"
-              onChange={setInputs}
-              value={inputs.email}
-              isInvalid={!!error.message}
-            />
-            <Form.Control.Feedback type="invalid">
-              {error.message}
-            </Form.Control.Feedback>
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
-          <Button id="ForgotMyPasswordSubmit" variant="primary" type="submit">
-            Reset Password
-          </Button>
-        </Form>
-      </Row>
-      {resetPassword && (
-        <Row className="mt-3">
-          <TextLink eventHandler={resetPassword}>
-            <FontAwesomeIcon icon={faCaretLeft} /> back
-          </TextLink>
-        </Row>
-      )}
-    </Col>
+    </Box>
   )
 }
 
