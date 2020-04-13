@@ -48,7 +48,6 @@
     "pretty": "prettier \"src/server/**/*.js\" \"src/client/**/*.js\" \"src/client/**/*.jsx\"",
     "pretty:check": "yarn pretty --check",
     "pretty:write": "yarn pretty --write"
-
   },
   "husky": {
     "hooks": {
