@@ -47,7 +47,7 @@ export default function ResetPassword() {
           /* token expired */
           error: (
             <ForgotMyPasswordForm>
-              <h3 class="text-danger">This session has expired!</h3>
+              <h3 className="text-danger">This session has expired!</h3>
               <p>
                 Enter your email address and we will send you a link to reset
                 your password.
