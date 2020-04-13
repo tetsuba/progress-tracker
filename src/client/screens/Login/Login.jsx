@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { useMutation } from '@apollo/react-hooks'
-import {Col, Container, Row} from 'react-bootstrap'
+import { Col, Container, Row } from 'react-bootstrap'
 import { UserContext } from '../../context/UserContext'
 
 // CONTEXT
@@ -17,7 +17,7 @@ import ForgotMyPasswordForm from '../../components/Form/ForgotMyPasswordForm'
 import { getLoginStatus } from '../../components/Form/form-utils'
 import { useLocalStorage } from '../../hooks/hooks'
 import { TOKEN_KEY } from '../../const/localStorage'
-import Box from '../../components/Box/Box';
+import Box from '../../components/Box/Box'
 
 const Login = () => {
   const [userLogin, { loading: mutationLoading }] = useMutation(LOGIN_MUTATION)
@@ -74,8 +74,8 @@ const Login = () => {
               >
                 <h3>Forgot my password</h3>
                 <p>
-                  Enter your email address and we will send you a link to reset your
-                  password.
+                  Enter your email address and we will send you a link to reset
+                  your password.
                 </p>
               </ForgotMyPasswordForm>
             ),

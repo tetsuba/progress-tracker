@@ -9,7 +9,7 @@ import { useInputChange } from '../../hooks/hooks'
 
 // COMPONENTS
 import PasswordStrength from '../PasswordStrength/PasswordStrength'
-import Box from '../Box/Box';
+import Box from '../Box/Box'
 
 const ResetPasswordForm = ({ resetPassword, token }) => {
   const [inputs, setInputs] = useInputChange({

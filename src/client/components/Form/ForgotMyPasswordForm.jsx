@@ -12,9 +12,13 @@ import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
 // COMPONENT
 import TextLink from '../TextLink/TextLink'
 import { useError, useInputChange, useSuccess } from '../../hooks/hooks'
-import Box from '../Box/Box';
+import Box from '../Box/Box'
 
-const ForgotMyPasswordForm = ({ children, defaultEmail = '', resetPassword }) => {
+const ForgotMyPasswordForm = ({
+  children,
+  defaultEmail = '',
+  resetPassword,
+}) => {
   const [sendPasswordResetConfirmation] = useMutation(
     SEND_PASSWORD_RESET_CONFIRMATION_MUTATION
   )
@@ -31,7 +35,7 @@ const ForgotMyPasswordForm = ({ children, defaultEmail = '', resetPassword }) =>
     <Box max={500}>
       <Row>
         <Col>
-          { children }
+          {children}
           <Form
             id="ForgotMyPasswordForm"
             className="w-100"
@@ -68,7 +72,7 @@ const ForgotMyPasswordForm = ({ children, defaultEmail = '', resetPassword }) =>
               Reset Password
             </Button>
           </Form>
-          { resetPassword && (
+          {resetPassword && (
             <TextLink eventHandler={resetPassword}>
               <FontAwesomeIcon icon={faCaretLeft} /> back
             </TextLink>

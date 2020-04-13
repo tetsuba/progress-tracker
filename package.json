@@ -78,7 +78,6 @@
     "cypress-intellij-reporter": "^0.0.4",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
-    "eslint-config-prettier": "^6.10.1",
     "husky": "^4.2.5",
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",

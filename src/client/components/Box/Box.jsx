@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Box({children, max}) {
+export default function Box({ children, max }) {
   const style = {
     maxWidth: max,
     width: '100%',
@@ -11,9 +11,5 @@ export default function Box({children, max}) {
     border: 'solid 1px #ccc',
   }
 
-  return (
-    <div style={style}>
-      { children }
-    </div>
-  )
+  return <div style={style}>{children}</div>
 }

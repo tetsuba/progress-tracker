@@ -16,7 +16,7 @@ import ResetPasswordForm from '../../components/Form/ResetPasswordForm'
 
 // UTILS
 import { getRestPasswordStatus } from '../../components/Form/form-utils'
-import Box from '../../components/Box/Box';
+import Box from '../../components/Box/Box'
 
 export default function ResetPassword() {
   let { token } = useParams()
@@ -33,17 +33,14 @@ export default function ResetPassword() {
         {
           loading: <Loading />,
           form: (
-              <ResetPasswordForm
-                resetPassword={resetPassword}
-                token={token}
-              />
+            <ResetPasswordForm resetPassword={resetPassword} token={token} />
           ),
           success: (
             <Row>
               <Col>
                 <h3 id="ResetPasswordSuccess">
-                  Password updated. Please <Link to="/login">click here</Link> to
-                  login
+                  Password updated. Please <Link to="/login">click here</Link>{' '}
+                  to login
                 </h3>
               </Col>
             </Row>
@@ -51,12 +48,10 @@ export default function ResetPassword() {
           /* token expired */
           error: (
             <ForgotMyPasswordForm>
-              <h3 class="text-danger">
-                This session has expired!
-              </h3>
+              <h3 class="text-danger">This session has expired!</h3>
               <p>
-                Enter your email address and we will send
-                you a link to reset your password.
+                Enter your email address and we will send you a link to reset
+                your password.
               </p>
             </ForgotMyPasswordForm>
           ),
