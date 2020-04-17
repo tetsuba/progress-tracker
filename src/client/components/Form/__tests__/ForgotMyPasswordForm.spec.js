@@ -1,79 +1,87 @@
-import { GraphQLError } from 'graphql'
-import { act } from 'react-dom/test-utils'
-import { graphRenderer, delay } from '../../../../test/testHelper'
+import { testRenderer, testRendererFull } from '../../../../test/testHelper'
 
 // COMPONENTS
 import ForgotMyPasswordForm from '../ForgotMyPasswordForm'
-
-// MUTATIONS
-import { SEND_PASSWORD_RESET_CONFIRMATION_MUTATION } from '../../../api/user/user.mutation'
+import EmailVerificationForm from '../EmailVerificationForm';
 
 describe('<ForgotMyPasswordForm>', () => {
-  const request = {
-    query: SEND_PASSWORD_RESET_CONFIRMATION_MUTATION,
-    variables: { input: { email: 'test@test.com' } },
-  }
-
-  const id = '#ForgotMyPasswordForm'
   const props = {
     defaultEmail: 'test@test.com',
-    resetPassword: jest.fn(),
+    handleSubmit: jest.fn(),
   }
 
   describe('@Render', () => {
-    const result = {
-      data: { sendPasswordResetConfirmation: { confirmation: 'Confirm' } },
-    }
-
-    it('should render email password reset form', () => {
-      const mocks = [{ request, result }]
-      const wrapper = graphRenderer(ForgotMyPasswordForm, mocks, props)
-      expect(wrapper.find(ForgotMyPasswordForm)).toMatchSnapshot()
+    it('should render', () => {
+      const wrapper = testRenderer(ForgotMyPasswordForm, props)
+      expect(wrapper).toMatchSnapshot()
     })
 
-    it('should render a success message', async () => {
-      let wrapper
-      const mocks = [{ request, result }]
-
-      await act(async () => {
-        wrapper = graphRenderer(ForgotMyPasswordForm, mocks, props)
-        await delay()
+    it('should render back button', () => {
+      const wrapper = testRenderer(ForgotMyPasswordForm, {
+        ...props,
+        showLoginForm: jest.fn(),
       })
+      expect(wrapper).toMatchSnapshot()
+    })
+  })
 
-      await act(async () => {
-        wrapper.find(id).get(0).props.onSubmit({
-          preventDefault: jest.fn(),
+  describe('@Events', () => {
+    describe('onSubmit', () => {
+      it('should trigger handleSubmit', () => {
+        const wrapper = testRenderer(ForgotMyPasswordForm, props)
+        wrapper.find('#ForgotMyPasswordForm')
+          .props()
+          .onSubmit({ preventDefault: jest.fn() })
+
+        expect(props.handleSubmit).toHaveBeenCalledTimes(1)
+      })
+    })
+
+    describe('onChange', () => {
+      it('should update email input', () => {
+        const wrapper = testRenderer(EmailVerificationForm, props)
+        const email = { name: 'email' }
+        const expected = 'test@test.com'
+
+        wrapper.find(email).simulate('change', {
+          persist: jest.fn(),
+          target: {
+            name: 'email',
+            value: expected,
+          },
         })
+        expect(wrapper.find(email).prop('value')).toEqual(expected)
       })
+    })
 
-      wrapper.update()
-      expect(wrapper.find(ForgotMyPasswordForm)).toMatchSnapshot()
+    describe('onClick', () => {
+      it('should trigger showLoginForm', () => {
+        const showLoginFormMock = jest.fn()
+        const wrapper = testRendererFull(ForgotMyPasswordForm, {
+          ...props,
+          showLoginForm: showLoginFormMock,
+        })
+        wrapper.find('#TextLink').simulate('click')
+        expect(showLoginFormMock).toHaveBeenCalledTimes(1)
+      })
     })
   })
 
   describe('@Error', () => {
-    const errorMessage = 'error occurred'
-    const errors = [new GraphQLError(errorMessage)]
-
-    it('should render an error message if form returns an error', async () => {
-      let wrapper
-      const mocks = [{ request, result: { errors } }]
-
-      await act(async () => {
-        wrapper = graphRenderer(ForgotMyPasswordForm, mocks, props)
-        await delay()
+    it('should display an error if error is provided', () => {
+      const errorMessage = 'This is an error message'
+      const error = {
+        graphQLErrors: [
+          {
+            message: errorMessage
+          }
+        ]
+      }
+      const wrapper = testRenderer(EmailVerificationForm, {
+        ...props,
+        error: error,
       })
-
-      await act(async () => {
-        wrapper.find(id).get(0).props.onSubmit({
-          preventDefault: jest.fn(),
-        })
-      })
-
-      wrapper.update()
-      wrapper.find({ type: 'invalid' }).forEach((message) => {
-        expect(message.prop('children')).toEqual(errorMessage)
-      })
+      expect(wrapper.find({type: 'invalid'}).prop('children')).toEqual(errorMessage)
     })
   })
 })

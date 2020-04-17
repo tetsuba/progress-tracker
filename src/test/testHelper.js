@@ -6,8 +6,19 @@ import { ApolloProvider } from 'react-apollo';
 import GlobalContext from '../client/context/GlobalContext';
 import { BrowserRouter as Router, MemoryRouter } from 'react-router-dom';
 
+// Local Storage global setup
+import './localStorage'
+
 export function testRenderer(Node, props) {
-    return shallow(<Node { ...props } />)
+    return shallow(
+      <Node { ...props } />
+  )
+}
+
+export function testRendererFull(Node, props) {
+    return mount(
+      <Node { ...props } />
+    )
 }
 
 export function graphRenderer(Node, mocks, props) {
@@ -17,7 +28,11 @@ export function graphRenderer(Node, mocks, props) {
 
     return mount(
         <MockedProvider mocks={mocks} addTypename={false}>
-            <Node { ...props } />
+            <GlobalContext>
+
+                    <Node { ...props } />
+
+            </GlobalContext>
         </MockedProvider>
     )
 }
@@ -27,4 +42,11 @@ export function graphRenderer(Node, mocks, props) {
 // the call for an update.
 export async function delay() {
     return new Promise(resolve => setTimeout(resolve));
+}
+
+export function updateTextInput(wrapper, name, value) {
+    wrapper.find({ name }).get(0).props.onChange({
+        persist: jest.fn(),
+        target: { name, value },
+    })
 }

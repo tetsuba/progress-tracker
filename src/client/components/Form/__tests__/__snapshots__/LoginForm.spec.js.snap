@@ -1,80 +1,76 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<FormLogin> @Render should render the email verification form 1`] = `
-<Col>
-  <EmailVerificationForm />
-</Col>
-`;
-
-exports[`<FormLogin> @Render should render the login form 1`] = `
-<Col>
-  <h3>
-    Login
-  </h3>
-  <Form
-    id="loginForm"
-    inline={false}
-    onSubmit={[Function]}
-  >
-    <FormGroup
-      controlId="loginEmail"
+exports[`<FormLogin> @Render should render 1`] = `
+<Box
+  max={500}
+>
+  <Col>
+    <h3>
+      Login
+    </h3>
+    <Form
+      id="LoginForm"
+      inline={false}
+      onSubmit={[Function]}
     >
-      <FormLabel
-        column={false}
-        srOnly={false}
+      <FormGroup
+        controlId="loginEmail"
       >
-        Email address
-      </FormLabel>
-      <FormControl
-        isInvalid={false}
-        name="email"
-        onChange={[Function]}
-        placeholder="Enter email"
-        required={true}
-        type="email"
-        value="test@test.com"
-      />
-      <Feedback
-        type="invalid"
-      />
-    </FormGroup>
-    <FormGroup
-      controlId="loginPassword"
-    >
-      <FormLabel
-        column={false}
-        srOnly={false}
+        <FormLabel
+          column={false}
+          srOnly={false}
+        >
+          Email address
+        </FormLabel>
+        <FormControl
+          isInvalid={false}
+          name="email"
+          onChange={[Function]}
+          placeholder="Enter email"
+          required={true}
+          type="email"
+          value="test@test.com"
+        />
+        <Feedback
+          type="invalid"
+        />
+      </FormGroup>
+      <FormGroup
+        controlId="loginPassword"
       >
-        Password
-      </FormLabel>
-      <FormControl
-        isInvalid={false}
-        name="password"
-        onChange={[Function]}
-        placeholder="Password"
-        required={true}
-        type="password"
-        value="1234qwer"
-      />
-      <Feedback
-        type="invalid"
-      />
-    </FormGroup>
-    <Button
-      active={false}
-      className="float-right"
-      disabled={false}
-      id="loginButton"
-      type="submit"
-      variant="primary"
-    >
-      Submit
-    </Button>
-  </Form>
-  <TextLink
-    eventHandler={[MockFunction]}
-  >
-    Forgot password?
-  </TextLink>
-</Col>
+        <FormLabel
+          column={false}
+          srOnly={false}
+        >
+          Password
+        </FormLabel>
+        <FormControl
+          isInvalid={false}
+          name="password"
+          onChange={[Function]}
+          placeholder="Password"
+          required={true}
+          type="password"
+          value="1234qwer"
+        />
+        <Feedback
+          type="invalid"
+        />
+      </FormGroup>
+      <Button
+        active={false}
+        className="float-right"
+        disabled={false}
+        id="LoginFormSubmit"
+        type="submit"
+        variant="primary"
+      >
+        Submit
+      </Button>
+    </Form>
+    <TextLink>
+      Forgot password?
+    </TextLink>
+  </Col>
+</Box>
 `;

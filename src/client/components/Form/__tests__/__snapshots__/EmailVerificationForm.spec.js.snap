@@ -1,110 +1,90 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<EmailVerificationForm> @Render should render email verification form 1`] = `
-<EmailVerificationForm
-  defaultEmail="test@test.com"
+exports[`<EmailVerificationForm> should render  1`] = `
+<Box
+  max={500}
 >
-  <Row
-    noGutters={false}
-  >
-    <div
-      className="row"
+  <Col>
+    <h3
+      className="text-danger"
     >
-      <h3>
-        Email not verified
-      </h3>
-      <p>
-        Please validate your email before logging in
-      </p>
-      <Form
-        id="EmailVerificationForm"
-        inline={false}
-        onSubmit={[Function]}
+      Could not sign you in
+    </h3>
+    <p>
+      Your email address has not been confirmed. Please enter your email address below and a link will be sent to confirm your email address.
+    </p>
+    <Form
+      id="EmailVerificationForm"
+      inline={false}
+      onSubmit={[Function]}
+    >
+      <FormGroup
+        controlId="formBasicEmail"
       >
-        <form
-          className=""
-          id="EmailVerificationForm"
-          onSubmit={[Function]}
+        <FormControl
+          isInvalid={false}
+          name="email"
+          onChange={[Function]}
+          placeholder="email@address.com"
+          required={true}
+          type="email"
+          value=""
+        />
+        <Feedback
+          type="invalid"
+        />
+        <FormText
+          className="text-muted"
         >
-          <FormGroup
-            controlId="formBasicEmail"
-          >
-            <div
-              className="form-group"
-            >
-              <FormControl
-                isInvalid={false}
-                name="email"
-                onChange={[Function]}
-                placeholder="Enter email"
-                required={true}
-                type="email"
-                value="test@test.com"
-              >
-                <input
-                  className="form-control"
-                  id="formBasicEmail"
-                  name="email"
-                  onChange={[Function]}
-                  placeholder="Enter email"
-                  required={true}
-                  type="email"
-                  value="test@test.com"
-                />
-              </FormControl>
-              <Feedback
-                type="invalid"
-              >
-                <div
-                  className="invalid-feedback"
-                />
-              </Feedback>
-              <FormText
-                className="text-muted"
-              >
-                <small
-                  className="text-muted form-text"
-                >
-                  We'll never share your email with anyone else.
-                </small>
-              </FormText>
-            </div>
-          </FormGroup>
-          <Button
-            active={false}
-            disabled={false}
-            type="submit"
-            variant="primary"
-          >
-            <button
-              className="btn btn-primary"
-              disabled={false}
-              type="submit"
-            >
-              Submit
-            </button>
-          </Button>
-        </form>
-      </Form>
-    </div>
-  </Row>
-</EmailVerificationForm>
-`;
-
-exports[`<EmailVerificationForm> @Render should render success message 1`] = `
-<EmailVerificationForm
-  defaultEmail="test@test.com"
->
-  <Row
-    noGutters={false}
-  >
-    <div
-      className="row"
+          We'll never share your email with anyone else.
+        </FormText>
+      </FormGroup>
+      <Button
+        active={false}
+        className="float-right"
+        disabled={false}
+        type="submit"
+        variant="primary"
+      >
+        Send
+      </Button>
+    </Form>
+    <Link
+      to="/"
     >
-      <h3>
-        Please check your email.
-      </h3>
-    </div>
-  </Row>
-</EmailVerificationForm>
+      <FontAwesomeIcon
+        border={false}
+        className=""
+        fixedWidth={false}
+        flip={null}
+        icon={
+          Object {
+            "icon": Array [
+              192,
+              512,
+              Array [],
+              "f0d9",
+              "M192 127.338v257.324c0 17.818-21.543 26.741-34.142 14.142L29.196 270.142c-7.81-7.81-7.81-20.474 0-28.284l128.662-128.662c12.599-12.6 34.142-3.676 34.142 14.142z",
+            ],
+            "iconName": "caret-left",
+            "prefix": "fas",
+          }
+        }
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        swapOpacity={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+       back
+    </Link>
+  </Col>
+</Box>
 `;

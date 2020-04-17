@@ -5,8 +5,8 @@ import ResetPasswordForm from '../ResetPasswordForm'
 
 describe('<ResetPasswordForm>', () => {
   const props = {
-    userId: '1234567890',
-    resetPassword: jest.fn(),
+    token: 'token1234',
+    handleSubmit: jest.fn(),
   }
 
   function updateInput(wrapper, name, value) {
@@ -51,7 +51,7 @@ describe('<ResetPasswordForm>', () => {
       const wrapper = testRenderer(ResetPasswordForm, props)
       const id = '#ResetPasswordForm'
       wrapper.find(id).simulate('submit', { preventDefault: jest.fn() })
-      expect(props.resetPassword).toHaveBeenCalledTimes(1)
+      expect(props.handleSubmit).toHaveBeenCalledTimes(1)
     })
   })
 

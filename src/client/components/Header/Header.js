@@ -8,13 +8,13 @@ export const Header = () => {
 
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#home">Progress Tracker</Navbar.Brand>
+      <Navbar.Brand href="/">Progress Tracker</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           {!authenticated && (
             <Fragment>
-              <Link className="nav-link" to="/login">
+              <Link className="nav-link" to="/">
                 Login
               </Link>
               <Link className="nav-link" to="/register">
