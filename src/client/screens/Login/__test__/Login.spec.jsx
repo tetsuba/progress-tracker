@@ -1,15 +1,19 @@
 import React from 'react'
-import { act } from 'react-dom/test-utils';
-import { delay, graphRenderer, updateTextInput } from '../../../../test/testHelper';
+import { act } from 'react-dom/test-utils'
+import {
+  delay,
+  graphRenderer,
+  updateTextInput,
+} from '../../../../test/testHelper'
 
 jest.mock('react-router-dom', () => ({
   Link: ({ children }) => children,
 }))
 
 // COMPONENTS
-import Login from '../Login';
-import ForgotMyPasswordForm from '../../../components/Form/ForgotMyPasswordForm';
-import EmailVerificationForm from '../../../components/Form/EmailVerificationForm';
+import Login from '../Login'
+import ForgotMyPasswordForm from '../../../components/Form/ForgotMyPasswordForm'
+import EmailVerificationForm from '../../../components/Form/EmailVerificationForm'
 
 // MOCK DATA
 import {
@@ -17,10 +21,9 @@ import {
   loginMockDataSuccess,
   verifyEmailMockDataSuccess,
   passwordResetMockDataSuccess,
-} from './mockData';
+} from './mockData'
 
 describe('<Login>', () => {
-
   describe('Initial render', () => {
     it('should render "login"', async () => {
       let wrapper
@@ -73,13 +76,13 @@ describe('<Login>', () => {
        * */
 
       let wrapper
-      beforeEach(async ()  => {
+      beforeEach(async () => {
         await act(async () => {
           wrapper = graphRenderer(
             Login,
             [loginMockDataErrorEmailNotVerified, verifyEmailMockDataSuccess],
             {}
-            )
+          )
           await delay()
         })
 
@@ -131,10 +134,13 @@ describe('<Login>', () => {
 
     describe('A user clicks on "forgot password" link', () => {
       let wrapper
-      beforeEach(async ()  => {
-
+      beforeEach(async () => {
         act(() => {
-          wrapper = graphRenderer(Login, [loginMockDataSuccess, passwordResetMockDataSuccess], {})
+          wrapper = graphRenderer(
+            Login,
+            [loginMockDataSuccess, passwordResetMockDataSuccess],
+            {}
+          )
         })
         wrapper.find('#TextLink').simulate('click')
         wrapper.update()

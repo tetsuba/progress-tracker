@@ -19,7 +19,8 @@ describe('<EmailVerificationForm>', () => {
       it('should trigger handleSubmit', () => {
         const wrapper = testRenderer(EmailVerificationForm, props)
 
-        wrapper.find('#EmailVerificationForm')
+        wrapper
+          .find('#EmailVerificationForm')
           .props()
           .onSubmit({ preventDefault: jest.fn() })
 
@@ -51,15 +52,17 @@ describe('<EmailVerificationForm>', () => {
       const error = {
         graphQLErrors: [
           {
-            message: errorMessage
-          }
-        ]
+            message: errorMessage,
+          },
+        ],
       }
       const wrapper = testRenderer(EmailVerificationForm, {
         ...props,
         error: error,
       })
-      expect(wrapper.find({type: 'invalid'}).prop('children')).toEqual(errorMessage)
+      expect(wrapper.find({ type: 'invalid' }).prop('children')).toEqual(
+        errorMessage
+      )
     })
   })
 })

@@ -1,5 +1,9 @@
 import { act } from 'react-dom/test-utils'
-import { graphRenderer, delay, updateTextInput } from '../../../../test/testHelper'
+import {
+  graphRenderer,
+  delay,
+  updateTextInput,
+} from '../../../../test/testHelper'
 
 // COMPONENTS
 import ResetPassword from '../ResetPassword'
@@ -9,8 +13,8 @@ import {
   confirmTokenQuerySuccess,
   passwordResetMockDataSuccess,
   resetPasswordSuccess,
-} from './mockData';
-import Login from '../../Login/Login';
+} from './mockData'
+import Login from '../../Login/Login'
 
 jest.mock('react-router-dom', () => ({
   useParams: jest.fn().mockReturnValue({ token: 'token1234' }),
@@ -35,7 +39,11 @@ describe('<ResetPassword>', () => {
         it('should render "success"', async () => {
           let wrapper
           await act(async () => {
-            wrapper = graphRenderer(ResetPassword, [confirmTokenQuerySuccess, resetPasswordSuccess], {})
+            wrapper = graphRenderer(
+              ResetPassword,
+              [confirmTokenQuerySuccess, resetPasswordSuccess],
+              {}
+            )
             await delay()
           })
 
@@ -69,7 +77,11 @@ describe('<ResetPassword>', () => {
       let wrapper
       beforeEach(async () => {
         await act(async () => {
-          wrapper = graphRenderer(ResetPassword, [confirmTokenQueryError, passwordResetMockDataSuccess], {})
+          wrapper = graphRenderer(
+            ResetPassword,
+            [confirmTokenQueryError, passwordResetMockDataSuccess],
+            {}
+          )
           await delay()
         })
 

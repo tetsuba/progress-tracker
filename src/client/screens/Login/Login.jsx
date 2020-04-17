@@ -15,18 +15,19 @@ import {
 // COMPONENTS
 import LoginForm from '../../components/Form/LoginForm'
 import ForgotMyPasswordForm from '../../components/Form/ForgotMyPasswordForm'
-import Loading from '../../components/Loading/Loading';
+import Loading from '../../components/Loading/Loading'
 
 // UTILS
 import { getLoginStatus, getLoginError } from '../../components/Form/form-utils'
-import EmailVerificationForm from '../../components/Form/EmailVerificationForm';
+import EmailVerificationForm from '../../components/Form/EmailVerificationForm'
 
 export default function Login() {
   const [userLogin, userLoginOptions] = useMutation(LOGIN_MUTATION)
   const [verifyEmail, verifyEmailOptions] = useMutation(VERIFY_EMAIL_MUTATION)
-  const [sendPasswordResetConfirmation, sendPasswordResetConfirmationOptions] = useMutation(
-    SEND_PASSWORD_RESET_CONFIRMATION_MUTATION
-  )
+  const [
+    sendPasswordResetConfirmation,
+    sendPasswordResetConfirmationOptions,
+  ] = useMutation(SEND_PASSWORD_RESET_CONFIRMATION_MUTATION)
   const [hideLoginForm, setHideLoginForm] = useState(false)
   const { toggle: authenticateUser } = useContext(AuthenticatedContext)
 
@@ -42,7 +43,7 @@ export default function Login() {
                 hideLoginForm={() => setHideLoginForm(true)}
                 handleSubmit={(options) => {
                   userLogin(options)
-                    .then(({data}) => {
+                    .then(({ data }) => {
                       authenticateUser(data.userLogin.token)
                     })
                     .catch((err) => console.log('Login error'))
@@ -53,8 +54,9 @@ export default function Login() {
               <ForgotMyPasswordForm
                 showLoginForm={() => setHideLoginForm(false)}
                 handleSubmit={(options) => {
-                  sendPasswordResetConfirmation(options)
-                    .catch(() => console.log('error'))
+                  sendPasswordResetConfirmation(options).catch(() =>
+                    console.log('error')
+                  )
                 }}
                 error={sendPasswordResetConfirmationOptions.error}
               >
@@ -69,8 +71,7 @@ export default function Login() {
               <EmailVerificationForm
                 error={verifyEmailOptions.error}
                 handleSubmit={(options) => {
-                  verifyEmail(options)
-                    .catch(() => console.log('error'))
+                  verifyEmail(options).catch(() => console.log('error'))
                 }}
               />
             ),
@@ -79,12 +80,14 @@ export default function Login() {
                 <h3>Please check your email.</h3>
               </Col>
             ),
-          }[getLoginStatus(
-            hideLoginForm,
-            userLoginOptions,
-            verifyEmailOptions,
-            sendPasswordResetConfirmationOptions,
-          )]
+          }[
+            getLoginStatus(
+              hideLoginForm,
+              userLoginOptions,
+              verifyEmailOptions,
+              sendPasswordResetConfirmationOptions
+            )
+          ]
         }
       </Row>
     </Container>

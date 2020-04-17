@@ -1,22 +1,20 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import { Button, Form, Col } from 'react-bootstrap'
 
 // HOOKS
 import { useInputChange } from '../../hooks/hooks'
 
 // COMPONENTS
-import Box from '../Box/Box';
+import Box from '../Box/Box'
 
 // ICONS
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
 
 export default function EmailVerificationForm(props) {
   const { handleSubmit, error } = props
-  const [errorMessage] = useState(
-    () => error && error.graphQLErrors[0].message
-  )
+  const [errorMessage] = useState(() => error && error.graphQLErrors[0].message)
   const [inputs, setInputs] = useInputChange({ email: '' })
   const options = { variables: { input: inputs } }
 
@@ -25,9 +23,8 @@ export default function EmailVerificationForm(props) {
       <Col>
         <h3 className="text-danger">Could not sign you in</h3>
         <p>
-          Your email address has not been confirmed.
-          Please enter your email address below and a
-          link will be sent to confirm your email address.
+          Your email address has not been confirmed. Please enter your email
+          address below and a link will be sent to confirm your email address.
         </p>
         <Form
           id="EmailVerificationForm"
@@ -53,10 +50,7 @@ export default function EmailVerificationForm(props) {
               We'll never share your email with anyone else.
             </Form.Text>
           </Form.Group>
-          <Button
-            className="float-right"
-            variant="primary"
-            type="submit">
+          <Button className="float-right" variant="primary" type="submit">
             Send
           </Button>
         </Form>

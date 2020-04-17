@@ -12,16 +12,9 @@ import { useInputChange } from '../../hooks/hooks'
 import Box from '../Box/Box'
 
 export default function ForgotMyPasswordForm(props) {
-  const {
-    children,
-    showLoginForm,
-    handleSubmit,
-    error,
-  } = props
+  const { children, showLoginForm, handleSubmit, error } = props
   const [inputs, setInputs] = useInputChange({ email: '' })
-  const [errorMessage] = useState(
-    () => error && error.graphQLErrors[0].message
-  )
+  const [errorMessage] = useState(() => error && error.graphQLErrors[0].message)
   const options = { variables: { input: inputs } }
 
   return (

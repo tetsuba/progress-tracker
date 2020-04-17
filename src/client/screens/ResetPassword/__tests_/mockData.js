@@ -1,5 +1,8 @@
-import { CONFIRM_TOKEN_QUERY } from '../../../api/token/token.query';
-import { REST_PASSWORD_MUTATION, SEND_PASSWORD_RESET_CONFIRMATION_MUTATION } from '../../../api/user/user.mutation';
+import { CONFIRM_TOKEN_QUERY } from '../../../api/token/token.query'
+import {
+  REST_PASSWORD_MUTATION,
+  SEND_PASSWORD_RESET_CONFIRMATION_MUTATION,
+} from '../../../api/user/user.mutation'
 
 export const confirmTokenQuerySuccess = {
   request: {
@@ -27,10 +30,12 @@ export const confirmTokenQueryError = {
     },
   },
   result: {
-    error: [{
-      name: 'token_expired',
-      message: 'Token has expired',
-    }]
+    error: [
+      {
+        name: 'token_expired',
+        message: 'Token has expired',
+      },
+    ],
   },
 }
 
@@ -49,7 +54,7 @@ export const resetPasswordSuccess = {
       resetPassword: {
         confirmation: 'New password is saved',
       },
-    }
+    },
   },
 }
 
@@ -67,6 +72,6 @@ export const passwordResetMockDataSuccess = {
       sendPasswordResetConfirmation: {
         confirmation: 'confirmation',
       },
-    }
+    },
   },
 }

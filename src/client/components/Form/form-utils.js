@@ -1,4 +1,3 @@
-
 export const passwordMatchError = ({ newPassword, confirmPassword }) => {
   if (confirmPassword.length === 0) return false
   return !newPassword.startsWith(confirmPassword)
@@ -9,7 +8,12 @@ export const passwordsDoNotMatched = ({ newPassword, confirmPassword }) =>
 
 // Read this for more information
 // https://www.robinwieruch.de/conditional-rendering-react#multiple-conditional-renderings-in-react
-export function getLoginStatus(hideLoginForm, userLoginOptions, verifyEmailOptions, sendPasswordResetConfirmationOptions) {
+export function getLoginStatus(
+  hideLoginForm,
+  userLoginOptions,
+  verifyEmailOptions,
+  sendPasswordResetConfirmationOptions
+) {
   switch (true) {
     case userLoginOptions.loading:
     case verifyEmailOptions.loading:
@@ -20,8 +24,8 @@ export function getLoginStatus(hideLoginForm, userLoginOptions, verifyEmailOptio
     case !!sendPasswordResetConfirmationOptions.data:
       return 'success'
 
-
-    case userLoginOptions.error && userLoginOptions.error.graphQLErrors[0].name === 'email_not_verified':
+    case userLoginOptions.error &&
+      userLoginOptions.error.graphQLErrors[0].name === 'email_not_verified':
       return 'emailNotVerified'
 
     case hideLoginForm:
@@ -32,7 +36,11 @@ export function getLoginStatus(hideLoginForm, userLoginOptions, verifyEmailOptio
   }
 }
 
-export function getRestPasswordStatus(confirmation, resetPasswordOptions, sendPasswordResetConfirmationOptions) {
+export function getRestPasswordStatus(
+  confirmation,
+  resetPasswordOptions,
+  sendPasswordResetConfirmationOptions
+) {
   switch (true) {
     case confirmation.loading:
     case resetPasswordOptions.loading:
@@ -55,7 +63,7 @@ export function getRestPasswordStatus(confirmation, resetPasswordOptions, sendPa
 export function getLoginError(loginError) {
   if (loginError) {
     const error = loginError.graphQLErrors[0]
-    switch(error.name) {
+    switch (error.name) {
       case 'email_not_verified':
         return {
           ...error,

@@ -1,7 +1,8 @@
 import {
   passwordMatchError,
   passwordsDoNotMatched,
-  getLoginStatus, getRestPasswordStatus,
+  getLoginStatus,
+  getRestPasswordStatus,
 } from '../form-utils'
 
 describe('@form-utils', () => {
@@ -60,32 +61,60 @@ describe('@form-utils', () => {
       const userLoginOptions = { loading: false }
       const hideLoginForm = false
       const verifyEmailOptions = { data: {} }
-      expect(getLoginStatus(hideLoginForm, userLoginOptions, verifyEmailOptions, sendPasswordResetConfirmationOptions)).toEqual('success')
+      expect(
+        getLoginStatus(
+          hideLoginForm,
+          userLoginOptions,
+          verifyEmailOptions,
+          sendPasswordResetConfirmationOptions
+        )
+      ).toEqual('success')
     })
 
     it('should return "emailNotVerified"', () => {
       const userLoginOptions = {
         error: {
-          graphQLErrors: [{ name: 'email_not_verified'}]
-        }
+          graphQLErrors: [{ name: 'email_not_verified' }],
+        },
       }
       const hideLoginForm = false
       const verifyEmailOptions = {}
-      expect(getLoginStatus(hideLoginForm, userLoginOptions, verifyEmailOptions, sendPasswordResetConfirmationOptions)).toEqual('emailNotVerified')
+      expect(
+        getLoginStatus(
+          hideLoginForm,
+          userLoginOptions,
+          verifyEmailOptions,
+          sendPasswordResetConfirmationOptions
+        )
+      ).toEqual('emailNotVerified')
     })
 
     it('should return "forgetMyPassword"', () => {
       const userLoginOptions = {}
       const hideLoginForm = true
       const verifyEmailOptions = {}
-      expect(getLoginStatus(hideLoginForm, userLoginOptions, verifyEmailOptions, sendPasswordResetConfirmationOptions)).toEqual('forgetMyPassword')
+      expect(
+        getLoginStatus(
+          hideLoginForm,
+          userLoginOptions,
+          verifyEmailOptions,
+          sendPasswordResetConfirmationOptions
+        )
+      ).toEqual('forgetMyPassword')
     })
 
     it('should return "login"', () => {
       const userLoginOptions = {}
       const hideLoginForm = false
       const verifyEmailOptions = {}
-      expect(getLoginStatus(hideLoginForm, userLoginOptions, verifyEmailOptions, sendPasswordResetConfirmationOptions)).toEqual('login')
+      expect(
+        getLoginStatus(
+          hideLoginForm,
+          userLoginOptions,
+          verifyEmailOptions,
+          sendPasswordResetConfirmationOptions
+        )
+      ).toEqual('login')
     })
   })
 
@@ -95,25 +124,49 @@ describe('@form-utils', () => {
     it('should return "loading"', () => {
       const confirmation = { loading: true }
       const resetPasswordOptions = {}
-      expect(getRestPasswordStatus(confirmation, resetPasswordOptions, sendPasswordResetConfirmationOptions)).toEqual('loading')
+      expect(
+        getRestPasswordStatus(
+          confirmation,
+          resetPasswordOptions,
+          sendPasswordResetConfirmationOptions
+        )
+      ).toEqual('loading')
     })
 
     it('should return "success"', () => {
       const confirmation = {}
       const resetPasswordOptions = { data: {} }
-      expect(getRestPasswordStatus(confirmation, resetPasswordOptions, sendPasswordResetConfirmationOptions)).toEqual('success')
+      expect(
+        getRestPasswordStatus(
+          confirmation,
+          resetPasswordOptions,
+          sendPasswordResetConfirmationOptions
+        )
+      ).toEqual('success')
     })
 
     it('should return "error"', () => {
       const confirmation = { error: {} }
       const resetPasswordOptions = {}
-      expect(getRestPasswordStatus(confirmation, resetPasswordOptions, sendPasswordResetConfirmationOptions)).toEqual('error')
+      expect(
+        getRestPasswordStatus(
+          confirmation,
+          resetPasswordOptions,
+          sendPasswordResetConfirmationOptions
+        )
+      ).toEqual('error')
     })
 
     it('should return "form"', () => {
       const confirmation = {}
       const resetPasswordOptions = {}
-      expect(getRestPasswordStatus(confirmation, resetPasswordOptions, sendPasswordResetConfirmationOptions)).toEqual('form')
+      expect(
+        getRestPasswordStatus(
+          confirmation,
+          resetPasswordOptions,
+          sendPasswordResetConfirmationOptions
+        )
+      ).toEqual('form')
     })
   })
 })

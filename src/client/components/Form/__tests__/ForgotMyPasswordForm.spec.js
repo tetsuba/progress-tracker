@@ -2,7 +2,7 @@ import { testRenderer, testRendererFull } from '../../../../test/testHelper'
 
 // COMPONENTS
 import ForgotMyPasswordForm from '../ForgotMyPasswordForm'
-import EmailVerificationForm from '../EmailVerificationForm';
+import EmailVerificationForm from '../EmailVerificationForm'
 
 describe('<ForgotMyPasswordForm>', () => {
   const props = {
@@ -29,7 +29,8 @@ describe('<ForgotMyPasswordForm>', () => {
     describe('onSubmit', () => {
       it('should trigger handleSubmit', () => {
         const wrapper = testRenderer(ForgotMyPasswordForm, props)
-        wrapper.find('#ForgotMyPasswordForm')
+        wrapper
+          .find('#ForgotMyPasswordForm')
           .props()
           .onSubmit({ preventDefault: jest.fn() })
 
@@ -73,15 +74,17 @@ describe('<ForgotMyPasswordForm>', () => {
       const error = {
         graphQLErrors: [
           {
-            message: errorMessage
-          }
-        ]
+            message: errorMessage,
+          },
+        ],
       }
       const wrapper = testRenderer(EmailVerificationForm, {
         ...props,
         error: error,
       })
-      expect(wrapper.find({type: 'invalid'}).prop('children')).toEqual(errorMessage)
+      expect(wrapper.find({ type: 'invalid' }).prop('children')).toEqual(
+        errorMessage
+      )
     })
   })
 })

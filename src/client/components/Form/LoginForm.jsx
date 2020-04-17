@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Form, Col } from 'react-bootstrap'
 import TextLink from '../TextLink/TextLink'
 import { useInputChange } from '../../hooks/hooks'
-import Box from '../Box/Box';
+import Box from '../Box/Box'
 
 export default function LoginForm(props) {
   const { handleSubmit, error, hideLoginForm } = props

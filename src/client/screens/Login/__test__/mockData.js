@@ -1,7 +1,8 @@
 import {
   LOGIN_MUTATION,
-  SEND_PASSWORD_RESET_CONFIRMATION_MUTATION, VERIFY_EMAIL_MUTATION,
-} from '../../../api/user/user.mutation';
+  SEND_PASSWORD_RESET_CONFIRMATION_MUTATION,
+  VERIFY_EMAIL_MUTATION,
+} from '../../../api/user/user.mutation'
 
 export const loginMockDataSuccess = {
   request: {
@@ -37,10 +38,12 @@ export const loginMockDataErrorEmailNotVerified = {
     },
   },
   result: {
-    errors: [{
-      name: 'email_not_verified',
-      message: 'Email is not verified',
-    }]
+    errors: [
+      {
+        name: 'email_not_verified',
+        message: 'Email is not verified',
+      },
+    ],
   },
 }
 
@@ -58,7 +61,7 @@ export const verifyEmailMockDataSuccess = {
       verifyEmail: {
         confirmation: 'confirmation',
       },
-    }
+    },
   },
 }
 
@@ -76,6 +79,6 @@ export const passwordResetMockDataSuccess = {
       sendPasswordResetConfirmation: {
         confirmation: 'confirmation',
       },
-    }
+    },
   },
 }

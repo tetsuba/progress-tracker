@@ -57,8 +57,7 @@ describe('<FormLogin>', () => {
       it('should trigger handleSubmit', () => {
         const wrapper = testRenderer(LoginForm, baseProps)
         const id = '#LoginForm'
-        wrapper.find(id).props()
-          .onSubmit({ preventDefault: jest.fn() })
+        wrapper.find(id).props().onSubmit({ preventDefault: jest.fn() })
         expect(baseProps.handleSubmit).toHaveBeenCalledTimes(1)
       })
     })

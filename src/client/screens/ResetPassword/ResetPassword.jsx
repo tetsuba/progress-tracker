@@ -7,7 +7,10 @@ import { useMutation, useQuery } from '@apollo/react-hooks'
 import { CONFIRM_TOKEN_QUERY } from '../../api/token/token.query'
 
 // MUTATIONS
-import { REST_PASSWORD_MUTATION, SEND_PASSWORD_RESET_CONFIRMATION_MUTATION } from '../../api/user/user.mutation'
+import {
+  REST_PASSWORD_MUTATION,
+  SEND_PASSWORD_RESET_CONFIRMATION_MUTATION,
+} from '../../api/user/user.mutation'
 
 // COMPONENTS
 import Loading from '../../components/Loading/Loading'
@@ -25,9 +28,10 @@ export default function ResetPassword() {
   const [resetPassword, resetPasswordOptions] = useMutation(
     REST_PASSWORD_MUTATION
   )
-  const [sendPasswordResetConfirmation, sendPasswordResetConfirmationOptions] = useMutation(
-    SEND_PASSWORD_RESET_CONFIRMATION_MUTATION
-  )
+  const [
+    sendPasswordResetConfirmation,
+    sendPasswordResetConfirmationOptions,
+  ] = useMutation(SEND_PASSWORD_RESET_CONFIRMATION_MUTATION)
 
   return (
     <Container className="pt-5">
@@ -37,8 +41,7 @@ export default function ResetPassword() {
           form: (
             <ResetPasswordForm
               handleSubmit={(options) => {
-                resetPassword(options)
-                  .catch(() => console.log('error'))
+                resetPassword(options).catch(() => console.log('error'))
               }}
               token={token}
             />
@@ -57,8 +60,9 @@ export default function ResetPassword() {
           error: (
             <ForgotMyPasswordForm
               handleSubmit={(options) => {
-                sendPasswordResetConfirmation(options)
-                  .catch(() => console.log('error'))
+                sendPasswordResetConfirmation(options).catch(() =>
+                  console.log('error')
+                )
               }}
               error={sendPasswordResetConfirmationOptions.error}
             >
@@ -69,7 +73,13 @@ export default function ResetPassword() {
               </p>
             </ForgotMyPasswordForm>
           ),
-        }[getRestPasswordStatus(confirmation, resetPasswordOptions, sendPasswordResetConfirmationOptions)]
+        }[
+          getRestPasswordStatus(
+            confirmation,
+            resetPasswordOptions,
+            sendPasswordResetConfirmationOptions
+          )
+        ]
       }
     </Container>
   )
