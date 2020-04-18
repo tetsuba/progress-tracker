@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button, Form, Row, Col } from 'react-bootstrap'
 
 // UTILS
@@ -11,7 +11,7 @@ import { useInputChange } from '../../hooks/hooks'
 import PasswordStrength from '../PasswordStrength/PasswordStrength'
 import Box from '../Box/Box'
 
-const ResetPasswordForm = ({ resetPassword, token }) => {
+const ResetPasswordForm = ({ handleSubmit, token }) => {
   const [inputs, setInputs] = useInputChange({
     newPassword: '',
     confirmPassword: '',
@@ -37,8 +37,9 @@ const ResetPasswordForm = ({ resetPassword, token }) => {
             className="w-100"
             onSubmit={(e) => {
               e.preventDefault()
-              if (inputs.newPassword !== inputs.confirmPassword) return
-              resetPassword(options)
+              if (inputs.newPassword === inputs.confirmPassword) {
+                handleSubmit(options)
+              }
             }}
           >
             <Form.Group controlId="newPassword" className="mb-3">

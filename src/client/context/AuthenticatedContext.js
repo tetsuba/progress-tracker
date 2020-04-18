@@ -15,9 +15,14 @@ export default function AuthenticatedCxt({ children }) {
     <AuthenticatedContext.Provider
       value={{
         authenticated,
-        toggle: function (auth) {
-          !auth && setLocalStorage('')
-          setAuthenticated(auth)
+        toggle: (token) => {
+          if (token) {
+            setLocalStorage(token)
+            setAuthenticated(true)
+          } else {
+            setLocalStorage('')
+            setAuthenticated(false)
+          }
         },
       }}
     >

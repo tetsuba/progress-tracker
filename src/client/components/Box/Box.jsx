@@ -10,6 +10,5 @@ export default function Box({ children, max }) {
     borderRadius: '8px',
     border: 'solid 1px #ccc',
   }
-
   return <div style={style}>{children}</div>
 }

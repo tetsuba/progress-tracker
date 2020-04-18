@@ -1,77 +1,68 @@
-import { GraphQLError } from 'graphql'
-import { act } from 'react-dom/test-utils'
-import { graphRenderer, delay } from '../../../../test/testHelper'
+import { testRenderer } from '../../../../test/testHelper'
 
 // COMPONENTS
 import EmailVerificationForm from '../EmailVerificationForm'
 
-// MUTATIONS
-import { VERIFY_EMAIL_MUTATION } from '../../../api/user/user.mutation'
-
 describe('<EmailVerificationForm>', () => {
-  const request = {
-    query: VERIFY_EMAIL_MUTATION,
-    variables: { input: { email: 'test@test.com' } },
+  const props = {
+    handleSubmit: jest.fn(),
+    error: undefined,
   }
 
-  const id = '#EmailVerificationForm'
-  const props = { defaultEmail: 'test@test.com' }
+  it('should render ', () => {
+    const wrapper = testRenderer(EmailVerificationForm, props)
+    expect(wrapper).toMatchSnapshot()
+  })
 
-  describe('@Render', () => {
-    const result = {
-      data: { verifyEmail: { confirmation: 'Confirm' } },
-    }
+  describe('@Events', () => {
+    describe('onSubmit', () => {
+      it('should trigger handleSubmit', () => {
+        const wrapper = testRenderer(EmailVerificationForm, props)
 
-    it('should render email verification form', () => {
-      const mocks = [{ request, result }]
-      const wrapper = graphRenderer(EmailVerificationForm, mocks, props)
-      expect(wrapper.find(EmailVerificationForm)).toMatchSnapshot()
+        wrapper
+          .find('#EmailVerificationForm')
+          .props()
+          .onSubmit({ preventDefault: jest.fn() })
+
+        expect(props.handleSubmit).toHaveBeenCalledTimes(1)
+      })
     })
 
-    it('should render success message', async () => {
-      let wrapper
-      const mocks = [{ request, result }]
+    describe('onChange', () => {
+      it('should update email input', () => {
+        const wrapper = testRenderer(EmailVerificationForm, props)
+        const email = { name: 'email' }
+        const expected = 'test@test.com'
 
-      await act(async () => {
-        wrapper = graphRenderer(EmailVerificationForm, mocks, props)
-        await delay()
-      })
-
-      await act(async () => {
-        wrapper.find(id).get(0).props.onSubmit({
-          preventDefault: jest.fn(),
+        wrapper.find(email).simulate('change', {
+          persist: jest.fn(),
+          target: {
+            name: 'email',
+            value: 'test@test.com',
+          },
         })
+        expect(wrapper.find(email).prop('value')).toEqual(expected)
       })
-
-      wrapper.update()
-      expect(wrapper.find(EmailVerificationForm)).toMatchSnapshot()
     })
   })
 
   describe('@Error', () => {
-    const errorMessage = 'error occurred'
-    const errors = [new GraphQLError(errorMessage)]
-
-    it('should render an error message if form returns an error', async () => {
-      let wrapper
-      const mocks = [{ request, result: { errors } }]
-
-      await act(async () => {
-        wrapper = graphRenderer(EmailVerificationForm, mocks, props)
-        await delay()
+    it('should display an error if error is provided', () => {
+      const errorMessage = 'This is an error message'
+      const error = {
+        graphQLErrors: [
+          {
+            message: errorMessage,
+          },
+        ],
+      }
+      const wrapper = testRenderer(EmailVerificationForm, {
+        ...props,
+        error: error,
       })
-
-      await act(async () => {
-        wrapper.find(id).get(0).props.onSubmit({
-          preventDefault: jest.fn(),
-        })
-      })
-
-      wrapper.update()
-
-      wrapper.find({ type: 'invalid' }).forEach((message) => {
-        expect(message.prop('children')).toEqual(errorMessage)
-      })
+      expect(wrapper.find({ type: 'invalid' }).prop('children')).toEqual(
+        errorMessage
+      )
     })
   })
 })

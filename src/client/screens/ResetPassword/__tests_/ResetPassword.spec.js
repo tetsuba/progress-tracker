@@ -1,136 +1,116 @@
-import { GraphQLError } from 'graphql'
 import { act } from 'react-dom/test-utils'
-import { graphRenderer, delay } from '../../../../test/testHelper'
+import {
+  graphRenderer,
+  delay,
+  updateTextInput,
+} from '../../../../test/testHelper'
 
 // COMPONENTS
 import ResetPassword from '../ResetPassword'
 
-// MUTATIONS
-import { REST_PASSWORD_MUTATION } from '../../../api/user/user.mutation'
-
-// QUERIES
-import { CONFIRM_TOKEN_QUERY } from '../../../api/token/token.query'
+import {
+  confirmTokenQueryError,
+  confirmTokenQuerySuccess,
+  passwordResetMockDataSuccess,
+  resetPasswordSuccess,
+} from './mockData'
+import Login from '../../Login/Login'
 
 jest.mock('react-router-dom', () => ({
   useParams: jest.fn().mockReturnValue({ token: 'token1234' }),
   Link: ({ children }) => children,
 }))
 
-describe('<ResetPasswordForm>', () => {
-  function updateInput(wrapper, name, value) {
-    wrapper.find({ name }).get(0).props.onChange({
-      persist: jest.fn(),
-      target: { name, value },
-    })
-  }
+describe('<ResetPassword>', () => {
+  describe('Initial render', () => {
+    describe('Reset password token not expired', () => {
+      it('should render reset password form', async () => {
+        let wrapper
 
-  describe('@Render', () => {
-    const requestQuery = {
-      query: CONFIRM_TOKEN_QUERY,
-      variables: { token: 'token1234' },
-    }
+        await act(async () => {
+          wrapper = graphRenderer(ResetPassword, [confirmTokenQuerySuccess], {})
+          await delay()
+        })
 
-    const resultQuery = {
-      data: { confirmToken: { success: 'Token confirmed.' } },
-    }
-
-    it('should render "loading"', async () => {
-      let wrapper
-      const mocks = [{ request: requestQuery, result: resultQuery }]
-
-      act(() => {
-        wrapper = graphRenderer(ResetPassword, mocks, {})
+        wrapper.update()
+        expect(wrapper.find(ResetPassword)).toMatchSnapshot()
       })
+      describe('A user submits a new password', () => {
+        it('should render "success"', async () => {
+          let wrapper
+          await act(async () => {
+            wrapper = graphRenderer(
+              ResetPassword,
+              [confirmTokenQuerySuccess, resetPasswordSuccess],
+              {}
+            )
+            await delay()
+          })
 
-      expect(wrapper.find(ResetPassword)).toMatchSnapshot()
-    })
+          wrapper.update()
 
-    it('should render "form"', async () => {
-      let wrapper
-      const mocks = [{ request: requestQuery, result: resultQuery }]
+          act(() => {
+            updateTextInput(wrapper, 'newPassword', '1234')
+          })
 
-      await act(async () => {
-        wrapper = graphRenderer(ResetPassword, mocks, {})
-        await delay()
-      })
+          wrapper.update()
 
-      wrapper.update()
-      expect(wrapper.find(ResetPassword)).toMatchSnapshot()
-    })
+          act(() => {
+            updateTextInput(wrapper, 'confirmPassword', '1234')
+          })
 
-    it('should render "success"', async () => {
-      let wrapper
-      const resetPasswordMock = {
-        request: {
-          query: REST_PASSWORD_MUTATION,
-          variables: {
-            input: {
-              token: 'token1234',
-              password: '1234',
-            },
-          },
-        },
-        result: {
-          data: {
-            resetPassword: {
-              confirmation: 'New password is saved',
-            },
-          },
-        },
-      }
+          wrapper.update()
 
-      const mocks = [
-        { request: requestQuery, result: resultQuery },
-        resetPasswordMock,
-      ]
+          await act(async () => {
+            await wrapper.find('#ResetPasswordForm').get(0).props.onSubmit({
+              preventDefault: jest.fn(),
+            })
+          })
 
-      await act(async () => {
-        wrapper = graphRenderer(ResetPassword, mocks, {})
-        await delay()
-      })
-
-      wrapper.update()
-
-      act(() => {
-        updateInput(wrapper, 'newPassword', '1234')
-      })
-
-      wrapper.update()
-
-      act(() => {
-        updateInput(wrapper, 'confirmPassword', '1234')
-      })
-
-      wrapper.update()
-
-      await act(async () => {
-        await wrapper.find('#ResetPasswordForm').get(0).props.onSubmit({
-          preventDefault: jest.fn(),
+          wrapper.update()
+          expect(wrapper.find(ResetPassword)).toMatchSnapshot()
         })
       })
-
-      wrapper.update()
-      expect(wrapper.find(ResetPassword)).toMatchSnapshot()
     })
 
-    it('should render "error"', async () => {
+    describe('Reset password token expired', () => {
       let wrapper
-      const errorMessage = 'error occurred'
-      const errors = [new GraphQLError(errorMessage)]
-      const mocks = [
-        {
-          request: requestQuery,
-          result: { errors },
-        },
-      ]
+      beforeEach(async () => {
+        await act(async () => {
+          wrapper = graphRenderer(
+            ResetPassword,
+            [confirmTokenQueryError, passwordResetMockDataSuccess],
+            {}
+          )
+          await delay()
+        })
 
-      await act(async () => {
-        wrapper = graphRenderer(ResetPassword, mocks, {})
-        await delay()
+        wrapper.update()
       })
 
-      wrapper.update()
-      expect(wrapper.find(ResetPassword)).toMatchSnapshot()
+      it('should render forgot my password form', async () => {
+        expect(wrapper.find(ResetPassword)).toMatchSnapshot()
+      })
+
+      describe('A user submits a valid email address', () => {
+        it('should render "success"', async () => {
+          act(() => {
+            updateTextInput(wrapper, 'email', 'test@test.com')
+          })
+
+          wrapper.update()
+
+          await act(async () => {
+            await wrapper.find('#ForgotMyPasswordForm').get(0).props.onSubmit({
+              preventDefault: jest.fn(),
+            })
+            await delay()
+          })
+
+          wrapper.update()
+          expect(wrapper.find(ResetPassword)).toMatchSnapshot()
+        })
+      })
     })
   })
 })

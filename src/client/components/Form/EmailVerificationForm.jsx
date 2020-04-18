@@ -1,56 +1,68 @@
-import React from 'react'
-import { Button, Form, Row } from 'react-bootstrap'
-import { useMutation } from '@apollo/react-hooks'
-
-// MUTATIONS
-import { VERIFY_EMAIL_MUTATION } from '../../api/user/user.mutation'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Button, Form, Col } from 'react-bootstrap'
 
 // HOOKS
-import { useInputChange, useSuccess, useError } from '../../hooks/hooks'
+import { useInputChange } from '../../hooks/hooks'
 
-export default function EmailVerificationForm({ defaultEmail = '' }) {
-  const [verifyEmail] = useMutation(VERIFY_EMAIL_MUTATION)
-  const [inputs, setInputs] = useInputChange({ email: defaultEmail })
-  const [error, setError] = useError({ message: '' })
-  const [success, setSuccess] = useSuccess('verifyEmail')
+// COMPONENTS
+import Box from '../Box/Box'
+
+// ICONS
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
+
+export default function EmailVerificationForm(props) {
+  const { handleSubmit, error } = props
+  const [errorMessage] = useState(() => error && error.graphQLErrors[0].message)
+  const [inputs, setInputs] = useInputChange({ email: '' })
   const options = { variables: { input: inputs } }
 
-  return success ? (
-    <Row>
-      <h3>Please check your email.</h3>
-    </Row>
-  ) : (
-    <Row>
-      <h3>Email not verified</h3>
-      <p>Please validate your email before logging in</p>
-      <Form
-        id="EmailVerificationForm"
-        onSubmit={(e) => {
-          e.preventDefault()
-          verifyEmail(options).then(setSuccess).catch(setError)
-        }}
-      >
-        <Form.Group controlId="formBasicEmail">
-          <Form.Control
-            required
-            type="email"
-            placeholder="Enter email"
-            name="email"
-            onChange={setInputs}
-            value={inputs.email}
-            isInvalid={!!error.message}
-          />
-          <Form.Control.Feedback type="invalid">
-            {error.message}
-          </Form.Control.Feedback>
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-    </Row>
+  return (
+    <Box max={500}>
+      <Col>
+        <h3 className="text-danger">Could not sign you in</h3>
+        <p>
+          Your email address has not been confirmed. Please enter your email
+          address below and a link will be sent to confirm your email address.
+        </p>
+        <Form
+          id="EmailVerificationForm"
+          onSubmit={(e) => {
+            e.preventDefault()
+            handleSubmit(options)
+          }}
+        >
+          <Form.Group controlId="EmailVerificationEmail">
+            <Form.Control
+              required
+              type="email"
+              placeholder="email@address.com"
+              name="email"
+              onChange={setInputs}
+              value={inputs.email}
+              isInvalid={!!errorMessage}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errorMessage}
+            </Form.Control.Feedback>
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
+          <Button
+            id="EmailVerificationSubmit"
+            className="float-right"
+            variant="primary"
+            type="submit"
+          >
+            Send
+          </Button>
+        </Form>
+        <Link to="/">
+          <FontAwesomeIcon icon={faCaretLeft} /> back
+        </Link>
+      </Col>
+    </Box>
   )
 }

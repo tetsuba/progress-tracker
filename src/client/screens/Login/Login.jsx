@@ -1,76 +1,64 @@
 import React, { useState, useContext } from 'react'
 import { useMutation } from '@apollo/react-hooks'
 import { Col, Container, Row } from 'react-bootstrap'
-import { UserContext } from '../../context/UserContext'
 
 // CONTEXT
 import { AuthenticatedContext } from '../../context/AuthenticatedContext'
 
 // MUTATION
-import { LOGIN_MUTATION } from '../../api/user/user.mutation'
+import {
+  LOGIN_MUTATION,
+  SEND_PASSWORD_RESET_CONFIRMATION_MUTATION,
+  VERIFY_EMAIL_MUTATION,
+} from '../../api/user/user.mutation'
 
 // COMPONENTS
 import LoginForm from '../../components/Form/LoginForm'
 import ForgotMyPasswordForm from '../../components/Form/ForgotMyPasswordForm'
+import Loading from '../../components/Loading/Loading'
 
 // UTILS
-import { getLoginStatus } from '../../components/Form/form-utils'
-import { useLocalStorage } from '../../hooks/hooks'
-import { TOKEN_KEY } from '../../const/localStorage'
-import Box from '../../components/Box/Box'
+import { getLoginStatus, getLoginError } from '../../components/Form/form-utils'
+import EmailVerificationForm from '../../components/Form/EmailVerificationForm'
 
-const Login = () => {
-  const [userLogin, { loading: mutationLoading }] = useMutation(LOGIN_MUTATION)
+export default function Login() {
+  const [userLogin, userLoginOptions] = useMutation(LOGIN_MUTATION)
+  const [verifyEmail, verifyEmailOptions] = useMutation(VERIFY_EMAIL_MUTATION)
+  const [
+    sendPasswordResetConfirmation,
+    sendPasswordResetConfirmationOptions,
+  ] = useMutation(SEND_PASSWORD_RESET_CONFIRMATION_MUTATION)
+  const [hideLoginForm, setHideLoginForm] = useState(false)
   const { toggle: authenticateUser } = useContext(AuthenticatedContext)
-  const { userLoggedIn } = useContext(UserContext)
-  const [error, setError] = useState({})
-  const [resetPassword, setResetPassword] = useState(false)
-  const [setLocalStorage] = useLocalStorage(TOKEN_KEY)
-
-  const handleSubmit = (e, inputs) => {
-    e.preventDefault()
-
-    userLogin({ variables: { input: inputs } })
-      .then(({ data }) => {
-        console.log(data)
-        userLoggedIn(data.userLogin)
-        authenticateUser(true)
-        setLocalStorage(data.userLogin.token)
-      })
-      .catch((err) => {
-        // TODO: rename to not be the same as the state error name
-        const error = err.graphQLErrors[0]
-
-        if (error.name === 'email_not_verified') {
-          setError({
-            ...error,
-            emailNotVerified: true,
-          })
-        } else {
-          setError({
-            email: error,
-            password: error,
-          })
-        }
-      })
-  }
 
   return (
-    <Container>
-      <Row className="mt-5">
+    <Container className="pt-5">
+      <Row>
         {
           {
-            loading: <div>Loading</div>,
-            form: (
+            loading: <Loading />,
+            login: (
               <LoginForm
-                error={error}
-                handleSubmit={handleSubmit}
-                resetPassword={() => setResetPassword(true)}
+                error={getLoginError(userLoginOptions.error)}
+                hideLoginForm={() => setHideLoginForm(true)}
+                handleSubmit={(options) => {
+                  userLogin(options)
+                    .then(({ data }) => {
+                      authenticateUser(data.userLogin.token)
+                    })
+                    .catch((err) => console.log('Login error'))
+                }}
               />
             ),
-            reset: (
+            forgetMyPassword: (
               <ForgotMyPasswordForm
-                resetPassword={() => setResetPassword(false)}
+                showLoginForm={() => setHideLoginForm(false)}
+                handleSubmit={(options) => {
+                  sendPasswordResetConfirmation(options).catch(() =>
+                    console.log('error')
+                  )
+                }}
+                error={sendPasswordResetConfirmationOptions.error}
               >
                 <h3>Forgot my password</h3>
                 <p>
@@ -79,11 +67,29 @@ const Login = () => {
                 </p>
               </ForgotMyPasswordForm>
             ),
-          }[getLoginStatus(mutationLoading, resetPassword)]
+            emailNotVerified: (
+              <EmailVerificationForm
+                error={verifyEmailOptions.error}
+                handleSubmit={(options) => {
+                  verifyEmail(options).catch(() => console.log('error'))
+                }}
+              />
+            ),
+            success: (
+              <Col id="LoginSuccess">
+                <h3>Please check your email.</h3>
+              </Col>
+            ),
+          }[
+            getLoginStatus(
+              hideLoginForm,
+              userLoginOptions,
+              verifyEmailOptions,
+              sendPasswordResetConfirmationOptions
+            )
+          ]
         }
       </Row>
     </Container>
   )
 }
-
-export default Login

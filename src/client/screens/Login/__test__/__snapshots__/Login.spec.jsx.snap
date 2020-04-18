@@ -1,0 +1,617 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Login> Initial render A user clicks on "forgot password" link A user submits a valid email address should render "success" 1`] = `
+<Login>
+  <Container
+    className="pt-5"
+    fluid={false}
+  >
+    <div
+      className="pt-5 container"
+    >
+      <Row
+        noGutters={false}
+      >
+        <div
+          className="row"
+        >
+          <Col
+            id="LoginSuccess"
+          >
+            <div
+              className="col"
+              id="LoginSuccess"
+            >
+              <h3>
+                Please check your email.
+              </h3>
+            </div>
+          </Col>
+        </div>
+      </Row>
+    </div>
+  </Container>
+</Login>
+`;
+
+exports[`<Login> Initial render A user clicks on "forgot password" link should render "forgotMyPassword" form 1`] = `
+<ForgotMyPasswordForm
+  handleSubmit={[Function]}
+  showLoginForm={[Function]}
+>
+  <Box
+    max={500}
+  >
+    <div
+      style={
+        Object {
+          "backgroundColor": "#f8f9fa",
+          "border": "solid 1px #ccc",
+          "borderRadius": "8px",
+          "margin": "0 auto",
+          "maxWidth": 500,
+          "padding": "20px 20px",
+          "width": "100%",
+        }
+      }
+    >
+      <Row
+        noGutters={false}
+      >
+        <div
+          className="row"
+        >
+          <Col>
+            <div
+              className="col"
+            >
+              <h3>
+                Forgot my password
+              </h3>
+              <p>
+                Enter your email address and we will send you a link to reset your password.
+              </p>
+              <Form
+                className="w-100"
+                id="ForgotMyPasswordForm"
+                inline={false}
+                onSubmit={[Function]}
+              >
+                <form
+                  className="w-100"
+                  id="ForgotMyPasswordForm"
+                  onSubmit={[Function]}
+                >
+                  <FormGroup
+                    controlId="ForgotMyPasswordEmail"
+                  >
+                    <div
+                      className="form-group"
+                    >
+                      <FormControl
+                        isInvalid={false}
+                        name="email"
+                        onChange={[Function]}
+                        placeholder="@"
+                        required={true}
+                        type="email"
+                        value=""
+                      >
+                        <input
+                          className="form-control"
+                          id="ForgotMyPasswordEmail"
+                          name="email"
+                          onChange={[Function]}
+                          placeholder="@"
+                          required={true}
+                          type="email"
+                          value=""
+                        />
+                      </FormControl>
+                      <Feedback
+                        type="invalid"
+                      >
+                        <div
+                          className="invalid-feedback"
+                        />
+                      </Feedback>
+                      <FormText
+                        className="text-muted"
+                      >
+                        <small
+                          className="text-muted form-text"
+                        >
+                          We'll never share your email with anyone else.
+                        </small>
+                      </FormText>
+                    </div>
+                  </FormGroup>
+                  <Button
+                    active={false}
+                    className="float-right"
+                    disabled={false}
+                    id="ForgotMyPasswordSubmit"
+                    type="submit"
+                    variant="primary"
+                  >
+                    <button
+                      className="float-right btn btn-primary"
+                      disabled={false}
+                      id="ForgotMyPasswordSubmit"
+                      type="submit"
+                    >
+                      Reset Password
+                    </button>
+                  </Button>
+                </form>
+              </Form>
+              <TextLink
+                eventHandler={[Function]}
+              >
+                <span
+                  id="TextLink"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "color": "#007bff",
+                      "cursor": "pointer",
+                    }
+                  }
+                >
+                  <FontAwesomeIcon
+                    border={false}
+                    className=""
+                    fixedWidth={false}
+                    flip={null}
+                    icon={
+                      Object {
+                        "icon": Array [
+                          192,
+                          512,
+                          Array [],
+                          "f0d9",
+                          "M192 127.338v257.324c0 17.818-21.543 26.741-34.142 14.142L29.196 270.142c-7.81-7.81-7.81-20.474 0-28.284l128.662-128.662c12.599-12.6 34.142-3.676 34.142 14.142z",
+                        ],
+                        "iconName": "caret-left",
+                        "prefix": "fas",
+                      }
+                    }
+                    inverse={false}
+                    listItem={false}
+                    mask={null}
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    swapOpacity={false}
+                    symbol={false}
+                    title=""
+                    transform={null}
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="svg-inline--fa fa-caret-left fa-w-6 "
+                      data-icon="caret-left"
+                      data-prefix="fas"
+                      focusable="false"
+                      role="img"
+                      style={Object {}}
+                      viewBox="0 0 192 512"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M192 127.338v257.324c0 17.818-21.543 26.741-34.142 14.142L29.196 270.142c-7.81-7.81-7.81-20.474 0-28.284l128.662-128.662c12.599-12.6 34.142-3.676 34.142 14.142z"
+                        fill="currentColor"
+                        style={Object {}}
+                      />
+                    </svg>
+                  </FontAwesomeIcon>
+                   back
+                </span>
+              </TextLink>
+            </div>
+          </Col>
+        </div>
+      </Row>
+    </div>
+  </Box>
+</ForgotMyPasswordForm>
+`;
+
+exports[`<Login> Initial render A user logs-in with an email address that is not verified A user submits a valid email address should render "success" message 1`] = `
+<Login>
+  <Container
+    className="pt-5"
+    fluid={false}
+  >
+    <div
+      className="pt-5 container"
+    >
+      <Row
+        noGutters={false}
+      >
+        <div
+          className="row"
+        >
+          <Col
+            id="LoginSuccess"
+          >
+            <div
+              className="col"
+              id="LoginSuccess"
+            >
+              <h3>
+                Please check your email.
+              </h3>
+            </div>
+          </Col>
+        </div>
+      </Row>
+    </div>
+  </Container>
+</Login>
+`;
+
+exports[`<Login> Initial render A user logs-in with an email address that is not verified should render "emailNotVerified" form 1`] = `
+<EmailVerificationForm
+  handleSubmit={[Function]}
+>
+  <Box
+    max={500}
+  >
+    <div
+      style={
+        Object {
+          "backgroundColor": "#f8f9fa",
+          "border": "solid 1px #ccc",
+          "borderRadius": "8px",
+          "margin": "0 auto",
+          "maxWidth": 500,
+          "padding": "20px 20px",
+          "width": "100%",
+        }
+      }
+    >
+      <Col>
+        <div
+          className="col"
+        >
+          <h3
+            className="text-danger"
+          >
+            Could not sign you in
+          </h3>
+          <p>
+            Your email address has not been confirmed. Please enter your email address below and a link will be sent to confirm your email address.
+          </p>
+          <Form
+            id="EmailVerificationForm"
+            inline={false}
+            onSubmit={[Function]}
+          >
+            <form
+              className=""
+              id="EmailVerificationForm"
+              onSubmit={[Function]}
+            >
+              <FormGroup
+                controlId="EmailVerificationEmail"
+              >
+                <div
+                  className="form-group"
+                >
+                  <FormControl
+                    isInvalid={false}
+                    name="email"
+                    onChange={[Function]}
+                    placeholder="email@address.com"
+                    required={true}
+                    type="email"
+                    value=""
+                  >
+                    <input
+                      className="form-control"
+                      id="EmailVerificationEmail"
+                      name="email"
+                      onChange={[Function]}
+                      placeholder="email@address.com"
+                      required={true}
+                      type="email"
+                      value=""
+                    />
+                  </FormControl>
+                  <Feedback
+                    type="invalid"
+                  >
+                    <div
+                      className="invalid-feedback"
+                    />
+                  </Feedback>
+                  <FormText
+                    className="text-muted"
+                  >
+                    <small
+                      className="text-muted form-text"
+                    >
+                      We'll never share your email with anyone else.
+                    </small>
+                  </FormText>
+                </div>
+              </FormGroup>
+              <Button
+                active={false}
+                className="float-right"
+                disabled={false}
+                id="EmailVerificationSubmit"
+                type="submit"
+                variant="primary"
+              >
+                <button
+                  className="float-right btn btn-primary"
+                  disabled={false}
+                  id="EmailVerificationSubmit"
+                  type="submit"
+                >
+                  Send
+                </button>
+              </Button>
+            </form>
+          </Form>
+          <Link
+            to="/"
+          >
+            <FontAwesomeIcon
+              border={false}
+              className=""
+              fixedWidth={false}
+              flip={null}
+              icon={
+                Object {
+                  "icon": Array [
+                    192,
+                    512,
+                    Array [],
+                    "f0d9",
+                    "M192 127.338v257.324c0 17.818-21.543 26.741-34.142 14.142L29.196 270.142c-7.81-7.81-7.81-20.474 0-28.284l128.662-128.662c12.599-12.6 34.142-3.676 34.142 14.142z",
+                  ],
+                  "iconName": "caret-left",
+                  "prefix": "fas",
+                }
+              }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              size={null}
+              spin={false}
+              swapOpacity={false}
+              symbol={false}
+              title=""
+              transform={null}
+            >
+              <svg
+                aria-hidden="true"
+                className="svg-inline--fa fa-caret-left fa-w-6 "
+                data-icon="caret-left"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                style={Object {}}
+                viewBox="0 0 192 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M192 127.338v257.324c0 17.818-21.543 26.741-34.142 14.142L29.196 270.142c-7.81-7.81-7.81-20.474 0-28.284l128.662-128.662c12.599-12.6 34.142-3.676 34.142 14.142z"
+                  fill="currentColor"
+                  style={Object {}}
+                />
+              </svg>
+            </FontAwesomeIcon>
+             back
+          </Link>
+        </div>
+      </Col>
+    </div>
+  </Box>
+</EmailVerificationForm>
+`;
+
+exports[`<Login> Initial render should render "login" 1`] = `
+<Login>
+  <Container
+    className="pt-5"
+    fluid={false}
+  >
+    <div
+      className="pt-5 container"
+    >
+      <Row
+        noGutters={false}
+      >
+        <div
+          className="row"
+        >
+          <LoginForm
+            error={
+              Object {
+                "email": undefined,
+                "password": undefined,
+              }
+            }
+            handleSubmit={[Function]}
+            hideLoginForm={[Function]}
+          >
+            <Box
+              max={500}
+            >
+              <div
+                style={
+                  Object {
+                    "backgroundColor": "#f8f9fa",
+                    "border": "solid 1px #ccc",
+                    "borderRadius": "8px",
+                    "margin": "0 auto",
+                    "maxWidth": 500,
+                    "padding": "20px 20px",
+                    "width": "100%",
+                  }
+                }
+              >
+                <Col>
+                  <div
+                    className="col"
+                  >
+                    <h3>
+                      Login
+                    </h3>
+                    <Form
+                      id="LoginForm"
+                      inline={false}
+                      onSubmit={[Function]}
+                    >
+                      <form
+                        className=""
+                        id="LoginForm"
+                        onSubmit={[Function]}
+                      >
+                        <FormGroup
+                          controlId="loginEmail"
+                        >
+                          <div
+                            className="form-group"
+                          >
+                            <FormLabel
+                              column={false}
+                              srOnly={false}
+                            >
+                              <label
+                                className="form-label"
+                                htmlFor="loginEmail"
+                              >
+                                Email address
+                              </label>
+                            </FormLabel>
+                            <FormControl
+                              isInvalid={false}
+                              name="email"
+                              onChange={[Function]}
+                              placeholder="Enter email"
+                              required={true}
+                              type="email"
+                              value="test@test.com"
+                            >
+                              <input
+                                className="form-control"
+                                id="loginEmail"
+                                name="email"
+                                onChange={[Function]}
+                                placeholder="Enter email"
+                                required={true}
+                                type="email"
+                                value="test@test.com"
+                              />
+                            </FormControl>
+                            <Feedback
+                              type="invalid"
+                            >
+                              <div
+                                className="invalid-feedback"
+                              />
+                            </Feedback>
+                          </div>
+                        </FormGroup>
+                        <FormGroup
+                          controlId="loginPassword"
+                        >
+                          <div
+                            className="form-group"
+                          >
+                            <FormLabel
+                              column={false}
+                              srOnly={false}
+                            >
+                              <label
+                                className="form-label"
+                                htmlFor="loginPassword"
+                              >
+                                Password
+                              </label>
+                            </FormLabel>
+                            <FormControl
+                              isInvalid={false}
+                              name="password"
+                              onChange={[Function]}
+                              placeholder="Password"
+                              required={true}
+                              type="password"
+                              value="1234qwer"
+                            >
+                              <input
+                                className="form-control"
+                                id="loginPassword"
+                                name="password"
+                                onChange={[Function]}
+                                placeholder="Password"
+                                required={true}
+                                type="password"
+                                value="1234qwer"
+                              />
+                            </FormControl>
+                            <Feedback
+                              type="invalid"
+                            >
+                              <div
+                                className="invalid-feedback"
+                              />
+                            </Feedback>
+                          </div>
+                        </FormGroup>
+                        <Button
+                          active={false}
+                          className="float-right"
+                          disabled={false}
+                          id="LoginFormSubmit"
+                          type="submit"
+                          variant="primary"
+                        >
+                          <button
+                            className="float-right btn btn-primary"
+                            disabled={false}
+                            id="LoginFormSubmit"
+                            type="submit"
+                          >
+                            Submit
+                          </button>
+                        </Button>
+                      </form>
+                    </Form>
+                    <TextLink
+                      eventHandler={[Function]}
+                    >
+                      <span
+                        id="TextLink"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "color": "#007bff",
+                            "cursor": "pointer",
+                          }
+                        }
+                      >
+                        Forgot password?
+                      </span>
+                    </TextLink>
+                  </div>
+                </Col>
+              </div>
+            </Box>
+          </LoginForm>
+        </div>
+      </Row>
+    </div>
+  </Container>
+</Login>
+`;
