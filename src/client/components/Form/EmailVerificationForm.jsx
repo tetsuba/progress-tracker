@@ -54,7 +54,8 @@ export default function EmailVerificationForm(props) {
             id="EmailVerificationSubmit"
             className="float-right"
             variant="primary"
-            type="submit">
+            type="submit"
+          >
             Send
           </Button>
         </Form>
