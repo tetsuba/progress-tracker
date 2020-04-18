@@ -83,7 +83,7 @@ exports[`<Login> Initial render A user clicks on "forgot password" link should r
                   onSubmit={[Function]}
                 >
                   <FormGroup
-                    controlId="forgotMyPasswordEmail"
+                    controlId="ForgotMyPasswordEmail"
                   >
                     <div
                       className="form-group"
@@ -99,7 +99,7 @@ exports[`<Login> Initial render A user clicks on "forgot password" link should r
                       >
                         <input
                           className="form-control"
-                          id="forgotMyPasswordEmail"
+                          id="ForgotMyPasswordEmail"
                           name="email"
                           onChange={[Function]}
                           placeholder="@"
@@ -296,7 +296,7 @@ exports[`<Login> Initial render A user logs-in with an email address that is not
               onSubmit={[Function]}
             >
               <FormGroup
-                controlId="formBasicEmail"
+                controlId="EmailVerificationEmail"
               >
                 <div
                   className="form-group"
@@ -312,7 +312,7 @@ exports[`<Login> Initial render A user logs-in with an email address that is not
                   >
                     <input
                       className="form-control"
-                      id="formBasicEmail"
+                      id="EmailVerificationEmail"
                       name="email"
                       onChange={[Function]}
                       placeholder="email@address.com"
@@ -343,12 +343,14 @@ exports[`<Login> Initial render A user logs-in with an email address that is not
                 active={false}
                 className="float-right"
                 disabled={false}
+                id="EmailVerificationSubmit"
                 type="submit"
                 variant="primary"
               >
                 <button
                   className="float-right btn btn-primary"
                   disabled={false}
+                  id="EmailVerificationSubmit"
                   type="submit"
                 >
                   Send

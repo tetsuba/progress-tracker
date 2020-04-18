@@ -30,7 +30,7 @@ export default function ForgotMyPasswordForm(props) {
               handleSubmit(options)
             }}
           >
-            <Form.Group controlId="forgotMyPasswordEmail">
+            <Form.Group controlId="ForgotMyPasswordEmail">
               <Form.Control
                 required
                 type="email"

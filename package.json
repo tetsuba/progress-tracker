@@ -45,7 +45,7 @@
     "cypress:headless": "cypress run --headless",
     "functional": "yarn server:test & yarn start & cypress open",
     "functional:headless": "start-server-and-test start:server:client http://localhost:3000 cypress:headless",
-    "pretty": "prettier \"src/server/**/*.js\" \"src/client/**/*.js\" \"src/client/**/*.jsx\"",
+    "pretty": "prettier \"src/server/**/*.js\" \"src/client/**/*.js\" \"src/client/**/*.jsx\" \"cypress/**/*.js\"",
     "pretty:check": "yarn pretty --check",
     "pretty:write": "yarn pretty --write"
   },

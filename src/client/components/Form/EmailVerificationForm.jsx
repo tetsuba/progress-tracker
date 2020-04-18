@@ -33,7 +33,7 @@ export default function EmailVerificationForm(props) {
             handleSubmit(options)
           }}
         >
-          <Form.Group controlId="formBasicEmail">
+          <Form.Group controlId="EmailVerificationEmail">
             <Form.Control
               required
               type="email"
@@ -50,7 +50,11 @@ export default function EmailVerificationForm(props) {
               We'll never share your email with anyone else.
             </Form.Text>
           </Form.Group>
-          <Button className="float-right" variant="primary" type="submit">
+          <Button
+            id="EmailVerificationSubmit"
+            className="float-right"
+            variant="primary"
+            type="submit">
             Send
           </Button>
         </Form>

@@ -8,8 +8,9 @@ Cypress.Commands.add('login', ({email, password}) => {
         .get('#loginPassword')
         .clear()
         .type(password)
-        .get('#loginButton')
+        .get('#LoginFormSubmit')
         .click()
+        .end()
 });
 
 Cypress.Commands.add('loginInputsInValid', () => {
@@ -18,6 +19,7 @@ Cypress.Commands.add('loginInputsInValid', () => {
         .should('have.class', 'is-invalid')
         .get('#loginPassword')
         .should('have.class', 'is-invalid')
+        .end()
 });
 
 Cypress.Commands.add('loginInputsNotInValid', () => {
@@ -26,6 +28,7 @@ Cypress.Commands.add('loginInputsNotInValid', () => {
         .should('not.have.class', 'is-invalid')
         .get('#loginPassword')
         .should('not.have.class', 'is-invalid')
+        .end()
 });
 
 Cypress.Commands.add('forgotMyPasswordSubmit', (email) => {
@@ -34,13 +37,15 @@ Cypress.Commands.add('forgotMyPasswordSubmit', (email) => {
         .textInput(input)
         .get('#ForgotMyPasswordSubmit')
         .click()
+        .end()
 });
 
-Cypress.Commands.add('goToResetPassword', (email) => {
+Cypress.Commands.add('clickOnForgotPasswordLink', (email) => {
     cy
         .get('#TextLink')
         .contains('Forgot password?')
         .click()
+        .end()
 });
 
 Cypress.Commands.add('backToLogin', (email) => {
@@ -48,4 +53,30 @@ Cypress.Commands.add('backToLogin', (email) => {
         .get('#TextLink')
         .contains('back')
         .click()
+        .end()
+});
+
+Cypress.Commands.add('hasWarningMessage', () => {
+    cy
+        .get('.text-danger')
+        .contains('Could not sign you in')
+        .end()
+});
+
+Cypress.Commands.add('submitEmailToBeVerified', (email) => {
+    cy
+      .get('#EmailVerificationEmail')
+      .type(email)
+      .get('#EmailVerificationSubmit')
+      .click()
+      .end()
+});
+
+Cypress.Commands.add('submitForgotMyPassword', (email) => {
+    cy
+      .get('#ForgotMyPasswordEmail')
+      .type(email)
+      .get('#ForgotMyPasswordSubmit')
+      .click()
+      .end()
 });

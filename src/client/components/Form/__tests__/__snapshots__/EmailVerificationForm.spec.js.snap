@@ -19,7 +19,7 @@ exports[`<EmailVerificationForm> should render  1`] = `
       onSubmit={[Function]}
     >
       <FormGroup
-        controlId="formBasicEmail"
+        controlId="EmailVerificationEmail"
       >
         <FormControl
           isInvalid={false}
@@ -43,6 +43,7 @@ exports[`<EmailVerificationForm> should render  1`] = `
         active={false}
         className="float-right"
         disabled={false}
+        id="EmailVerificationSubmit"
         type="submit"
         variant="primary"
       >

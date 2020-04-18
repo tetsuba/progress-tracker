@@ -18,6 +18,3 @@ import './commands/common'
 import './commands/login'
 import './commands/register'
 import './commands/resetPassword'
-
-// Alternatively you can use CommonJS syntax:
-// require('./commands')

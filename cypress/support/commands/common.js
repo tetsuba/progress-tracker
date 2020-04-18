@@ -35,4 +35,11 @@ Cypress.Commands.add('submitButtonDisabled', (id) => {
         .end()
 });
 
+Cypress.Commands.add('confirmLocation', (path) => {
+    cy
+      .location().should((loc) => {
+        expect(loc.pathname).to.eq(path)
+    })
+});
+
 
