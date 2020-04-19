@@ -1,5 +1,4 @@
 describe('@Register', () => {
-
   const baseProps = {
     firstName: 'Rob',
     lastName: 'Bob',
@@ -13,8 +12,7 @@ describe('@Register', () => {
   })
 
   it('Page has loaded', () => {
-    cy
-      .confirmLocation('/register')
+    cy.confirmLocation('/register')
   })
 
   /* NOTE:
@@ -30,8 +28,7 @@ describe('@Register', () => {
         newPassword: '1234567890',
         confirmPassword: '1234567890',
       }
-      cy
-        .registerUserSuccess(props, passwordStrength)
+      cy.registerUserSuccess(props, passwordStrength)
     })
   })
 
@@ -43,8 +40,7 @@ describe('@Register', () => {
         newPassword: 'tiger12',
         confirmPassword: 'tiger12',
       }
-      cy
-        .registerUserSuccess(props, passwordStrength)
+      cy.registerUserSuccess(props, passwordStrength)
     })
   })
 
@@ -56,8 +52,7 @@ describe('@Register', () => {
         newPassword: 't1gr12!',
         confirmPassword: 't1gr12!',
       }
-      cy
-        .registerUserSuccess(props, passwordStrength)
+      cy.registerUserSuccess(props, passwordStrength)
     })
   })
 
@@ -69,8 +64,7 @@ describe('@Register', () => {
         newPassword: 'G@@dPassw0d',
         confirmPassword: 'G@@dPassw0d',
       }
-      cy
-        .registerUserSuccess(props, passwordStrength)
+      cy.registerUserSuccess(props, passwordStrength)
     })
   })
 
@@ -80,8 +74,7 @@ describe('@Register', () => {
         ...baseProps,
         email: 'test@test.com',
       }
-      cy
-        .registerUserErrorEmail(props)
+      cy.registerUserErrorEmail(props)
     })
   })
   describe('A user can not register an account', () => {
@@ -91,8 +84,7 @@ describe('@Register', () => {
           ...baseProps,
           firstName: '',
         }
-        cy
-          .registerUserErrorEmptyInputField(props, 'firstName')
+        cy.registerUserErrorEmptyInputField(props, 'firstName')
       })
     })
     describe('with last name as an empty field', () => {
@@ -101,8 +93,7 @@ describe('@Register', () => {
           ...baseProps,
           lastName: '',
         }
-        cy
-          .registerUserErrorEmptyInputField(props, 'firstName')
+        cy.registerUserErrorEmptyInputField(props, 'firstName')
       })
     })
     describe('with email as an empty field', () => {
@@ -111,8 +102,7 @@ describe('@Register', () => {
           ...baseProps,
           email: '',
         }
-        cy
-          .registerUserErrorEmptyInputField(props, 'firstName')
+        cy.registerUserErrorEmptyInputField(props, 'firstName')
       })
     })
     describe('with an invalid email format', () => {
@@ -123,7 +113,7 @@ describe('@Register', () => {
           email: 'email£testcom',
         }
         cy // The name of this command may look incorrect but
-           // the output is correct
+          // the output is correct
           .registerUserErrorEmptyInputField(props, 'firstName')
       })
     })
@@ -136,7 +126,6 @@ describe('@Register', () => {
       it('should display a miss match error', () => {
         cy.registerUserErrorMissMatch(props)
       })
-
     })
   })
 })

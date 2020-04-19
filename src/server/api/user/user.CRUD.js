@@ -90,7 +90,8 @@ async function createNewUser(data, mailOptions) {
      *  - Sending a confirmation email is not required
      * ---------------------------------------------------
      */
-    let succesMessage = 'Registering a user in a test environment wil not create an account'
+    let succesMessage =
+      'Registering a user in a test environment wil not create an account'
     if (!process.env.TEST) {
       await User.create(data)
       const obj = await createToken(user)

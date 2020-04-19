@@ -1,5 +1,3 @@
-
-
 Cypress.Commands.add(
   'submitPassword',
   (newPassword, confirmPassword, strength) => {

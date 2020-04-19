@@ -1,5 +1,5 @@
-import { testRenderer } from '../../../../test/testHelper';
-import PasswordInputs from '../PasswordInputs';
+import { testRenderer } from '../../../../test/testHelper'
+import PasswordInputs from '../PasswordInputs'
 
 describe('<PasswordInputs>', () => {
   const baseProps = {
@@ -7,7 +7,7 @@ describe('<PasswordInputs>', () => {
     inputs: {
       newPassword: '',
       confirmPassword: '',
-    }
+    },
   }
 
   describe('@Render', () => {

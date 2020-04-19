@@ -1,7 +1,11 @@
-import { act } from 'react-dom/test-utils';
-import { delay, graphRenderer, updateTextInput } from '../../../../test/testHelper';
-import Register from '../../Register/Register';
-import { registerMockDataSuccess } from './mockData';
+import { act } from 'react-dom/test-utils'
+import {
+  delay,
+  graphRenderer,
+  updateTextInput,
+} from '../../../../test/testHelper'
+import Register from '../../Register/Register'
+import { registerMockDataSuccess } from './mockData'
 
 describe('<Register>', () => {
   describe('Initial render', () => {

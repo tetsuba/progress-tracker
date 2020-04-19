@@ -85,8 +85,8 @@ describe('<RegisterForm>', () => {
           graphQLErrors: [
             {
               message: 'This an email error',
-            }
-          ]
+            },
+          ],
         },
       }
       const wrapper = testRenderer(RegisterForm, props)

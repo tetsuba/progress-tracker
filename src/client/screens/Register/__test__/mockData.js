@@ -8,14 +8,14 @@ export const registerMockDataSuccess = {
         firstName: 'unit',
         lastName: 'test',
         email: 'unit@test.com',
-        password: '1234'
+        password: '1234',
       },
     },
   },
   result: {
     data: {
       newUser: {
-        id: '123456789'
+        id: '123456789',
       },
     },
   },

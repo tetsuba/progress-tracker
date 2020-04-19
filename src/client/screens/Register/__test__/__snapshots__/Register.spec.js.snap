@@ -19,7 +19,9 @@ exports[`<Register> Initial render A user submits registration form should rende
             <div
               className="col"
             >
-              <h3>
+              <h3
+                id="Success"
+              >
                 Please check your email to validate your email address.
               </h3>
             </div>

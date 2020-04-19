@@ -2,8 +2,8 @@ import React from 'react'
 import { Button, Col, Form } from 'react-bootstrap'
 
 // COMPONENTS
-import Box from '../Box/Box';
-import PasswordInputs from './PasswordInputs';
+import Box from '../Box/Box'
+import PasswordInputs from './PasswordInputs'
 
 // HOOKS
 import { useInputChange } from '../../hooks/hooks'
@@ -37,9 +37,9 @@ export default function RegisterForm(props) {
                 firstName: inputs.firstName,
                 lastName: inputs.lastName,
                 email: inputs.email,
-                password: inputs.newPassword
-              }
-            }
+                password: inputs.newPassword,
+              },
+            },
           }
           handleSubmit(options)
         }}
@@ -98,4 +98,3 @@ export default function RegisterForm(props) {
     </Box>
   )
 }
-

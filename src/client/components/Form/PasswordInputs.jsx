@@ -1,8 +1,8 @@
 import React from 'react'
-import { Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap'
 
 // COMPONENTS
-import PasswordStrength from '../PasswordStrength/PasswordStrength';
+import PasswordStrength from '../PasswordStrength/PasswordStrength'
 
 // UTILS
 import { passwordMatchError } from './form-utils'
@@ -15,7 +15,7 @@ export default function PasswordInputs(props) {
     <>
       <Form.Group controlId="newPassword" className="mb-3">
         <Form.Label className="text-muted">
-          { register ? 'Password': 'New password'}
+          {register ? 'Password' : 'New password'}
         </Form.Label>
         <Form.Control
           required
