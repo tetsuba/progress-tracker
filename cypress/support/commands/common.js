@@ -1,16 +1,23 @@
 Cypress.Commands.add('textInput', ({ name, value }) => {
-  cy.get(`[name="${name}"]`).clear().type(value).end()
+  if (value) {
+    cy.get(`[name="${name}"]`).clear().type(value).end()
+  }
 })
 
 Cypress.Commands.add('formIsVisible', (formId) => {
   cy.get(formId).should('be.visible').end()
 })
 
+// TODO: to be replace with clickOn
 Cypress.Commands.add('submitForm', (id) => {
   cy.get(id).click().end()
 })
 
-Cypress.Commands.add('successMessage', (id) => {
+Cypress.Commands.add('clickOn', (id) => {
+  cy.get(id).click().end()
+})
+
+Cypress.Commands.add('successMessageVisible', (id) => {
   cy.get(id).should('be.visible').end()
 })
 
@@ -22,4 +29,8 @@ Cypress.Commands.add('confirmLocation', (path) => {
   cy.location().should((loc) => {
     expect(loc.pathname).to.eq(path)
   })
+})
+
+Cypress.Commands.add('passwordStrength', (strength) => {
+  cy.get('.progress-bar').contains(strength).end()
 })

@@ -35,8 +35,10 @@ module.exports = {
 
   Mutation: {
     newUser: async (_, args, context, info) => {
+      const name = 'confirmEmail'
       try {
-        return await createNewUser(args.input)
+        const mailOptions = getEmailMailOptions(name)
+        return await createNewUser(args.input, mailOptions)
       } catch (err) {
         return err
       }

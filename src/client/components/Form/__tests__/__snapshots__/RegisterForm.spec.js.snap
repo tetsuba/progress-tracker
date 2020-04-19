@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RegisterForm> @Render should render 1`] = `
+<Box
+  max={500}
+>
+  <h3>
+    Registration
+  </h3>
+  <Form
+    className="mt-4 mb-5"
+    id="RegisterForm"
+    inline={false}
+    onSubmit={[Function]}
+  >
+    <FormRow>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        controlId="RegisterFirstName"
+      >
+        <FormControl
+          name="firstName"
+          onChange={[Function]}
+          placeholder="First Name"
+          required={true}
+          value=""
+        />
+      </FormGroup>
+    </FormRow>
+    <FormRow>
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        controlId="RegisterLastName"
+      >
+        <FormControl
+          name="lastName"
+          onChange={[Function]}
+          placeholder="Last Name"
+          required={true}
+          value=""
+        />
+      </FormGroup>
+    </FormRow>
+    <FormRow
+      className="mb-3"
+    >
+      <FormGroup
+        as={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "displayName": "Col",
+            "render": [Function],
+          }
+        }
+        controlId="RegisterEmail"
+      >
+        <FormControl
+          isInvalid={false}
+          name="email"
+          onChange={[Function]}
+          placeholder="Your email address"
+          required={true}
+          type="email"
+          value=""
+        />
+        <Feedback
+          type="invalid"
+        />
+      </FormGroup>
+    </FormRow>
+    <PasswordInputs
+      inputs={
+        Object {
+          "confirmPassword": "",
+          "email": "",
+          "firstName": "",
+          "lastName": "",
+          "newPassword": "",
+        }
+      }
+      register={true}
+      setInputs={[Function]}
+    />
+    <Button
+      active={false}
+      className="float-right"
+      disabled={false}
+      id="RegisterFormSubmit"
+      type="submit"
+      variant="primary"
+    >
+      Register
+    </Button>
+  </Form>
+</Box>
+`;

@@ -59,6 +59,16 @@ export function getRestPasswordStatus(
   }
 }
 
+export function getRegistrationStatus(addNewUserOptions) {
+  switch (true) {
+    case !!addNewUserOptions.data:
+      return 'success'
+
+    default:
+      return 'register'
+  }
+}
+
 // TODO: to be reworked. "emailNotVerified" not required after refactor
 export function getLoginError(loginError) {
   if (loginError) {

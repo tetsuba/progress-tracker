@@ -1,58 +1,45 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useMutation } from '@apollo/react-hooks'
 import { Col, Container, Row } from 'react-bootstrap'
 
+// COMPONENTS
+import Loading from '../../components/Loading/Loading';
 import RegisterForm from '../../components/Form/RegisterForm'
+
+// MUTATIONS
 import { REGISTER_USER_MUTATION } from '../../api/user/user.mutation'
 
-const Register = () => {
-  const [addNewUser] = useMutation(REGISTER_USER_MUTATION)
-  const [success, setSuccess] = useState(false)
-  const [errors, setErrors] = useState({
-    email: '',
-    password: '',
-    firstName: '',
-    lastName: '',
-    message: '',
-  })
+// UTILS
+import { getRegistrationStatus } from '../../components/Form/form-utils';
 
-  const handleSubmit = (e, inputs) => {
-    e.preventDefault()
-    addNewUser({ variables: { input: inputs } })
-      .then(({ data }) => {
-        setSuccess(true)
-      })
-      .catch((err) => {
-        const error = err.graphQLErrors[0]
-        console.log(error)
-
-        if (error.name === 'email_already_exist') {
-          setErrors({
-            ...error,
-            email: error.message,
-          })
-        }
-      })
-  }
-
+export default function Register() {
+  const [addNewUser, addNewUserOptions] = useMutation(REGISTER_USER_MUTATION)
+  // TODO: loading spinner not ideal. Look for another solution
   return (
-    <Container>
-      <Row className="mt-5">
-        <Col>
-          <h1>Register</h1>
-        </Col>
-      </Row>
-      <Row className="mt-5">
-        <Col>
-          {success ? (
-            <h3>Please check your email to validate your email address.</h3>
-          ) : (
-            <RegisterForm handleSubmit={handleSubmit} errors={errors} />
-          )}
-        </Col>
-      </Row>
+    <Container className="pt-5">
+      {addNewUserOptions.loading && <Loading fade={addNewUserOptions.loading}/>}
+      {
+        {
+          register: (
+            <RegisterForm
+              error={addNewUserOptions.error}
+              handleSubmit={(options) => {
+                addNewUser(options)
+                  .catch((err) => console.log('error'))
+              }}
+            />
+          ),
+          success: (
+            <Row>
+              <Col>
+                <h3 id="Success">
+                  Please check your email to validate your email address.
+                </h3>
+              </Col>
+            </Row>
+          ),
+        }[getRegistrationStatus(addNewUserOptions)]
+      }
     </Container>
   )
 }
-
-export default Register

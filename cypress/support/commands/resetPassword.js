@@ -1,13 +1,11 @@
-Cypress.Commands.add('passwordStrength', (strength) => {
-  cy.get('.progress-bar').contains(strength).end()
-})
+
 
 Cypress.Commands.add(
   'submitPassword',
   (newPassword, confirmPassword, strength) => {
     cy.fillResetPasswordForm(newPassword, confirmPassword, strength)
       .submitForm('#ResetPasswordSubmit')
-      .successMessage('#ResetPasswordSuccess')
+      .successMessageVisible('#ResetPasswordSuccess')
       .end()
   }
 )

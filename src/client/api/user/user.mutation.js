@@ -31,7 +31,7 @@ export const LOGIN_MUTATION = gql`
 export const REGISTER_USER_MUTATION = gql`
   mutation NewUser($input: NewUserInput!) {
     newUser(input: $input) {
-      id
+      success
     }
   }
 `
