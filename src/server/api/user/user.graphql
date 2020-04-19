@@ -20,12 +20,15 @@ type UserVerifyType {
     confirmation: String
 }
 
+type UserSuccessType {
+    success: String
+}
+
 input NewUserInput {
     firstName: String
     lastName: String
     email: String
     password: String
-    country: String
 }
 
 input LoginUserInput {
@@ -54,7 +57,7 @@ extend type Query {
 }
 
 type Mutation {
-    newUser(input: NewUserInput!): UserType!
+    newUser(input: NewUserInput!): UserSuccessType!
     userLogin(input: LoginUserInput!): UserLoginType!
     updateUserData(input: UserDataInput!): UserLoginType!
     verifyEmail(input: UserEmailInput!): UserVerifyType!

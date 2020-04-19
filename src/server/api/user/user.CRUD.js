@@ -26,7 +26,11 @@ async function findEmail(data, mailOptions) {
       throw new Error(errorName.EMAIL_VERIFIED)
     }
 
-    // Do not send an email when running functional tests
+    /* ---------------------------------------------------
+     * Test environment:
+     *  - Sending a confirmation email not required
+     * ---------------------------------------------------
+     */
     if (!process.env.TEST) {
       const obj = await createToken(user)
       await sendMail(obj.token, mailOptions)
@@ -71,7 +75,7 @@ async function findUser(data) {
 }
 
 // RegisterUser
-async function createNewUser(data) {
+async function createNewUser(data, mailOptions) {
   try {
     const user = await User.findOne({ email: data.email })
 
@@ -80,10 +84,22 @@ async function createNewUser(data) {
       throw new Error(errorName.EMAIL_ALREADY_EXIST)
     }
 
-    const newUser = await User.create(data)
-    const obj = await createToken(newUser)
-    sendMail(obj.token)
-    return { success: 'success' }
+    /* ---------------------------------------------------
+     * Test environment:
+     *  - Registering a user is not required
+     *  - Sending a confirmation email is not required
+     * ---------------------------------------------------
+     */
+    let succesMessage =
+      'Registering a user in a test environment wil not create an account'
+    if (!process.env.TEST) {
+      await User.create(data)
+      const obj = await createToken(user)
+      await sendMail(obj.token, mailOptions)
+      succesMessage = 'Registration completed. Please proceed to log-in page'
+    }
+
+    return { success: succesMessage }
   } catch (err) {
     return err
   }
@@ -121,7 +137,12 @@ async function resetPassword(token, password) {
     user.password = password
     await user.save()
 
-    // Don not delete token when running functional tests
+    /* ---------------------------------------------------
+     * Test environment:
+     * - Same token will be used when running tests.
+     *   Do not delete
+     * ---------------------------------------------------
+     */
     if (!process.env.TEST) {
       await deleteToken(token)
     }
