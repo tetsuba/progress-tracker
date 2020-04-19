@@ -102,8 +102,7 @@ describe('@Register', () => {
           ...baseProps,
           email: 'email@testcom',
         }
-        cy
-          .fillRegisterForm(props)
+        cy.fillRegisterForm(props)
           .clickOn('#RegisterFormSubmit')
           .emailErrorMessage('Not a valid email address')
       })
@@ -114,8 +113,7 @@ describe('@Register', () => {
           ...baseProps,
           email: 'test@test.com',
         }
-        cy
-          .fillRegisterForm(props)
+        cy.fillRegisterForm(props)
           .clickOn('#RegisterFormSubmit')
           .emailErrorMessage('Email already exist')
       })

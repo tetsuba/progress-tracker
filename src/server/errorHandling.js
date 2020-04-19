@@ -58,7 +58,7 @@ const errorType = {
     message: 'Not a valid email address',
     statusCode: 510, //  Internal server error
     name: 'bad_email_address',
-  }
+  },
 }
 
 const getErrorCode = (errorName) => {

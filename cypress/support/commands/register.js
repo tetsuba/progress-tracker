@@ -28,8 +28,5 @@ Cypress.Commands.add('registerUserErrorMissMatch', (props, name) => {
 })
 
 Cypress.Commands.add('emailErrorMessage', (message, errorMessage) => {
-  cy
-    .get('[name="email"]')
-    .siblings('.invalid-feedback')
-    .contains(message)
+  cy.get('[name="email"]').siblings('.invalid-feedback').contains(message)
 })
