@@ -1,3 +1,5 @@
+const { validateEmail } = require('../../utils/common')
+
 const {
   createNewUser,
   findUser,
@@ -36,6 +38,11 @@ module.exports = {
   Mutation: {
     newUser: async (_, args, context, info) => {
       const name = 'confirmEmail'
+
+      if (validateEmail(args.input.email)) {
+        throw new Error(errorName.NOT_VALID_EMAIL)
+      }
+
       try {
         const mailOptions = getEmailMailOptions(name)
         return await createNewUser(args.input, mailOptions)

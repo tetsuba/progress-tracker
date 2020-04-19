@@ -11,19 +11,12 @@ Cypress.Commands.add('registerUserSuccess', (props, passwordStrength) => {
     .successMessageVisible('#Success')
 })
 
-Cypress.Commands.add('registerUserErrorEmail', (props) => {
-  cy.fillRegisterForm(props)
-    .clickOn('#RegisterFormSubmit')
-    .get('[name="email"]')
-    .siblings('.invalid-feedback')
-    .contains('Email already exist')
-})
-
-// TODO: To be fixed
+// TODO: investigate how to improve this test
 Cypress.Commands.add('registerUserErrorEmptyInputField', (props, name) => {
   cy.fillRegisterForm(props)
     .clickOn('#RegisterFormSubmit')
     .get(`[name="${name}"]`)
+    .should('to.be.empty')
 })
 
 Cypress.Commands.add('registerUserErrorMissMatch', (props, name) => {
@@ -32,4 +25,8 @@ Cypress.Commands.add('registerUserErrorMissMatch', (props, name) => {
     .siblings('.invalid-feedback')
     .contains('Passwords do not match!!!')
     .submitButtonDisabled('#RegisterFormSubmit')
+})
+
+Cypress.Commands.add('emailErrorMessage', (message, errorMessage) => {
+  cy.get('[name="email"]').siblings('.invalid-feedback').contains(message)
 })
