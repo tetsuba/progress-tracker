@@ -68,18 +68,9 @@ describe('@Register', () => {
     })
   })
 
-  describe('A user tries to register an account with a registered email address', () => {
-    it('should return an error message', () => {
-      const props = {
-        ...baseProps,
-        email: 'test@test.com',
-      }
-      cy.registerUserErrorEmail(props)
-    })
-  })
-  describe('A user can not register an account', () => {
+  describe.only('A user can not register an account', () => {
     describe('with first name as an empty field', () => {
-      it('should display html5 message and set focus on the empty field', () => {
+      it('should display html5 message and do nothing', () => {
         const props = {
           ...baseProps,
           firstName: '',
@@ -88,7 +79,7 @@ describe('@Register', () => {
       })
     })
     describe('with last name as an empty field', () => {
-      it('should display html5 message and set focus on the empty field', () => {
+      it('should display html5 message and  do nothing', () => {
         const props = {
           ...baseProps,
           lastName: '',
@@ -97,7 +88,7 @@ describe('@Register', () => {
       })
     })
     describe('with email as an empty field', () => {
-      it('should display html5 message and set focus on the empty field', () => {
+      it('should display html5 message and  do nothing', () => {
         const props = {
           ...baseProps,
           email: '',
@@ -106,15 +97,27 @@ describe('@Register', () => {
       })
     })
     describe('with an invalid email format', () => {
-      // TODO: investigate if valid email format test should be extend
-      it('should display html5 message and set focus on the empty field', () => {
+      it('should return an error message', () => {
         const props = {
           ...baseProps,
-          email: 'email£testcom',
+          email: 'email@testcom',
         }
-        cy // The name of this command may look incorrect but
-          // the output is correct
-          .registerUserErrorEmptyInputField(props, 'firstName')
+        cy
+          .fillRegisterForm(props)
+          .clickOn('#RegisterFormSubmit')
+          .emailErrorMessage('Not a valid email address')
+      })
+    })
+    describe('with a registered email address', () => {
+      it('should return an error message', () => {
+        const props = {
+          ...baseProps,
+          email: 'test@test.com',
+        }
+        cy
+          .fillRegisterForm(props)
+          .clickOn('#RegisterFormSubmit')
+          .emailErrorMessage('Email already exist')
       })
     })
     describe('with passwords not matching', () => {
