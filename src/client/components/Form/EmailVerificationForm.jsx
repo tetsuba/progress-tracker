@@ -13,19 +13,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
 
 export default function EmailVerificationForm(props) {
-  const { handleSubmit, error } = props
-  const [errorMessage] = useState(() => error && error.graphQLErrors[0].message)
+  const { handleSubmit, error, backButton, children } = props
+  const errorMessage = error && error.graphQLErrors[0].message
   const [inputs, setInputs] = useInputChange({ email: '' })
   const options = { variables: { input: inputs } }
 
   return (
     <Box max={500}>
       <Col>
-        <h3 className="text-danger">Could not sign you in</h3>
-        <p>
-          Your email address has not been confirmed. Please enter your email
-          address below and a link will be sent to confirm your email address.
-        </p>
+        {children}
         <Form
           id="EmailVerificationForm"
           onSubmit={(e) => {
@@ -59,9 +55,11 @@ export default function EmailVerificationForm(props) {
             Send
           </Button>
         </Form>
-        <Link to="/">
-          <FontAwesomeIcon icon={faCaretLeft} /> back
-        </Link>
+        {backButton && (
+          <Link to="/">
+            <FontAwesomeIcon icon={faCaretLeft} /> back
+          </Link>
+        )}
       </Col>
     </Box>
   )

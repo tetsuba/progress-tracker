@@ -9,9 +9,19 @@ describe('<EmailVerificationForm>', () => {
     error: undefined,
   }
 
-  it('should render ', () => {
-    const wrapper = testRenderer(EmailVerificationForm, props)
-    expect(wrapper).toMatchSnapshot()
+  describe('@Render', () => {
+    it('should render without back button', () => {
+      const wrapper = testRenderer(EmailVerificationForm, props)
+      expect(wrapper).toMatchSnapshot()
+    })
+
+    it('should render with back button', () => {
+      const wrapper = testRenderer(EmailVerificationForm, {
+        ...props,
+        backButton: true,
+      })
+      expect(wrapper).toMatchSnapshot()
+    })
   })
 
   describe('@Events', () => {
