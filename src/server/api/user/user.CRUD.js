@@ -93,8 +93,8 @@ async function createNewUser(data, mailOptions) {
     let succesMessage =
       'Registering a user in a test environment wil not create an account'
     if (!process.env.TEST) {
-      await User.create(data)
-      const obj = await createToken(user)
+      const newUser = await User.create(data)
+      const obj = await createToken(newUser)
       await sendMail(obj.token, mailOptions)
       succesMessage = 'Registration completed. Please proceed to log-in page'
     }

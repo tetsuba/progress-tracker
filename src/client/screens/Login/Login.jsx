@@ -69,11 +69,19 @@ export default function Login() {
             ),
             emailNotVerified: (
               <EmailVerificationForm
+                backButton
                 error={verifyEmailOptions.error}
                 handleSubmit={(options) => {
                   verifyEmail(options).catch(() => console.log('error'))
                 }}
-              />
+              >
+                <h3 className="text-danger">Could not sign you in</h3>
+                <p>
+                  Your email address has not been confirmed. Please enter your
+                  email address below and a link will be sent to confirm your
+                  email address.
+                </p>
+              </EmailVerificationForm>
             ),
             success: (
               <Col id="LoginSuccess">

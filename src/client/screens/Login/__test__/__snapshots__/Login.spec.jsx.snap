@@ -255,6 +255,7 @@ exports[`<Login> Initial render A user logs-in with an email address that is not
 
 exports[`<Login> Initial render A user logs-in with an email address that is not verified should render "emailNotVerified" form 1`] = `
 <EmailVerificationForm
+  backButton={true}
   handleSubmit={[Function]}
 >
   <Box

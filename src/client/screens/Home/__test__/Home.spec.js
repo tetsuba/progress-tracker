@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 // import ReactTestUtils from 'react-dom/test-utils';
 import renderer from 'react-test-renderer'
 
-describe('@Home', () => {
+describe.skip('@Home', () => {
   // const {getByText} =  render(<Login />);
   // console.log('root', root)
 

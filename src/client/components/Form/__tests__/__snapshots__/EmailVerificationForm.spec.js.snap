@@ -1,18 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<EmailVerificationForm> should render  1`] = `
+exports[`<EmailVerificationForm> @Render should render with back button 1`] = `
 <Box
   max={500}
 >
   <Col>
-    <h3
-      className="text-danger"
-    >
-      Could not sign you in
-    </h3>
-    <p>
-      Your email address has not been confirmed. Please enter your email address below and a link will be sent to confirm your email address.
-    </p>
     <Form
       id="EmailVerificationForm"
       inline={false}
@@ -86,6 +78,52 @@ exports[`<EmailVerificationForm> should render  1`] = `
       />
        back
     </Link>
+  </Col>
+</Box>
+`;
+
+exports[`<EmailVerificationForm> @Render should render without back button 1`] = `
+<Box
+  max={500}
+>
+  <Col>
+    <Form
+      id="EmailVerificationForm"
+      inline={false}
+      onSubmit={[Function]}
+    >
+      <FormGroup
+        controlId="EmailVerificationEmail"
+      >
+        <FormControl
+          isInvalid={false}
+          name="email"
+          onChange={[Function]}
+          placeholder="email@address.com"
+          required={true}
+          type="email"
+          value=""
+        />
+        <Feedback
+          type="invalid"
+        />
+        <FormText
+          className="text-muted"
+        >
+          We'll never share your email with anyone else.
+        </FormText>
+      </FormGroup>
+      <Button
+        active={false}
+        className="float-right"
+        disabled={false}
+        id="EmailVerificationSubmit"
+        type="submit"
+        variant="primary"
+      >
+        Send
+      </Button>
+    </Form>
   </Col>
 </Box>
 `;

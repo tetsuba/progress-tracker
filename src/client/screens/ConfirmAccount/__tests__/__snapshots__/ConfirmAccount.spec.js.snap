@@ -1,0 +1,188 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ConfirmAccount> Initial render Account verified token expired A user submits a valid email address should render "success" 1`] = `
+<ConfirmAccount>
+  <Container
+    className="pt-5"
+    fluid={false}
+  >
+    <div
+      className="pt-5 container"
+    >
+      <Row
+        noGutters={false}
+      >
+        <div
+          className="row"
+        >
+          <Col
+            id="LoginSuccess"
+          >
+            <div
+              className="col"
+              id="LoginSuccess"
+            >
+              <h3>
+                Please check your email.
+              </h3>
+            </div>
+          </Col>
+        </div>
+      </Row>
+    </div>
+  </Container>
+</ConfirmAccount>
+`;
+
+exports[`<ConfirmAccount> Initial render Account verified token expired should render email verification form 1`] = `
+<EmailVerificationForm
+  handleSubmit={[Function]}
+>
+  <Box
+    max={500}
+  >
+    <div
+      style={
+        Object {
+          "backgroundColor": "#f8f9fa",
+          "border": "solid 1px #ccc",
+          "borderRadius": "8px",
+          "margin": "0 auto",
+          "maxWidth": 500,
+          "padding": "20px 20px",
+          "width": "100%",
+        }
+      }
+    >
+      <Col>
+        <div
+          className="col"
+        >
+          <h3
+            className="text-danger"
+          >
+            Email verification session expired
+          </h3>
+          <p>
+            Please enter your email address below and a link will be sent to confirm your email address.
+          </p>
+          <Form
+            id="EmailVerificationForm"
+            inline={false}
+            onSubmit={[Function]}
+          >
+            <form
+              className=""
+              id="EmailVerificationForm"
+              onSubmit={[Function]}
+            >
+              <FormGroup
+                controlId="EmailVerificationEmail"
+              >
+                <div
+                  className="form-group"
+                >
+                  <FormControl
+                    isInvalid={false}
+                    name="email"
+                    onChange={[Function]}
+                    placeholder="email@address.com"
+                    required={true}
+                    type="email"
+                    value=""
+                  >
+                    <input
+                      className="form-control"
+                      id="EmailVerificationEmail"
+                      name="email"
+                      onChange={[Function]}
+                      placeholder="email@address.com"
+                      required={true}
+                      type="email"
+                      value=""
+                    />
+                  </FormControl>
+                  <Feedback
+                    type="invalid"
+                  >
+                    <div
+                      className="invalid-feedback"
+                    />
+                  </Feedback>
+                  <FormText
+                    className="text-muted"
+                  >
+                    <small
+                      className="text-muted form-text"
+                    >
+                      We'll never share your email with anyone else.
+                    </small>
+                  </FormText>
+                </div>
+              </FormGroup>
+              <Button
+                active={false}
+                className="float-right"
+                disabled={false}
+                id="EmailVerificationSubmit"
+                type="submit"
+                variant="primary"
+              >
+                <button
+                  className="float-right btn btn-primary"
+                  disabled={false}
+                  id="EmailVerificationSubmit"
+                  type="submit"
+                >
+                  Send
+                </button>
+              </Button>
+            </form>
+          </Form>
+        </div>
+      </Col>
+    </div>
+  </Box>
+</EmailVerificationForm>
+`;
+
+exports[`<ConfirmAccount> Initial render Account verified token not expired should render account verified message 1`] = `
+<ConfirmAccount>
+  <Container
+    className="pt-5"
+    fluid={false}
+  >
+    <div
+      className="pt-5 container"
+    >
+      <Row
+        noGutters={false}
+      >
+        <div
+          className="row"
+        >
+          <Col
+            className="text-center"
+          >
+            <div
+              className="text-center col"
+            >
+              <h3>
+                Email Verified
+              </h3>
+              <p>
+                Please log into your account
+              </p>
+              <Link
+                to="/login"
+              >
+                Login
+              </Link>
+            </div>
+          </Col>
+        </div>
+      </Row>
+    </div>
+  </Container>
+</ConfirmAccount>
+`;

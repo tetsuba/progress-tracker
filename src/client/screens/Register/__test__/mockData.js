@@ -15,7 +15,7 @@ export const registerMockDataSuccess = {
   result: {
     data: {
       newUser: {
-        id: '123456789',
+        success: 'success',
       },
     },
   },

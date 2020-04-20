@@ -69,6 +69,22 @@ export function getRegistrationStatus(addNewUserOptions) {
   }
 }
 
+export function getConfirmAccountStatus(confirmAccount, verifyEmailOptions) {
+  switch (true) {
+    case !!verifyEmailOptions.data:
+      return 'success'
+
+    case !!confirmAccount.error:
+      return 'tokenExpired'
+
+    case !!confirmAccount.data:
+      return 'accountVerified'
+
+    default:
+      return 'default'
+  }
+}
+
 // TODO: to be reworked. "emailNotVerified" not required after refactor
 export function getLoginError(loginError) {
   if (loginError) {

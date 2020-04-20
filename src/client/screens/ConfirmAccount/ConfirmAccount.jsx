@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { useQuery } from '@apollo/react-hooks'
+import { useMutation, useQuery } from '@apollo/react-hooks'
 
 // COMPONENTS
 import { Col, Container, Row } from 'react-bootstrap'
@@ -8,38 +8,53 @@ import EmailVerificationForm from '../../components/Form/EmailVerificationForm'
 
 // QUERY
 import { CONFIRM_ACCOUNT_QUERY } from '../../api/token/token.query'
+import { VERIFY_EMAIL_MUTATION } from '../../api/user/user.mutation'
+import { getConfirmAccountStatus } from '../../components/Form/form-utils'
 
-const ConfirmAccount = () => {
+export default function ConfirmAccount() {
   let { token } = useParams()
   token = decodeURIComponent(token)
   const variables = { token }
-  const { data, error } = useQuery(CONFIRM_ACCOUNT_QUERY, { variables })
+  const confirmAccount = useQuery(CONFIRM_ACCOUNT_QUERY, { variables })
+  const [verifyEmail, verifyEmailOptions] = useMutation(VERIFY_EMAIL_MUTATION)
 
   return (
-    <Container>
-      <Row className="mt-5">
-        <Col className="text-center">
-          {data && (
-            <Fragment>
-              <h1>Account Verified</h1>
-              <p>Please log into your account</p>
-              <Link to="/login">Login</Link>
-            </Fragment>
-          )}
-          {error && (
-            <Fragment>
-              <h1>Account verification expired</h1>
-              <p>
-                Please enter your email address and send another validation
-                email
-              </p>
-              <EmailVerificationForm />
-            </Fragment>
-          )}
-        </Col>
+    <Container className="pt-5">
+      <Row>
+        {
+          {
+            tokenExpired: (
+              <EmailVerificationForm
+                error={verifyEmailOptions.error}
+                handleSubmit={(options) => {
+                  verifyEmail(options).catch(() => console.log('error'))
+                }}
+              >
+                <h3 className="text-danger">
+                  Email verification session expired
+                </h3>
+                <p>
+                  Please enter your email address below and a link will be sent
+                  to confirm your email address.
+                </p>
+              </EmailVerificationForm>
+            ),
+            accountVerified: (
+              <Col className="text-center">
+                <h3>Email Verified</h3>
+                <p>Please log into your account</p>
+                <Link to="/login">Login</Link>
+              </Col>
+            ),
+            success: (
+              <Col id="LoginSuccess">
+                <h3>Please check your email.</h3>
+              </Col>
+            ),
+            default: <div></div>,
+          }[getConfirmAccountStatus(confirmAccount, verifyEmailOptions)]
+        }
       </Row>
     </Container>
   )
 }
-
-export default ConfirmAccount
