@@ -1,24 +1,21 @@
-// TODO: verify email and update email address
-//  https://codemoto.io/coding/nodejs/email-verification-node-express-mongodb
-
-// TODO: Change password
-
 import React, { useState } from 'react'
 import { useMutation, useQuery } from '@apollo/react-hooks'
 
 // COMPONENTS
-import { Col, Container, Row } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
 import Loading from '../../components/Loading/Loading'
 
 // FORM
-import MyAccountForm from '../../components/Form/MyAccountForm'
+import MyDetailsForm from '../../components/Form/MyDetailsForm'
 
 // QUERY
 import { GET_USER_QUERY } from '../../api/user/user.query'
 
 // MUTATION
 import { UPDATE_USER_MUTATION } from './MyAccount.mutation'
+import Box from '../../components/Box/Box'
+import ForgotMyPasswordForm from '../../components/Form/ForgotMyPasswordForm'
 
 // BREADCRUMBS
 const crumbs = [
@@ -26,7 +23,7 @@ const crumbs = [
   { path: '', name: 'My Account' },
 ]
 
-const MyAccount = () => {
+export default function MyAccount() {
   const [formElement, setFormElement] = useState({ show: false })
   const { loading, data } = useQuery(GET_USER_QUERY)
   const [updateUserData] = useMutation(UPDATE_USER_MUTATION, {
@@ -54,14 +51,10 @@ const MyAccount = () => {
   const { getUserData: user } = data
 
   return (
-    <Container>
-      <Row>
-        <Row className="mt-5">
-          <BreadCrumbs crumbs={crumbs} />
-        </Row>
-      </Row>
+    <Container className="pt-5">
+      <BreadCrumbs crumbs={crumbs} />
 
-      <MyAccountForm
+      <MyDetailsForm
         handleSubmit={handleSubmit}
         user={user}
         showForm={formElement.show}
@@ -69,15 +62,22 @@ const MyAccount = () => {
       />
 
       <Row className="mt-5">
-        <Col>Email:</Col>
-        <Col>{user.email}</Col>
+        <ForgotMyPasswordForm
+          hideEmailInput
+          defualtEmail={user.email}
+          buttonText="Send"
+        >
+          <h3>Request for a password reset</h3>
+          <p>We will send you a link to reset your password.</p>
+        </ForgotMyPasswordForm>
       </Row>
-      <Row className="mt-4">
-        <Col>Password:</Col>
-        <Col>###########</Col>
+
+      <Row className="mt-5">
+        <Box max={500}>
+          <h3>Email - Changing email address is not available</h3>
+          <p>{user.email}</p>
+        </Box>
       </Row>
     </Container>
   )
 }
-
-export default MyAccount
