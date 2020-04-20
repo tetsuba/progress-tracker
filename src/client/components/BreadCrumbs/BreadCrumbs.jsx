@@ -1,8 +1,8 @@
 import React from 'react'
-import { Breadcrumb } from 'react-bootstrap'
+import { Breadcrumb, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const BreadCrumbs = ({ crumbs }) => {
+export default function BreadCrumbs({ crumbs }) {
   function addCrumb({ path, name }) {
     return path ? (
       <li key={name} className="breadcrumb-item">
@@ -20,10 +20,10 @@ const BreadCrumbs = ({ crumbs }) => {
   }
 
   return (
-    <Breadcrumb>
-      <Crumbs />
-    </Breadcrumb>
+    <Row>
+      <Breadcrumb>
+        <Crumbs />
+      </Breadcrumb>
+    </Row>
   )
 }
-
-export default BreadCrumbs
