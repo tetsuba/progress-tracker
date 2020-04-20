@@ -9,12 +9,14 @@ import {
 import ResetPassword from '../ResetPassword'
 
 import {
-  confirmTokenQueryError,
-  confirmTokenQuerySuccess,
   passwordResetMockDataSuccess,
   resetPasswordSuccess,
-} from './mockData'
-import Login from '../../Login/Login'
+} from '../../../../test/mockApi/user/userMockMutation'
+
+import {
+  confirmTokenQueryError,
+  confirmTokenQuerySuccess,
+} from '../../../../test/mockApi/token/tokenMockQuery'
 
 jest.mock('react-router-dom', () => ({
   useParams: jest.fn().mockReturnValue({ token: 'token1234' }),

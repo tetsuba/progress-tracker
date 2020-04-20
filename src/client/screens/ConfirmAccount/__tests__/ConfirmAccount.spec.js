@@ -9,8 +9,8 @@ import EmailVerificationForm from '../../../components/Form/EmailVerificationFor
 import {
   confirmAccountQueryError,
   confirmAccountQuerySuccess,
-} from '../../../../test/mockQueries'
-import { verifyEmailMutationSuccess } from '../../../../test/mockMutations'
+} from '../../../../test/mockApi/token/tokenMockQuery'
+import { verifyEmailMutationSuccess } from '../../../../test/mockApi/user/userMockMutation'
 
 jest.mock('react-router-dom', () => ({
   useParams: jest.fn().mockReturnValue({ token: 'confirmToken1234' }),
