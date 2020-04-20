@@ -5,7 +5,9 @@ import {
   updateTextInput,
 } from '../../../../test/testHelper'
 import Register from '../../Register/Register'
-import { registerMockDataSuccess } from './mockData'
+
+// MOCKDATA
+import { registerMockDataSuccess } from '../../../../test/mockApi/user/userMockMutation'
 
 describe('<Register>', () => {
   describe('Initial render', () => {

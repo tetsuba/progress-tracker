@@ -1,8 +1,25 @@
 import {
+  VERIFY_EMAIL_MUTATION,
   LOGIN_MUTATION,
   SEND_PASSWORD_RESET_CONFIRMATION_MUTATION,
-  VERIFY_EMAIL_MUTATION,
-} from '../../../api/user/user.mutation'
+  REGISTER_USER_MUTATION, REST_PASSWORD_MUTATION,
+} from '../../../client/api/user/user.mutation';
+
+export const verifyEmailMutationSuccess = {
+  request: {
+    query: VERIFY_EMAIL_MUTATION,
+    variables: {
+      input: { email: 'test@test.com' },
+    },
+  },
+  result: {
+    data: {
+      verifyEmail: {
+        confirmation: 'email verified',
+      },
+    },
+  },
+}
 
 export const loginMockDataSuccess = {
   request: {
@@ -47,19 +64,41 @@ export const loginMockDataErrorEmailNotVerified = {
   },
 }
 
-export const verifyEmailMockDataSuccess = {
+export const registerMockDataSuccess = {
   request: {
-    query: VERIFY_EMAIL_MUTATION,
+    query: REGISTER_USER_MUTATION,
     variables: {
       input: {
-        email: 'test@test.com',
+        firstName: 'unit',
+        lastName: 'test',
+        email: 'unit@test.com',
+        password: '1234',
       },
     },
   },
   result: {
     data: {
-      verifyEmail: {
-        confirmation: 'confirmation',
+      newUser: {
+        success: 'success',
+      },
+    },
+  },
+}
+
+export const resetPasswordSuccess = {
+  request: {
+    query: REST_PASSWORD_MUTATION,
+    variables: {
+      input: {
+        token: 'token1234',
+        password: '1234',
+      },
+    },
+  },
+  result: {
+    data: {
+      resetPassword: {
+        confirmation: 'New password is saved',
       },
     },
   },
