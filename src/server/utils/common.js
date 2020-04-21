@@ -6,13 +6,14 @@ function validateEmail(email) {
 }
 
 function getUserFromToken(headers) {
-  if (headers.authorization) {
+  try {
     return jwt.verify(
       headers.authorization,
       process.env.REACT_APP_JWT_AUTH_SECRET
     )
+  } catch (e) {
+    return {}
   }
-  return {}
 }
 
 module.exports = {

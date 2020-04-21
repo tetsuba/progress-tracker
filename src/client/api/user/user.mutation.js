@@ -19,11 +19,7 @@ export const SEND_PASSWORD_RESET_CONFIRMATION_MUTATION = gql`
 export const LOGIN_MUTATION = gql`
   mutation($input: LoginUserInput!) {
     userLogin(input: $input) {
-      id
-      firstName
-      lastName
       token
-      email
     }
   }
 `

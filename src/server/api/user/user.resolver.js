@@ -9,6 +9,8 @@ const {
 } = require('./user.CRUD')
 const { getEmailMailOptions } = require('../../utils/email/sendEmail.js')
 const { errorName } = require('../../errorHandling')
+const { createVerificationToken } = require('../../utils/token')
+const { passwordsDoNotMatch } = require('../utils')
 
 module.exports = {
   Query: {
@@ -50,12 +52,38 @@ module.exports = {
         return err
       }
     },
+
     userLogin: async (_, args, context, info) => {
-      try {
-        return await findUser(args.input)
-      } catch (err) {
-        return err
+      const { User, Token } = context.models
+      const {
+        input: { email, password },
+      } = args
+      const user = await User.findOne({ email })
+
+      /* Error Handling:
+       * - User is not found
+       * - Passwords do not match
+       *  */
+      if (!user || passwordsDoNotMatch(password, user.password)) {
+        throw new Error(errorName.INCORRECT_USER_DETAILS)
       }
+
+      /* Error Handling:
+       * - User email has not been verified
+       *  */
+      if (!user.isVerified) {
+        throw new Error(errorName.EMAIL_NOT_VERIFIED)
+      }
+
+      /* Create a session token (12hrs):
+       *  */
+      const verificationToken = createVerificationToken(user)
+      const { token } = await Token.create({
+        _userId: user._id,
+        token: verificationToken,
+      })
+
+      return { token }
     },
 
     updateUserData: async (_, args, context, info) => {
