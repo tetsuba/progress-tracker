@@ -12,9 +12,10 @@ const server = new ApolloServer({
   typeDefs: require('./api/typeDefs'),
   resolvers: require('./api/resolvers'),
   context: ({ req }) => {
-    // TODO: investigate to pass the data models through the context
-    const user = getUserFromToken(req.headers)
-    return { user }
+    return {
+      user: getUserFromToken(req.headers),
+      models: require('./api/models'),
+    }
   },
   formatError: (err) => {
     console.log('+ SERVER - formatError: ', err)

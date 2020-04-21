@@ -1,10 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`queries feed 1`] = `
+exports[`@Mutation userLogin should return a token 1`] = `
 Object {
-  "data": undefined,
+  "data": Object {
+    "userLogin": Object {
+      "token": "token",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`@Mutation userLogin should return an error if a user is not found 1`] = `
+Object {
+  "data": null,
   "errors": Array [
-    [ValidationError: Cannot query field "id" on type "TokenType".],
+    [GraphQLError: INCORRECT_USER_DETAILS],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`@Mutation userLogin should return an error if email is not verified 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: EMAIL_NOT_VERIFIED],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`@Mutation userLogin should return an error if passwords do not match 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: INCORRECT_USER_DETAILS],
   ],
   "extensions": undefined,
   "http": Object {

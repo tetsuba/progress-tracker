@@ -64,7 +64,7 @@ async function findUser(data) {
 
     const token = createAuthToken(user)
 
-    const payload = jwt.verify(token, process.env.REACT_APP_JWT_AUTH_SECRET)
+    // const payload = jwt.verify(token, process.env.REACT_APP_JWT_AUTH_SECRET)
 
     return {
       firstName: user.firstName,
