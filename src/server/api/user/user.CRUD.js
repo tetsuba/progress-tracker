@@ -45,8 +45,12 @@ async function findEmail(data, mailOptions) {
 }
 
 async function findUser(data) {
+  console.log('findUser data: ', data)
+
   try {
     const user = await User.findOne({ email: data.email })
+
+    console.log('findUser: ', user)
 
     // ERROR - User is not found or password does not match
     if (!user || user.password !== data.password) {

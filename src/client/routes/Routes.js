@@ -10,13 +10,14 @@ import Student from '../screens/Student/Student'
 import Students from '../screens/Students/Students'
 
 // ROUTES
-import ProtectedRoute, { USER_SESSION } from './ProtectedRoute'
+import ProtectedRoute from './ProtectedRoute'
 import UnProtectedRoute from './UnProtectedRoute'
 import CourseRoutes from '../screens/Course/routes'
 import { useQuery } from '@apollo/react-hooks'
 import Loading from '../components/Loading/Loading'
 import ConfirmAccount from '../screens/ConfirmAccount/ConfirmAccount'
 import ResetPassword from '../screens/ResetPassword/ResetPassword'
+import { USER_SESSION } from '../api/user/user.query'
 
 export const Routes = () => {
   const token = localStorage.getItem('ptToken')

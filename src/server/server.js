@@ -1,6 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server')
-const jwt = require('jsonwebtoken')
 const { getErrorCode } = require('./errorHandling')
+const { getUserFromToken } = require('./utils/common')
 
 require('./initENV')
 require('./db')
@@ -12,20 +12,9 @@ const server = new ApolloServer({
   typeDefs: require('./api/typeDefs'),
   resolvers: require('./api/resolvers'),
   context: ({ req }) => {
-    console.log('authorization: ', req.headers.authorization)
-    // TODO: return a proper error
-    if (!req.headers.authorization) return null
-
-    try {
-      // get the user token from the headers
-      const token = req.headers.authorization || ''
-      const payload = jwt.verify(token, process.env.REACT_APP_JWT_AUTH_SECRET)
-      console.log('@@@@ payload --- ', payload)
-      return payload
-    } catch (error) {
-      console.log('@@@@ error --- ', error)
-      return { error }
-    }
+    // TODO: investigate to pass the data models through the context
+    const user = getUserFromToken(req.headers)
+    return { user }
   },
   formatError: (err) => {
     console.log('+ SERVER - formatError: ', err)

@@ -15,8 +15,8 @@ module.exports = {
     isUserSessionExpired: async (_, args, context) => {
       try {
         return await findUser({
-          email: context.user,
-          password: context.password,
+          email: context.user.email,
+          password: context.user.password,
         })
       } catch (e) {
         return e
@@ -26,8 +26,8 @@ module.exports = {
       console.log('@@@@@@@@@@@@ getUserData: ', context)
       try {
         return await findUser({
-          email: context.user,
-          password: context.password,
+          email: context.user.email,
+          password: context.user.password,
         })
       } catch (e) {
         return e

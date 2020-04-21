@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 
 function createAuthToken(user) {
-  const options = { user: user.email, password: user.password }
+  const options = { email: user.email, password: user.password }
   const secret = process.env.REACT_APP_JWT_AUTH_SECRET
   const expires = { expiresIn: '1h' }
   return jwt.sign(options, secret, expires)
