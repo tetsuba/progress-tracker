@@ -33,6 +33,7 @@
     "react-scripts": "^3.4.1",
     "zxcvbn": "^4.4.2"
   },
+  "homepage": "https://tetsuba.github.io/",
   "scripts": {
     "start": "react-scripts start",
     "start:server:client": "npm run server:test & npm start",
