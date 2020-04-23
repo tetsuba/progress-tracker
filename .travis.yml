@@ -1,11 +1,9 @@
-language: node_js
-node_js:
-  -13.9.0
 cache: npm
-
 install:
-  - yarn install
-
+  - "yarn install"
+language: node_js
+node_js: "-13.9.0"
 script:
-  - yarn test
-  - yarn build
+  - "yarn test"
+  - "yarn build"
+
