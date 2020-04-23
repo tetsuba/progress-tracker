@@ -10,10 +10,10 @@ import Loading from '../../components/Loading/Loading'
 import MyDetailsForm from '../../components/Form/MyDetailsForm'
 
 // QUERY
-import { GET_USER_QUERY } from '../../api/user/user.query'
+import { GET_USER_DETAILS_QUERY } from '../../api/user/user.query'
 
 // MUTATION
-import { UPDATE_USER_MUTATION } from './MyAccount.mutation'
+import { UPDATE_USER_DETAILS_MUTATION } from './MyAccount.mutation'
 import Box from '../../components/Box/Box'
 import ForgotMyPasswordForm from '../../components/Form/ForgotMyPasswordForm'
 
@@ -25,19 +25,19 @@ const crumbs = [
 
 export default function MyAccount() {
   const [formElement, setFormElement] = useState({ show: false })
-  const { loading, data } = useQuery(GET_USER_QUERY)
-  const [updateUserData] = useMutation(UPDATE_USER_MUTATION, {
-    refetchQueries: [{ query: GET_USER_QUERY }],
+  const { loading, data } = useQuery(GET_USER_DETAILS_QUERY)
+  const [updateUserDetails] = useMutation(UPDATE_USER_DETAILS_MUTATION, {
+    refetchQueries: [{ query: GET_USER_DETAILS_QUERY }],
   })
 
   function handleSubmit(e, inputs) {
     e.preventDefault()
     const input = {
       ...inputs,
-      id: data.getUserData.id,
+      id: data.getUserDetails.id,
     }
 
-    updateUserData({ variables: { input } })
+    updateUserDetails({ variables: { input } })
       .then(() => {
         setFormElement({ show: false })
       })
@@ -48,7 +48,7 @@ export default function MyAccount() {
   }
 
   if (loading) return <Loading />
-  const { getUserData: user } = data
+  const { getUserDetails: user } = data
 
   return (
     <Container className="pt-5">

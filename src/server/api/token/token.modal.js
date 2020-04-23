@@ -17,7 +17,5 @@ const tokenSchema = new mongoose.Schema({
     expires: 43200, // 12 hours
   },
 })
-// TODO: to be removed when refactor completed
-mongoose.model('token', tokenSchema)
 
 module.exports = tokenSchema

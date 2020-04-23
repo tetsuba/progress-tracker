@@ -7,26 +7,28 @@ import Loading from '../../components/Loading/Loading'
 import RegisterForm from '../../components/Form/RegisterForm'
 
 // MUTATIONS
-import { REGISTER_USER_MUTATION } from '../../api/user/user.mutation'
+import { REGISTER_NEW_USER_MUTATION } from '../../api/user/user.mutation'
 
 // UTILS
 import { getRegistrationStatus } from '../../components/Form/form-utils'
 
 export default function Register() {
-  const [addNewUser, addNewUserOptions] = useMutation(REGISTER_USER_MUTATION)
+  const [registerNewUser, registerNewUserOptions] = useMutation(
+    REGISTER_NEW_USER_MUTATION
+  )
   // TODO: loading spinner not ideal. Look for another solution
   return (
     <Container className="pt-5">
-      {addNewUserOptions.loading && (
-        <Loading fade={addNewUserOptions.loading} />
+      {registerNewUserOptions.loading && (
+        <Loading fade={registerNewUserOptions.loading} />
       )}
       {
         {
           register: (
             <RegisterForm
-              error={addNewUserOptions.error}
+              error={registerNewUserOptions.error}
               handleSubmit={(options) => {
-                addNewUser(options).catch((err) => console.log('error'))
+                registerNewUser(options).catch((err) => console.log('error'))
               }}
             />
           ),
@@ -39,7 +41,7 @@ export default function Register() {
               </Col>
             </Row>
           ),
-        }[getRegistrationStatus(addNewUserOptions)]
+        }[getRegistrationStatus(registerNewUserOptions)]
       }
     </Container>
   )

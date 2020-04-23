@@ -18,7 +18,7 @@ describe('@Forgot My Password', () => {
   })
 
   describe('Submits an incorrect email address', () => {
-    it('should display a success message', () => {
+    it('should display an error message', () => {
       cy.submitForgotMyPassword('invalid@email.com')
         .get('.invalid-feedback')
         .contains('Email address does not exist')

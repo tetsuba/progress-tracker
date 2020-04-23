@@ -1,8 +1,8 @@
-import { CONFIRM_ACCOUNT_QUERY } from '../client/api/token/token.query';
+import { CONFIRM_TOKEN_QUERY } from '../client/api/token/token.query';
 
 export const confirmAccountQuerySuccess = {
   request: {
-    query: CONFIRM_ACCOUNT_QUERY,
+    query: CONFIRM_TOKEN_QUERY,
     variables: {
       token: 'confirmToken1234',
     },
@@ -18,7 +18,7 @@ export const confirmAccountQuerySuccess = {
 
 export const confirmAccountQueryError = {
   request: {
-    query: CONFIRM_ACCOUNT_QUERY,
+    query: CONFIRM_TOKEN_QUERY,
     variables: {
       input: {
         token: 'confirmToken1234',

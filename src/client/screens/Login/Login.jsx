@@ -7,9 +7,9 @@ import { AuthenticatedContext } from '../../context/AuthenticatedContext'
 
 // MUTATION
 import {
-  LOGIN_MUTATION,
-  SEND_PASSWORD_RESET_CONFIRMATION_MUTATION,
-  VERIFY_EMAIL_MUTATION,
+  LOGIN_USER_MUTATION,
+  REQUEST_PASSWORD_RESET_MUTATION,
+  VERIFY_USER_EMAIL_MUTATION,
 } from '../../api/user/user.mutation'
 
 // COMPONENTS
@@ -22,12 +22,13 @@ import { getLoginStatus, getLoginError } from '../../components/Form/form-utils'
 import EmailVerificationForm from '../../components/Form/EmailVerificationForm'
 
 export default function Login() {
-  const [userLogin, userLoginOptions] = useMutation(LOGIN_MUTATION)
-  const [verifyEmail, verifyEmailOptions] = useMutation(VERIFY_EMAIL_MUTATION)
-  const [
-    sendPasswordResetConfirmation,
-    sendPasswordResetConfirmationOptions,
-  ] = useMutation(SEND_PASSWORD_RESET_CONFIRMATION_MUTATION)
+  const [loginUser, loginUserOptions] = useMutation(LOGIN_USER_MUTATION)
+  const [verifyUserEmail, verifyUserEmailOptions] = useMutation(
+    VERIFY_USER_EMAIL_MUTATION
+  )
+  const [requestPasswordReset, requestPasswordResetOptions] = useMutation(
+    REQUEST_PASSWORD_RESET_MUTATION
+  )
   const [hideLoginForm, setHideLoginForm] = useState(false)
   const { toggle: authenticateUser } = useContext(AuthenticatedContext)
 
@@ -39,12 +40,12 @@ export default function Login() {
             loading: <Loading />,
             login: (
               <LoginForm
-                error={getLoginError(userLoginOptions.error)}
+                error={getLoginError(loginUserOptions.error)}
                 hideLoginForm={() => setHideLoginForm(true)}
                 handleSubmit={(options) => {
-                  userLogin(options)
+                  loginUser(options)
                     .then(({ data }) => {
-                      authenticateUser(data.userLogin.token)
+                      authenticateUser(data.loginUser.token)
                     })
                     .catch((err) => console.log('Login error'))
                 }}
@@ -54,11 +55,11 @@ export default function Login() {
               <ForgotMyPasswordForm
                 showLoginForm={() => setHideLoginForm(false)}
                 handleSubmit={(options) => {
-                  sendPasswordResetConfirmation(options).catch(() =>
+                  requestPasswordReset(options).catch(() =>
                     console.log('error')
                   )
                 }}
-                error={sendPasswordResetConfirmationOptions.error}
+                error={requestPasswordResetOptions.error}
               >
                 <h3>Forgot my password</h3>
                 <p>
@@ -70,9 +71,9 @@ export default function Login() {
             emailNotVerified: (
               <EmailVerificationForm
                 backButton
-                error={verifyEmailOptions.error}
+                error={verifyUserEmailOptions.error}
                 handleSubmit={(options) => {
-                  verifyEmail(options).catch(() => console.log('error'))
+                  verifyUserEmail(options).catch(() => console.log('error'))
                 }}
               >
                 <h3 className="text-danger">Could not sign you in</h3>
@@ -91,9 +92,9 @@ export default function Login() {
           }[
             getLoginStatus(
               hideLoginForm,
-              userLoginOptions,
-              verifyEmailOptions,
-              sendPasswordResetConfirmationOptions
+              loginUserOptions,
+              verifyUserEmailOptions,
+              requestPasswordResetOptions
             )
           ]
         }

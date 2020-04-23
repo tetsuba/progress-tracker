@@ -134,7 +134,7 @@ async function userVerified(id) {
   }
 }
 
-async function resetPassword(token, password) {
+async function resetUserPassword(token, password) {
   try {
     const id = await getUserId(token)
     const user = await User.findById(id)
@@ -152,10 +152,10 @@ async function resetPassword(token, password) {
     }
 
     return {
-      confirmation: 'New password is saved',
+      success: 'New password is saved',
     }
   } catch (e) {
-    console.log('resetPassword error', e)
+    console.log('resetUserPassword error', e)
     return e
   }
 }
@@ -166,5 +166,5 @@ module.exports = {
   updateUser,
   userVerified,
   findEmail,
-  resetPassword,
+  resetUserPassword,
 }

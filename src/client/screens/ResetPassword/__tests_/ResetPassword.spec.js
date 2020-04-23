@@ -10,7 +10,7 @@ import ResetPassword from '../ResetPassword'
 
 import {
   passwordResetMockDataSuccess,
-  resetPasswordSuccess,
+  resetUserPasswordSuccess,
 } from '../../../../test/mockApi/user/userMockMutation'
 
 import {
@@ -19,7 +19,7 @@ import {
 } from '../../../../test/mockApi/token/tokenMockQuery'
 
 jest.mock('react-router-dom', () => ({
-  useParams: jest.fn().mockReturnValue({ token: 'token1234' }),
+  useParams: jest.fn().mockReturnValue({ token: 'confirmToken1234' }),
   Link: ({ children }) => children,
 }))
 
@@ -43,7 +43,7 @@ describe('<ResetPassword>', () => {
           await act(async () => {
             wrapper = graphRenderer(
               ResetPassword,
-              [confirmTokenQuerySuccess, resetPasswordSuccess],
+              [confirmTokenQuerySuccess, resetUserPasswordSuccess],
               {}
             )
             await delay()

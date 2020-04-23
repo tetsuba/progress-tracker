@@ -1,21 +1,22 @@
 import {
-  VERIFY_EMAIL_MUTATION,
-  LOGIN_MUTATION,
-  SEND_PASSWORD_RESET_CONFIRMATION_MUTATION,
-  REGISTER_USER_MUTATION, REST_PASSWORD_MUTATION,
+  VERIFY_USER_EMAIL_MUTATION,
+  LOGIN_USER_MUTATION,
+  REQUEST_PASSWORD_RESET_MUTATION,
+  REGISTER_NEW_USER_MUTATION,
+  RESET_USER_PASSWORD_MUTATION,
 } from '../../../client/api/user/user.mutation';
 
-export const verifyEmailMutationSuccess = {
+export const verifyUserEmailMutationSuccess = {
   request: {
-    query: VERIFY_EMAIL_MUTATION,
+    query: VERIFY_USER_EMAIL_MUTATION,
     variables: {
       input: { email: 'test@test.com' },
     },
   },
   result: {
     data: {
-      verifyEmail: {
-        confirmation: 'email verified',
+      verifyUserEmail: {
+        success: 'email verified',
       },
     },
   },
@@ -23,7 +24,7 @@ export const verifyEmailMutationSuccess = {
 
 export const loginMockDataSuccess = {
   request: {
-    query: LOGIN_MUTATION,
+    query: LOGIN_USER_MUTATION,
     variables: {
       input: {
         email: 'test@test.com',
@@ -33,7 +34,7 @@ export const loginMockDataSuccess = {
   },
   result: {
     data: {
-      userLogin: {
+      loginUser: {
         id: '',
         firstName: '',
         lastName: '',
@@ -46,7 +47,7 @@ export const loginMockDataSuccess = {
 
 export const loginMockDataErrorEmailNotVerified = {
   request: {
-    query: LOGIN_MUTATION,
+    query: LOGIN_USER_MUTATION,
     variables: {
       input: {
         email: 'test@test.com',
@@ -66,7 +67,7 @@ export const loginMockDataErrorEmailNotVerified = {
 
 export const registerMockDataSuccess = {
   request: {
-    query: REGISTER_USER_MUTATION,
+    query: REGISTER_NEW_USER_MUTATION,
     variables: {
       input: {
         firstName: 'unit',
@@ -78,27 +79,27 @@ export const registerMockDataSuccess = {
   },
   result: {
     data: {
-      newUser: {
+      registerNewUser: {
         success: 'success',
       },
     },
   },
 }
 
-export const resetPasswordSuccess = {
+export const resetUserPasswordSuccess = {
   request: {
-    query: REST_PASSWORD_MUTATION,
+    query: RESET_USER_PASSWORD_MUTATION,
     variables: {
       input: {
-        token: 'token1234',
+        token: 'confirmToken1234',
         password: '1234',
       },
     },
   },
   result: {
     data: {
-      resetPassword: {
-        confirmation: 'New password is saved',
+      resetUserPassword: {
+        success: 'New password is saved',
       },
     },
   },
@@ -106,7 +107,7 @@ export const resetPasswordSuccess = {
 
 export const passwordResetMockDataSuccess = {
   request: {
-    query: SEND_PASSWORD_RESET_CONFIRMATION_MUTATION,
+    query: REQUEST_PASSWORD_RESET_MUTATION,
     variables: {
       input: {
         email: 'test@test.com',
@@ -115,8 +116,8 @@ export const passwordResetMockDataSuccess = {
   },
   result: {
     data: {
-      sendPasswordResetConfirmation: {
-        confirmation: 'confirmation',
+      requestPasswordReset: {
+        success: 'confirmation',
       },
     },
   },

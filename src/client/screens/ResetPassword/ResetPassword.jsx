@@ -8,8 +8,8 @@ import { CONFIRM_TOKEN_QUERY } from '../../api/token/token.query'
 
 // MUTATIONS
 import {
-  REST_PASSWORD_MUTATION,
-  SEND_PASSWORD_RESET_CONFIRMATION_MUTATION,
+  RESET_USER_PASSWORD_MUTATION,
+  REQUEST_PASSWORD_RESET_MUTATION,
 } from '../../api/user/user.mutation'
 
 // COMPONENTS
@@ -25,13 +25,12 @@ export default function ResetPassword() {
   token = decodeURIComponent(token)
   const variables = { token }
   const confirmation = useQuery(CONFIRM_TOKEN_QUERY, { variables })
-  const [resetPassword, resetPasswordOptions] = useMutation(
-    REST_PASSWORD_MUTATION
+  const [resetUserPassword, resetUserPasswordOptions] = useMutation(
+    RESET_USER_PASSWORD_MUTATION
   )
-  const [
-    sendPasswordResetConfirmation,
-    sendPasswordResetConfirmationOptions,
-  ] = useMutation(SEND_PASSWORD_RESET_CONFIRMATION_MUTATION)
+  const [requestPasswordReset, requestPasswordResetOptions] = useMutation(
+    REQUEST_PASSWORD_RESET_MUTATION
+  )
 
   return (
     <Container className="pt-5">
@@ -41,7 +40,7 @@ export default function ResetPassword() {
           form: (
             <ResetPasswordForm
               handleSubmit={(options) => {
-                resetPassword(options).catch(() => console.log('error'))
+                resetUserPassword(options).catch(() => console.log('error'))
               }}
               token={token}
             />
@@ -60,11 +59,9 @@ export default function ResetPassword() {
           error: (
             <ForgotMyPasswordForm
               handleSubmit={(options) => {
-                sendPasswordResetConfirmation(options).catch(() =>
-                  console.log('error')
-                )
+                requestPasswordReset(options).catch(() => console.log('error'))
               }}
-              error={sendPasswordResetConfirmationOptions.error}
+              error={requestPasswordResetOptions.error}
             >
               <h3 className="text-danger">This session has expired!</h3>
               <p>
@@ -76,8 +73,8 @@ export default function ResetPassword() {
         }[
           getRestPasswordStatus(
             confirmation,
-            resetPasswordOptions,
-            sendPasswordResetConfirmationOptions
+            resetUserPasswordOptions,
+            requestPasswordResetOptions
           )
         ]
       }

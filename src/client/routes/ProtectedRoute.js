@@ -25,7 +25,7 @@ export default function ProtectedRoute({ Component, data, ...rest }) {
 
   if (data && !authenticated) {
     console.log('APP:', data)
-    userLoggedIn(data.isUserSessionExpired)
+    // userLoggedIn(data.isUserSessionExpired)
     authenticateUser(token)
 
     // This is the fixes page refresh issue.

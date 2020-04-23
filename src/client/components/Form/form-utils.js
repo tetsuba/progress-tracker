@@ -10,22 +10,22 @@ export const passwordsDoNotMatched = ({ newPassword, confirmPassword }) =>
 // https://www.robinwieruch.de/conditional-rendering-react#multiple-conditional-renderings-in-react
 export function getLoginStatus(
   hideLoginForm,
-  userLoginOptions,
-  verifyEmailOptions,
-  sendPasswordResetConfirmationOptions
+  loginUserOptions,
+  verifyUserEmailOptions,
+  requestPasswordResetOptions
 ) {
   switch (true) {
-    case userLoginOptions.loading:
-    case verifyEmailOptions.loading:
-    case sendPasswordResetConfirmationOptions.loading:
+    case loginUserOptions.loading:
+    case verifyUserEmailOptions.loading:
+    case requestPasswordResetOptions.loading:
       return 'loading'
 
-    case !!verifyEmailOptions.data:
-    case !!sendPasswordResetConfirmationOptions.data:
+    case !!verifyUserEmailOptions.data:
+    case !!requestPasswordResetOptions.data:
       return 'success'
 
-    case userLoginOptions.error &&
-      userLoginOptions.error.graphQLErrors[0].name === 'email_not_verified':
+    case loginUserOptions.error &&
+      loginUserOptions.error.graphQLErrors[0].name === 'email_not_verified':
       return 'emailNotVerified'
 
     case hideLoginForm:
@@ -38,17 +38,17 @@ export function getLoginStatus(
 
 export function getRestPasswordStatus(
   confirmation,
-  resetPasswordOptions,
-  sendPasswordResetConfirmationOptions
+  resetUserPasswordOptions,
+  requestPasswordResetOptions
 ) {
   switch (true) {
     case confirmation.loading:
-    case resetPasswordOptions.loading:
-    case sendPasswordResetConfirmationOptions.loading:
+    case resetUserPasswordOptions.loading:
+    case requestPasswordResetOptions.loading:
       return 'loading'
 
-    case !!resetPasswordOptions.data:
-    case !!sendPasswordResetConfirmationOptions.data:
+    case !!resetUserPasswordOptions.data:
+    case !!requestPasswordResetOptions.data:
       return 'success'
 
     case !!confirmation.error:
@@ -69,15 +69,15 @@ export function getRegistrationStatus(addNewUserOptions) {
   }
 }
 
-export function getConfirmAccountStatus(confirmAccount, verifyEmailOptions) {
+export function getConfirmAccountStatus(confirmToken, verifyUserEmailOptions) {
   switch (true) {
-    case !!verifyEmailOptions.data:
+    case !!verifyUserEmailOptions.data:
       return 'success'
 
-    case !!confirmAccount.error:
+    case !!confirmToken.error:
       return 'tokenExpired'
 
-    case !!confirmAccount.data:
+    case !!confirmToken.data:
       return 'accountVerified'
 
     default:

@@ -19,7 +19,7 @@ import EmailVerificationForm from '../../../components/Form/EmailVerificationFor
 import {
   loginMockDataErrorEmailNotVerified,
   loginMockDataSuccess,
-  verifyEmailMutationSuccess,
+  verifyUserEmailMutationSuccess,
   passwordResetMockDataSuccess,
 } from '../../../../test/mockApi/user/userMockMutation'
 
@@ -80,7 +80,10 @@ describe('<Login>', () => {
         await act(async () => {
           wrapper = graphRenderer(
             Login,
-            [loginMockDataErrorEmailNotVerified, verifyEmailMutationSuccess],
+            [
+              loginMockDataErrorEmailNotVerified,
+              verifyUserEmailMutationSuccess,
+            ],
             {}
           )
           await delay()

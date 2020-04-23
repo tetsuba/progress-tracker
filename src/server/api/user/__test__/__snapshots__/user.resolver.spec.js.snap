@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@Mutation userLogin should return a token 1`] = `
+exports[`user.resolver @Mutation loginUser should return a token 1`] = `
 Object {
   "data": Object {
-    "userLogin": Object {
+    "loginUser": Object {
       "token": "token",
     },
   },
@@ -17,7 +17,7 @@ Object {
 }
 `;
 
-exports[`@Mutation userLogin should return an error if a user is not found 1`] = `
+exports[`user.resolver @Mutation loginUser should return an error if a user is not found 1`] = `
 Object {
   "data": null,
   "errors": Array [
@@ -32,7 +32,7 @@ Object {
 }
 `;
 
-exports[`@Mutation userLogin should return an error if email is not verified 1`] = `
+exports[`user.resolver @Mutation loginUser should return an error if email is not verified 1`] = `
 Object {
   "data": null,
   "errors": Array [
@@ -47,12 +47,255 @@ Object {
 }
 `;
 
-exports[`@Mutation userLogin should return an error if passwords do not match 1`] = `
+exports[`user.resolver @Mutation loginUser should return an error if passwords do not match 1`] = `
 Object {
   "data": null,
   "errors": Array [
     [GraphQLError: INCORRECT_USER_DETAILS],
   ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`user.resolver @Mutation registerNewUser should register a new user returning a success message 1`] = `
+Object {
+  "data": Object {
+    "registerNewUser": Object {
+      "success": "Registering a user in a test environment wil create and delete the account and will not send an confirmation email",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`user.resolver @Mutation registerNewUser should return an error if email is not valid address 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: NOT_VALID_EMAIL],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`user.resolver @Mutation registerNewUser should return an error in email address already exist 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: EMAIL_ALREADY_EXIST],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`user.resolver @Mutation requestPasswordReset should return a success message 1`] = `
+Object {
+  "data": Object {
+    "requestPasswordReset": Object {
+      "success": "Please check your email and click on the link to reset your password",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`user.resolver @Mutation requestPasswordReset should return an error if the users email address is not a valid format 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: NOT_VALID_EMAIL],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`user.resolver @Mutation requestPasswordReset should return an error if the users email address is not found  1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: EMAIL_DOES_NOT_EXIST],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`user.resolver @Mutation resetUserPassword should return a success message 1`] = `
+Object {
+  "data": Object {
+    "resetUserPassword": Object {
+      "success": "New password is saved",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`user.resolver @Mutation updateUserDetails should return user details 1`] = `
+Object {
+  "data": Object {
+    "updateUserDetails": Object {
+      "email": "test@test.com",
+      "firstName": "John",
+      "lastName": "Doh",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`user.resolver @Mutation verifyUserEmail should return a success message 1`] = `
+Object {
+  "data": Object {
+    "verifyUserEmail": Object {
+      "success": "Please check your email and confirm by pressing on the link.",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`user.resolver @Mutation verifyUserEmail should return an error if a user email has been verified already 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: EMAIL_VERIFIED],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`user.resolver @Mutation verifyUserEmail should return an error if a user email is not found 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: EMAIL_DOES_NOT_EXIST],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`user.resolver @Mutation verifyUserEmail should return an error if the users email address is not a valid format 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: NOT_VALID_EMAIL],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`user.resolver @Query getUserDetails should return user details 1`] = `
+Object {
+  "data": Object {
+    "getUserDetails": Object {
+      "email": "test@test.com",
+      "firstName": "John",
+      "lastName": "Doh",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`user.resolver @Query isUserSessionExpired should return error token expired 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: TOKEN_EXPIRED],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`user.resolver @Query isUserSessionExpired should return success "token valid" 1`] = `
+Object {
+  "data": Object {
+    "isUserSessionExpired": Object {
+      "success": "valid",
+    },
+  },
+  "errors": undefined,
   "extensions": undefined,
   "http": Object {
     "headers": Headers {

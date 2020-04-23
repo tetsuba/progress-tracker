@@ -7,10 +7,10 @@ import {
 import ConfirmAccount from '../ConfirmAccount'
 import EmailVerificationForm from '../../../components/Form/EmailVerificationForm'
 import {
-  confirmAccountQueryError,
-  confirmAccountQuerySuccess,
+  confirmTokenQueryError,
+  confirmTokenQuerySuccess,
 } from '../../../../test/mockApi/token/tokenMockQuery'
-import { verifyEmailMutationSuccess } from '../../../../test/mockApi/user/userMockMutation'
+import { verifyUserEmailMutationSuccess } from '../../../../test/mockApi/user/userMockMutation'
 
 jest.mock('react-router-dom', () => ({
   useParams: jest.fn().mockReturnValue({ token: 'confirmToken1234' }),
@@ -27,7 +27,7 @@ describe('<ConfirmAccount>', () => {
         await act(async () => {
           wrapper = graphRenderer(
             ConfirmAccount,
-            [confirmAccountQuerySuccess],
+            [confirmTokenQuerySuccess],
             {}
           )
           await delay()
@@ -44,7 +44,7 @@ describe('<ConfirmAccount>', () => {
         await act(async () => {
           wrapper = graphRenderer(
             ConfirmAccount,
-            [confirmAccountQueryError, verifyEmailMutationSuccess],
+            [confirmTokenQueryError, verifyUserEmailMutationSuccess],
             {}
           )
           await delay()
