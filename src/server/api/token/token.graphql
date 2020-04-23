@@ -3,6 +3,5 @@ type TokenType {
 }
 
 extend type Query {
-    confirmAccount(token: String): TokenType!
     confirmToken(token: String): TokenType!
 }

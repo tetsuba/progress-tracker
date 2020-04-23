@@ -32,7 +32,7 @@ Object {
                             <p>
                                 Click on the link below to confirm your email address.
                             </p>
-                            <a href=\\"confirm/{{token}}\\">Confirm my email address</a>
+                            <a href=\\"http://localhost:3000/confirm/{{token}}\\">Confirm my email address</a>
                         </td>
                     </tr>
                 </table>
@@ -78,7 +78,7 @@ Object {
                             <p>
                                 Click on the link below to reset your password.
                             </p>
-                            <a href=\\"reset/{{token}}\\">Reset my password.</a>
+                            <a href=\\"http://localhost:3000/reset/{{token}}\\">Reset my password.</a>
                         </td>
                     </tr>
                 </table>

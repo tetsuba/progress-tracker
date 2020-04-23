@@ -1,18 +1,7 @@
 
 type UserType {
-    id: String
     firstName: String
     lastName: String
-    email: String
-    password: String
-    country: String
-}
-
-type UserLoginType {
-    id: String
-    firstName: String
-    lastName: String
-    token: String
     email: String
 }
 
@@ -20,11 +9,7 @@ type UserTokenType {
     token: String
 }
 
-type UserVerifyType {
-    confirmation: String
-}
-
-type UserSuccessType {
+type SuccessType {
     success: String
 }
 
@@ -44,27 +29,26 @@ input UserEmailInput {
     email: String
 }
 
-input UserDataInput {
-    id: String
+input UserDetailsInput {
     firstName: String
     lastName: String
 }
 
-input ResetPasswordInput {
+input UserPasswordInput {
     token: String
     password: String
 }
 
 extend type Query {
-    getUserData: UserType!
-    isUserSessionExpired(token: String): UserType!
+    getUserDetails: UserType!
+    isUserSessionExpired: SuccessType!
 }
 
 type Mutation {
-    newUser(input: NewUserInput!): UserSuccessType!
-    userLogin(input: LoginUserInput!): UserTokenType!
-    updateUserData(input: UserDataInput!): UserLoginType!
-    verifyEmail(input: UserEmailInput!): UserVerifyType!
-    sendPasswordResetConfirmation(input: UserEmailInput!): UserVerifyType!
-    resetPassword(input: ResetPasswordInput!): UserVerifyType!
+    registerNewUser(input: NewUserInput!): SuccessType!
+    loginUser(input: LoginUserInput!): UserTokenType!
+    updateUserDetails(input: UserDetailsInput!): UserType!
+    verifyUserEmail(input: UserEmailInput!): SuccessType!
+    requestPasswordReset(input: UserEmailInput!): SuccessType!
+    resetUserPassword(input: UserPasswordInput!): SuccessType!
 }

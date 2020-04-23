@@ -7,16 +7,18 @@ import { Col, Container, Row } from 'react-bootstrap'
 import EmailVerificationForm from '../../components/Form/EmailVerificationForm'
 
 // QUERY
-import { CONFIRM_ACCOUNT_QUERY } from '../../api/token/token.query'
-import { VERIFY_EMAIL_MUTATION } from '../../api/user/user.mutation'
+import { CONFIRM_TOKEN_QUERY } from '../../api/token/token.query'
+import { VERIFY_USER_EMAIL_MUTATION } from '../../api/user/user.mutation'
 import { getConfirmAccountStatus } from '../../components/Form/form-utils'
 
 export default function ConfirmAccount() {
   let { token } = useParams()
   token = decodeURIComponent(token)
   const variables = { token }
-  const confirmAccount = useQuery(CONFIRM_ACCOUNT_QUERY, { variables })
-  const [verifyEmail, verifyEmailOptions] = useMutation(VERIFY_EMAIL_MUTATION)
+  const confirmToken = useQuery(CONFIRM_TOKEN_QUERY, { variables })
+  const [verifyUserEmail, verifyUserEmailOptions] = useMutation(
+    VERIFY_USER_EMAIL_MUTATION
+  )
 
   return (
     <Container className="pt-5">
@@ -25,9 +27,9 @@ export default function ConfirmAccount() {
           {
             tokenExpired: (
               <EmailVerificationForm
-                error={verifyEmailOptions.error}
+                error={verifyUserEmailOptions.error}
                 handleSubmit={(options) => {
-                  verifyEmail(options).catch(() => console.log('error'))
+                  verifyUserEmail(options).catch(() => console.log('error'))
                 }}
               >
                 <h3 className="text-danger">
@@ -52,7 +54,7 @@ export default function ConfirmAccount() {
               </Col>
             ),
             default: <div></div>,
-          }[getConfirmAccountStatus(confirmAccount, verifyEmailOptions)]
+          }[getConfirmAccountStatus(confirmToken, verifyUserEmailOptions)]
         }
       </Row>
     </Container>

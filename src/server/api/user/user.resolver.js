@@ -1,59 +1,94 @@
 const { validateEmail } = require('../../utils/common')
-
-const {
-  createNewUser,
-  findUser,
-  updateUser,
-  findEmail,
-  resetPassword,
-} = require('./user.CRUD')
-const { getEmailMailOptions } = require('../../utils/email/sendEmail.js')
+const { sendMail, getEmailMailOptions } = require('../../utils/email/sendEmail')
 const { errorName } = require('../../errorHandling')
-const { createVerificationToken } = require('../../utils/token')
+const {
+  createAuthToken,
+  createVerificationToken,
+} = require('../../utils/token')
 const { passwordsDoNotMatch } = require('../utils')
 
 module.exports = {
   Query: {
     isUserSessionExpired: async (_, args, context) => {
-      try {
-        return await findUser({
-          email: context.user.email,
-          password: context.user.password,
-        })
-      } catch (e) {
-        return e
+      const { id } = context.user
+
+      /* Error Handling:
+       * - User session expired if id does not exist
+       *  */
+      if (!id) {
+        throw new Error(errorName.TOKEN_EXPIRED)
+      }
+      // TODO: investigate what should be returned
+      return {
+        success: 'valid',
       }
     },
-    getUserData: async (_, args, context) => {
-      console.log('@@@@@@@@@@@@ getUserData: ', context)
-      try {
-        return await findUser({
-          email: context.user.email,
-          password: context.user.password,
-        })
-      } catch (e) {
-        return e
+
+    getUserDetails: async (_, args, context) => {
+      const { id } = context.user
+      const { User } = context.models
+      const user = await User.findById(id)
+
+      return {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
       }
     },
   },
 
   Mutation: {
-    newUser: async (_, args, context, info) => {
-      const name = 'confirmEmail'
+    registerNewUser: async (_, args, context) => {
+      const { User, Token } = context.models
+      const {
+        input: { email },
+      } = args
+      let successMessage = ''
 
-      if (validateEmail(args.input.email)) {
+      /* Error Handling:
+       * - Not a valid email address
+       *
+       *  */
+      if (validateEmail(email)) {
         throw new Error(errorName.NOT_VALID_EMAIL)
       }
 
-      try {
-        const mailOptions = getEmailMailOptions(name)
-        return await createNewUser(args.input, mailOptions)
-      } catch (err) {
-        return err
+      /* Error Handling:
+       * - Email address has been registered already
+       *
+       *  */
+      const user = await User.findOne({ email })
+      if (user) {
+        throw new Error(errorName.EMAIL_ALREADY_EXIST)
       }
+
+      const newUser = await User.create(args.input)
+      const verificationToken = createVerificationToken(newUser)
+      const obj = await Token.create({
+        _userId: newUser._id,
+        token: verificationToken,
+      })
+
+      /* ---------------------------------------------------
+       * When running in a test environment:
+       *  - Delete registered new user
+       *  - Do not send a confirmation email
+       * ---------------------------------------------------
+       */
+      if (process.env.TEST) {
+        await User.deleteOne({ email: newUser.email })
+        successMessage =
+          'Registering a user in a test environment wil create and delete the account and will not send an confirmation email'
+      } else {
+        const mailOptions = getEmailMailOptions('confirmEmail')
+        await sendMail(obj.token, mailOptions)
+        successMessage = 'Registration completed. Please proceed to log-in page'
+      }
+
+      return { success: successMessage }
     },
 
-    userLogin: async (_, args, context, info) => {
+    loginUser: async (_, args, context) => {
       const { User, Token } = context.models
       const {
         input: { email, password },
@@ -75,9 +110,9 @@ module.exports = {
         throw new Error(errorName.EMAIL_NOT_VERIFIED)
       }
 
-      /* Create a session token (12hrs):
+      /* Create an authentication session token (12hrs):
        *  */
-      const verificationToken = createVerificationToken(user)
+      const verificationToken = createAuthToken(user)
       const { token } = await Token.create({
         _userId: user._id,
         token: verificationToken,
@@ -86,51 +121,144 @@ module.exports = {
       return { token }
     },
 
-    updateUserData: async (_, args, context, info) => {
-      try {
-        return await updateUser(args.input)
-      } catch (err) {
-        return err
+    verifyUserEmail: async (_, args, context) => {
+      const { User, Token } = context.models
+      const {
+        input: { email },
+      } = args
+      const user = await User.findOne({ email })
+
+      /* Error Handling:
+       * - User email not found
+       *  */
+      if (!user) {
+        throw new Error(errorName.EMAIL_DOES_NOT_EXIST)
+      }
+
+      /* Error Handling:
+       * - Not a valid email address
+       *
+       *  */
+      if (validateEmail(email)) {
+        throw new Error(errorName.NOT_VALID_EMAIL)
+      }
+
+      /* Error Handling:
+       * - User email has been verified already
+       *
+       *  */
+      if (user.isVerified) {
+        throw new Error(errorName.EMAIL_VERIFIED)
+      }
+
+      const verificationToken = createVerificationToken(user)
+      const obj = await Token.create({
+        _userId: user._id,
+        token: verificationToken,
+      })
+
+      /* ---------------------------------------------------
+       * When running in a test environment:
+       *  - Sending a confirmation email is not required
+       * ---------------------------------------------------
+       */
+      if (!process.env.TEST) {
+        const mailOptions = getEmailMailOptions('confirmEmail')
+        await sendMail(obj.token, mailOptions)
+      }
+
+      return {
+        success: 'Please check your email and confirm by pressing on the link.',
       }
     },
 
-    verifyEmail: async (_, args, context) => {
-      const name = 'confirmEmail'
-      try {
-        const mailOptions = getEmailMailOptions(name)
-        return await findEmail({ email: args.input.email }, mailOptions)
-      } catch (err) {
-        if (err.name === 'TypeError') {
-          console.log(
-            `Property "name": "${name}" is incorrect and can not get mail options`
-          )
-          return new Error(errorName.INTERNAL_SERVER_ERROR)
-        }
-        return err
+    requestPasswordReset: async (_, args, context) => {
+      const { User, Token } = context.models
+      const {
+        input: { email },
+      } = args
+      const user = await User.findOne({ email })
+
+      /* Error Handling:
+       * - User email not found
+       *  */
+      if (!user) {
+        throw new Error(errorName.EMAIL_DOES_NOT_EXIST)
+      }
+
+      /* Error Handling:
+       * - Not a valid email address
+       *
+       *  */
+      if (validateEmail(email)) {
+        throw new Error(errorName.NOT_VALID_EMAIL)
+      }
+
+      const verificationToken = createVerificationToken(user)
+      const obj = await Token.create({
+        _userId: user._id,
+        token: verificationToken,
+      })
+
+      /* ---------------------------------------------------
+       * When running in a test environment:
+       *  - Sending a confirmation email is not required
+       * ---------------------------------------------------
+       */
+      if (!process.env.TEST) {
+        const mailOptions = getEmailMailOptions('resetPassword')
+        await sendMail(obj.token, mailOptions)
+      }
+
+      return {
+        success:
+          'Please check your email and click on the link to reset your password',
       }
     },
 
-    sendPasswordResetConfirmation: async (_, args, context) => {
-      const name = 'resetPassword'
-      try {
-        const mailOptions = getEmailMailOptions(name)
-        return await findEmail({ email: args.input.email }, mailOptions)
-      } catch (err) {
-        if (err.name === 'TypeError') {
-          console.log(
-            `Property "name": "${name}" is incorrect and can not get mail options`
-          )
-          return new Error(errorName.INTERNAL_SERVER_ERROR)
-        }
-        return err
+    resetUserPassword: async (_, args, context) => {
+      const { User, Token } = context.models
+      const {
+        input: { password, token },
+      } = args
+
+      const { _userId } = await Token.findOne({ token })
+      const user = await User.findById(_userId)
+      user.password = password
+      await user.save()
+
+      /* ---------------------------------------------------
+       * Test environment:
+       * - Same token will be used when running tests.
+       *   Do not delete
+       * ---------------------------------------------------
+       */
+      if (!process.env.TEST) {
+        await Token.deleteOne({ token })
+      }
+
+      return {
+        success: 'New password is saved',
       }
     },
 
-    resetPassword: async (_, args, context) => {
-      try {
-        return await resetPassword(args.input.token, args.input.password)
-      } catch (err) {
-        return err
+    updateUserDetails: async (_, args, context) => {
+      const { id } = context.user
+      const { User } = context.models
+      const {
+        input: { firstName, lastName },
+      } = args
+
+      const user = await User.findById(id)
+      user.firstName = firstName
+      user.lastName = lastName
+      await user.save()
+
+      // TODO: Not sure if this needs to be returned. Investigate!
+      return {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
       }
     },
   },

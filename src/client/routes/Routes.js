@@ -17,11 +17,11 @@ import { useQuery } from '@apollo/react-hooks'
 import Loading from '../components/Loading/Loading'
 import ConfirmAccount from '../screens/ConfirmAccount/ConfirmAccount'
 import ResetPassword from '../screens/ResetPassword/ResetPassword'
-import { USER_SESSION } from '../api/user/user.query'
+import { IS_USER_SESSION_EXPIRED } from '../api/user/user.query'
 
 export const Routes = () => {
   const token = localStorage.getItem('ptToken')
-  const { loading, data } = useQuery(USER_SESSION, { variables: { token } })
+  const { loading, data } = useQuery(IS_USER_SESSION_EXPIRED)
 
   console.log('token:', token)
   console.log('loading: ', loading)

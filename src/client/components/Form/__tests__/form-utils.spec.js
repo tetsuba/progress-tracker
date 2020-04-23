@@ -49,122 +49,122 @@ describe('@form-utils', () => {
   })
 
   describe('getLoginStatus', () => {
-    const sendPasswordResetConfirmationOptions = {}
+    const requestPasswordResetOptions = {}
 
     it('should return "loading"', () => {
-      const userLoginOptions = { loading: true }
+      const loginUserOptions = { loading: true }
       const hideLoginForm = false
-      expect(getLoginStatus(hideLoginForm, userLoginOptions)).toEqual('loading')
+      expect(getLoginStatus(hideLoginForm, loginUserOptions)).toEqual('loading')
     })
 
     it('should return "success"', () => {
-      const userLoginOptions = { loading: false }
+      const loginUserOptions = { loading: false }
       const hideLoginForm = false
-      const verifyEmailOptions = { data: {} }
+      const verifyUserEmailOptions = { data: {} }
       expect(
         getLoginStatus(
           hideLoginForm,
-          userLoginOptions,
-          verifyEmailOptions,
-          sendPasswordResetConfirmationOptions
+          loginUserOptions,
+          verifyUserEmailOptions,
+          requestPasswordResetOptions
         )
       ).toEqual('success')
     })
 
     it('should return "emailNotVerified"', () => {
-      const userLoginOptions = {
+      const loginUserOptions = {
         error: {
           graphQLErrors: [{ name: 'email_not_verified' }],
         },
       }
       const hideLoginForm = false
-      const verifyEmailOptions = {}
+      const verifyUserEmailOptions = {}
       expect(
         getLoginStatus(
           hideLoginForm,
-          userLoginOptions,
-          verifyEmailOptions,
-          sendPasswordResetConfirmationOptions
+          loginUserOptions,
+          verifyUserEmailOptions,
+          requestPasswordResetOptions
         )
       ).toEqual('emailNotVerified')
     })
 
     it('should return "forgetMyPassword"', () => {
-      const userLoginOptions = {}
+      const loginUserOptions = {}
       const hideLoginForm = true
-      const verifyEmailOptions = {}
+      const verifyUserEmailOptions = {}
       expect(
         getLoginStatus(
           hideLoginForm,
-          userLoginOptions,
-          verifyEmailOptions,
-          sendPasswordResetConfirmationOptions
+          loginUserOptions,
+          verifyUserEmailOptions,
+          requestPasswordResetOptions
         )
       ).toEqual('forgetMyPassword')
     })
 
     it('should return "login"', () => {
-      const userLoginOptions = {}
+      const loginUserOptions = {}
       const hideLoginForm = false
-      const verifyEmailOptions = {}
+      const verifyUserEmailOptions = {}
       expect(
         getLoginStatus(
           hideLoginForm,
-          userLoginOptions,
-          verifyEmailOptions,
-          sendPasswordResetConfirmationOptions
+          loginUserOptions,
+          verifyUserEmailOptions,
+          requestPasswordResetOptions
         )
       ).toEqual('login')
     })
   })
 
   describe('getRestPasswordStatus', () => {
-    const sendPasswordResetConfirmationOptions = {}
+    const requestPasswordResetOptions = {}
 
     it('should return "loading"', () => {
       const confirmation = { loading: true }
-      const resetPasswordOptions = {}
+      const resetUserPasswordOptions = {}
       expect(
         getRestPasswordStatus(
           confirmation,
-          resetPasswordOptions,
-          sendPasswordResetConfirmationOptions
+          resetUserPasswordOptions,
+          requestPasswordResetOptions
         )
       ).toEqual('loading')
     })
 
     it('should return "success"', () => {
       const confirmation = {}
-      const resetPasswordOptions = { data: {} }
+      const resetUserPasswordOptions = { data: {} }
       expect(
         getRestPasswordStatus(
           confirmation,
-          resetPasswordOptions,
-          sendPasswordResetConfirmationOptions
+          resetUserPasswordOptions,
+          requestPasswordResetOptions
         )
       ).toEqual('success')
     })
 
     it('should return "error"', () => {
       const confirmation = { error: {} }
-      const resetPasswordOptions = {}
+      const resetUserPasswordOptions = {}
       expect(
         getRestPasswordStatus(
           confirmation,
-          resetPasswordOptions,
-          sendPasswordResetConfirmationOptions
+          resetUserPasswordOptions,
+          requestPasswordResetOptions
         )
       ).toEqual('error')
     })
 
     it('should return "form"', () => {
       const confirmation = {}
-      const resetPasswordOptions = {}
+      const resetUserPasswordOptions = {}
       expect(
         getRestPasswordStatus(
           confirmation,
-          resetPasswordOptions,
-          sendPasswordResetConfirmationOptions
+          resetUserPasswordOptions,
+          requestPasswordResetOptions
         )
       ).toEqual('form')
     })

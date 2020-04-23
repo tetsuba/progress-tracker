@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`token.resolver @Query confirmToken should return an error token expired 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: TOKEN_EXPIRED],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`token.resolver @Query confirmToken should return token confirmed 1`] = `
+Object {
+  "data": Object {
+    "confirmToken": Object {
+      "success": "token confirmed",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;

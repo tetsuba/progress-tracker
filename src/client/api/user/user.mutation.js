@@ -1,41 +1,51 @@
 import gql from 'graphql-tag'
 
-export const VERIFY_EMAIL_MUTATION = gql`
+export const VERIFY_USER_EMAIL_MUTATION = gql`
   mutation($input: UserEmailInput!) {
-    verifyEmail(input: $input) {
-      confirmation
-    }
-  }
-`
-
-export const SEND_PASSWORD_RESET_CONFIRMATION_MUTATION = gql`
-  mutation($input: UserEmailInput!) {
-    sendPasswordResetConfirmation(input: $input) {
-      confirmation
-    }
-  }
-`
-
-export const LOGIN_MUTATION = gql`
-  mutation($input: LoginUserInput!) {
-    userLogin(input: $input) {
-      token
-    }
-  }
-`
-
-export const REGISTER_USER_MUTATION = gql`
-  mutation NewUser($input: NewUserInput!) {
-    newUser(input: $input) {
+    verifyUserEmail(input: $input) {
       success
     }
   }
 `
 
-export const REST_PASSWORD_MUTATION = gql`
-  mutation ResetPassword($input: ResetPasswordInput!) {
-    resetPassword(input: $input) {
-      confirmation
+export const REQUEST_PASSWORD_RESET_MUTATION = gql`
+  mutation($input: UserEmailInput!) {
+    requestPasswordReset(input: $input) {
+      success
+    }
+  }
+`
+
+export const LOGIN_USER_MUTATION = gql`
+  mutation($input: LoginUserInput!) {
+    loginUser(input: $input) {
+      token
+    }
+  }
+`
+
+export const REGISTER_NEW_USER_MUTATION = gql`
+  mutation RegisterNewUser($input: NewUserInput!) {
+    registerNewUser(input: $input) {
+      success
+    }
+  }
+`
+
+export const RESET_USER_PASSWORD_MUTATION = gql`
+  mutation ResetUserPassword($input: UserPasswordInput!) {
+    resetUserPassword(input: $input) {
+      success
+    }
+  }
+`
+
+export const UPDATE_USER_DETAILS_MUTATION = gql`
+  mutation UpdateUserDetails($input: UserDetailsInput!) {
+    updateUserDetails(input: $input) {
+      firstName
+      lastName
+      email
     }
   }
 `

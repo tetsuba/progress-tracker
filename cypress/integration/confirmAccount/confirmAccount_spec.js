@@ -17,6 +17,7 @@ describe('Confirm Account (email)', () => {
       it('should display a confirmation message', () => {
         cy.textInput({ name: 'email', value: 'email@not-validated.com' })
           .clickOn('#EmailVerificationSubmit')
+          .wait(1000)
           .get('h3')
           .contains('Please check your email')
       })
