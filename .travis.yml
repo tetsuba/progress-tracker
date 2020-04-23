@@ -5,6 +5,10 @@ language: node_js
 node_js:
   - node
 
+before_install:
+  - echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
+  - git lfs pull
+
 script:
   - npm test
 
