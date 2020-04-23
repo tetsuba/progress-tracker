@@ -1,10 +1,18 @@
-const { ApolloServer, gql } = require('apollo-server')
+const path = require('path')
+const { ApolloServer, gql } = require('apollo-server-express')
+const express = require('express')
 const { getErrorCode } = require('./errorHandling')
 const { getUserFromToken } = require('./utils/common')
 
 require('./initENV')
 require('./db')
 
+const app = express()
+
+// TODO:
+// add this property to ApolloServer
+// playground: NDOE_ENV !== production
+// make sure playground does not run in production
 const server = new ApolloServer({
   cors: true,
   tracing: true,
@@ -23,7 +31,20 @@ const server = new ApolloServer({
   },
 })
 
-// The `listen` method launches a web server.
-server.listen(4000).then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`)
+server.applyMiddleware({ app })
+
+// TODO: how to set this up?
+// app.use(express.static(path.join(__dirname, '../../build')));
+//
+// app.get('*', function(req, res) {
+//   res.sendFile(path.join(__dirname, '../../build', 'index.html'));
+// });
+
+app.listen({ port: 4000 }, () => {
+  console.log(`🚀  Server ready at ${server.graphqlPath}`)
 })
+
+// The `listen` method launches a web server.
+// server.listen(4000).then(({ url }) => {
+//   console.log(`🚀  Server ready at ${url}`)
+// })

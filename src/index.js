@@ -18,7 +18,7 @@ import GlobalContext from './client/context/GlobalContext';
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
-    uri: process.env.REACT_APP_APPOLO_CLIENT_LINK_URI,
+    uri: '/graphql', //process.env.REACT_APP_APPOLO_CLIENT_LINK_URI,
 });
 
 // TODO: Draw diagram to keep track how it works
