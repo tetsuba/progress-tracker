@@ -15,8 +15,10 @@
     "apollo-link-error": "^1.1.12",
     "apollo-link-http": "^1.5.16",
     "apollo-server": "^2.9.4",
+    "apollo-server-express": "^2.12.0",
     "bootstrap": "^4.3.1",
     "cors": "^2.8.5",
+    "express": "^4.17.1",
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1",
     "jsonwebtoken": "^8.5.1",
@@ -37,7 +39,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom --testPathPattern=\"./src/client/\"",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
-    "test:nowatch": "react-scripts test --watchAll=false --env=jsdom --testPathPattern=\\\"./src/client/\\\"\"",
+    "test:nowatch": "react-scripts test --watchAll=false --env=jsdom --testPathPattern=\"./src/client/\"",
     "test:integration": "TEST=true react-scripts test --watchAll=false --env=node --testPathPattern=\"./src/server/\"",
     "eject": "react-scripts eject",
     "server:dev": "DEV=true node src/server/server.js",
@@ -87,5 +89,6 @@
     "prettier": "2.0.4",
     "react-test-renderer": "16.13.1",
     "start-server-and-test": "^1.10.11"
-  }
+  },
+  "proxy": "http://localhost:4000"
 }
