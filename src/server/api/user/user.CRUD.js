@@ -31,7 +31,7 @@ async function findEmail(data, mailOptions) {
      *  - Sending a confirmation email not required
      * ---------------------------------------------------
      */
-    if (!process.env.TEST) {
+    if (process.env.REACT_APP_NODE_ENV !== 'test') {
       const obj = await createToken(user)
       await sendMail(obj.token, mailOptions)
     }
@@ -96,7 +96,7 @@ async function createNewUser(data, mailOptions) {
      */
     let succesMessage =
       'Registering a user in a test environment wil not create an account'
-    if (!process.env.TEST) {
+    if (process.env.REACT_APP_NODE_ENV !== 'test') {
       const newUser = await User.create(data)
       const obj = await createToken(newUser)
       await sendMail(obj.token, mailOptions)

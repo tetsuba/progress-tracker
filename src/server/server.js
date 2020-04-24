@@ -34,17 +34,17 @@ const server = new ApolloServer({
 server.applyMiddleware({ app })
 
 // TODO: how to set this up?
-// app.use(express.static(path.join(__dirname, '../../build')));
-//
-// app.get('*', function(req, res) {
-//   res.sendFile(path.join(__dirname, '../../build', 'index.html'));
-// });
+app.use(express.static(path.join(__dirname, '../../build')))
 
-app.listen({ port: 4000 }, () => {
-  console.log(`🚀  Server ready at ${server.graphqlPath}`)
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, '../../build', 'index.html'))
 })
 
-// The `listen` method launches a web server.
-// server.listen(4000).then(({ url }) => {
-//   console.log(`🚀  Server ready at ${url}`)
-// })
+app.listen(
+  {
+    port: process.env.REACT_APP_PORT || 4000,
+  },
+  () => {
+    console.log(`🚀  Server ready at ${server.graphqlPath}`)
+  }
+)

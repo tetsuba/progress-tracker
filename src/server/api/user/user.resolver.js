@@ -75,7 +75,7 @@ module.exports = {
        *  - Do not send a confirmation email
        * ---------------------------------------------------
        */
-      if (process.env.TEST) {
+      if (process.env.REACT_APP_NODE_ENV === 'test') {
         await User.deleteOne({ email: newUser.email })
         successMessage =
           'Registering a user in a test environment wil create and delete the account and will not send an confirmation email'
@@ -162,7 +162,7 @@ module.exports = {
        *  - Sending a confirmation email is not required
        * ---------------------------------------------------
        */
-      if (!process.env.TEST) {
+      if (process.env.REACT_APP_NODE_ENV !== 'test') {
         const mailOptions = getEmailMailOptions('confirmEmail')
         await sendMail(obj.token, mailOptions)
       }
@@ -205,7 +205,7 @@ module.exports = {
        *  - Sending a confirmation email is not required
        * ---------------------------------------------------
        */
-      if (!process.env.TEST) {
+      if (process.env.REACT_APP_NODE_ENV !== 'test') {
         const mailOptions = getEmailMailOptions('resetPassword')
         await sendMail(obj.token, mailOptions)
       }
@@ -233,7 +233,7 @@ module.exports = {
        *   Do not delete
        * ---------------------------------------------------
        */
-      if (!process.env.TEST) {
+      if (process.env.REACT_APP_NODE_ENV !== 'test') {
         await Token.deleteOne({ token })
       }
 
