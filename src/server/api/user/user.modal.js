@@ -30,7 +30,4 @@ const userSchema = new mongoose.Schema(
   { _id: true }
 )
 
-// TODO: to be removed when refactor completed
-mongoose.model('user', userSchema)
-
 module.exports = userSchema

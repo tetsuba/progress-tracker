@@ -15,11 +15,6 @@ describe('@Register', () => {
     cy.confirmLocation('/register')
   })
 
-  /* NOTE:
-   * Registering a new account is blocked. If a new account is required
-   * open this file and edit the code on line 95.
-   * src/server/api/user/user.CRUD.js
-   *  */
   describe('A user registers an account with a password strength of "Bad"', () => {
     it('should display a success message', () => {
       const passwordStrength = 'Bad'
