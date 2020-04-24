@@ -8,7 +8,7 @@ node_js:
 script:
   - yarn test
   - yarn test:integration
-  - functional:headless
+  - yarn functional:headless
 
 nofications:
   email: false
