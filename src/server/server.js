@@ -1,13 +1,30 @@
 const path = require('path')
+const mongoose = require('mongoose')
 const express = require('express')
 const { ApolloServer, gql } = require('apollo-server-express')
 const { getErrorCode } = require('./errorHandling')
 const { getUserFromToken } = require('./utils/common')
 
 require('./initENV')
-require('./db')
 
+// ***********************************
+// Express
+// ***********************************
 const app = express()
+
+// ***********************************
+// MongoDB connection
+// ***********************************
+mongoose.connect(process.env.REACT_APP_MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+
+const db = mongoose.connection
+
+// ***********************************
+// ApolloServer
+// ***********************************
 
 const server = new ApolloServer({
   cors: true,
@@ -30,6 +47,10 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app })
 
+// ***********************************
+// Setup
+// ***********************************
+
 // TODO: how to set this up?
 // ------------------------------------------------------------
 app.use(express.static(path.join(__dirname, '../../build')))
@@ -39,11 +60,14 @@ app.get('*', function (req, res) {
 })
 // ------------------------------------------------------------
 
-app.listen(
-  {
-    port: process.env.REACT_APP_PORT || 4000,
-  },
-  () => {
+db.on('error', console.error.bind(console, 'connection error:'))
+
+// Connect to the database before initiating the server
+db.once('open', async function () {
+  console.log('🚀 we are connected to mongoose!!!!')
+  const port = process.env.REACT_APP_PORT || 4000
+
+  app.listen({ port }, function () {
     console.log(`🚀  Server ready at ${server.graphqlPath}`)
-  }
-)
+  })
+})
