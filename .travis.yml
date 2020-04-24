@@ -6,7 +6,9 @@ node_js:
   - node
 
 script:
-  - npm test
+  - yarn test
+  - yarn test:integration
+  - functional:headless
 
 nofications:
   email: false
