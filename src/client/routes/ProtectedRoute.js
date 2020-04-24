@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { AuthenticatedContext } from '../context/AuthenticatedContext'
-import { UserContext } from '../context/UserContext'
 import { Redirect, Route } from 'react-router-dom'
 import Loading from '../components/Loading/Loading'
 
@@ -8,7 +7,6 @@ export default function ProtectedRoute({ Component, data, ...rest }) {
   const { authenticated, toggle: authenticateUser } = useContext(
     AuthenticatedContext
   )
-  const { userLoggedIn } = useContext(UserContext)
   const token = localStorage.getItem('ptToken')
 
   console.log('authenticated: ', authenticated)
@@ -25,7 +23,6 @@ export default function ProtectedRoute({ Component, data, ...rest }) {
 
   if (data && !authenticated) {
     console.log('APP:', data)
-    // userLoggedIn(data.isUserSessionExpired)
     authenticateUser(token)
 
     // This is the fixes page refresh issue.

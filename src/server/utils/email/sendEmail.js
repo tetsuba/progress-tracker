@@ -2,7 +2,7 @@ const fs = require('fs')
 const nodemailer = require('nodemailer')
 
 let baseUrl = ''
-if (process.env.DEV || process.env.TEST) {
+if (process.env.REACT_APP_NODE_ENV !== 'prod') {
   baseUrl = 'http://localhost:3000/'
 } else {
   // TODO: Production URL
