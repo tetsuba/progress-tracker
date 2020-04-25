@@ -16,7 +16,6 @@ export default function AuthenticatedCxt({ children }) {
       value={{
         authenticated,
         toggle: (token) => {
-          console.log('AuthenticatedContext', token)
           if (token) {
             setLocalStorage(token)
             setAuthenticated(true)

@@ -59,7 +59,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint & pretty-quick --staged --pattern \"src/server/**/*.js\" --pattern \"src/client/**/*.js\" --pattern \"src/client/**/*.jsx\" --pattern \"cypress/**/*.js\"",
+      "pre-commit": "yarn lint && pretty-quick --staged --pattern \"src/server/**/*.js\" --pattern \"src/client/**/*.js\" --pattern \"src/client/**/*.jsx\" --pattern \"cypress/**/*.js\"",
       "pre-push": "yarn test:nowatch"
     }
   },
