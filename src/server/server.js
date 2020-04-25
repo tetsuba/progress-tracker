@@ -65,9 +65,10 @@ db.on('error', console.error.bind(console, 'connection error:'))
 // Connect to the database before initiating the server
 db.once('open', async function () {
   console.log('🚀 we are connected to mongoose!!!!')
-  const port = process.env.REACT_APP_PORT || 4000
+  console.log('🚀 NODE_ENV: ', process.env.REACT_APP_NODE_ENV)
+  const port = process.env.REACT_APP_NODE_ENV !== 'dev' ? 3000 : 4000
 
   app.listen({ port }, function () {
-    console.log(`🚀  Server ready at ${server.graphqlPath}`)
+    console.log(`🚀  Server ready at port ${port}`)
   })
 })

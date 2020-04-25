@@ -13,7 +13,9 @@ import MyDetailsForm from '../../components/Form/MyDetailsForm'
 import { GET_USER_DETAILS_QUERY } from '../../api/user/user.query'
 
 // MUTATION
-import { UPDATE_USER_DETAILS_MUTATION } from './MyAccount.mutation'
+import { UPDATE_USER_DETAILS_MUTATION } from '../../api/user/user.mutation'
+
+// COMPONENTS
 import Box from '../../components/Box/Box'
 import ForgotMyPasswordForm from '../../components/Form/ForgotMyPasswordForm'
 
