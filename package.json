@@ -55,7 +55,7 @@
     "pretty": "prettier \"src/server/**/*.js\" \"src/client/**/*.js\" \"src/client/**/*.jsx\" \"cypress/**/*.js\"",
     "pretty:check": "yarn pretty --check",
     "pretty:write": "yarn pretty --write",
-    "lint": "eslint src --ext .js --cache"
+    "lint": "eslint src --ext .jsx --ext .js"
   },
   "husky": {
     "hooks": {
