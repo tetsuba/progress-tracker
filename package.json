@@ -48,7 +48,7 @@
     "server:test": "env-cmd -f ./.env.testing yarn server",
     "server:prod": "env-cmd yarn server",
     "cy:open": "cypress open",
-    "cy:headless": "cypress run --headless",
+    "cy:headless": "cypress run",
     "functional": "yarn server:test & yarn start & cypress open",
     "functional:headless": "start-server-and-test start:server:client http://localhost:3000 cy:headless",
     "functional:test": "start-server-and-test server:test http://localhost:3000 cy:headless",
@@ -60,6 +60,11 @@
     "hooks": {
       "pre-commit": "yarn pretty:write",
       "pre-push": "yarn test:nowatch"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "src/**/*.{js,css}": ["prettier --write", "git add"]
     }
   },
   "eslintConfig": {
@@ -91,6 +96,7 @@
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
     "jsdom": "^15.2.1",
+    "lint-staged": "^10.1.7",
     "prettier": "2.0.4",
     "react-test-renderer": "16.13.1",
     "start-server-and-test": "^1.10.11"
