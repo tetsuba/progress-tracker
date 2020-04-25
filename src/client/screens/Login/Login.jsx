@@ -23,21 +23,14 @@ import EmailVerificationForm from '../../components/Form/EmailVerificationForm'
 
 export default function Login() {
   const [loginUser, loginUserOptions] = useMutation(LOGIN_USER_MUTATION)
-  const [
-    verifyUserEmail, verifyUserEmailOptions] = useMutation(
+  const [verifyUserEmail, verifyUserEmailOptions] = useMutation(
     VERIFY_USER_EMAIL_MUTATION
   )
-  const [
-    requestPasswordReset, requestPasswordResetOptions
-  ] = useMutation(
+  const [requestPasswordReset, requestPasswordResetOptions] = useMutation(
     REQUEST_PASSWORD_RESET_MUTATION
   )
-  const [
-    hideLoginForm, setHideLoginForm
-  ] = useState(false)
-  const {
-    toggle: authenticateUser
-  } = useContext(AuthenticatedContext)
+  const [hideLoginForm, setHideLoginForm] = useState(false)
+  const { toggle: authenticateUser } = useContext(AuthenticatedContext)
 
   return (
     <Container className="pt-5">
@@ -70,9 +63,6 @@ export default function Login() {
               >
                 <h3>Forgot my password</h3>
                 <p>
-
-
-
                   Enter your email address and we will send you a link to reset
                   your password.
                 </p>
@@ -85,7 +75,6 @@ export default function Login() {
                 handleSubmit={(options) => {
                   verifyUserEmail(options).catch(() => console.log('error'))
                 }}
-
               >
                 <h3 className="text-danger">Could not sign you in</h3>
                 <p>
@@ -95,8 +84,7 @@ export default function Login() {
                 </p>
               </EmailVerificationForm>
             ),
-            success:
-              (
+            success: (
               <Col id="LoginSuccess">
                 <h3>Please check your email.</h3>
               </Col>
@@ -111,12 +99,6 @@ export default function Login() {
           ]
         }
       </Row>
-
-
-
     </Container>
   )
 }
-
-
-
