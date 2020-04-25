@@ -256,9 +256,7 @@ module.exports = {
 
       // TODO: Not sure if this needs to be returned. Investigate!
       return {
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
+        success: 'user details saved.',
       }
     }),
   },

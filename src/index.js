@@ -23,8 +23,6 @@ const link = new HttpLink({
     credentials: 'same-origin',
 });
 
-// TODO: Draw diagram to keep track how it works
-//       dont be a fool not too.
 const authLink = setContext((_, { headers }) => {
     // get the authentication token from local storage if it exists
     const token = localStorage.getItem('ptToken');

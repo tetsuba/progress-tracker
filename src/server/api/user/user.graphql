@@ -47,7 +47,7 @@ extend type Query {
 type Mutation {
     registerNewUser(input: NewUserInput!): SuccessType!
     loginUser(input: LoginUserInput!): UserTokenType!
-    updateUserDetails(input: UserDetailsInput!): UserType!
+    updateUserDetails(input: UserDetailsInput!): SuccessType!
     verifyUserEmail(input: UserEmailInput!): SuccessType!
     requestPasswordReset(input: UserEmailInput!): SuccessType!
     resetUserPassword(input: UserPasswordInput!): SuccessType!

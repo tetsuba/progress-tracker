@@ -192,9 +192,7 @@ exports[`user.resolver @Mutation updateUserDetails should return user details 1`
 Object {
   "data": Object {
     "updateUserDetails": Object {
-      "email": "test@test.com",
-      "firstName": "John",
-      "lastName": "Doh",
+      "success": "user details saved.",
     },
   },
   "errors": undefined,

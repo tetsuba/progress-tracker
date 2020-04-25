@@ -43,9 +43,7 @@ export const RESET_USER_PASSWORD_MUTATION = gql`
 export const UPDATE_USER_DETAILS_MUTATION = gql`
   mutation UpdateUserDetails($input: UserDetailsInput!) {
     updateUserDetails(input: $input) {
-      firstName
-      lastName
-      email
+      success
     }
   }
 `
