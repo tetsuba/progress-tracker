@@ -15,7 +15,7 @@ const errorName = {
 
 const errorType = {
   UNAUTHORIZED: {
-    message: 'Authentication is needed to get requested response',
+    message: 'Session expired. Please login.',
     statusCode: 401,
     name: 'unauthorized',
   },
@@ -62,7 +62,7 @@ const errorType = {
 }
 
 const getErrorCode = (errorName) => {
-  return errorType[errorName]
+  return errorType[errorName] || errorName
 }
 
 module.exports = {
