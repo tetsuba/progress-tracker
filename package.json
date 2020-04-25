@@ -62,11 +62,6 @@
       "pre-push": "yarn test:nowatch"
     }
   },
-  "lint-staged": {
-    "linters": {
-      "src/**/*.{js,css}": ["prettier --write", "git add"]
-    }
-  },
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -96,7 +91,6 @@
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
     "jsdom": "^15.2.1",
-    "lint-staged": "^10.1.7",
     "prettier": "2.0.4",
     "react-test-renderer": "16.13.1",
     "start-server-and-test": "^1.10.11"
