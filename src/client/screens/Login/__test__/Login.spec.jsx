@@ -1,14 +1,9 @@
-import React from 'react'
 import { act } from 'react-dom/test-utils'
 import {
   delay,
   graphRenderer,
   updateTextInput,
 } from '../../../../test/testHelper'
-
-jest.mock('react-router-dom', () => ({
-  Link: ({ children }) => children,
-}))
 
 // COMPONENTS
 import Login from '../Login'
@@ -22,6 +17,10 @@ import {
   verifyUserEmailMutationSuccess,
   passwordResetMockDataSuccess,
 } from '../../../../test/mockApi/user/userMockMutation'
+
+jest.mock('react-router-dom', () => ({
+  Link: ({ children }) => children,
+}))
 
 describe('<Login>', () => {
   describe('Initial render', () => {

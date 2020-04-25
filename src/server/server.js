@@ -1,7 +1,7 @@
 const path = require('path')
 const mongoose = require('mongoose')
 const express = require('express')
-const { ApolloServer, gql } = require('apollo-server-express')
+const { ApolloServer } = require('apollo-server-express')
 const { getErrorCode } = require('./errorHandling')
 const { getUserFromToken } = require('./utils/common')
 

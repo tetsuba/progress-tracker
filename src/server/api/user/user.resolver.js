@@ -5,11 +5,11 @@ const {
   createAuthToken,
   createVerificationToken,
 } = require('../../utils/token')
-const { passwordsDoNotMatch } = require('../utils')
+const { passwordsDoNotMatch, authenticated } = require('../utils')
 
 module.exports = {
   Query: {
-    isUserSessionExpired: async (_, args, context) => {
+    isUserSessionExpired: (_, args, context) => {
       const { id } = context.user
 
       /* Error Handling:
@@ -24,7 +24,7 @@ module.exports = {
       }
     },
 
-    getUserDetails: async (_, args, context) => {
+    getUserDetails: authenticated(async (_, args, context) => {
       const { id } = context.user
       const { User } = context.models
       const user = await User.findById(id)
@@ -34,7 +34,7 @@ module.exports = {
         lastName: user.lastName,
         email: user.email,
       }
-    },
+    }),
   },
 
   Mutation: {
@@ -242,7 +242,7 @@ module.exports = {
       }
     },
 
-    updateUserDetails: async (_, args, context) => {
+    updateUserDetails: authenticated(async (_, args, context) => {
       const { id } = context.user
       const { User } = context.models
       const {
@@ -260,7 +260,7 @@ module.exports = {
         lastName: user.lastName,
         email: user.email,
       }
-    },
+    }),
   },
 }
 

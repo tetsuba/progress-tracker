@@ -6,6 +6,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 import { setContext } from 'apollo-link-context';
 import { ApolloLink } from 'apollo-link';
+import { onError } from 'apollo-link-error';
 
 // CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,7 +19,8 @@ import GlobalContext from './client/context/GlobalContext';
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
-    uri: '/graphql', //process.env.REACT_APP_APPOLO_CLIENT_LINK_URI,
+    uri: '/graphql',
+    credentials: 'same-origin',
 });
 
 // TODO: Draw diagram to keep track how it works
@@ -34,8 +36,19 @@ const authLink = setContext((_, { headers }) => {
     }
 });
 
+const errorLink = onError(({ graphQLErrors }) => {
+    // TODO: Is this the correct solution, investigate further.
+    // This captures when a token session has expired and will
+    // redirect a user to the login page
+    if (graphQLErrors[0].name === 'unauthorized') {
+        console.log('Not unauthorized')
+        localStorage.setItem('ptToken', '')
+        window.history.go()
+    }
+});
+
 export const client = new ApolloClient({
-    link: ApolloLink.from([authLink, link]),
+    link: ApolloLink.from([authLink, errorLink, link]),
     cache,
     defaultOptions: {
         watchQuery: {

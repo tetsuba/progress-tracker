@@ -173,6 +173,21 @@ Object {
 }
 `;
 
+exports[`user.resolver @Mutation updateUserDetails should return an "UNAUTHORIZED" if user is not authenticated 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: UNAUTHORIZED],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`user.resolver @Mutation updateUserDetails should return user details 1`] = `
 Object {
   "data": Object {
@@ -244,6 +259,21 @@ Object {
   "data": null,
   "errors": Array [
     [GraphQLError: NOT_VALID_EMAIL],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`user.resolver @Query getUserDetails should return an "UNAUTHORIZED" if user is not authenticated 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: UNAUTHORIZED],
   ],
   "extensions": undefined,
   "http": Object {

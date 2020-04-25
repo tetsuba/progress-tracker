@@ -40,6 +40,16 @@ describe('user.resolver', () => {
         })
         expect(res).toMatchSnapshot()
       })
+      test('should return an "UNAUTHORIZED" if user is not authenticated', async () => {
+        const { query } = createTestServer({
+          ...ctx,
+          user: {},
+        })
+        const res = await query({
+          query: GET_USER_DETAILS_QUERY,
+        })
+        expect(res).toMatchSnapshot()
+      })
     })
     describe('isUserSessionExpired', () => {
       test('should return success "token valid"', async () => {
@@ -328,6 +338,17 @@ describe('user.resolver', () => {
       test('should return user details', async () => {
         const { mutate } = createTestServer(ctx)
         const res = await mutate(mutations)
+        expect(res).toMatchSnapshot()
+      })
+
+      test('should return an "UNAUTHORIZED" if user is not authenticated', async () => {
+        const { query } = createTestServer({
+          ...ctx,
+          user: {},
+        })
+        const res = await query({
+          query: GET_USER_DETAILS_QUERY,
+        })
         expect(res).toMatchSnapshot()
       })
     })

@@ -54,11 +54,12 @@
     "functional:test": "start-server-and-test server:test http://localhost:3000 cy:headless",
     "pretty": "prettier \"src/server/**/*.js\" \"src/client/**/*.js\" \"src/client/**/*.jsx\" \"cypress/**/*.js\"",
     "pretty:check": "yarn pretty --check",
-    "pretty:write": "yarn pretty --write"
+    "pretty:write": "yarn pretty --write",
+    "lint": "eslint src --ext .jsx --ext .js"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged --pattern \"src/server/**/*.js\" --pattern \"src/client/**/*.js\" --pattern \"src/client/**/*.jsx\" --pattern \"cypress/**/*.js\"",
+      "pre-commit": "yarn lint && pretty-quick --staged --pattern \"src/server/**/*.js\" --pattern \"src/client/**/*.js\" --pattern \"src/client/**/*.jsx\" --pattern \"cypress/**/*.js\"",
       "pre-push": "yarn test:nowatch"
     }
   },

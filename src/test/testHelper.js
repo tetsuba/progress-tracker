@@ -1,10 +1,7 @@
 import React from 'react';
 import { shallow, mount } from "enzyme";
 import { MockedProvider } from '@apollo/react-testing';
-import renderer from 'react-test-renderer'; // https://reactjs.org/docs/test-renderer.html
-import { ApolloProvider } from 'react-apollo';
 import GlobalContext from '../client/context/GlobalContext';
-import { BrowserRouter as Router, MemoryRouter } from 'react-router-dom';
 
 // Local Storage global setup
 import './localStorage'
