@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 import { ApolloProvider } from 'react-apollo';
 import ApolloClient from 'apollo-client';

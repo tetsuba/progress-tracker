@@ -3,8 +3,6 @@ const tokenMockSuccess = {
   token: 'token'
 }
 
-const tokenMockError = undefined
-
 module.exports = {
   tokenMockSuccess,
 }
