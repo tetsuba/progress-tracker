@@ -58,7 +58,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn pretty:write",
+      "pre-commit": "pretty-quick --staged --pattern \"src/server/**/*.js\" \"src/client/**/*.js\" \"src/client/**/*.jsx\" \"cypress/**/*.js\"",
       "pre-push": "yarn test:nowatch"
     }
   },
@@ -92,6 +92,7 @@
     "jest-enzyme": "^7.1.2",
     "jsdom": "^15.2.1",
     "prettier": "2.0.4",
+    "pretty-quick": "^2.0.1",
     "react-test-renderer": "16.13.1",
     "start-server-and-test": "^1.10.11"
   },

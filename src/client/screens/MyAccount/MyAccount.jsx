@@ -69,10 +69,21 @@ export default function MyAccount() {
           defualtEmail={user.email}
           buttonText="Send"
         >
+
+
+
+
+
           <h3>Request for a password reset</h3>
           <p>We will send you a link to reset your password.</p>
         </ForgotMyPasswordForm>
       </Row>
+
+
+
+
+
+
 
       <Row className="mt-5">
         <Box max={500}>
