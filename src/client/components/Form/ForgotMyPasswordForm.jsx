@@ -11,7 +11,7 @@ import { useInputChange } from '../../hooks/hooks'
 import Box from '../Box/Box'
 
 export default function ForgotMyPasswordForm(props) {
-  const { children, showLoginForm, handleSubmit, error } = props
+  const { children, showLoginForm, handleSubmit, error, defualtEmail } = props
   const [inputs, setInputs] = useInputChange({ email: '' })
   const [errorMessage] = useState(() => error && error.graphQLErrors[0].message)
   const options = { variables: { input: inputs } }
@@ -33,17 +33,19 @@ export default function ForgotMyPasswordForm(props) {
               <Form.Control
                 required
                 type="email"
-                placeholder="@"
+                placeholder={defualtEmail ? defualtEmail : '@'}
                 name="email"
                 onChange={setInputs}
                 value={inputs.email}
                 isInvalid={!!errorMessage}
+                readOnly={!!defualtEmail}
               />
               <Form.Control.Feedback type="invalid">
                 {errorMessage}
               </Form.Control.Feedback>
               <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
+                {!defualtEmail &&
+                  "We'll never share your email with anyone else."}
               </Form.Text>
             </Form.Group>
             <Button

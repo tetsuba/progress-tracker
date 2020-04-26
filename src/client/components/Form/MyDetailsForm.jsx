@@ -1,20 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Form, Row } from 'react-bootstrap'
 import Box from '../Box/Box'
 import { useInputChange } from '../../hooks/hooks'
 
 export default function MyDetailsForm(props) {
-  const { handleSubmit, user, showForm, setShowForm } = props
+  const { handleSubmit, user, error } = props
+  const errorMessage = error && error.graphQLErrors[0].message
   const [inputs, setInputs] = useInputChange({
     firstName: user.firstName,
     lastName: user.lastName,
   })
+  const [showFormElement, setShowFormElement] = useState(false)
+  const options = {
+    variables: {
+      input: {
+        ...inputs,
+      },
+    },
+  }
 
   return (
     <Row>
       <Box max={500}>
         <h3 className="mb-5">My Details</h3>
-        <Form onSubmit={(e) => handleSubmit(e, inputs)}>
+        <Form
+          id="MyDetailsForm"
+          onSubmit={(e) => {
+            e.preventDefault()
+            handleSubmit(options, setShowFormElement)
+          }}
+        >
           <Form.Group controlId="formPlaintextFirstName" className="pb-3">
             <Form.Label className="text-muted">First Name:</Form.Label>
             <Form.Control
@@ -24,7 +39,8 @@ export default function MyDetailsForm(props) {
               placeholder={user.firstName}
               onChange={setInputs}
               value={inputs.firstName}
-              readOnly={!showForm}
+              readOnly={!showFormElement}
+              isInvalid={!!errorMessage}
             />
           </Form.Group>
           <Form.Group controlId="formPlaintextPassword">
@@ -36,10 +52,14 @@ export default function MyDetailsForm(props) {
               placeholder={user.lastName}
               value={inputs.lastName}
               onChange={setInputs}
-              readOnly={!showForm}
+              readOnly={!showFormElement}
+              isInvalid={!!errorMessage}
             />
+            <Form.Control.Feedback type="invalid">
+              {errorMessage}
+            </Form.Control.Feedback>
           </Form.Group>
-          {showForm ? (
+          {showFormElement ? (
             <>
               <Button
                 style={{ width: 100 }}
@@ -52,25 +72,21 @@ export default function MyDetailsForm(props) {
 
               <Button
                 style={{ width: 100 }}
+                type="button"
                 className="float-right mr-3"
                 variant="secondary"
-                onClick={() => {
-                  setInputs({
-                    firstName: user.firstName,
-                    lastName: user.lastName,
-                  })
-                  setShowForm((data) => ({ show: false }))
-                }}
+                onClick={() => setShowFormElement(false)}
               >
                 Cancel
               </Button>
             </>
           ) : (
             <Button
+              id="MyDetailsFormEdit"
               style={{ width: 100 }}
               className="float-right"
               variant="primary"
-              onClick={() => setShowForm((data) => ({ show: true }))}
+              onClick={() => setShowFormElement(true)}
             >
               Edit
             </Button>

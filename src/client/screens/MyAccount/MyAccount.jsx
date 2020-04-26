@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useMutation, useQuery } from '@apollo/react-hooks'
 
 // COMPONENTS
 import { Container, Row } from 'react-bootstrap'
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
-import Loading from '../../components/Loading/Loading'
 
 // FORM
 import MyDetailsForm from '../../components/Form/MyDetailsForm'
@@ -26,47 +25,35 @@ const crumbs = [
 ]
 
 export default function MyAccount() {
-  const [formElement, setFormElement] = useState({ show: false })
   const { loading, data } = useQuery(GET_USER_DETAILS_QUERY)
-  const [updateUserDetails] = useMutation(UPDATE_USER_DETAILS_MUTATION, {
-    refetchQueries: [{ query: GET_USER_DETAILS_QUERY }],
-  })
-
-  function handleSubmit(e, inputs) {
-    e.preventDefault()
-    const input = {
-      ...inputs,
-      id: data.getUserDetails.id,
+  const [updateUserDetails, updateUserDetailsOptions] = useMutation(
+    UPDATE_USER_DETAILS_MUTATION,
+    {
+      refetchQueries: [{ query: GET_USER_DETAILS_QUERY }],
     }
+  )
 
-    updateUserDetails({ variables: { input } })
-      .then(() => {
-        setFormElement({ show: false })
-      })
-      .catch((error) => {
-        console.log('Login error', error.graphQLErrors)
-        // TODO: Setup error handling for this form.
-      })
+  if (loading) {
+    return <div>Page Loader</div>
   }
-
-  if (loading) return <Loading />
-  const { getUserDetails: user } = data
 
   return (
     <Container className="pt-5">
       <BreadCrumbs crumbs={crumbs} />
-
       <MyDetailsForm
-        handleSubmit={handleSubmit}
-        user={user}
-        showForm={formElement.show}
-        setShowForm={setFormElement}
+        handleSubmit={(options, setShowFormElement) => {
+          updateUserDetails(options)
+            .then(() => setShowFormElement(false))
+            .catch(() => console.log('Error!'))
+        }}
+        error={updateUserDetailsOptions.error}
+        user={data.getUserDetails}
       />
 
       <Row className="mt-5">
         <ForgotMyPasswordForm
           hideEmailInput
-          defualtEmail={user.email}
+          defualtEmail={data.getUserDetails.email}
           buttonText="Send"
         >
           <h3>Request for a password reset</h3>
@@ -77,7 +64,7 @@ export default function MyAccount() {
       <Row className="mt-5">
         <Box max={500}>
           <h3>Email - Changing email address is not available</h3>
-          <p>{user.email}</p>
+          <p>{data.getUserDetails.email}</p>
         </Box>
       </Row>
     </Container>
