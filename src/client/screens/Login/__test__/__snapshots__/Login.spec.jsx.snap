@@ -586,7 +586,7 @@ exports[`<Login> Initial render should render "login" 1`] = `
                             id="LoginFormSubmit"
                             type="submit"
                           >
-                            Submit
+                            Login
                           </button>
                         </Button>
                       </form>

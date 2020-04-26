@@ -18,9 +18,9 @@ install:
 
 script:
   - yarn build
-  - yarn test
-  - yarn test:integration
-  - yarn functional:test
+  - yarn ci:test:unit
+  - yarn ci:test:integration
+  - yarn ci:test:functional
 
 nofications:
   email: false

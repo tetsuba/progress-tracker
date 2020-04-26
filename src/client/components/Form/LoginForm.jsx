@@ -60,7 +60,7 @@ export default function LoginForm(props) {
             type="submit"
             className="float-right"
           >
-            Submit
+            Login
           </Button>
         </Form>
         <TextLink eventHandler={hideLoginForm}>Forgot password?</TextLink>

@@ -1,4 +1,4 @@
-const validEmail = 'testLogin@test.com'
+const validEmail = 'test@test.com'
 const validPassword = '1234qwer'
 
 describe('@Login', () => {

@@ -34,8 +34,9 @@ const server = new ApolloServer({
   resolvers: require('./api/resolvers'),
   playground: process.env.REACT_APP_NODE_ENV !== 'prod',
   context: ({ req }) => {
+    const token = req.headers.authorization
     return {
-      user: getUserFromToken(req.headers),
+      user: getUserFromToken(token),
       models: require('./api/models'),
     }
   },
@@ -66,7 +67,7 @@ db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', async function () {
   console.log('🚀 we are connected to mongoose!!!!')
   console.log('🚀 NODE_ENV: ', process.env.REACT_APP_NODE_ENV)
-  const port = process.env.REACT_APP_NODE_ENV !== 'dev' ? 3000 : 4000
+  const port = process.env.REACT_APP_SERVER_PORT || 4000
 
   app.listen({ port }, function () {
     console.log(`🚀  Server ready at port ${port}`)

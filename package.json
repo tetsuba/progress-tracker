@@ -47,15 +47,19 @@
     "server:dev": "env-cmd -f ./.env.development yarn server",
     "server:test": "env-cmd -f ./.env.testing yarn server",
     "server:prod": "env-cmd yarn server",
+    "server:build": "env-cmd yarn server",
     "cy:open": "cypress open",
     "cy:headless": "cypress run",
     "functional": "yarn server:test & yarn start & cypress open",
     "functional:headless": "start-server-and-test start:server:client http://localhost:3000 cy:headless",
-    "functional:test": "start-server-and-test server:test http://localhost:3000 cy:headless",
+    "functional:test": "start-server-and-test server http://localhost:3000 cy:headless",
     "pretty": "prettier \"src/server/**/*.js\" \"src/client/**/*.js\" \"src/client/**/*.jsx\" \"cypress/**/*.js\"",
     "pretty:check": "yarn pretty --check",
     "pretty:write": "yarn pretty --write",
-    "lint": "eslint src --ext .jsx --ext .js"
+    "lint": "eslint src --ext .jsx --ext .js",
+    "ci:test:unit": "react-scripts test --env=jsdom --testPathPattern=\"./src/client/\"",
+    "ci:test:integration": "react-scripts test --watchAll=false --env=node --testPathPattern=\"./src/server/\"",
+    "ci:test:functional": "start-server-and-test server http://localhost:3000 cy:headless"
   },
   "husky": {
     "hooks": {

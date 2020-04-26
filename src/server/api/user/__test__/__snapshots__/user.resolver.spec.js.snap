@@ -173,6 +173,21 @@ Object {
 }
 `;
 
+exports[`user.resolver @Mutation resetUserPassword should return an error "Token expired" 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: TOKEN_EXPIRED],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`user.resolver @Mutation updateUserDetails should return an "UNAUTHORIZED" if user is not authenticated 1`] = `
 Object {
   "data": null,
@@ -301,7 +316,24 @@ Object {
 }
 `;
 
-exports[`user.resolver @Query isUserSessionExpired should return error token expired 1`] = `
+exports[`user.resolver @Query isUserSessionExpired should return a success message "Token is valid" 1`] = `
+Object {
+  "data": Object {
+    "isUserSessionExpired": Object {
+      "success": "valid",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`user.resolver @Query isUserSessionExpired should return an error "Token expired" 1`] = `
 Object {
   "data": null,
   "errors": Array [
@@ -316,14 +348,29 @@ Object {
 }
 `;
 
-exports[`user.resolver @Query isUserSessionExpired should return success "token valid" 1`] = `
+exports[`user.resolver @Query validateUserEmail should return a success message "Email confirmed" 1`] = `
 Object {
   "data": Object {
-    "isUserSessionExpired": Object {
-      "success": "valid",
+    "validateUserEmail": Object {
+      "success": "Email confirmed, please log-in",
     },
   },
   "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`user.resolver @Query validateUserEmail should return an error if token not found 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: TOKEN_EXPIRED],
+  ],
   "extensions": undefined,
   "http": Object {
     "headers": Headers {

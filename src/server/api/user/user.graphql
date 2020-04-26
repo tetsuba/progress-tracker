@@ -42,6 +42,7 @@ input UserPasswordInput {
 extend type Query {
     getUserDetails: UserType!
     isUserSessionExpired: SuccessType!
+    validateUserEmail(token: String): SuccessType!
 }
 
 type Mutation {

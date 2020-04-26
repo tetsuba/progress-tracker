@@ -65,7 +65,7 @@ exports[`<FormLogin> @Render should render 1`] = `
         type="submit"
         variant="primary"
       >
-        Submit
+        Login
       </Button>
     </Form>
     <TextLink>

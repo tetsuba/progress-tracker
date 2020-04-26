@@ -8,7 +8,7 @@ function createAuthToken(user) {
 }
 
 function createVerificationToken(user) {
-  const options = { user: user.id }
+  const options = { id: user._id }
   const secret = process.env.REACT_APP_JWT_VERIFICATION_SECRET
   const expires = { expiresIn: '12h' }
   return jwt.sign(options, secret, expires)
