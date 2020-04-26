@@ -24,7 +24,38 @@ module.exports = {
         success: 'valid',
       }
     },
+    validateUserEmail: async (_, args, context) => {
+      const { Token, User } = context.models
+      const { token } = args
 
+      const validToken = await Token.findOne({ token })
+
+      /* Error Handling:
+       * - Token has expired
+       *
+       *  */
+      if (!validToken) {
+        throw new Error(errorName.TOKEN_EXPIRED)
+      }
+
+      const { id } = getUserFromToken(token)
+
+      const user = await User.findById(id)
+      user.isVerified = true
+      user.save()
+
+      /* ---------------------------------------------------
+       * Test environment:
+       * - Same token will be used when running tests.
+       *   Do not delete
+       * ---------------------------------------------------
+       */
+      if (process.env.REACT_APP_NODE_ENV !== 'test') {
+        await Token.deleteOne({ token })
+      }
+
+      return { success: 'Email confirmed, please log-in' }
+    },
     getUserDetails: authenticated(async (_, args, context) => {
       const { id } = context.user
       const { User } = context.models
@@ -37,7 +68,6 @@ module.exports = {
       }
     }),
   },
-
   Mutation: {
     registerNewUser: async (_, args, context) => {
       const { User, Token } = context.models
@@ -65,10 +95,7 @@ module.exports = {
 
       const newUser = await User.create(args.input)
       const verificationToken = createVerificationToken(newUser)
-      const obj = await Token.create({
-        _userId: newUser._id,
-        token: verificationToken,
-      })
+      await Token.create({ token: verificationToken })
 
       /* ---------------------------------------------------
        * When running in a test environment:
@@ -82,13 +109,12 @@ module.exports = {
           'Registering a user in a test environment wil create and delete the account and will not send an confirmation email'
       } else {
         const mailOptions = getEmailMailOptions('confirmEmail')
-        await sendMail(obj.token, mailOptions)
+        await sendMail(verificationToken, mailOptions)
         successMessage = 'Registration completed. Please proceed to log-in page'
       }
 
       return { success: successMessage }
     },
-
     loginUser: async (_, args, context) => {
       const { User, Token } = context.models
       const {
@@ -121,7 +147,6 @@ module.exports = {
 
       return { token }
     },
-
     verifyUserEmail: async (_, args, context) => {
       const { User, Token } = context.models
       const {
@@ -215,7 +240,6 @@ module.exports = {
           'Please check your email and click on the link to reset your password',
       }
     },
-
     resetUserPassword: async (_, args, context) => {
       const { User, Token } = context.models
       const {
@@ -251,7 +275,6 @@ module.exports = {
         success: 'New password is saved',
       }
     },
-
     updateUserDetails: authenticated(async (_, args, context) => {
       const { id } = context.user
       const { User } = context.models

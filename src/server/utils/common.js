@@ -6,12 +6,9 @@ function validateEmail(email) {
   return !filter.test(email)
 }
 
-function getUserFromToken(headers) {
+function getUserFromToken(token) {
   try {
-    return jwt.verify(
-      headers.authorization,
-      process.env.REACT_APP_JWT_AUTH_SECRET
-    )
+    return jwt.verify(token, process.env.REACT_APP_JWT_AUTH_SECRET)
   } catch (e) {
     return {}
   }

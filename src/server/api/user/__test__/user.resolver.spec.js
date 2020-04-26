@@ -10,6 +10,7 @@ const {
 const {
   GET_USER_DETAILS_QUERY,
   IS_USER_SESSION_EXPIRED,
+  VALIDATE_USER_EMAIL_QUERY,
 } = require('../../../../client/api/user/user.query')
 const {
   userMockSuccess,
@@ -53,22 +54,60 @@ describe('user.resolver', () => {
       })
     })
     describe('isUserSessionExpired', () => {
-      test('should return success "token valid"', async () => {
-        const ctx = {
-          user: { id: 'userId1234' },
-        }
+      test('should return a success message "Token is valid"', async () => {
+        const ctx = { user: { id: 'userId' } }
         const { query } = createTestServer(ctx)
         const res = await query({
           query: IS_USER_SESSION_EXPIRED,
         })
         expect(res).toMatchSnapshot()
       })
-
-      test('should return error token expired', async () => {
+      test('should return an error "Token expired"', async () => {
         const ctx = { user: {} }
         const { query } = createTestServer(ctx)
         const res = await query({
           query: IS_USER_SESSION_EXPIRED,
+        })
+        expect(res).toMatchSnapshot()
+      })
+    })
+    describe('validateUserEmail', () => {
+      test('should return a success message "Email confirmed"', async () => {
+        const ctx = {
+          user: { token: 'token123456' },
+          models: {
+            Token: {
+              findOne: jest.fn(() => tokenMockSuccess),
+              deleteOne: jest.fn(() => tokenMockSuccess),
+            },
+            User: {
+              findById: jest.fn(() => ({
+                ...userMockSuccess,
+                save: jest.fn(() => userMockSuccess),
+              })),
+            },
+          },
+        }
+        const { query } = createTestServer(ctx)
+        const res = await query({
+          query: VALIDATE_USER_EMAIL_QUERY,
+          variables: { token: 'token123456' },
+        })
+        expect(res).toMatchSnapshot()
+      })
+      test('should return an error if token not found', async () => {
+        const ctx = {
+          user: { token: 'token123456' },
+          models: {
+            Token: {
+              findOne: jest.fn(() => tokenMockError),
+            },
+          },
+        }
+        const { query } = createTestServer(ctx)
+        const res = await query({
+          query: VALIDATE_USER_EMAIL_QUERY,
+          variables: { token: 'token123456' },
         })
         expect(res).toMatchSnapshot()
       })

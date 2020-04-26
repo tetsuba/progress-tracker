@@ -161,25 +161,115 @@ exports[`<ConfirmAccount> Initial render Account verified token not expired shou
         <div
           className="row"
         >
-          <Col
-            className="text-center"
+          <EmailVerificationForm
+            handleSubmit={[Function]}
           >
-            <div
-              className="text-center col"
+            <Box
+              max={500}
             >
-              <h3>
-                Email Verified
-              </h3>
-              <p>
-                Please log into your account
-              </p>
-              <Link
-                to="/login"
+              <div
+                style={
+                  Object {
+                    "backgroundColor": "#f8f9fa",
+                    "border": "solid 1px #ccc",
+                    "borderRadius": "8px",
+                    "margin": "0 auto",
+                    "maxWidth": 500,
+                    "padding": "20px 20px",
+                    "width": "100%",
+                  }
+                }
               >
-                Login
-              </Link>
-            </div>
-          </Col>
+                <Col>
+                  <div
+                    className="col"
+                  >
+                    <h3
+                      className="text-danger"
+                    >
+                      Email verification session expired
+                    </h3>
+                    <p>
+                      Please enter your email address below and a link will be sent to confirm your email address.
+                    </p>
+                    <Form
+                      id="EmailVerificationForm"
+                      inline={false}
+                      onSubmit={[Function]}
+                    >
+                      <form
+                        className=""
+                        id="EmailVerificationForm"
+                        onSubmit={[Function]}
+                      >
+                        <FormGroup
+                          controlId="EmailVerificationEmail"
+                        >
+                          <div
+                            className="form-group"
+                          >
+                            <FormControl
+                              isInvalid={false}
+                              name="email"
+                              onChange={[Function]}
+                              placeholder="email@address.com"
+                              required={true}
+                              type="email"
+                              value=""
+                            >
+                              <input
+                                className="form-control"
+                                id="EmailVerificationEmail"
+                                name="email"
+                                onChange={[Function]}
+                                placeholder="email@address.com"
+                                required={true}
+                                type="email"
+                                value=""
+                              />
+                            </FormControl>
+                            <Feedback
+                              type="invalid"
+                            >
+                              <div
+                                className="invalid-feedback"
+                              />
+                            </Feedback>
+                            <FormText
+                              className="text-muted"
+                            >
+                              <small
+                                className="text-muted form-text"
+                              >
+                                We'll never share your email with anyone else.
+                              </small>
+                            </FormText>
+                          </div>
+                        </FormGroup>
+                        <Button
+                          active={false}
+                          className="float-right"
+                          disabled={false}
+                          id="EmailVerificationSubmit"
+                          type="submit"
+                          variant="primary"
+                        >
+                          <button
+                            className="float-right btn btn-primary"
+                            disabled={false}
+                            id="EmailVerificationSubmit"
+                            type="submit"
+                          >
+                            Send
+                          </button>
+                        </Button>
+                      </form>
+                    </Form>
+                  </div>
+                </Col>
+              </div>
+            </Box>
+          </EmailVerificationForm>
         </div>
       </Row>
     </div>

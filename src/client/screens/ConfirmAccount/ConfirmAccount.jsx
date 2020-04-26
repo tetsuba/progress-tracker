@@ -7,7 +7,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import EmailVerificationForm from '../../components/Form/EmailVerificationForm'
 
 // QUERY
-import { CONFIRM_TOKEN_QUERY } from '../../api/token/token.query'
+import { VALIDATE_USER_EMAIL_QUERY } from '../../api/user/user.query'
 import { VERIFY_USER_EMAIL_MUTATION } from '../../api/user/user.mutation'
 import { getConfirmAccountStatus } from '../../components/Form/form-utils'
 
@@ -15,7 +15,7 @@ export default function ConfirmAccount() {
   let { token } = useParams()
   token = decodeURIComponent(token)
   const variables = { token }
-  const confirmToken = useQuery(CONFIRM_TOKEN_QUERY, { variables })
+  const confirmToken = useQuery(VALIDATE_USER_EMAIL_QUERY, { variables })
   const [verifyUserEmail, verifyUserEmailOptions] = useMutation(
     VERIFY_USER_EMAIL_MUTATION
   )

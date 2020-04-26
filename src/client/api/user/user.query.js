@@ -17,3 +17,11 @@ export const IS_USER_SESSION_EXPIRED = gql`
     }
   }
 `
+
+export const VALIDATE_USER_EMAIL_QUERY = gql`
+  query ValidateUserEmail($token: String!) {
+    validateUserEmail(token: $token) {
+      success
+    }
+  }
+`
