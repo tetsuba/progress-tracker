@@ -245,7 +245,6 @@ module.exports = {
       const {
         input: { password, token },
       } = args
-
       const validToken = await Token.findOne({ token })
 
       /* Error Handling:
@@ -256,7 +255,7 @@ module.exports = {
         throw new Error(errorName.TOKEN_EXPIRED)
       }
 
-      const { id } = getUserFromToken(token)
+      const { id } = getUserFromToken(validToken.token)
       const user = await User.findById(id)
       user.password = password
       await user.save()

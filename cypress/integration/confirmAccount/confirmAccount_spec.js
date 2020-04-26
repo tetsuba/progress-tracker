@@ -1,6 +1,8 @@
 describe('Confirm Account (email)', () => {
   it('should display a confirmation message', () => {
-    cy.visit('/confirm/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9')
+    cy.visit(
+      '/confirm/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlOTMzN2Y3ZDY1OWVhOTg1MWJkNGJhMCIsImlhdCI6MTU4NzkyODQwMiwiZXhwIjoxNTg3OTcxNjAyfQ.1NoBqMHjdzSFlHTvwniLbXChCRidN8JRSqPKxMtmnd0'
+    )
       .get('h3')
       .contains('Email Verified')
   })

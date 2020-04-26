@@ -1,6 +1,8 @@
 describe('Reset my password', () => {
   beforeEach(() => {
-    cy.visit('/reset/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9')
+    cy.visit(
+      '/reset/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlOTMzN2Y3ZDY1OWVhOTg1MWJkNGJhMCIsImlhdCI6MTU4NzkyODQwMiwiZXhwIjoxNTg3OTcxNjAyfQ.1NoBqMHjdzSFlHTvwniLbXChCRidN8JRSqPKxMtmnd0'
+    )
   })
 
   it('should submit a password with password strength "Bad"', () => {
