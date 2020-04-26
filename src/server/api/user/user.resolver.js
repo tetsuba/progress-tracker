@@ -1,3 +1,4 @@
+const { getUserFromToken } = require('../../utils/common')
 const { validateEmail } = require('../../utils/common')
 const { sendMail, getEmailMailOptions } = require('../../utils/email/sendEmail')
 const { errorName } = require('../../errorHandling')
@@ -171,7 +172,6 @@ module.exports = {
         success: 'Please check your email and confirm by pressing on the link.',
       }
     },
-
     requestPasswordReset: async (_, args, context) => {
       const { User, Token } = context.models
       const {
@@ -222,8 +222,18 @@ module.exports = {
         input: { password, token },
       } = args
 
-      const { _userId } = await Token.findOne({ token })
-      const user = await User.findById(_userId)
+      const validToken = await Token.findOne({ token })
+
+      /* Error Handling:
+       * - Token has expired
+       *
+       *  */
+      if (!validToken) {
+        throw new Error(errorName.TOKEN_EXPIRED)
+      }
+
+      const { id } = getUserFromToken(token)
+      const user = await User.findById(id)
       user.password = password
       await user.save()
 

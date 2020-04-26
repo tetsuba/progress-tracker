@@ -19,6 +19,7 @@ const {
 
 const {
   tokenMockSuccess,
+  tokenMockError,
 } = require('../../../../test/mockApi/token/tokenMockData')
 
 describe('user.resolver', () => {
@@ -294,25 +295,39 @@ describe('user.resolver', () => {
       })
     })
     describe('resetUserPassword', () => {
-      const ctx = {
-        models: {
-          User: {
-            findById: jest.fn(() => ({
-              save: jest.fn(() => userMockSuccess),
-            })),
-          },
-          Token: {
-            findOne: jest.fn(() => tokenMockSuccess),
-            deleteOne: jest.fn(() => 'success'),
-          },
-        },
-      }
       const mutations = {
         mutation: RESET_USER_PASSWORD_MUTATION,
         variables: { input: { password: 'password', token: 'token' } },
       }
 
       test('should return a success message', async () => {
+        const ctx = {
+          models: {
+            User: {
+              findById: jest.fn(() => ({
+                save: jest.fn(() => userMockSuccess),
+              })),
+            },
+            Token: {
+              findOne: jest.fn(() => tokenMockSuccess),
+              deleteOne: jest.fn(() => 'success'),
+            },
+          },
+        }
+
+        const { mutate } = createTestServer(ctx)
+        const res = await mutate(mutations)
+        expect(res).toMatchSnapshot()
+      })
+
+      test('should return an error "Token expired"', async () => {
+        const ctx = {
+          models: {
+            Token: {
+              findOne: jest.fn(() => tokenMockError),
+            },
+          },
+        }
         const { mutate } = createTestServer(ctx)
         const res = await mutate(mutations)
         expect(res).toMatchSnapshot()

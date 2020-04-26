@@ -173,6 +173,21 @@ Object {
 }
 `;
 
+exports[`user.resolver @Mutation resetUserPassword should return an error "Token expired" 1`] = `
+Object {
+  "data": null,
+  "errors": Array [
+    [GraphQLError: TOKEN_EXPIRED],
+  ],
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
 exports[`user.resolver @Mutation updateUserDetails should return an "UNAUTHORIZED" if user is not authenticated 1`] = `
 Object {
   "data": null,
