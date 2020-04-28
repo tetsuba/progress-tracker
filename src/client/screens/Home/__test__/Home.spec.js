@@ -1,26 +1,19 @@
+import { act } from 'react-dom/test-utils'
+import { graphRenderer } from '../../../../test/testHelper'
 import Home from '../Home'
-import React from 'react'
-import '@testing-library/jest-dom/extend-expect'
-import { BrowserRouter as Router } from 'react-router-dom'
-// import ReactTestUtils from 'react-dom/test-utils';
-import renderer from 'react-test-renderer'
 
-describe.skip('@Home', () => {
-  // const {getByText} =  render(<Login />);
-  // console.log('root', root)
+jest.mock('react-router-dom', () => ({
+  Link: ({ children }) => children,
+}))
 
-  it('renders default', () => {
-    // const { getByText, debug } = renderer(<Router><Home /></Router>);
-    // debug()
-    // expect(getByText('Welcome to Progress Tracker...')).toMatchSnapshot();
-
-    const tree = renderer
-      .create(
-        <Router>
-          <Home />
-        </Router>
-      )
-      .toJSON()
-    expect(tree).toMatchSnapshot()
+describe('<Home>', () => {
+  describe('Initial render', () => {
+    it('should render', () => {
+      let wrapper
+      act(() => {
+        wrapper = graphRenderer(Home, [], {})
+      })
+      expect(wrapper.find(Home)).toMatchSnapshot()
+    })
   })
 })

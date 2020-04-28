@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const { FAKE_TOKENS } = require('../../test/consts')
 
 function validateEmail(email) {
   /*eslint no-useless-escape: "off"*/
@@ -7,10 +8,22 @@ function validateEmail(email) {
 }
 
 function getUserFromToken(token) {
-  try {
-    return jwt.verify(token, process.env.REACT_APP_JWT_AUTH_SECRET)
-  } catch (e) {
-    return {}
+  /* Functional tests require a fake token
+   *
+   * * */
+  switch (token) {
+    case FAKE_TOKENS.RESET.TOKEN:
+      return { id: FAKE_TOKENS.RESET.ID }
+
+    case FAKE_TOKENS.CONFIRM.TOKEN:
+      return { id: FAKE_TOKENS.CONFIRM.ID }
+
+    default:
+      try {
+        return jwt.verify(token, process.env.REACT_APP_JWT_AUTH_SECRET)
+      } catch (e) {
+        return {}
+      }
   }
 }
 

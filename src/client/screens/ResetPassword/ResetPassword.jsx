@@ -18,7 +18,7 @@ import ForgotMyPasswordForm from '../../components/Form/ForgotMyPasswordForm'
 import ResetPasswordForm from '../../components/Form/ResetPasswordForm'
 
 // UTILS
-import { getRestPasswordStatus } from '../../components/Form/form-utils'
+import { getRestPasswordStatus } from '../screens-utils'
 
 export default function ResetPassword() {
   let { token } = useParams()

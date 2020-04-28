@@ -34,9 +34,12 @@ const server = new ApolloServer({
   resolvers: require('./api/resolvers'),
   playground: process.env.REACT_APP_NODE_ENV !== 'prod',
   context: ({ req }) => {
+    console.log('TOKEN: ', req.headers.authorization)
     const token = req.headers.authorization
+    const user = getUserFromToken(token)
+    console.log('USER: ', user)
     return {
-      user: getUserFromToken(token),
+      user: user,
       models: require('./api/models'),
     }
   },

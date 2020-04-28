@@ -9,7 +9,9 @@ import EmailVerificationForm from '../../components/Form/EmailVerificationForm'
 // QUERY
 import { VALIDATE_USER_EMAIL_QUERY } from '../../api/user/user.query'
 import { VERIFY_USER_EMAIL_MUTATION } from '../../api/user/user.mutation'
-import { getConfirmAccountStatus } from '../../components/Form/form-utils'
+
+// UTILS
+import { getConfirmAccountStatus } from '../screens-utils'
 
 export default function ConfirmAccount() {
   let { token } = useParams()

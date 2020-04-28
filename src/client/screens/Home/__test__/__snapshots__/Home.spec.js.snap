@@ -1,75 +1,99 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@Home renders default 1`] = `
-<div
-  className="container"
->
-  <div
-    className="mt-5 row"
+exports[`<Home> Initial render should render 1`] = `
+<Home>
+  <Container
+    fluid={false}
   >
     <div
-      className="col"
+      className="container"
     >
-      <h1>
-        Welcome to Progress Tracker...
-      </h1>
-    </div>
-  </div>
-  <div
-    className="mt-5 row"
-  >
-    <div
-      className="col-sm-4"
-    >
-      <a
-        className="card text-body text-decoration-none"
-        href="/students"
-        onClick={[Function]}
+      <Row
+        className="mt-5"
+        noGutters={false}
       >
         <div
-          className="card-header"
+          className="mt-5 row"
         >
-          <h1>
-            Students
-          </h1>
+          <Col>
+            <div
+              className="col"
+            >
+              <h1>
+                Welcome to Progress Tracker...
+              </h1>
+            </div>
+          </Col>
         </div>
-        <div
-          className="card-body"
-        >
-          Students
-        </div>
-        <div
-          className="card-footer"
-        >
-          Number of students
-        </div>
-      </a>
-    </div>
-    <div
-      className="col-sm-4"
-    >
-      <a
-        className="card text-body text-decoration-none"
-        href="/myAccount"
-        onClick={[Function]}
+      </Row>
+      <Row
+        className="mt-5"
+        noGutters={false}
       >
         <div
-          className="card-header"
+          className="mt-5 row"
         >
-          <h1>
-            My Account
-          </h1>
+          <Col
+            sm={4}
+          >
+            <div
+              className="col-sm-4"
+            >
+              <Link
+                className="card text-body text-decoration-none"
+                to="/students"
+              >
+                <div
+                  className="card-header"
+                >
+                  <h1>
+                    Students
+                  </h1>
+                </div>
+                <div
+                  className="card-body"
+                >
+                  Students
+                </div>
+                <div
+                  className="card-footer"
+                >
+                  Number of students
+                </div>
+              </Link>
+            </div>
+          </Col>
+          <Col
+            sm={4}
+          >
+            <div
+              className="col-sm-4"
+            >
+              <Link
+                className="card text-body text-decoration-none"
+                to="/myAccount"
+              >
+                <div
+                  className="card-header"
+                >
+                  <h1>
+                    My Account
+                  </h1>
+                </div>
+                <div
+                  className="card-body"
+                >
+                  My Account
+                </div>
+                <div
+                  className="card-footer"
+                />
+              </Link>
+            </div>
+          </Col>
         </div>
-        <div
-          className="card-body"
-        >
-          My Account
-        </div>
-        <div
-          className="card-footer"
-        />
-      </a>
+      </Row>
     </div>
-  </div>
-</div>
+  </Container>
+</Home>
 `;

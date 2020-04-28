@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button, Form, Row, Col } from 'react-bootstrap'
 
 // ICONS
@@ -11,9 +11,15 @@ import { useInputChange } from '../../hooks/hooks'
 import Box from '../Box/Box'
 
 export default function ForgotMyPasswordForm(props) {
-  const { children, showLoginForm, handleSubmit, error, defualtEmail } = props
-  const [inputs, setInputs] = useInputChange({ email: '' })
-  const [errorMessage] = useState(() => error && error.graphQLErrors[0].message)
+  const {
+    children,
+    showLoginForm,
+    handleSubmit,
+    error,
+    defualtEmail = '',
+  } = props
+  const [inputs, setInputs] = useInputChange({ email: defualtEmail })
+  const errorMessage = error && error.graphQLErrors[0].message
   const options = { variables: { input: inputs } }
 
   return (

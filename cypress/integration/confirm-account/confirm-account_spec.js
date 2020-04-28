@@ -1,15 +1,15 @@
+import { FAKE_TOKENS } from '../../../src/test/consts'
+
 describe('Confirm Account (email)', () => {
   it('should display a confirmation message', () => {
-    cy.visit(
-      '/confirm/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlOTMzN2Y3ZDY1OWVhOTg1MWJkNGJhMCIsImlhdCI6MTU4NzkyODQwMiwiZXhwIjoxNTg3OTcxNjAyfQ.1NoBqMHjdzSFlHTvwniLbXChCRidN8JRSqPKxMtmnd0'
-    )
+    cy.visit(`/confirm/${FAKE_TOKENS.CONFIRM.TOKEN}`)
       .get('h3')
       .contains('Email Verified')
   })
 
   describe('Confirm account (email) token expired', () => {
     beforeEach(() => {
-      cy.visit('/confirm/eyJhb-expired-token')
+      cy.visit(`/confirm/${FAKE_TOKENS.EXPIRED.TOKEN}`)
     })
     it('should display a confirmation message', () => {
       cy.get('h3').contains('Email verification session expired')
