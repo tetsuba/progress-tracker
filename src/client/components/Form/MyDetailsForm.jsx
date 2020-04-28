@@ -62,6 +62,7 @@ export default function MyDetailsForm(props) {
           {showFormElement ? (
             <>
               <Button
+                id="MyDetailsFormSave"
                 style={{ width: 100 }}
                 className="float-right"
                 variant="primary"
@@ -71,6 +72,7 @@ export default function MyDetailsForm(props) {
               </Button>
 
               <Button
+                id="MyDetailsFormCancel"
                 style={{ width: 100 }}
                 type="button"
                 className="float-right mr-3"

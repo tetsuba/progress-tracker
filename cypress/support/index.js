@@ -14,7 +14,9 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands/common'
-import './commands/login'
-import './commands/register'
-import './commands/resetPassword'
+import './commands/common.commands'
+import './commands/login.commands'
+import './commands/register.commands'
+import './commands/reset-password.commands'
+import './commands/my-account.commands'
+import './commands/localStorage.commands'

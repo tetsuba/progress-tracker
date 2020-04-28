@@ -67,6 +67,7 @@ exports[`<MyDetailsForm> @Render User clicks on "Edit" button should render form
         active={false}
         className="float-right"
         disabled={false}
+        id="MyDetailsFormSave"
         style={
           Object {
             "width": 100,
@@ -81,6 +82,7 @@ exports[`<MyDetailsForm> @Render User clicks on "Edit" button should render form
         active={false}
         className="float-right mr-3"
         disabled={false}
+        id="MyDetailsFormCancel"
         onClick={[Function]}
         style={
           Object {

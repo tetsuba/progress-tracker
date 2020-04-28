@@ -3,7 +3,7 @@ import {
   LOGIN_USER_MUTATION,
   REQUEST_PASSWORD_RESET_MUTATION,
   REGISTER_NEW_USER_MUTATION,
-  RESET_USER_PASSWORD_MUTATION,
+  RESET_USER_PASSWORD_MUTATION, UPDATE_USER_DETAILS_MUTATION,
 } from '../../../client/api/user/user.mutation';
 
 export const verifyUserEmailMutationSuccess = {
@@ -35,11 +35,7 @@ export const loginMockDataSuccess = {
   result: {
     data: {
       loginUser: {
-        id: '',
-        firstName: '',
-        lastName: '',
         token: 'token',
-        email: '',
       },
     },
   },
@@ -122,3 +118,23 @@ export const passwordResetMockDataSuccess = {
     },
   },
 }
+
+export const updateUserDetailsMutationSuccess = {
+  request: {
+    query: UPDATE_USER_DETAILS_MUTATION,
+    variables: {
+      input: {
+        firstName: 'John',
+        lastName: 'Doh',
+      },
+    },
+  },
+  result: {
+    data: {
+      updateUserDetails: {
+        success: 'saved',
+      },
+    },
+  },
+}
+

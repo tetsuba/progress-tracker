@@ -1,3 +1,13 @@
+const jwt = require('jsonwebtoken')
+
+Cypress.Commands.add('visitWithToken', (path) => {
+  const options = { id: '5e793e384c80fc70a8783fe7' }
+  const expires = { expiresIn: '1h' }
+  const validToken = jwt.sign(options, 'j3ji34rknr38jfsdoifhsd8fhsd', expires)
+
+  cy.visit(`/reset/${validToken}`)
+})
+
 Cypress.Commands.add(
   'submitPassword',
   (newPassword, confirmPassword, strength) => {

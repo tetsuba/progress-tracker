@@ -1,5 +1,4 @@
-const validEmail = 'test@test.com'
-const validPassword = '1234qwer'
+import { LOGIN_DETAILS } from '../../../src/test/consts'
 
 describe('@Login', () => {
   beforeEach(() => {
@@ -12,14 +11,24 @@ describe('@Login', () => {
 
   describe('A user logs-in with a valid email and password', () => {
     it('should redirect user to home page', () => {
-      const props = { email: validEmail, password: validPassword }
+      const props = {
+        email: LOGIN_DETAILS.VALID.EMAIL,
+        password: LOGIN_DETAILS.VALID.PASSWORD,
+      }
       cy.login(props).confirmLocation('/')
     })
   })
 
+  describe.skip('A user logs-in with a invalid email and password', () => {
+    // TODO: add this to the test
+  })
+
   describe('A user logs-in with an incorrect password', () => {
     it('should display an error', () => {
-      const props = { email: validEmail, password: 'incorrectPassword' }
+      const props = {
+        email: LOGIN_DETAILS.VALID.EMAIL,
+        password: LOGIN_DETAILS.INCORRECT.PASSWORD,
+      }
       cy.login(props)
         .get('.invalid-feedback')
         .contains('You have entered incorrect username or password')
@@ -28,7 +37,10 @@ describe('@Login', () => {
 
   describe('A user logs-in with an incorrect email', () => {
     it('should display an error', () => {
-      const props = { email: 'incorrect@email.com', password: validPassword }
+      const props = {
+        email: LOGIN_DETAILS.INCORRECT.EMAIL,
+        password: LOGIN_DETAILS.VALID.PASSWORD,
+      }
       cy.login(props)
         .get('.invalid-feedback')
         .contains('You have entered incorrect username or password')
@@ -38,8 +50,8 @@ describe('@Login', () => {
   describe('A user logs-in with an email address not verified', () => {
     beforeEach(() => {
       const props = {
-        email: 'email@not-validated.com',
-        password: validPassword,
+        email: LOGIN_DETAILS.NOT_VALID.EMAIL,
+        password: LOGIN_DETAILS.VALID.PASSWORD,
       }
       cy.login(props)
     })

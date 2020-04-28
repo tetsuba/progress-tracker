@@ -16,10 +16,11 @@ import {
 import LoginForm from '../../components/Form/LoginForm'
 import ForgotMyPasswordForm from '../../components/Form/ForgotMyPasswordForm'
 import Loading from '../../components/Loading/Loading'
+import EmailVerificationForm from '../../components/Form/EmailVerificationForm'
 
 // UTILS
-import { getLoginStatus, getLoginError } from '../../components/Form/form-utils'
-import EmailVerificationForm from '../../components/Form/EmailVerificationForm'
+import { getLoginError } from '../../components/Form/form-utils'
+import { getLoginStatus } from '../screens-utils'
 
 export default function Login() {
   const [loginUser, loginUserOptions] = useMutation(LOGIN_USER_MUTATION)

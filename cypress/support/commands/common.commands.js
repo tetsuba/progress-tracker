@@ -1,6 +1,6 @@
 Cypress.Commands.add('textInput', ({ name, value }) => {
   if (value) {
-    cy.get(`[name="${name}"]`).clear().type(value).end()
+    cy.get(`[name="${name}"]`).clear().type(value)
   }
 })
 

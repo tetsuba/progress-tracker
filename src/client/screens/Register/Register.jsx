@@ -10,7 +10,7 @@ import RegisterForm from '../../components/Form/RegisterForm'
 import { REGISTER_NEW_USER_MUTATION } from '../../api/user/user.mutation'
 
 // UTILS
-import { getRegistrationStatus } from '../../components/Form/form-utils'
+import { getRegistrationStatus } from '../screens-utils'
 
 export default function Register() {
   const [registerNewUser, registerNewUserOptions] = useMutation(

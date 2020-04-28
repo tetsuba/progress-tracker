@@ -26,9 +26,7 @@ export function graphRenderer(Node, mocks, props) {
     return mount(
         <MockedProvider mocks={mocks} addTypename={false}>
             <GlobalContext>
-
-                    <Node { ...props } />
-
+                <Node { ...props } />
             </GlobalContext>
         </MockedProvider>
     )

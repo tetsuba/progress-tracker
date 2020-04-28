@@ -1,0 +1,411 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MyAccount> Should render 1`] = `
+<MyAccount>
+  <Container
+    className="pt-5"
+    fluid={false}
+  >
+    <div
+      className="pt-5 container"
+    >
+      <BreadCrumbs
+        crumbs={
+          Array [
+            Object {
+              "name": "Home",
+              "path": "/",
+            },
+            Object {
+              "name": "My Account",
+              "path": "",
+            },
+          ]
+        }
+      >
+        <Row
+          noGutters={false}
+        >
+          <div
+            className="row"
+          >
+            <Breadcrumb
+              label="breadcrumb"
+              listProps={Object {}}
+            >
+              <nav
+                aria-label="breadcrumb"
+              >
+                <ol
+                  className="breadcrumb"
+                >
+                  <Crumbs>
+                    <li
+                      className="breadcrumb-item"
+                      key="Home"
+                    >
+                      <Link
+                        to="/"
+                      >
+                        Home
+                      </Link>
+                    </li>
+                    <BreadcrumbItem
+                      active={true}
+                      key="My Account"
+                      linkProps={Object {}}
+                    >
+                      <li
+                        aria-current="page"
+                        className="breadcrumb-item active"
+                      >
+                        My Account
+                      </li>
+                    </BreadcrumbItem>
+                  </Crumbs>
+                </ol>
+              </nav>
+            </Breadcrumb>
+          </div>
+        </Row>
+      </BreadCrumbs>
+      <MyDetailsForm
+        handleSubmit={[Function]}
+        user={
+          Object {
+            "email": "test@test.com",
+            "firstName": "John",
+            "lastName": "Doh",
+          }
+        }
+      >
+        <Row
+          noGutters={false}
+        >
+          <div
+            className="row"
+          >
+            <Box
+              max={500}
+            >
+              <div
+                style={
+                  Object {
+                    "backgroundColor": "#f8f9fa",
+                    "border": "solid 1px #ccc",
+                    "borderRadius": "8px",
+                    "margin": "0 auto",
+                    "maxWidth": 500,
+                    "padding": "20px 20px",
+                    "width": "100%",
+                  }
+                }
+              >
+                <h3
+                  className="mb-5"
+                >
+                  My Details
+                </h3>
+                <Form
+                  id="MyDetailsForm"
+                  inline={false}
+                  onSubmit={[Function]}
+                >
+                  <form
+                    className=""
+                    id="MyDetailsForm"
+                    onSubmit={[Function]}
+                  >
+                    <FormGroup
+                      className="pb-3"
+                      controlId="formPlaintextFirstName"
+                    >
+                      <div
+                        className="pb-3 form-group"
+                      >
+                        <FormLabel
+                          className="text-muted"
+                          column={false}
+                          srOnly={false}
+                        >
+                          <label
+                            className="text-muted form-label"
+                            htmlFor="formPlaintextFirstName"
+                          >
+                            First Name:
+                          </label>
+                        </FormLabel>
+                        <FormControl
+                          isInvalid={false}
+                          name="firstName"
+                          onChange={[Function]}
+                          placeholder="John"
+                          readOnly={true}
+                          required={true}
+                          type="text"
+                          value="John"
+                        >
+                          <input
+                            className="form-control"
+                            id="formPlaintextFirstName"
+                            name="firstName"
+                            onChange={[Function]}
+                            placeholder="John"
+                            readOnly={true}
+                            required={true}
+                            type="text"
+                            value="John"
+                          />
+                        </FormControl>
+                      </div>
+                    </FormGroup>
+                    <FormGroup
+                      controlId="formPlaintextPassword"
+                    >
+                      <div
+                        className="form-group"
+                      >
+                        <FormLabel
+                          className="text-muted"
+                          column={false}
+                          srOnly={false}
+                        >
+                          <label
+                            className="text-muted form-label"
+                            htmlFor="formPlaintextPassword"
+                          >
+                            Last Name:
+                          </label>
+                        </FormLabel>
+                        <FormControl
+                          isInvalid={false}
+                          name="lastName"
+                          onChange={[Function]}
+                          placeholder="Doh"
+                          readOnly={true}
+                          required={true}
+                          type="input"
+                          value="Doh"
+                        >
+                          <input
+                            className="form-control"
+                            id="formPlaintextPassword"
+                            name="lastName"
+                            onChange={[Function]}
+                            placeholder="Doh"
+                            readOnly={true}
+                            required={true}
+                            type="input"
+                            value="Doh"
+                          />
+                        </FormControl>
+                        <Feedback
+                          type="invalid"
+                        >
+                          <div
+                            className="invalid-feedback"
+                          />
+                        </Feedback>
+                      </div>
+                    </FormGroup>
+                    <Button
+                      active={false}
+                      className="float-right"
+                      disabled={false}
+                      id="MyDetailsFormEdit"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "width": 100,
+                        }
+                      }
+                      type="button"
+                      variant="primary"
+                    >
+                      <button
+                        className="float-right btn btn-primary"
+                        disabled={false}
+                        id="MyDetailsFormEdit"
+                        onClick={[Function]}
+                        style={
+                          Object {
+                            "width": 100,
+                          }
+                        }
+                        type="button"
+                      >
+                        Edit
+                      </button>
+                    </Button>
+                  </form>
+                </Form>
+              </div>
+            </Box>
+          </div>
+        </Row>
+      </MyDetailsForm>
+      <Row
+        className="mt-5"
+        noGutters={false}
+      >
+        <div
+          className="mt-5 row"
+        >
+          <ForgotMyPasswordForm
+            buttonText="Send"
+            defualtEmail="test@test.com"
+            handleSubmit={[Function]}
+            hideEmailInput={true}
+          >
+            <Box
+              max={500}
+            >
+              <div
+                style={
+                  Object {
+                    "backgroundColor": "#f8f9fa",
+                    "border": "solid 1px #ccc",
+                    "borderRadius": "8px",
+                    "margin": "0 auto",
+                    "maxWidth": 500,
+                    "padding": "20px 20px",
+                    "width": "100%",
+                  }
+                }
+              >
+                <Row
+                  noGutters={false}
+                >
+                  <div
+                    className="row"
+                  >
+                    <Col>
+                      <div
+                        className="col"
+                      >
+                        <h3>
+                          Request for a password reset
+                        </h3>
+                        <p>
+                          We will send you a link to reset your password.
+                        </p>
+                        <Form
+                          className="w-100"
+                          id="ForgotMyPasswordForm"
+                          inline={false}
+                          onSubmit={[Function]}
+                        >
+                          <form
+                            className="w-100"
+                            id="ForgotMyPasswordForm"
+                            onSubmit={[Function]}
+                          >
+                            <FormGroup
+                              controlId="ForgotMyPasswordEmail"
+                            >
+                              <div
+                                className="form-group"
+                              >
+                                <FormControl
+                                  isInvalid={false}
+                                  name="email"
+                                  onChange={[Function]}
+                                  placeholder="test@test.com"
+                                  readOnly={true}
+                                  required={true}
+                                  type="email"
+                                  value="test@test.com"
+                                >
+                                  <input
+                                    className="form-control"
+                                    id="ForgotMyPasswordEmail"
+                                    name="email"
+                                    onChange={[Function]}
+                                    placeholder="test@test.com"
+                                    readOnly={true}
+                                    required={true}
+                                    type="email"
+                                    value="test@test.com"
+                                  />
+                                </FormControl>
+                                <Feedback
+                                  type="invalid"
+                                >
+                                  <div
+                                    className="invalid-feedback"
+                                  />
+                                </Feedback>
+                                <FormText
+                                  className="text-muted"
+                                >
+                                  <small
+                                    className="text-muted form-text"
+                                  />
+                                </FormText>
+                              </div>
+                            </FormGroup>
+                            <Button
+                              active={false}
+                              className="float-right"
+                              disabled={false}
+                              id="ForgotMyPasswordSubmit"
+                              type="submit"
+                              variant="primary"
+                            >
+                              <button
+                                className="float-right btn btn-primary"
+                                disabled={false}
+                                id="ForgotMyPasswordSubmit"
+                                type="submit"
+                              >
+                                Reset Password
+                              </button>
+                            </Button>
+                          </form>
+                        </Form>
+                      </div>
+                    </Col>
+                  </div>
+                </Row>
+              </div>
+            </Box>
+          </ForgotMyPasswordForm>
+        </div>
+      </Row>
+      <Row
+        className="mt-5"
+        noGutters={false}
+      >
+        <div
+          className="mt-5 row"
+        >
+          <Box
+            max={500}
+          >
+            <div
+              style={
+                Object {
+                  "backgroundColor": "#f8f9fa",
+                  "border": "solid 1px #ccc",
+                  "borderRadius": "8px",
+                  "margin": "0 auto",
+                  "maxWidth": 500,
+                  "padding": "20px 20px",
+                  "width": "100%",
+                }
+              }
+            >
+              <h3>
+                Email - Changing email address is not available
+              </h3>
+              <p>
+                test@test.com
+              </p>
+            </div>
+          </Box>
+        </div>
+      </Row>
+    </div>
+  </Container>
+</MyAccount>
+`;

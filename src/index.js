@@ -35,13 +35,14 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const errorLink = onError(({ graphQLErrors }) => {
+    // This breaks on session timeout when i was viewing MyAccount
     // TODO: Is this the correct solution, investigate further.
     // This captures when a token session has expired and will
     // redirect a user to the login page
     if (graphQLErrors[0].name === 'unauthorized') {
         console.log('Not unauthorized')
         localStorage.setItem('ptToken', '')
-        window.history.go()
+        window.history.href = '/login'
     }
 });
 
