@@ -26,9 +26,11 @@ describe('<Login>', () => {
   describe('Initial render', () => {
     it('should render "login"', async () => {
       let wrapper
-      act(() => {
+      await act(async () => {
         wrapper = graphRenderer(Login, [], {})
+        await delay()
       })
+      wrapper.update()
       expect(wrapper.find(Login)).toMatchSnapshot()
     })
     describe('A user logs-in with a valid email and password', () => {
@@ -137,13 +139,15 @@ describe('<Login>', () => {
     describe('A user clicks on "forgot password" link', () => {
       let wrapper
       beforeEach(async () => {
-        act(() => {
+        await act(async () => {
           wrapper = graphRenderer(
             Login,
             [loginMockDataSuccess, passwordResetMockDataSuccess],
             {}
           )
+          await delay()
         })
+        wrapper.update()
         wrapper.find('#TextLink').simulate('click')
         wrapper.update()
       })
