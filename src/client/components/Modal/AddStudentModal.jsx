@@ -4,7 +4,6 @@ import gql from 'graphql-tag'
 import { useMutation } from '@apollo/react-hooks'
 import { STUDENTS_QUERY } from '../../screens/Students/Students'
 import { ModalContext } from './ModalContext'
-import { UserContext } from '../../context/UserContext'
 
 const NEW_STUDENT_MUTATION = gql`
   mutation NewStudent($input: NewStudentInput!) {
@@ -15,9 +14,8 @@ const NEW_STUDENT_MUTATION = gql`
 `
 
 function AddStudentModal(props) {
-  const { userId } = useContext(UserContext)
   const { toggleModal } = useContext(ModalContext)
-  const [inputs, setInputs] = useState({ teacherID: userId || '0001' })
+  const [inputs, setInputs] = useState({ teacherID: '0001' })
   const [addNewStudent] = useMutation(NEW_STUDENT_MUTATION, {
     refetchQueries: [{ query: STUDENTS_QUERY }],
   })
