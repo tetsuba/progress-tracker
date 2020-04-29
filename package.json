@@ -38,6 +38,7 @@
     "start": "react-scripts start",
     "start:server:client": "npm run server:test & npm start",
     "build": "react-scripts build",
+    "dev": "yarn server:dev & yarn start",
     "test": "react-scripts test --env=jsdom --testPathPattern=\"./src/client/\"",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
     "test:nowatch": "react-scripts test --watchAll=false --env=jsdom --testPathPattern=\"./src/client/\"",

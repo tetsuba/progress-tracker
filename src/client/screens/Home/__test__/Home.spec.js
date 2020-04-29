@@ -1,5 +1,5 @@
 import { act } from 'react-dom/test-utils'
-import { graphRenderer } from '../../../../test/testHelper'
+import { graphRenderer, delay } from '../../../../test/testHelper'
 import Home from '../Home'
 
 jest.mock('react-router-dom', () => ({
@@ -8,11 +8,13 @@ jest.mock('react-router-dom', () => ({
 
 describe('<Home>', () => {
   describe('Initial render', () => {
-    it('should render', () => {
+    it('should render', async () => {
       let wrapper
-      act(() => {
+      await act(async () => {
         wrapper = graphRenderer(Home, [], {})
+        await delay()
       })
+      wrapper.update()
       expect(wrapper.find(Home)).toMatchSnapshot()
     })
   })

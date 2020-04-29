@@ -1,10 +1,15 @@
 import { useState } from 'react'
 
 export function useLocalStorage(key) {
+  const [value, setValue] = useState(() => {
+    return window.localStorage.getItem(key)
+  })
+
   function setLocalStorage(value) {
     window.localStorage.setItem(key, value)
+    setValue(value)
   }
-  return [setLocalStorage]
+  return [setLocalStorage, value]
 }
 
 export function useInputChange(data) {

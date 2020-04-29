@@ -11,18 +11,21 @@ import { registerMockDataSuccess } from '../../../../test/mockApi/user/userMockM
 
 describe('<Register>', () => {
   describe('Initial render', () => {
-    it('should render "register"', () => {
+    it('should render "register"', async () => {
       let wrapper
-      act(() => {
+      await act(async () => {
         wrapper = graphRenderer(Register, [], {})
+        await delay()
       })
+      wrapper.update()
       expect(wrapper.find(Register)).toMatchSnapshot()
     })
     describe('A user submits registration form', () => {
       it('should render "success"', async () => {
         let wrapper
-        act(() => {
+        await act(async () => {
           wrapper = graphRenderer(Register, [registerMockDataSuccess], {})
+          await delay()
         })
 
         wrapper.update()

@@ -13,28 +13,16 @@ import Students from '../screens/Students/Students'
 import ProtectedRoute from './ProtectedRoute'
 import UnProtectedRoute from './UnProtectedRoute'
 import CourseRoutes from '../screens/Course/routes'
-import { useQuery } from '@apollo/react-hooks'
-import Loading from '../components/Loading/Loading'
 import ConfirmAccount from '../screens/ConfirmAccount/ConfirmAccount'
 import ResetPassword from '../screens/ResetPassword/ResetPassword'
-import { IS_USER_SESSION_EXPIRED } from '../api/user/user.query'
 
 export const Routes = () => {
-  const token = localStorage.getItem('ptToken')
-  const { loading, data } = useQuery(IS_USER_SESSION_EXPIRED)
-
-  console.log('token:', token)
-  console.log('loading: ', loading)
-  console.log('data: ', data)
-
-  if (loading) return <Loading />
-
   return (
     <Switch>
-      <ProtectedRoute path="/" exact Component={Home} data={data} />
-      <ProtectedRoute path="/students" Component={Students} data={data} />
-      <ProtectedRoute path="/myAccount" Component={MyAccount} data={data} />
-      <ProtectedRoute path="/student/:id" Component={Student} data={data} />
+      <ProtectedRoute path="/" exact Component={Home} />
+      <ProtectedRoute path="/students" Component={Students} />
+      <ProtectedRoute path="/myAccount" Component={MyAccount} />
+      <ProtectedRoute path="/student/:id" Component={Student} />
 
       <UnProtectedRoute path="/login" Component={Login} />
 
