@@ -1,11 +1,7 @@
 import React from 'react'
 import { Button, Container, Row } from 'react-bootstrap'
 
-// import {UserContext} from '../../../context/UserContext';
-
 function AbcUnit(props) {
-  // const { userId } = useContext(UserContext);
-
   return (
     <Container>
       <Row className="mt-5">
