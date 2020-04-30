@@ -60,7 +60,8 @@
     "lint": "eslint src --ext .jsx --ext .js",
     "ci:test:unit": "react-scripts test --env=jsdom --testPathPattern=\"./src/client/\"",
     "ci:test:integration": "react-scripts test --watchAll=false --env=node --testPathPattern=\"./src/server/\"",
-    "ci:test:functional": "start-server-and-test server http://localhost:3000 cy:headless"
+    "ci:test:functional": "start-server-and-test server http://localhost:3000 cy:headless",
+    "flow": "flow"
   },
   "husky": {
     "hooks": {
@@ -93,6 +94,7 @@
     "env-cmd": "^10.1.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
+    "flow-bin": "^0.123.0",
     "husky": "^4.2.5",
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
