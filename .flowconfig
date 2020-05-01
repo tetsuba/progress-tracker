@@ -4,12 +4,26 @@
 .*/build/.*
 .*/progress-tracker/progress-tracker/.*
 .*\.spec\.
+.*/src/server/.*
+.*/src/test/.*
+.*/src/setupTests.*
+.*/src/serviceWorker.*
+.*/src/index.*
+.*/src/client/api/.*
+.*/src/client/components.*
+.*/src/client/const/.*
+.*/src/client/context/.*
+.*/src/client/hooks.*
+.*/src/client/routes/.*
+.*/src/client/types/.*
+.*/src/client/App.*
 
 [include]
 
 [libs]
 
 [lints]
+all=off
 
 [options]
 all=true

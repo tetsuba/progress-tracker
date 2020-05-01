@@ -11,7 +11,16 @@ import { useInputChange } from '../../hooks/hooks'
 import PasswordStrength from '../PasswordStrength/PasswordStrength'
 import Box from '../Box/Box'
 
-const ResetPasswordForm = ({ handleSubmit, token }) => {
+// TYPES
+import type { resetUserPasswordMutationType } from '../../types/graphQLTypes'
+
+type Props = {
+  handleSubmit: (options: resetUserPasswordMutationType) => void,
+  token: string,
+}
+
+const ResetPasswordForm = (props: Props) => {
+  const { handleSubmit, token } = props
   const [inputs, setInputs] = useInputChange({
     newPassword: '',
     confirmPassword: '',

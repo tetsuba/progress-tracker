@@ -19,14 +19,14 @@ import ResetPassword from '../screens/ResetPassword/ResetPassword'
 export const Routes = () => {
   return (
     <Switch>
-      <ProtectedRoute path="/" exact Component={Home} />
-      <ProtectedRoute path="/students" Component={Students} />
-      <ProtectedRoute path="/myAccount" Component={MyAccount} />
-      <ProtectedRoute path="/student/:id" Component={Student} />
+      <ProtectedRoute path="/" exact component={Home} />
+      <ProtectedRoute path="/students" component={Students} />
+      <ProtectedRoute path="/myAccount" component={MyAccount} />
+      <ProtectedRoute path="/student/:id" component={Student} />
 
       <UnProtectedRoute path="/login" Component={Login} />
-
       <Route path="/register" component={Register} />
+
       <Route path="/confirm/:token" component={ConfirmAccount} />
       <Route path="/reset/:token" component={ResetPassword} />
       <CourseRoutes />

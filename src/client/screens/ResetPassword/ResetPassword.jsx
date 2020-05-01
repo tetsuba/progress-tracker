@@ -21,9 +21,8 @@ import ResetPasswordForm from '../../components/Form/ResetPasswordForm'
 import { getRestPasswordStatus } from '../screens-utils'
 
 export default function ResetPassword() {
-  let { token } = useParams()
-  token = decodeURIComponent(token)
-  const variables = { token }
+  const { token } = useParams()
+  const variables = { token: token ? decodeURIComponent(token) : '' }
   const confirmation = useQuery(CONFIRM_TOKEN_QUERY, { variables })
   const [resetUserPassword, resetUserPasswordOptions] = useMutation(
     RESET_USER_PASSWORD_MUTATION
@@ -42,7 +41,7 @@ export default function ResetPassword() {
               handleSubmit={(options) => {
                 resetUserPassword(options).catch(() => console.log('error'))
               }}
-              token={token}
+              token={token || ''}
             />
           ),
           success: (

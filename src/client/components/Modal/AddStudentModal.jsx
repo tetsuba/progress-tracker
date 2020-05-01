@@ -2,8 +2,8 @@ import React, { Fragment, useState, useContext } from 'react'
 import { Button, Col, Form, Modal } from 'react-bootstrap'
 import gql from 'graphql-tag'
 import { useMutation } from '@apollo/react-hooks'
-import { STUDENTS_QUERY } from '../../screens/Students/Students'
 import { ModalContext } from './ModalContext'
+import { STUDENTS_QUERY } from '../../api/student/student.query'
 
 const NEW_STUDENT_MUTATION = gql`
   mutation NewStudent($input: NewStudentInput!) {
