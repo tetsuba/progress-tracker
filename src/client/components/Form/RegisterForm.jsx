@@ -11,7 +11,18 @@ import { useInputChange } from '../../hooks/hooks'
 // UTILS
 import { passwordsDoNotMatched } from './form-utils'
 
-export default function RegisterForm(props) {
+// TYPES
+import type {
+  graphQLErrorsTypes,
+  registerNewUserMutationType,
+} from '../../types/graphQLTypes'
+
+type Props = {
+  handleSubmit: (options: registerNewUserMutationType) => void,
+  error: void | graphQLErrorsTypes,
+}
+
+export default function RegisterForm(props: Props) {
   const { handleSubmit, error } = props
   const errorMessage = error && error.graphQLErrors[0].message
 

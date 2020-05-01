@@ -1,0 +1,15 @@
+
+EXAMPLE:
+type Props = {
+    base?: ?string
+}
+
+ - ?string (maybe type) means that bar property can be string as well as null and void.
+
+Maybe Types
+------------
+https://flow.org/en/docs/types/maybe/
+ - bar? means that this property is optional.
+
+
+ -------------------------------------------------------------------------------------

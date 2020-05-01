@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 
 // COMPONENTS
@@ -15,18 +14,10 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { ModalContext } from '../../components/Modal/ModalContext'
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
 
-export const STUDENTS_QUERY = gql`
-  {
-    students {
-      id
-      firstName
-      lastName
-      teacherID
-    }
-  }
-`
+// QUERY
+import { STUDENTS_QUERY } from '../../api/student/student.query'
 
-const Students = () => {
+export default function Students() {
   const { loading, data } = useQuery(STUDENTS_QUERY)
   const { toggleModal, addTemplate } = useContext(ModalContext)
   const crumbs = [
@@ -78,5 +69,3 @@ const Students = () => {
     </Container>
   )
 }
-
-export default Students

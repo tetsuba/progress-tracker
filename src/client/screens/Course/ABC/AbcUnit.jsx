@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Container, Row } from 'react-bootstrap'
 
-function AbcUnit(props) {
+function AbcUnit() {
   return (
     <Container>
       <Row className="mt-5">

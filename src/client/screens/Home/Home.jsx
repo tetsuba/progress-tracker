@@ -3,7 +3,7 @@ import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const Home = (props) => {
+export default function Home() {
   return (
     <Container>
       <Row className="mt-5">
@@ -35,5 +35,3 @@ const Home = (props) => {
     </Container>
   )
 }
-
-export default Home
