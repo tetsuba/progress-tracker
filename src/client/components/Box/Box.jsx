@@ -1,6 +1,14 @@
-import React from 'react'
+import * as React from 'react'
 
-export default function Box({ children, max, className }) {
+type Props = {
+  children: React.Node,
+  max: number,
+  className?: string,
+}
+
+export default function Box(props: Props) {
+  const { children, max, className } = props
+
   const style = {
     maxWidth: max,
     width: '100%',

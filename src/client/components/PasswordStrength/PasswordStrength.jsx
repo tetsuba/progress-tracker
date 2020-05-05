@@ -6,7 +6,12 @@ import React from 'react'
 import zxcvbn from 'zxcvbn'
 import { ProgressBar } from 'react-bootstrap'
 
-const PasswordStrength = ({ password }) => {
+type Props = {
+  password: string,
+}
+
+const PasswordStrength = (props: Props) => {
+  const { password } = props
   const passwordResult = zxcvbn(password)
 
   const result = [

@@ -1,67 +1,28 @@
-import React, { useState, useContext } from 'react'
-import { useMutation } from '@apollo/react-hooks'
+import React, { useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 
-// CONTEXT
-import { AuthenticatedContext } from '../../context/AuthenticatedContext'
-
-// MUTATION
-import {
-  LOGIN_USER_MUTATION,
-  REQUEST_PASSWORD_RESET_MUTATION,
-  VERIFY_USER_EMAIL_MUTATION,
-} from '../../api/user/user.mutation'
-
 // COMPONENTS
-import LoginForm from '../../components/Form/LoginForm'
+import EmailVerificationForm from '../../components/Form/EmailVerificationForm'
 import ForgotMyPasswordForm from '../../components/Form/ForgotMyPasswordForm'
 import Loading from '../../components/Loading/Loading'
-import EmailVerificationForm from '../../components/Form/EmailVerificationForm'
+import LoginForm from '../../components/Form/LoginForm'
 
-// UTILS
-import { getLoginError } from '../../components/Form/form-utils'
-import { getLoginStatus } from '../screens-utils'
+// TYPES
+type Props = {
+  pageState: string,
+}
 
-export default function Login() {
-  const [loginUser, loginUserOptions] = useMutation(LOGIN_USER_MUTATION)
-  const [verifyUserEmail, verifyUserEmailOptions] = useMutation(
-    VERIFY_USER_EMAIL_MUTATION
-  )
-  const [requestPasswordReset, requestPasswordResetOptions] = useMutation(
-    REQUEST_PASSWORD_RESET_MUTATION
-  )
-  const [hideLoginForm, setHideLoginForm] = useState(false)
-  const { toggle: authenticateUser } = useContext(AuthenticatedContext)
-
+export default function Login(props: Props) {
+  const [pageState, setPageState] = useState(props.pageState)
   return (
     <Container className="pt-5">
       <Row>
         {
           {
             loading: <Loading />,
-            login: (
-              <LoginForm
-                error={getLoginError(loginUserOptions.error)}
-                hideLoginForm={() => setHideLoginForm(true)}
-                handleSubmit={(options) => {
-                  loginUser(options)
-                    .then(({ data }) => {
-                      authenticateUser(data.loginUser.token)
-                    })
-                    .catch((err) => console.log('Login error'))
-                }}
-              />
-            ),
+            login: <LoginForm setPageState={setPageState} />,
             forgetMyPassword: (
-              <ForgotMyPasswordForm
-                showLoginForm={() => setHideLoginForm(false)}
-                handleSubmit={(options) => {
-                  requestPasswordReset(options).catch(() =>
-                    console.log('error')
-                  )
-                }}
-                error={requestPasswordResetOptions.error}
-              >
+              <ForgotMyPasswordForm setPageState={setPageState}>
                 <h3>Forgot my password</h3>
                 <p>
                   Enter your email address and we will send you a link to reset
@@ -70,13 +31,7 @@ export default function Login() {
               </ForgotMyPasswordForm>
             ),
             emailNotVerified: (
-              <EmailVerificationForm
-                backButton
-                error={verifyUserEmailOptions.error}
-                handleSubmit={(options) => {
-                  verifyUserEmail(options).catch(() => console.log('error'))
-                }}
-              >
+              <EmailVerificationForm setPageState={setPageState}>
                 <h3 className="text-danger">Could not sign you in</h3>
                 <p>
                   Your email address has not been confirmed. Please enter your
@@ -90,16 +45,13 @@ export default function Login() {
                 <h3>Please check your email.</h3>
               </Col>
             ),
-          }[
-            getLoginStatus(
-              hideLoginForm,
-              loginUserOptions,
-              verifyUserEmailOptions,
-              requestPasswordResetOptions
-            )
-          ]
+          }[pageState]
         }
       </Row>
     </Container>
   )
+}
+
+Login.defaultProps = {
+  pageState: 'login',
 }

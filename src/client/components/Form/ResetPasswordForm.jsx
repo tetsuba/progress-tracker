@@ -1,26 +1,28 @@
 import React from 'react'
 import { Button, Form, Row, Col } from 'react-bootstrap'
-
-// UTILS
-import { passwordMatchError, passwordsDoNotMatched } from './form-utils'
-
-// HOOKS
-import { useInputChange } from '../../hooks/hooks'
+import { useMutation } from '@apollo/react-hooks'
 
 // COMPONENTS
 import PasswordStrength from '../PasswordStrength/PasswordStrength'
 import Box from '../Box/Box'
 
-// TYPES
-import type { resetUserPasswordMutationType } from '../../types/graphQLTypes'
+// HOOKS
+import { useInputChange } from '../../hooks/hooks'
+
+// MUTATIONS
+import { RESET_USER_PASSWORD_MUTATION } from '../../api/user/user.mutation'
+
+// UTILS
+import { passwordMatchError, passwordsDoNotMatched } from './form-utils'
 
 type Props = {
-  handleSubmit: (options: resetUserPasswordMutationType) => void,
+  setPageState: (string) => void,
   token: string,
 }
 
 const ResetPasswordForm = (props: Props) => {
-  const { handleSubmit, token } = props
+  const { token, setPageState } = props
+  const [resetUserPassword] = useMutation(RESET_USER_PASSWORD_MUTATION)
   const [inputs, setInputs] = useInputChange({
     newPassword: '',
     confirmPassword: '',
@@ -47,7 +49,9 @@ const ResetPasswordForm = (props: Props) => {
             onSubmit={(e) => {
               e.preventDefault()
               if (inputs.newPassword === inputs.confirmPassword) {
-                handleSubmit(options)
+                resetUserPassword(options)
+                  .then(() => setPageState('success'))
+                  .catch(() => console.log('error'))
               }
             }}
           >

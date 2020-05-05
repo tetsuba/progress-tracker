@@ -1,98 +1,105 @@
-import { testRenderer, testRendererFull } from '../../../../test/testHelper'
+import { delay, graphRenderer } from '../../../../test/testHelper'
 
 // COMPONENTS
 import LoginForm from '../LoginForm'
+import { act } from 'react-dom/test-utils'
+import {
+  loginUserMutationError,
+  loginUserMutationErrorNotVerified,
+  loginUserMutationSuccess,
+} from '../../../../test/mockApi/user/userMockMutation'
+import TextLink from '../../TextLink/TextLink'
 
-describe('<FormLogin>', () => {
+describe('<LoginForm>', () => {
   const baseProps = {
-    handleSubmit: jest.fn(),
+    setPageSate: jest.fn(),
   }
 
   describe('@Render', () => {
-    it('should render', () => {
-      const props = {
-        ...baseProps,
-      }
-
-      const wrapper = testRenderer(LoginForm, props)
-      expect(wrapper).toMatchSnapshot()
+    it('should render the default state', async () => {
+      const wrapper = graphRenderer(LoginForm, [], baseProps)
+      expect(wrapper.find(LoginForm)).toMatchSnapshot()
     })
   })
 
   describe('@Events', () => {
-    describe('onChange', () => {
-      it('should update email input', () => {
-        const wrapper = testRenderer(LoginForm, baseProps)
-        const email = { name: 'email' }
-        const expected = 'test@test.com'
-
-        wrapper.find(email).simulate('change', {
-          persist: jest.fn(),
-          target: {
-            name: 'email',
-            value: 'test@test.com',
-          },
-        })
-
-        expect(wrapper.find(email).prop('value')).toEqual(expected)
-      })
-
-      it('should update password input', () => {
-        const wrapper = testRenderer(LoginForm, baseProps)
-        const password = { name: 'password' }
-        const expected = '12345678'
-
-        wrapper.find(password).simulate('change', {
-          persist: jest.fn(),
-          target: {
-            name: 'password',
-            value: '12345678',
-          },
-        })
-        expect(wrapper.find(password).prop('value')).toEqual(expected)
-      })
-    })
+    const email = { name: 'email' }
 
     describe('onSubmit', () => {
-      it('should trigger handleSubmit', () => {
-        const wrapper = testRenderer(LoginForm, baseProps)
-        const id = '#LoginForm'
-        wrapper.find(id).props().onSubmit({ preventDefault: jest.fn() })
-        expect(baseProps.handleSubmit).toHaveBeenCalledTimes(1)
+      afterEach(() => {
+        window.localStorage.setItem('ptToken', '')
       })
-    })
 
-    describe('onClick', () => {
-      it('should trigger hideLoginForm', () => {
-        const hideLoginFormMock = jest.fn()
-        const wrapper = testRendererFull(LoginForm, {
-          ...baseProps,
-          hideLoginForm: hideLoginFormMock,
+      async function onSubmitSteps(mock) {
+        const wrapper = graphRenderer(LoginForm, [mock], baseProps)
+
+        act(() => {
+          wrapper
+            .find('input[name="email"]')
+            .props()
+            .onChange({
+              persist: jest.fn(),
+              target: {
+                name: 'email',
+                value: 'test@test.com',
+              },
+            })
         })
-        wrapper.find('#TextLink').simulate('click')
-        expect(hideLoginFormMock).toHaveBeenCalledTimes(1)
+        wrapper.update()
+
+        act(() => {
+          wrapper
+            .find('input[name="password"]')
+            .props()
+            .onChange({
+              persist: jest.fn(),
+              target: {
+                name: 'password',
+                value: 'password01',
+              },
+            })
+        })
+
+        wrapper.update()
+
+        await act(async () => {
+          await wrapper.find('#LoginForm').get(0).props.onSubmit({
+            preventDefault: jest.fn(),
+          })
+          await delay()
+        })
+
+        wrapper.update()
+        return wrapper
+      }
+
+      it('should be successful and save a token in localStorage', async () => {
+        expect(window.localStorage.getItem('ptToken')).toBeNull()
+        const wrapper = await onSubmitSteps(loginUserMutationSuccess)
+        wrapper.update()
+        expect(window.localStorage.getItem('ptToken')).toEqual('token')
+      })
+      it('should display an error', async () => {
+        const wrapper = await onSubmitSteps(loginUserMutationError)
+        expect(wrapper.find(email).get(0).props.isInvalid).toBeTruthy()
+        expect(wrapper.find({ type: 'invalid' }).get(0).props.children).toEqual(
+          'You have entered incorrect username or password'
+        )
+      })
+      it.skip('should call prop setPageState when email is not verified', async () => {
+        await onSubmitSteps(loginUserMutationErrorNotVerified)
+        expect(baseProps.setPageState).toHaveBeenCalledTimes(1)
       })
     })
-  })
 
-  describe('@Error', () => {
-    it('should display an error if error is provided', () => {
-      const props = {
-        ...baseProps,
-        error: {
-          email: {
-            message: 'This an email error',
-          },
-          password: {
-            message: 'This is a password error',
-          },
-        },
-      }
-      const expected = Object.values(props.error)
-      const wrapper = testRenderer(LoginForm, props)
+    describe.skip('onChange', () => {})
 
-      wrapper.find({ type: 'invalid' }).forEach((message, i) => {
-        expect(message.prop('children')).toEqual(expected[i].message)
+    describe.skip('onClick', () => {
+      it('should trigger prop setPageState', () => {
+        const wrapper = graphRenderer(LoginForm, [])
+        console.log(wrapper.find(TextLink).props())
+        wrapper.find(TextLink).props().onClick()
+        expect(baseProps.setPageState).toHaveBeenCalledTimes(1)
       })
     })
   })

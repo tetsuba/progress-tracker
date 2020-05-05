@@ -1,15 +1,34 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Button, Form, Col } from 'react-bootstrap'
+import { useMutation } from '@apollo/react-hooks'
+
+// COMPONENTS
 import TextLink from '../TextLink/TextLink'
-import { useInputChange } from '../../hooks/hooks'
 import Box from '../Box/Box'
 
-export default function LoginForm(props) {
-  const { handleSubmit, error, hideLoginForm } = props
+// CONTEXT
+// $FlowFixMe - Investigate how to fix this issue
+import { AuthenticatedContext } from '../../context/AuthenticatedContext'
+
+// HOOKS
+import { useInputChange } from '../../hooks/hooks'
+
+// MUTATIONS
+import { LOGIN_USER_MUTATION } from '../../api/user/user.mutation'
+
+type Props = {
+  setPageState: (string) => void,
+}
+
+export default function LoginForm(props: Props) {
+  const { setPageState } = props
+  const [loginUser] = useMutation(LOGIN_USER_MUTATION)
+  const { toggle: authenticateUser } = useContext(AuthenticatedContext)
   const [inputs, setInputs] = useInputChange({
     email: 'test@test.com',
     password: '1234qwer',
   })
+  const [errorMessage, setErrorMessage] = useState('')
 
   return (
     <Box max={500}>
@@ -20,7 +39,19 @@ export default function LoginForm(props) {
           onSubmit={(e) => {
             e.preventDefault()
             const options = { variables: { input: inputs } }
-            handleSubmit(options)
+            loginUser(options)
+              .then((obj: any) => {
+                authenticateUser(obj.data.loginUser.token)
+              })
+              .catch(({ graphQLErrors }) => {
+                switch (graphQLErrors[0].name) {
+                  case 'email_not_verified':
+                    setPageState('emailNotVerified')
+                    break
+                  default:
+                    setErrorMessage(graphQLErrors[0].message)
+                }
+              })
           }}
         >
           <Form.Group controlId="loginEmail">
@@ -32,10 +63,10 @@ export default function LoginForm(props) {
               name="email"
               onChange={setInputs}
               value={inputs.email}
-              isInvalid={!!error.email}
+              isInvalid={!!errorMessage}
             />
             <Form.Control.Feedback type="invalid">
-              {error.email && error.email.message}
+              {errorMessage}
             </Form.Control.Feedback>
           </Form.Group>
 
@@ -48,10 +79,10 @@ export default function LoginForm(props) {
               name="password"
               onChange={setInputs}
               value={inputs.password}
-              isInvalid={!!error.password}
+              isInvalid={!!errorMessage}
             />
             <Form.Control.Feedback type="invalid">
-              {error.password && error.password.message}
+              {errorMessage}
             </Form.Control.Feedback>
           </Form.Group>
           <Button
@@ -63,15 +94,10 @@ export default function LoginForm(props) {
             Login
           </Button>
         </Form>
-        <TextLink eventHandler={hideLoginForm}>Forgot password?</TextLink>
+        <TextLink eventHandler={() => setPageState('forgetMyPassword')}>
+          Forgot password?
+        </TextLink>
       </Col>
     </Box>
   )
-}
-
-LoginForm.defaultProps = {
-  error: {
-    email: undefined,
-    password: undefined,
-  },
 }

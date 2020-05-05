@@ -62,7 +62,7 @@ describe('Reset my password', () => {
     describe('Submit a valid email address', () => {
       it('should display a success message', () => {
         cy.forgotMyPasswordSubmit('test@test.com')
-          .get('h3')
+          .get('#ResetPasswordSuccess')
           .contains('Password updated.')
       })
     })

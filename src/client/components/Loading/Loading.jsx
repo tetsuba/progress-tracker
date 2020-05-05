@@ -1,7 +1,12 @@
 import React from 'react'
 import { Fade, Spinner } from 'react-bootstrap'
 
-export default function Loading({ fade }) {
+type Props = {
+  fade?: number,
+}
+
+export default function Loading(props: Props) {
+  const { fade } = props
   const style = {
     width: '100%',
     height: '100%',

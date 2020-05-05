@@ -1,4 +1,7 @@
-import { GET_USER_DETAILS_QUERY, IS_USER_SESSION_EXPIRED } from '../../../client/api/user/user.query';
+import {
+  GET_USER_DETAILS_QUERY,
+  VALIDATE_USER_EMAIL_QUERY,
+} from '../../../client/api/user/user.query';
 
 
 export const getUserDetailsQuerySuccess = {
@@ -16,15 +19,35 @@ export const getUserDetailsQuerySuccess = {
   },
 }
 
-export const isUserSessionExpiredQuerySuccess = {
+export const validateUserEmailQuerySuccess = {
   request: {
-    query: IS_USER_SESSION_EXPIRED,
+    query: VALIDATE_USER_EMAIL_QUERY,
+    variables: {
+      token: 'confirmToken1234',
+    },
   },
   result: {
     data: {
-      isUserSessionExpired: {
+      validateUserEmail: {
         success: 'valid',
       },
     },
+  },
+}
+
+export const validateUserEmailQueryError = {
+  request: {
+    query: VALIDATE_USER_EMAIL_QUERY,
+    variables: {
+      token: 'confirmToken1234',
+    },
+  },
+  result: {
+    error: [
+      {
+        name: 'email_does_not_exist',
+        message: 'Email does not exist',
+      },
+    ],
   },
 }
