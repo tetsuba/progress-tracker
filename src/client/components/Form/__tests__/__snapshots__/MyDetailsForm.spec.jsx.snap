@@ -1,184 +1,355 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<MyDetailsForm> @Render User clicks on "Edit" button should render form available to edit 1`] = `
-<Row
-  noGutters={false}
+<MyDetailsForm
+  handleSubmit={[MockFunction]}
+  user={
+    Object {
+      "firstName": "Bob",
+      "lastName": "Doh",
+    }
+  }
 >
-  <Box
-    max={500}
+  <Row
+    noGutters={false}
   >
-    <h3
-      className="mb-5"
+    <div
+      className="row"
     >
-      My Details
-    </h3>
-    <Form
-      id="MyDetailsForm"
-      inline={false}
-      onSubmit={[Function]}
-    >
-      <FormGroup
-        className="pb-3"
-        controlId="formPlaintextFirstName"
+      <Box
+        max={500}
       >
-        <FormLabel
-          className="text-muted"
-          column={false}
-          srOnly={false}
-        >
-          First Name:
-        </FormLabel>
-        <FormControl
-          isInvalid={false}
-          name="firstName"
-          onChange={[Function]}
-          placeholder="Bob"
-          readOnly={false}
-          required={true}
-          type="text"
-          value="Bob"
-        />
-      </FormGroup>
-      <FormGroup
-        controlId="formPlaintextPassword"
-      >
-        <FormLabel
-          className="text-muted"
-          column={false}
-          srOnly={false}
-        >
-          Last Name:
-        </FormLabel>
-        <FormControl
-          isInvalid={false}
-          name="lastName"
-          onChange={[Function]}
-          placeholder="Doh"
-          readOnly={false}
-          required={true}
-          type="input"
-          value="Doh"
-        />
-        <Feedback
-          type="invalid"
-        />
-      </FormGroup>
-      <Button
-        active={false}
-        className="float-right"
-        disabled={false}
-        id="MyDetailsFormSave"
-        style={
-          Object {
-            "width": 100,
+        <div
+          style={
+            Object {
+              "backgroundColor": "#f8f9fa",
+              "border": "solid 1px #ccc",
+              "borderRadius": "8px",
+              "margin": "0 auto",
+              "maxWidth": 500,
+              "padding": "20px 20px",
+              "width": "100%",
+            }
           }
-        }
-        type="submit"
-        variant="primary"
-      >
-        Save
-      </Button>
-      <Button
-        active={false}
-        className="float-right mr-3"
-        disabled={false}
-        id="MyDetailsFormCancel"
-        onClick={[Function]}
-        style={
-          Object {
-            "width": 100,
-          }
-        }
-        type="button"
-        variant="secondary"
-      >
-        Cancel
-      </Button>
-    </Form>
-  </Box>
-</Row>
+        >
+          <h3
+            className="mb-5"
+          >
+            My Details
+          </h3>
+          <Form
+            id="MyDetailsForm"
+            inline={false}
+            onSubmit={[Function]}
+          >
+            <form
+              className=""
+              id="MyDetailsForm"
+              onSubmit={[Function]}
+            >
+              <FormGroup
+                className="pb-3"
+                controlId="formPlaintextFirstName"
+              >
+                <div
+                  className="pb-3 form-group"
+                >
+                  <FormLabel
+                    className="text-muted"
+                    column={false}
+                    srOnly={false}
+                  >
+                    <label
+                      className="text-muted form-label"
+                      htmlFor="formPlaintextFirstName"
+                    >
+                      First Name:
+                    </label>
+                  </FormLabel>
+                  <FormControl
+                    isInvalid={false}
+                    name="firstName"
+                    onChange={[Function]}
+                    placeholder="Bob"
+                    readOnly={true}
+                    required={true}
+                    type="text"
+                    value="Bob"
+                  >
+                    <input
+                      className="form-control"
+                      id="formPlaintextFirstName"
+                      name="firstName"
+                      onChange={[Function]}
+                      placeholder="Bob"
+                      readOnly={true}
+                      required={true}
+                      type="text"
+                      value="Bob"
+                    />
+                  </FormControl>
+                </div>
+              </FormGroup>
+              <FormGroup
+                controlId="formPlaintextPassword"
+              >
+                <div
+                  className="form-group"
+                >
+                  <FormLabel
+                    className="text-muted"
+                    column={false}
+                    srOnly={false}
+                  >
+                    <label
+                      className="text-muted form-label"
+                      htmlFor="formPlaintextPassword"
+                    >
+                      Last Name:
+                    </label>
+                  </FormLabel>
+                  <FormControl
+                    isInvalid={false}
+                    name="lastName"
+                    onChange={[Function]}
+                    placeholder="Doh"
+                    readOnly={true}
+                    required={true}
+                    type="input"
+                    value="Doh"
+                  >
+                    <input
+                      className="form-control"
+                      id="formPlaintextPassword"
+                      name="lastName"
+                      onChange={[Function]}
+                      placeholder="Doh"
+                      readOnly={true}
+                      required={true}
+                      type="input"
+                      value="Doh"
+                    />
+                  </FormControl>
+                  <Feedback
+                    type="invalid"
+                  >
+                    <div
+                      className="invalid-feedback"
+                    />
+                  </Feedback>
+                </div>
+              </FormGroup>
+              <Button
+                active={false}
+                className="float-right"
+                disabled={false}
+                id="MyDetailsFormEdit"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "width": 100,
+                  }
+                }
+                type="button"
+                variant="primary"
+              >
+                <button
+                  className="float-right btn btn-primary"
+                  disabled={false}
+                  id="MyDetailsFormEdit"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "width": 100,
+                    }
+                  }
+                  type="button"
+                >
+                  Edit
+                </button>
+              </Button>
+            </form>
+          </Form>
+        </div>
+      </Box>
+    </div>
+  </Row>
+</MyDetailsForm>
 `;
 
 exports[`<MyDetailsForm> @Render should render default state which is not available to edit 1`] = `
-<Row
-  noGutters={false}
+<MyDetailsForm
+  handleSubmit={[MockFunction]}
+  user={
+    Object {
+      "firstName": "Bob",
+      "lastName": "Doh",
+    }
+  }
 >
-  <Box
-    max={500}
+  <Row
+    noGutters={false}
   >
-    <h3
-      className="mb-5"
+    <div
+      className="row"
     >
-      My Details
-    </h3>
-    <Form
-      id="MyDetailsForm"
-      inline={false}
-      onSubmit={[Function]}
-    >
-      <FormGroup
-        className="pb-3"
-        controlId="formPlaintextFirstName"
+      <Box
+        max={500}
       >
-        <FormLabel
-          className="text-muted"
-          column={false}
-          srOnly={false}
-        >
-          First Name:
-        </FormLabel>
-        <FormControl
-          isInvalid={false}
-          name="firstName"
-          onChange={[Function]}
-          placeholder="Bob"
-          readOnly={true}
-          required={true}
-          type="text"
-          value="Bob"
-        />
-      </FormGroup>
-      <FormGroup
-        controlId="formPlaintextPassword"
-      >
-        <FormLabel
-          className="text-muted"
-          column={false}
-          srOnly={false}
-        >
-          Last Name:
-        </FormLabel>
-        <FormControl
-          isInvalid={false}
-          name="lastName"
-          onChange={[Function]}
-          placeholder="Doh"
-          readOnly={true}
-          required={true}
-          type="input"
-          value="Doh"
-        />
-        <Feedback
-          type="invalid"
-        />
-      </FormGroup>
-      <Button
-        active={false}
-        className="float-right"
-        disabled={false}
-        id="MyDetailsFormEdit"
-        onClick={[Function]}
-        style={
-          Object {
-            "width": 100,
+        <div
+          style={
+            Object {
+              "backgroundColor": "#f8f9fa",
+              "border": "solid 1px #ccc",
+              "borderRadius": "8px",
+              "margin": "0 auto",
+              "maxWidth": 500,
+              "padding": "20px 20px",
+              "width": "100%",
+            }
           }
-        }
-        type="button"
-        variant="primary"
-      >
-        Edit
-      </Button>
-    </Form>
-  </Box>
-</Row>
+        >
+          <h3
+            className="mb-5"
+          >
+            My Details
+          </h3>
+          <Form
+            id="MyDetailsForm"
+            inline={false}
+            onSubmit={[Function]}
+          >
+            <form
+              className=""
+              id="MyDetailsForm"
+              onSubmit={[Function]}
+            >
+              <FormGroup
+                className="pb-3"
+                controlId="formPlaintextFirstName"
+              >
+                <div
+                  className="pb-3 form-group"
+                >
+                  <FormLabel
+                    className="text-muted"
+                    column={false}
+                    srOnly={false}
+                  >
+                    <label
+                      className="text-muted form-label"
+                      htmlFor="formPlaintextFirstName"
+                    >
+                      First Name:
+                    </label>
+                  </FormLabel>
+                  <FormControl
+                    isInvalid={false}
+                    name="firstName"
+                    onChange={[Function]}
+                    placeholder="Bob"
+                    readOnly={true}
+                    required={true}
+                    type="text"
+                    value="Bob"
+                  >
+                    <input
+                      className="form-control"
+                      id="formPlaintextFirstName"
+                      name="firstName"
+                      onChange={[Function]}
+                      placeholder="Bob"
+                      readOnly={true}
+                      required={true}
+                      type="text"
+                      value="Bob"
+                    />
+                  </FormControl>
+                </div>
+              </FormGroup>
+              <FormGroup
+                controlId="formPlaintextPassword"
+              >
+                <div
+                  className="form-group"
+                >
+                  <FormLabel
+                    className="text-muted"
+                    column={false}
+                    srOnly={false}
+                  >
+                    <label
+                      className="text-muted form-label"
+                      htmlFor="formPlaintextPassword"
+                    >
+                      Last Name:
+                    </label>
+                  </FormLabel>
+                  <FormControl
+                    isInvalid={false}
+                    name="lastName"
+                    onChange={[Function]}
+                    placeholder="Doh"
+                    readOnly={true}
+                    required={true}
+                    type="input"
+                    value="Doh"
+                  >
+                    <input
+                      className="form-control"
+                      id="formPlaintextPassword"
+                      name="lastName"
+                      onChange={[Function]}
+                      placeholder="Doh"
+                      readOnly={true}
+                      required={true}
+                      type="input"
+                      value="Doh"
+                    />
+                  </FormControl>
+                  <Feedback
+                    type="invalid"
+                  >
+                    <div
+                      className="invalid-feedback"
+                    />
+                  </Feedback>
+                </div>
+              </FormGroup>
+              <Button
+                active={false}
+                className="float-right"
+                disabled={false}
+                id="MyDetailsFormEdit"
+                onClick={[Function]}
+                style={
+                  Object {
+                    "width": 100,
+                  }
+                }
+                type="button"
+                variant="primary"
+              >
+                <button
+                  className="float-right btn btn-primary"
+                  disabled={false}
+                  id="MyDetailsFormEdit"
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "width": 100,
+                    }
+                  }
+                  type="button"
+                >
+                  Edit
+                </button>
+              </Button>
+            </form>
+          </Form>
+        </div>
+      </Box>
+    </div>
+  </Row>
+</MyDetailsForm>
 `;

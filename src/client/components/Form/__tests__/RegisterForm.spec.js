@@ -1,98 +1,78 @@
-import { testRenderer } from '../../../../test/testHelper'
+import {
+  delay,
+  graphRenderer,
+  updateTextInput,
+} from '../../../../test/testHelper'
 import RegisterForm from '../RegisterForm'
+import { act } from 'react-dom/test-utils'
+import { registerMockDataSuccess } from '../../../../test/mockApi/user/userMockMutation'
 
 describe('<RegisterForm>', () => {
-  const baseProps = {
-    handleSubmit: jest.fn(),
-  }
-
   describe('@Render', () => {
-    it('should render', () => {
-      const props = {
-        ...baseProps,
-      }
-      const wrapper = testRenderer(RegisterForm, props)
-      expect(wrapper).toMatchSnapshot()
+    it('should render', async () => {
+      let wrapper
+      await act(async () => {
+        wrapper = graphRenderer(RegisterForm, [], {})
+        await delay()
+      })
+      wrapper.update()
+      expect(wrapper.find(RegisterForm)).toMatchSnapshot()
     })
   })
 
   describe('@Events', () => {
-    describe('onChange', () => {
-      it('should update firstName input', () => {
-        const wrapper = testRenderer(RegisterForm, baseProps)
-        const email = { name: 'firstName' }
-        const expected = 'firstName'
-
-        wrapper.find(email).simulate('change', {
-          persist: jest.fn(),
-          target: {
-            name: 'firstName',
-            value: 'firstName',
-          },
-        })
-
-        expect(wrapper.find(email).prop('value')).toEqual(expected)
-      })
-
-      it('should update laseName input', () => {
-        const wrapper = testRenderer(RegisterForm, baseProps)
-        const email = { name: 'lastName' }
-        const expected = 'lastName'
-
-        wrapper.find(email).simulate('change', {
-          persist: jest.fn(),
-          target: {
-            name: 'lastName',
-            value: 'lastName',
-          },
-        })
-
-        expect(wrapper.find(email).prop('value')).toEqual(expected)
-      })
-
-      it('should update email input', () => {
-        const wrapper = testRenderer(RegisterForm, baseProps)
-        const email = { name: 'email' }
-        const expected = 'test@test.com'
-
-        wrapper.find(email).simulate('change', {
-          persist: jest.fn(),
-          target: {
-            name: 'email',
-            value: 'test@test.com',
-          },
-        })
-
-        expect(wrapper.find(email).prop('value')).toEqual(expected)
-      })
-    })
-
     describe('onSubmit', () => {
-      it('should trigger handleSubmit', () => {
-        const wrapper = testRenderer(RegisterForm, baseProps)
-        const id = '#RegisterForm'
-        wrapper.find(id).props().onSubmit({ preventDefault: jest.fn() })
-        expect(baseProps.handleSubmit).toHaveBeenCalledTimes(1)
-      })
-    })
-  })
+      it('should call "setPageState"', async () => {
+        const props = {
+          setPageState: jest.fn(),
+        }
 
-  describe('@Error', () => {
-    it('should display an error message if error is provided', () => {
-      const props = {
-        ...baseProps,
-        error: {
-          graphQLErrors: [
-            {
-              message: 'This an email error',
-            },
-          ],
-        },
-      }
-      const wrapper = testRenderer(RegisterForm, props)
+        const wrapper = graphRenderer(
+          RegisterForm,
+          [registerMockDataSuccess],
+          props
+        )
 
-      wrapper.find({ type: 'invalid' }).forEach((message, i) => {
-        expect(message.prop('children')).toEqual('This an email error')
+        act(() => {
+          updateTextInput(wrapper, 'firstName', 'unit')
+        })
+
+        wrapper.update()
+
+        act(() => {
+          updateTextInput(wrapper, 'lastName', 'test')
+        })
+
+        wrapper.update()
+
+        act(() => {
+          updateTextInput(wrapper, 'email', 'unit@test.com')
+        })
+
+        wrapper.update()
+
+        act(() => {
+          updateTextInput(wrapper, 'newPassword', '1234')
+        })
+
+        wrapper.update()
+
+        act(() => {
+          updateTextInput(wrapper, 'confirmPassword', '1234')
+        })
+
+        wrapper.update()
+
+        await act(async () => {
+          await wrapper.find('#RegisterForm').get(0).props.onSubmit({
+            preventDefault: jest.fn(),
+          })
+          await delay()
+        })
+
+        wrapper.update()
+
+        expect(props.setPageState).toHaveBeenCalledTimes(1)
       })
     })
   })

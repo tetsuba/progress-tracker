@@ -1,37 +1,20 @@
-import React from 'react'
-import { useMutation } from '@apollo/react-hooks'
+import React, { useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 
 // COMPONENTS
-import Loading from '../../components/Loading/Loading'
 import RegisterForm from '../../components/Form/RegisterForm'
 
-// MUTATIONS
-import { REGISTER_NEW_USER_MUTATION } from '../../api/user/user.mutation'
+type Props = {
+  pageState: string,
+}
 
-// UTILS
-import { getRegistrationStatus } from '../screens-utils'
-
-export default function Register() {
-  const [registerNewUser, registerNewUserOptions] = useMutation(
-    REGISTER_NEW_USER_MUTATION
-  )
-  // TODO: loading spinner not ideal. Look for another solution
+export default function Register(props: Props) {
+  const [pageState, setPageState] = useState(props.pageState)
   return (
     <Container className="pt-5">
-      {registerNewUserOptions.loading && (
-        <Loading fade={registerNewUserOptions.loading} />
-      )}
       {
         {
-          register: (
-            <RegisterForm
-              error={registerNewUserOptions.error}
-              handleSubmit={(options) => {
-                registerNewUser(options).catch((err) => console.log('error'))
-              }}
-            />
-          ),
+          register: <RegisterForm setPageState={setPageState} />,
           success: (
             <Row>
               <Col>
@@ -41,8 +24,12 @@ export default function Register() {
               </Col>
             </Row>
           ),
-        }[getRegistrationStatus(registerNewUserOptions)]
+        }[pageState]
       }
     </Container>
   )
+}
+
+Register.defaultProps = {
+  pageState: 'register',
 }

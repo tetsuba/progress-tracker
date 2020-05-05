@@ -9,36 +9,15 @@
 .*/src/setupTests.*
 .*/src/serviceWorker.*
 .*/src/index.*
-# .*/src/client/api/.*
-# .*/src/client/const/.*
 .*/src/client/context/.*
-# .*/src/client/hooks.*
 .*/src/client/routes/.*
 .*/src/client/App.*
 
-# .*/src/client/components/Form/EmailVerificationForm.jsx
-# .*/src/client/components/Form/ForgotMyPasswordForm.jsx
-# .*/src/client/components/Form/LoginForm.jsx
-# .*/src/client/components/Form/ResetPasswordForm.jsx
-
-.*/src/client/components/Form/MyAccountForm.jsx
-.*/src/client/components/Form/MyDetailsForm.jsx
-.*/src/client/components/Form/PasswordInputs.jsx
-.*/src/client/components/Form/RegisterForm.jsx
-
 .*/src/client/components/Modal/.*
 
-.*/src/client/screens/screens-utils.js
 .*/src/client/screens/Course/.*
-.*/src/client/screens/MyAccount/.*
-.*/src/client/screens/Register/.*
 .*/src/client/screens/Student/.*
 .*/src/client/screens/Students/.*
-
-# .*/src/client/screens/Login/.*
-# .*/src/client/screens/ConfirmAccount/.*
-# .*/src/client/screens/ResetPassword/.*
-# .*/src/client/screens/Home/.*
 
 [include]
 
