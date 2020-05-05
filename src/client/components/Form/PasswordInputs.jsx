@@ -7,7 +7,21 @@ import PasswordStrength from '../PasswordStrength/PasswordStrength'
 // UTILS
 import { passwordMatchError } from './form-utils'
 
-export default function PasswordInputs(props) {
+// TYPES
+import type { eventType } from '../../types/eventType'
+
+type inputsTypes = {
+  newPassword: string,
+  confirmPassword: string,
+}
+
+type Props = {
+  inputs: inputsTypes,
+  setInputs: (e: eventType) => void,
+  register: boolean,
+}
+
+export default function PasswordInputs(props: Props) {
   const { register, inputs, setInputs } = props
   const passwordMissMatchError = passwordMatchError(inputs)
 

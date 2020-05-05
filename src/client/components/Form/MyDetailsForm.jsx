@@ -2,10 +2,23 @@ import React, { useState } from 'react'
 import { Button, Form, Row } from 'react-bootstrap'
 import Box from '../Box/Box'
 import { useInputChange } from '../../hooks/hooks'
+import { useMutation } from '@apollo/react-hooks'
+import { UPDATE_USER_DETAILS_MUTATION } from '../../api/user/user.mutation'
+import { GET_USER_DETAILS_QUERY } from '../../api/user/user.query'
 
-export default function MyDetailsForm(props) {
-  const { handleSubmit, user, error } = props
-  const errorMessage = error && error.graphQLErrors[0].message
+// TYPES
+import type { userDetailsType } from '../../types/userType'
+
+type Props = {
+  user: userDetailsType,
+}
+
+export default function MyDetailsForm(props: Props) {
+  const { user } = props
+  const [updateUserDetails] = useMutation(UPDATE_USER_DETAILS_MUTATION, {
+    refetchQueries: [{ query: GET_USER_DETAILS_QUERY }],
+  })
+  const [errorMessage, setErrorMessage] = useState('')
   const [inputs, setInputs] = useInputChange({
     firstName: user.firstName,
     lastName: user.lastName,
@@ -27,7 +40,11 @@ export default function MyDetailsForm(props) {
           id="MyDetailsForm"
           onSubmit={(e) => {
             e.preventDefault()
-            handleSubmit(options, setShowFormElement)
+            updateUserDetails(options)
+              .then(() => setShowFormElement(false))
+              .catch(({ graphQLErrors }) =>
+                setErrorMessage(graphQLErrors[0].message)
+              )
           }}
         >
           <Form.Group controlId="formPlaintextFirstName" className="pb-3">

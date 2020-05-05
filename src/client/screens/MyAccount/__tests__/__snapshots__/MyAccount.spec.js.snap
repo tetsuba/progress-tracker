@@ -72,7 +72,6 @@ exports[`<MyAccount> Should render 1`] = `
         </Row>
       </BreadCrumbs>
       <MyDetailsForm
-        handleSubmit={[Function]}
         user={
           Object {
             "email": "test@test.com",

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useMutation, useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/react-hooks'
 
 // COMPONENTS
 import { Container, Row } from 'react-bootstrap'
@@ -8,9 +8,6 @@ import MyDetailsForm from '../../components/Form/MyDetailsForm'
 
 // QUERY
 import { GET_USER_DETAILS_QUERY } from '../../api/user/user.query'
-
-// MUTATION
-import { UPDATE_USER_DETAILS_MUTATION } from '../../api/user/user.mutation'
 
 // COMPONENTS
 import Box from '../../components/Box/Box'
@@ -23,32 +20,21 @@ const crumbs = [
   { path: '', name: 'My Account' },
 ]
 
-export default function MyAccount(props) {
-  const { loading, data } = useQuery(GET_USER_DETAILS_QUERY)
-  const [updateUserDetails, updateUserDetailsOptions] = useMutation(
-    UPDATE_USER_DETAILS_MUTATION,
-    {
-      refetchQueries: [{ query: GET_USER_DETAILS_QUERY }],
-    }
-  )
-  const [pageState, setPageState] = useState(props.pageState)
+type Props = {
+  pageState: string,
+}
 
-  console.log('MyAccount', data)
+export default function MyAccount(props: Props) {
+  // $FlowFixMe - Passing query data to a child component throws an error
+  const { loading, data } = useQuery(GET_USER_DETAILS_QUERY)
+  const [pageState, setPageState] = useState(props.pageState)
 
   return loading ? (
     <Loading />
   ) : (
     <Container className="pt-5">
       <BreadCrumbs crumbs={crumbs} />
-      <MyDetailsForm
-        handleSubmit={(options, setShowFormElement) => {
-          updateUserDetails(options)
-            .then(() => setShowFormElement(false))
-            .catch(() => console.log('Error!'))
-        }}
-        error={updateUserDetailsOptions.error}
-        user={data.getUserDetails}
-      />
+      <MyDetailsForm user={data.getUserDetails} />
 
       <Row className="mt-5">
         {

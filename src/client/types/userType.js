@@ -5,6 +5,12 @@ export type userType = {
   password: string,
 }
 
+export type userDetailsType = {
+  firstName: string,
+  lastName: string,
+  email: string,
+}
+
 export type userPasswordType = {
   password: string,
   token?: string,
