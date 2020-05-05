@@ -12,8 +12,8 @@ describe('@Forgot My Password', () => {
   describe('Submits a valid email address', () => {
     it('should display a success message', () => {
       cy.submitForgotMyPassword(validEmail)
-        .get('h3')
-        .contains('Please check your email')
+        .get('#LoginSuccess > h3')
+        .contains('Please check your email.')
     })
   })
 

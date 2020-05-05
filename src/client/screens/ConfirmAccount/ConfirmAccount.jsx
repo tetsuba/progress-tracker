@@ -1,38 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { useMutation, useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/react-hooks'
 
 // COMPONENTS
 import { Col, Container, Row } from 'react-bootstrap'
 import EmailVerificationForm from '../../components/Form/EmailVerificationForm'
+import Loading from '../../components/Loading/Loading'
 
 // QUERY
 import { VALIDATE_USER_EMAIL_QUERY } from '../../api/user/user.query'
-import { VERIFY_USER_EMAIL_MUTATION } from '../../api/user/user.mutation'
 
-// UTILS
-import { getConfirmAccountStatus } from '../screens-utils'
+// TYPES
+type Props = {
+  pageState: string,
+}
 
-export default function ConfirmAccount() {
-  let { token } = useParams()
-  token = decodeURIComponent(token)
-  const variables = { token }
-  const confirmToken = useQuery(VALIDATE_USER_EMAIL_QUERY, { variables })
-  const [verifyUserEmail, verifyUserEmailOptions] = useMutation(
-    VERIFY_USER_EMAIL_MUTATION
-  )
+export default function ConfirmAccount(props: Props) {
+  const { token } = useParams()
+  const variables = { token: token ? decodeURIComponent(token) : '' }
+  const { error, data } = useQuery(VALIDATE_USER_EMAIL_QUERY, { variables })
+  const [pageState, setPageSate] = useState(props.pageState)
+
+  useEffect(() => {
+    if (data) setPageSate('accountVerified')
+    if (error) setPageSate('tokenExpired')
+  }, [error, data])
 
   return (
     <Container className="pt-5">
       <Row>
         {
           {
+            loading: <Loading />,
             tokenExpired: (
               <EmailVerificationForm
-                error={verifyUserEmailOptions.error}
-                handleSubmit={(options) => {
-                  verifyUserEmail(options).catch(() => console.log('error'))
-                }}
+                setPageState={(state) => setPageSate(state)}
               >
                 <h3 className="text-danger">
                   Email verification session expired
@@ -55,10 +57,13 @@ export default function ConfirmAccount() {
                 <h3>Please check your email.</h3>
               </Col>
             ),
-            default: <div></div>,
-          }[getConfirmAccountStatus(confirmToken, verifyUserEmailOptions)]
+          }[pageState]
         }
       </Row>
     </Container>
   )
+}
+
+ConfirmAccount.defaultProps = {
+  pageState: 'loading',
 }

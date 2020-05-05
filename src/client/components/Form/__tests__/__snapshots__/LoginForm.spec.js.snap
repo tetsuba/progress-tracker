@@ -1,76 +1,172 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<FormLogin> @Render should render 1`] = `
-<Box
-  max={500}
+exports[`<LoginForm> @Render should render the default state 1`] = `
+<LoginForm
+  setPageSate={[MockFunction]}
 >
-  <Col>
-    <h3>
-      Login
-    </h3>
-    <Form
-      id="LoginForm"
-      inline={false}
-      onSubmit={[Function]}
+  <Box
+    max={500}
+  >
+    <div
+      style={
+        Object {
+          "backgroundColor": "#f8f9fa",
+          "border": "solid 1px #ccc",
+          "borderRadius": "8px",
+          "margin": "0 auto",
+          "maxWidth": 500,
+          "padding": "20px 20px",
+          "width": "100%",
+        }
+      }
     >
-      <FormGroup
-        controlId="loginEmail"
-      >
-        <FormLabel
-          column={false}
-          srOnly={false}
+      <Col>
+        <div
+          className="col"
         >
-          Email address
-        </FormLabel>
-        <FormControl
-          isInvalid={false}
-          name="email"
-          onChange={[Function]}
-          placeholder="Enter email"
-          required={true}
-          type="email"
-          value="test@test.com"
-        />
-        <Feedback
-          type="invalid"
-        />
-      </FormGroup>
-      <FormGroup
-        controlId="loginPassword"
-      >
-        <FormLabel
-          column={false}
-          srOnly={false}
-        >
-          Password
-        </FormLabel>
-        <FormControl
-          isInvalid={false}
-          name="password"
-          onChange={[Function]}
-          placeholder="Password"
-          required={true}
-          type="password"
-          value="1234qwer"
-        />
-        <Feedback
-          type="invalid"
-        />
-      </FormGroup>
-      <Button
-        active={false}
-        className="float-right"
-        disabled={false}
-        id="LoginFormSubmit"
-        type="submit"
-        variant="primary"
-      >
-        Login
-      </Button>
-    </Form>
-    <TextLink>
-      Forgot password?
-    </TextLink>
-  </Col>
-</Box>
+          <h3>
+            Login
+          </h3>
+          <Form
+            id="LoginForm"
+            inline={false}
+            onSubmit={[Function]}
+          >
+            <form
+              className=""
+              id="LoginForm"
+              onSubmit={[Function]}
+            >
+              <FormGroup
+                controlId="loginEmail"
+              >
+                <div
+                  className="form-group"
+                >
+                  <FormLabel
+                    column={false}
+                    srOnly={false}
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="loginEmail"
+                    >
+                      Email address
+                    </label>
+                  </FormLabel>
+                  <FormControl
+                    isInvalid={false}
+                    name="email"
+                    onChange={[Function]}
+                    placeholder="Enter email"
+                    required={true}
+                    type="email"
+                    value="test@test.com"
+                  >
+                    <input
+                      className="form-control"
+                      id="loginEmail"
+                      name="email"
+                      onChange={[Function]}
+                      placeholder="Enter email"
+                      required={true}
+                      type="email"
+                      value="test@test.com"
+                    />
+                  </FormControl>
+                  <Feedback
+                    type="invalid"
+                  >
+                    <div
+                      className="invalid-feedback"
+                    />
+                  </Feedback>
+                </div>
+              </FormGroup>
+              <FormGroup
+                controlId="loginPassword"
+              >
+                <div
+                  className="form-group"
+                >
+                  <FormLabel
+                    column={false}
+                    srOnly={false}
+                  >
+                    <label
+                      className="form-label"
+                      htmlFor="loginPassword"
+                    >
+                      Password
+                    </label>
+                  </FormLabel>
+                  <FormControl
+                    isInvalid={false}
+                    name="password"
+                    onChange={[Function]}
+                    placeholder="Password"
+                    required={true}
+                    type="password"
+                    value="1234qwer"
+                  >
+                    <input
+                      className="form-control"
+                      id="loginPassword"
+                      name="password"
+                      onChange={[Function]}
+                      placeholder="Password"
+                      required={true}
+                      type="password"
+                      value="1234qwer"
+                    />
+                  </FormControl>
+                  <Feedback
+                    type="invalid"
+                  >
+                    <div
+                      className="invalid-feedback"
+                    />
+                  </Feedback>
+                </div>
+              </FormGroup>
+              <Button
+                active={false}
+                className="float-right"
+                disabled={false}
+                id="LoginFormSubmit"
+                type="submit"
+                variant="primary"
+              >
+                <button
+                  className="float-right btn btn-primary"
+                  disabled={false}
+                  id="LoginFormSubmit"
+                  type="submit"
+                >
+                  Login
+                </button>
+              </Button>
+            </form>
+          </Form>
+          <TextLink
+            eventHandler={[Function]}
+          >
+            <span
+              id="TextLink"
+              onClick={[Function]}
+              style={
+                Object {
+                  "color": "#007bff",
+                  "cursor": "pointer",
+                }
+              }
+            >
+              Forgot password?
+            </span>
+          </TextLink>
+        </div>
+      </Col>
+    </div>
+  </Box>
+</LoginForm>
 `;

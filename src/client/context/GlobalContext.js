@@ -1,12 +1,18 @@
-import React, { Component } from 'react'
+import * as React from 'react'
+// $FlowFixMe
 import ModalCtx from '../components/Modal/ModalContext'
-import AuthenticatedCxt from './AuthenticatedContext'
+// $FlowFixMe
+import AuthenticatedProvider from './AuthenticatedContext'
 
-export default class GlobalContext extends Component {
+type Props = {
+  children: React.Node,
+}
+
+export default class GlobalContext extends React.Component<Props> {
   render() {
     return (
       <ModalCtx>
-        <AuthenticatedCxt>{this.props.children}</AuthenticatedCxt>
+        <AuthenticatedProvider>{this.props.children}</AuthenticatedProvider>
       </ModalCtx>
     )
   }

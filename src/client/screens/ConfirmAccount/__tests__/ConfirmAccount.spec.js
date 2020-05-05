@@ -1,16 +1,11 @@
 import { act } from 'react-dom/test-utils'
-import {
-  delay,
-  graphRenderer,
-  updateTextInput,
-} from '../../../../test/testHelper'
+import { delay, graphRenderer } from '../../../../test/testHelper'
 import ConfirmAccount from '../ConfirmAccount'
-import EmailVerificationForm from '../../../components/Form/EmailVerificationForm'
+
 import {
-  confirmTokenQueryError,
-  confirmTokenQuerySuccess,
-} from '../../../../test/mockApi/token/tokenMockQuery'
-import { verifyUserEmailMutationSuccess } from '../../../../test/mockApi/user/userMockMutation'
+  validateUserEmailQuerySuccess,
+  validateUserEmailQueryError,
+} from '../../../../test/mockApi/user/userMockQuery'
 
 jest.mock('react-router-dom', () => ({
   useParams: jest.fn().mockReturnValue({ token: 'confirmToken1234' }),
@@ -18,62 +13,86 @@ jest.mock('react-router-dom', () => ({
 }))
 
 describe('<ConfirmAccount>', () => {
-  describe('Initial render', () => {
-    // TODO: account verified should be email verified
-    describe('Account verified token not expired', () => {
-      it('should render account verified message', async () => {
-        let wrapper
+  describe('@Render', () => {
+    it('should render "loading"', async () => {
+      let wrapper
+      await act(async () => {
+        wrapper = graphRenderer(
+          ConfirmAccount,
+          [validateUserEmailQuerySuccess],
+          { pageState: 'loading' }
+        )
+        await delay()
+      })
+      expect(wrapper.find(ConfirmAccount)).toMatchSnapshot()
+    })
+    it('should render "tokenExpired"', async () => {
+      let wrapper
+      await act(async () => {
+        wrapper = graphRenderer(
+          ConfirmAccount,
+          [validateUserEmailQuerySuccess],
+          { pageState: 'tokenExpired' }
+        )
+        await delay()
+      })
+      expect(wrapper.find(ConfirmAccount)).toMatchSnapshot()
+    })
+    it('should render "accountVerified"', async () => {
+      let wrapper
+      await act(async () => {
+        wrapper = graphRenderer(
+          ConfirmAccount,
+          [validateUserEmailQuerySuccess],
+          { pageState: 'accountVerified' }
+        )
+        await delay()
+      })
+      expect(wrapper.find(ConfirmAccount)).toMatchSnapshot()
+    })
+    it('should render "success"', async () => {
+      let wrapper
+      await act(async () => {
+        wrapper = graphRenderer(
+          ConfirmAccount,
+          [validateUserEmailQuerySuccess],
+          { pageState: 'success' }
+        )
+        await delay()
+      })
+      expect(wrapper.find(ConfirmAccount)).toMatchSnapshot()
+    })
+  })
 
+  describe('@Query', () => {
+    describe('Success', () => {
+      it('should render "accountVerified"', async () => {
+        let wrapper
         await act(async () => {
           wrapper = graphRenderer(
             ConfirmAccount,
-            [confirmTokenQuerySuccess],
+            [validateUserEmailQuerySuccess],
             {}
           )
           await delay()
         })
-
         wrapper.update()
         expect(wrapper.find(ConfirmAccount)).toMatchSnapshot()
       })
     })
-
-    describe('Account verified token expired', () => {
-      let wrapper
-      beforeEach(async () => {
+    describe('Error', () => {
+      it('should render "tokenExpired"', async () => {
+        let wrapper
         await act(async () => {
           wrapper = graphRenderer(
             ConfirmAccount,
-            [confirmTokenQueryError, verifyUserEmailMutationSuccess],
+            [validateUserEmailQueryError],
             {}
           )
           await delay()
         })
         wrapper.update()
-      })
-
-      it('should render email verification form', async () => {
-        expect(wrapper.find(EmailVerificationForm)).toMatchSnapshot()
-      })
-
-      describe('A user submits a valid email address', () => {
-        it('should render "success"', async () => {
-          act(() => {
-            updateTextInput(wrapper, 'email', 'test@test.com')
-          })
-
-          wrapper.update()
-
-          await act(async () => {
-            await wrapper.find('#EmailVerificationForm').get(0).props.onSubmit({
-              preventDefault: jest.fn(),
-            })
-            await delay()
-          })
-
-          wrapper.update()
-          expect(wrapper.find(ConfirmAccount)).toMatchSnapshot()
-        })
+        expect(wrapper.find(ConfirmAccount)).toMatchSnapshot()
       })
     })
   })

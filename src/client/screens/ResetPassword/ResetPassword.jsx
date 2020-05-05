@@ -1,35 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { Link, useParams } from 'react-router-dom'
-import { useMutation, useQuery } from '@apollo/react-hooks'
-
-// QUERIES
-import { CONFIRM_TOKEN_QUERY } from '../../api/token/token.query'
-
-// MUTATIONS
-import {
-  RESET_USER_PASSWORD_MUTATION,
-  REQUEST_PASSWORD_RESET_MUTATION,
-} from '../../api/user/user.mutation'
+import { useQuery } from '@apollo/react-hooks'
 
 // COMPONENTS
 import Loading from '../../components/Loading/Loading'
 import ForgotMyPasswordForm from '../../components/Form/ForgotMyPasswordForm'
 import ResetPasswordForm from '../../components/Form/ResetPasswordForm'
 
-// UTILS
-import { getRestPasswordStatus } from '../screens-utils'
+// QUERIES
+import { CONFIRM_TOKEN_QUERY } from '../../api/token/token.query'
 
-export default function ResetPassword() {
+// TYPES
+type Props = {
+  pageState: string,
+}
+
+export default function ResetPassword(props: Props) {
   const { token } = useParams()
   const variables = { token: token ? decodeURIComponent(token) : '' }
-  const confirmation = useQuery(CONFIRM_TOKEN_QUERY, { variables })
-  const [resetUserPassword, resetUserPasswordOptions] = useMutation(
-    RESET_USER_PASSWORD_MUTATION
-  )
-  const [requestPasswordReset, requestPasswordResetOptions] = useMutation(
-    REQUEST_PASSWORD_RESET_MUTATION
-  )
+  const { error, data } = useQuery(CONFIRM_TOKEN_QUERY, { variables })
+  const [pageState, setPageSate] = useState(props.pageState)
+
+  useEffect(() => {
+    if (data) setPageSate('form')
+    if (error) setPageSate('error')
+  }, [error, data])
 
   return (
     <Container className="pt-5">
@@ -38,9 +34,7 @@ export default function ResetPassword() {
           loading: <Loading />,
           form: (
             <ResetPasswordForm
-              handleSubmit={(options) => {
-                resetUserPassword(options).catch(() => console.log('error'))
-              }}
+              setPageState={(state) => setPageSate(state)}
               token={token || ''}
             />
           ),
@@ -56,12 +50,7 @@ export default function ResetPassword() {
           ),
           /* token expired */
           error: (
-            <ForgotMyPasswordForm
-              handleSubmit={(options) => {
-                requestPasswordReset(options).catch(() => console.log('error'))
-              }}
-              error={requestPasswordResetOptions.error}
-            >
+            <ForgotMyPasswordForm setPageState={(state) => setPageSate(state)}>
               <h3 className="text-danger">This session has expired!</h3>
               <p>
                 Enter your email address and we will send you a link to reset
@@ -69,14 +58,12 @@ export default function ResetPassword() {
               </p>
             </ForgotMyPasswordForm>
           ),
-        }[
-          getRestPasswordStatus(
-            confirmation,
-            resetUserPasswordOptions,
-            requestPasswordResetOptions
-          )
-        ]
+        }[pageState]
       }
     </Container>
   )
+}
+
+ResetPassword.defaultProps = {
+  pageState: 'loading',
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useMutation, useQuery } from '@apollo/react-hooks'
 
 // COMPONENTS
@@ -10,15 +10,11 @@ import MyDetailsForm from '../../components/Form/MyDetailsForm'
 import { GET_USER_DETAILS_QUERY } from '../../api/user/user.query'
 
 // MUTATION
-import {
-  REQUEST_PASSWORD_RESET_MUTATION,
-  UPDATE_USER_DETAILS_MUTATION,
-} from '../../api/user/user.mutation'
+import { UPDATE_USER_DETAILS_MUTATION } from '../../api/user/user.mutation'
 
 // COMPONENTS
 import Box from '../../components/Box/Box'
 import ForgotMyPasswordForm from '../../components/Form/ForgotMyPasswordForm'
-import { getResetPasswordStatus } from '../screens-utils'
 import Loading from '../../components/Loading/Loading'
 
 // BREADCRUMBS
@@ -27,7 +23,7 @@ const crumbs = [
   { path: '', name: 'My Account' },
 ]
 
-export default function MyAccount() {
+export default function MyAccount(props) {
   const { loading, data } = useQuery(GET_USER_DETAILS_QUERY)
   const [updateUserDetails, updateUserDetailsOptions] = useMutation(
     UPDATE_USER_DETAILS_MUTATION,
@@ -35,9 +31,9 @@ export default function MyAccount() {
       refetchQueries: [{ query: GET_USER_DETAILS_QUERY }],
     }
   )
-  const [requestPasswordReset, requestPasswordResetOptions] = useMutation(
-    REQUEST_PASSWORD_RESET_MUTATION
-  )
+  const [pageState, setPageState] = useState(props.pageState)
+
+  console.log('MyAccount', data)
 
   return loading ? (
     <Loading />
@@ -59,13 +55,9 @@ export default function MyAccount() {
           {
             resetPassword: (
               <ForgotMyPasswordForm
-                handleSubmit={(options) => {
-                  requestPasswordReset(options).catch(() =>
-                    console.log('error')
-                  )
-                }}
+                setPageState={(state) => setPageState(state)}
                 hideEmailInput
-                defualtEmail={data.getUserDetails.email}
+                defaultEmail={data.getUserDetails.email}
                 buttonText="Send"
               >
                 <h3>Request for a password reset</h3>
@@ -81,7 +73,7 @@ export default function MyAccount() {
                 <p>Click on the link to reset your password.</p>
               </Box>
             ),
-          }[getResetPasswordStatus(requestPasswordResetOptions)]
+          }[pageState]
         }
       </Row>
 
@@ -93,4 +85,8 @@ export default function MyAccount() {
       </Row>
     </Container>
   )
+}
+
+MyAccount.defaultProps = {
+  pageState: 'resetPassword',
 }

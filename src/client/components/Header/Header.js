@@ -1,6 +1,9 @@
 import React, { Fragment, useContext } from 'react'
 import { Nav, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+
+// CONTEXT
+// $FlowFixMe - Investigate how to fix this issue
 import { AuthenticatedContext } from '../../context/AuthenticatedContext'
 
 export const Header = () => {
@@ -36,7 +39,7 @@ export const Header = () => {
               <Link
                 className="nav-link"
                 to="/login"
-                onClick={() => userLogout(false)}
+                onClick={() => userLogout('')}
               >
                 Logout
               </Link>

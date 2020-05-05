@@ -1,12 +1,14 @@
-import { testRenderer } from '../../../../test/testHelper'
+import { delay, graphRenderer } from '../../../../test/testHelper'
 
 // COMPONENTS
 import ResetPasswordForm from '../ResetPasswordForm'
+import { act } from 'react-dom/test-utils'
+import { resetUserPasswordSuccess } from '../../../../test/mockApi/user/userMockMutation'
 
 describe('<ResetPasswordForm>', () => {
   const props = {
-    token: 'token1234',
-    handleSubmit: jest.fn(),
+    token: 'confirmToken1234',
+    setPageState: jest.fn(),
   }
 
   function updateInput(wrapper, name, value) {
@@ -18,51 +20,43 @@ describe('<ResetPasswordForm>', () => {
 
   describe('@Render', () => {
     it('should render reset password form', () => {
-      const wrapper = testRenderer(ResetPasswordForm, props)
-      expect(wrapper).toMatchSnapshot()
-    })
-
-    it('should disable button if passwords do not match', () => {
-      const wrapper = testRenderer(ResetPasswordForm, props)
-      updateInput(wrapper, 'newPassword', '123456')
-      updateInput(wrapper, 'confirmPassword', '123457')
-      expect(wrapper.find({ type: 'submit' }).prop('disabled')).toBeTruthy()
+      const wrapper = graphRenderer(ResetPasswordForm, [], props)
+      expect(wrapper.find(ResetPasswordForm)).toMatchSnapshot()
     })
   })
 
   describe('@Events', () => {
-    it('should update newPassword input with event onChange', async () => {
-      const wrapper = testRenderer(ResetPasswordForm, props)
-      const name = 'newPassword'
-      const value = '123456'
-      updateInput(wrapper, name, value)
-      expect(wrapper.find({ name }).get(0).props.value).toEqual(value)
-    })
+    describe('onSubmit', () => {
+      it('should call props setPageState', async () => {
+        const wrapper = graphRenderer(
+          ResetPasswordForm,
+          [resetUserPasswordSuccess],
+          props
+        )
 
-    it('should update confirmPassword input with event onChange', async () => {
-      const wrapper = testRenderer(ResetPasswordForm, [], props)
-      const name = 'confirmPassword'
-      const value = '123456'
-      updateInput(wrapper, name, value)
-      expect(wrapper.find({ name }).get(0).props.value).toEqual(value)
-    })
+        act(() => {
+          updateInput(wrapper, 'newPassword', 'password01')
+        })
 
-    it('should call event onSubmit', () => {
-      const wrapper = testRenderer(ResetPasswordForm, props)
-      const id = '#ResetPasswordForm'
-      wrapper.find(id).simulate('submit', { preventDefault: jest.fn() })
-      expect(props.handleSubmit).toHaveBeenCalledTimes(1)
-    })
-  })
+        wrapper.update()
 
-  describe('@Error', () => {
-    it('should render an error message if passwords do not match', async () => {
-      const wrapper = testRenderer(ResetPasswordForm, props)
-      updateInput(wrapper, 'newPassword', '123456')
-      updateInput(wrapper, 'confirmPassword', '123457')
-      expect(wrapper.find({ type: 'invalid' }).prop('children')).toEqual(
-        'Passwords do not match!!!'
-      )
+        act(() => {
+          updateInput(wrapper, 'confirmPassword', 'password01')
+        })
+
+        wrapper.update()
+
+        await act(async () => {
+          wrapper
+            .find('form#ResetPasswordForm')
+            .simulate('submit', { preventDefault: jest.fn() })
+          await delay()
+        })
+
+        wrapper.update()
+
+        expect(props.setPageState).toHaveBeenCalledTimes(1)
+      })
     })
   })
 })

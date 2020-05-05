@@ -9,3 +9,15 @@ export type userPasswordType = {
   password: string,
   token?: string,
 }
+
+export type UserTokenType = {
+  token: string | void,
+}
+
+export type LoginUserType = {
+  loginUser?: UserTokenType,
+}
+
+export type UserDataType = {
+  data?: LoginUserType,
+}

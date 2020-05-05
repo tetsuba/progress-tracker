@@ -2,7 +2,17 @@ import React from 'react'
 import { Breadcrumb, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-export default function BreadCrumbs({ crumbs }) {
+type CrumbType = {
+  path: string,
+  name: string,
+}
+
+type Props = {
+  crumbs: Array<CrumbType>,
+}
+
+export default function BreadCrumbs(props: Props) {
+  const { crumbs } = props
   function addCrumb({ path, name }) {
     return path ? (
       <li key={name} className="breadcrumb-item">

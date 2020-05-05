@@ -22,13 +22,32 @@ export const verifyUserEmailMutationSuccess = {
   },
 }
 
-export const loginMockDataSuccess = {
+export const verifyUserEmailMutationError = {
+  request: {
+    query: VERIFY_USER_EMAIL_MUTATION,
+    variables: {
+      input: {
+        email: 'test@test.com',
+      },
+    },
+  },
+  result: {
+    errors: [
+      {
+        name: 'email_does_not_exist',
+        message: 'Email does not exist',
+      },
+    ],
+  },
+}
+
+export const loginUserMutationSuccess = {
   request: {
     query: LOGIN_USER_MUTATION,
     variables: {
       input: {
         email: 'test@test.com',
-        password: '1234',
+        password: 'password01',
       },
     },
   },
@@ -38,6 +57,46 @@ export const loginMockDataSuccess = {
         token: 'token',
       },
     },
+  },
+}
+
+export const loginUserMutationError = {
+  request: {
+    query: LOGIN_USER_MUTATION,
+    variables: {
+      input: {
+        email: 'test@test.com',
+        password: 'password01',
+      },
+    },
+  },
+  result: {
+    errors: [
+      {
+        name: 'incorrect_user_details',
+        message: 'You have entered incorrect username or password',
+      },
+    ],
+  },
+}
+
+export const loginUserMutationErrorNotVerified = {
+  request: {
+    query: LOGIN_USER_MUTATION,
+    variables: {
+      input: {
+        email: 'test@test.com',
+        password: 'password01',
+      },
+    },
+  },
+  result: {
+    errors: [
+      {
+        name: 'email_not_verified',
+        message: 'Email not verified',
+      },
+    ],
   },
 }
 
@@ -88,7 +147,7 @@ export const resetUserPasswordSuccess = {
     variables: {
       input: {
         token: 'confirmToken1234',
-        password: '1234',
+        password: 'password01',
       },
     },
   },
@@ -116,6 +175,25 @@ export const passwordResetMockDataSuccess = {
         success: 'confirmation',
       },
     },
+  },
+}
+
+export const passwordResetMockDataError = {
+  request: {
+    query: REQUEST_PASSWORD_RESET_MUTATION,
+    variables: {
+      input: {
+        email: 'test@test.com',
+      },
+    },
+  },
+  result: {
+    errors: [
+      {
+        name: 'email_does_not_exist',
+        message: 'Email does not exist',
+      },
+    ],
   },
 }
 

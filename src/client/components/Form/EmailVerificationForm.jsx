@@ -1,21 +1,31 @@
-import React from 'react'
+import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Form, Col } from 'react-bootstrap'
 
-// HOOKS
-import { useInputChange } from '../../hooks/hooks'
-
 // COMPONENTS
 import Box from '../Box/Box'
+
+// HOOKS
+import { useInputChange } from '../../hooks/hooks'
+import { useMutation } from '@apollo/react-hooks'
 
 // ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
 
-export default function EmailVerificationForm(props) {
-  const { handleSubmit, error, backButton, children } = props
-  const errorMessage = error && error.graphQLErrors[0].message
+// MUTATIONS
+import { VERIFY_USER_EMAIL_MUTATION } from '../../api/user/user.mutation'
+
+type Props = {
+  children: React.Node,
+  setPageState: (string) => void,
+}
+
+export default function EmailVerificationForm(props: Props) {
+  const { children, setPageState } = props
   const [inputs, setInputs] = useInputChange({ email: '' })
+  const [verifyUserEmail] = useMutation(VERIFY_USER_EMAIL_MUTATION)
+  const [errorMessage, setErrorMessage] = React.useState('')
   const options = { variables: { input: inputs } }
 
   return (
@@ -26,7 +36,11 @@ export default function EmailVerificationForm(props) {
           id="EmailVerificationForm"
           onSubmit={(e) => {
             e.preventDefault()
-            handleSubmit(options)
+            verifyUserEmail(options)
+              .then(() => setPageState('success'))
+              .catch(({ graphQLErrors }) => {
+                setErrorMessage(graphQLErrors[0].message)
+              })
           }}
         >
           <Form.Group controlId="EmailVerificationEmail">
@@ -55,7 +69,7 @@ export default function EmailVerificationForm(props) {
             Send
           </Button>
         </Form>
-        {backButton && (
+        {setPageState && (
           <Link to="/">
             <FontAwesomeIcon icon={faCaretLeft} /> back
           </Link>
