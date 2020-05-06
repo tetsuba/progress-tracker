@@ -57,6 +57,7 @@
     "pretty": "prettier \"src/server/**/*.js\" \"src/client/**/*.js\" \"src/client/**/*.jsx\" \"cypress/**/*.js\"",
     "pretty:check": "yarn pretty --check",
     "pretty:write": "yarn pretty --write",
+    "pretty:pretty-quick": "pretty-quick --staged --pattern \"src/server/**/*.js\" --pattern \"src/client/**/*.js\" --pattern \"src/client/**/*.jsx\" --pattern \"cypress/**/*.js\"",
     "lint": "eslint src --ext .jsx --ext .js",
     "ci:test:unit": "react-scripts test --env=jsdom --testPathPattern=\"./src/client/\"",
     "ci:test:integration": "react-scripts test --watchAll=false --env=node --testPathPattern=\"./src/server/\"",
@@ -65,7 +66,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint && pretty-quick --staged --pattern \"src/server/**/*.js\" --pattern \"src/client/**/*.js\" --pattern \"src/client/**/*.jsx\" --pattern \"cypress/**/*.js\"",
+      "pre-commit": "yarn flow && yarn lint && yarn pretty:pretty-quick",
       "pre-push": "yarn test:nowatch"
     }
   },
