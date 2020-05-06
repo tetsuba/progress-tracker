@@ -17,7 +17,7 @@
 
 .*/src/client/screens/Course/.*
 .*/src/client/screens/Student/.*
-.*/src/client/screens/Students/.*
+# .*/src/client/screens/Students/.*
 
 [include]
 

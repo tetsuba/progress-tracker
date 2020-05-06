@@ -3,11 +3,17 @@ import { Modal } from 'react-bootstrap'
 import { ModalContext } from './ModalContext'
 
 export const GlobalModal = () => {
-  const { modalProps, ModalTemplate } = useContext(ModalContext)
+  const { show, hideModal, ModalTemplate } = useContext(ModalContext)
   return (
     <Fragment>
       {ModalTemplate && (
-        <Modal {...modalProps}>
+        <Modal
+          onHide={hideModal}
+          show={show}
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
           <ModalTemplate />
         </Modal>
       )}

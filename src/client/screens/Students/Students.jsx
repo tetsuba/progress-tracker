@@ -4,20 +4,23 @@ import { useQuery } from '@apollo/react-hooks'
 
 // COMPONENTS
 import { Button, Col, Container, ListGroup, Row } from 'react-bootstrap'
+// $FlowFixMe - Investigate how to fix flow errors
 import AddStudentModal from '../../components/Modal/AddStudentModal'
+import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
 
 // ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 // CONTEXT
+// $FlowFixMe - Investigate how to fix flow errors
 import { ModalContext } from '../../components/Modal/ModalContext'
-import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
 
 // QUERY
 import { STUDENTS_QUERY } from '../../api/student/student.query'
 
 export default function Students() {
+  // $FlowFixMe - Graphql investigate how to fix
   const { loading, data } = useQuery(STUDENTS_QUERY)
   const { toggleModal, addTemplate } = useContext(ModalContext)
   const crumbs = [
