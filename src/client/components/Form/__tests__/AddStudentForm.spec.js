@@ -49,12 +49,6 @@ describe('<AddStudentForm>', () => {
 
         wrapper.update()
 
-        act(() => {
-          updateTextInput(wrapper, 'DOB', 'date')
-        })
-
-        wrapper.update()
-
         await act(async () => {
           await wrapper.find('#AddStudentForm').get(0).props.onSubmit({
             preventDefault: jest.fn(),

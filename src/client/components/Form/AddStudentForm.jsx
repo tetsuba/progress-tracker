@@ -4,6 +4,7 @@ import { useInputChange } from '../../hooks/hooks'
 import { useMutation } from '@apollo/react-hooks'
 import { STUDENTS_QUERY } from '../../api/student/student.query'
 import { ADD_NEW_STUDENT_MUTATION } from '../../api/student/student.mutation'
+import DobInput from './Inputs/DobInput'
 
 type Props = {
   toggleModal: () => void,
@@ -17,7 +18,9 @@ export default function AddStudentForm(props: Props) {
   const [inputs, setInputs] = useInputChange({
     firstName: '',
     lastName: '',
-    DOB: '',
+    DOBDate: '01',
+    DOBMonth: '01',
+    DOBYear: new Date().getFullYear(),
     teacherID: 'teacherId1234',
   })
   return (
@@ -25,7 +28,17 @@ export default function AddStudentForm(props: Props) {
       id="AddStudentForm"
       onSubmit={(e) => {
         e.preventDefault()
-        addNewStudent({ variables: { input: inputs } })
+        const DOB = `${inputs.DOBYear}-${inputs.DOBMonth}-${inputs.DOBDate}`
+        const variables = {
+          input: {
+            firstName: inputs.firstName,
+            lastName: inputs.lastName,
+            teacherID: 'teacherId1234',
+            DOB: String(Date.parse(DOB)),
+          },
+        }
+
+        addNewStudent({ variables })
           .then(({ data }) => {
             toggleModal()
           })
@@ -56,18 +69,10 @@ export default function AddStudentForm(props: Props) {
           />
         </Form.Group>
       </Form.Row>
-      <Form.Row className="pt-3">
-        <Form.Group as={Col} controlId="formGridDOB">
-          <Form.Label>Date of birth</Form.Label>
-          <Form.Control
-            placeholder="DOB"
-            onChange={setInputs}
-            value={inputs.DOB}
-            name="DOB"
-            required
-          />
-        </Form.Group>
-      </Form.Row>
+      <Form.Label column="lg" className="pt-3">
+        Date of birth
+      </Form.Label>
+      <DobInput inputs={inputs} setInputs={setInputs} />
 
       <Form.Row>
         <Button

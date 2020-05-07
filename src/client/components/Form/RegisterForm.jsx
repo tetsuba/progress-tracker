@@ -3,13 +3,13 @@ import { Button, Col, Form } from 'react-bootstrap'
 
 // COMPONENTS
 import Box from '../Box/Box'
-import PasswordInputs from './PasswordInputs'
+import PasswordInputs from './Inputs/PasswordInputs'
 
 // HOOKS
 import { useInputChange } from '../../hooks/hooks'
 
 // UTILS
-import { passwordsDoNotMatched } from './form-utils'
+import { passwordsDoNotMatched } from './utils/form-utils'
 
 import { useMutation } from '@apollo/react-hooks'
 import { REGISTER_NEW_USER_MUTATION } from '../../api/user/user.mutation'
