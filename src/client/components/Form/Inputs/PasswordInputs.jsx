@@ -2,13 +2,13 @@ import React from 'react'
 import { Form } from 'react-bootstrap'
 
 // COMPONENTS
-import PasswordStrength from '../PasswordStrength/PasswordStrength'
+import PasswordStrength from '../../PasswordStrength/PasswordStrength'
 
 // UTILS
-import { passwordMatchError } from './form-utils'
+import { passwordMatchError } from '../utils/form-utils'
 
 // TYPES
-import type { eventType } from '../../types/eventType'
+import type { eventType } from '../../../types/eventType'
 
 type inputsTypes = {
   newPassword: string,

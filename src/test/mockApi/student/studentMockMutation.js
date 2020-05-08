@@ -1,6 +1,8 @@
 import { ADD_NEW_STUDENT_MUTATION } from '../../../client/api/student/student.mutation';
 import { STUDENTS_QUERY } from '../../../client/api/student/student.query';
 
+const DOB = `${new Date().getFullYear()}-01-01`
+
 export const addNewStudentMutationSuccess = {
   request: {
     query: ADD_NEW_STUDENT_MUTATION,
@@ -8,7 +10,7 @@ export const addNewStudentMutationSuccess = {
       input: {
         firstName: 'John',
         lastName: 'Doh',
-        DOB: 'date',
+        DOB: String(Date.parse(DOB)),
         teacherID: 'teacherId1234',
       },
     },
@@ -17,7 +19,7 @@ export const addNewStudentMutationSuccess = {
   result: {
     data: {
       addNewStudent: {
-        success: 'student added to database',
+        id: 'id123456789',
       },
     },
   },

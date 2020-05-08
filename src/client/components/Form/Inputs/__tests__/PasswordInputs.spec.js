@@ -1,4 +1,4 @@
-import { testRenderer } from '../../../../test/testHelper'
+import { testRenderer } from '../../../../../test/testHelper'
 import PasswordInputs from '../PasswordInputs'
 
 describe('<PasswordInputs>', () => {

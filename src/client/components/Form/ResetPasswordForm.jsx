@@ -13,7 +13,7 @@ import { useInputChange } from '../../hooks/hooks'
 import { RESET_USER_PASSWORD_MUTATION } from '../../api/user/user.mutation'
 
 // UTILS
-import { passwordMatchError, passwordsDoNotMatched } from './form-utils'
+import { passwordMatchError, passwordsDoNotMatched } from './utils/form-utils'
 
 type Props = {
   setPageState: (string) => void,
