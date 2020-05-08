@@ -1,9 +1,10 @@
 import React from 'react'
 
 import { Col, Container, ProgressBar, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import gql from 'graphql-tag'
 import BreadCrumbs from '../../../components/BreadCrumbs/BreadCrumbs'
+import { CRUMBS_KEY } from '../../../components/BreadCrumbs/crumbs'
 
 export const STUDENT_QUERY = gql`
   query($input: StudentIdInput!) {
@@ -15,14 +16,8 @@ export const STUDENT_QUERY = gql`
 `
 
 const ABC = () => {
-  // const { id } = useParams();
-
-  const crumbs = [
-    { path: '/', name: 'Home' },
-    { path: '/students', name: 'Students' },
-    { path: '/student/id', name: 'Student Name' },
-    { path: '', name: 'ABC' },
-  ]
+  const { id } = useParams()
+  console.log('ABC: ', id)
 
   const units = [
     {
@@ -103,7 +98,11 @@ const ABC = () => {
   return (
     <Container>
       <Row className="mt-5">
-        <BreadCrumbs crumbs={crumbs} />
+        <BreadCrumbs
+          crumbKey={CRUMBS_KEY.ABC}
+          name={'NO_QUERY_NO_DATA'}
+          id={id}
+        />
       </Row>
       <Row className="mt-5">
         <Col>
