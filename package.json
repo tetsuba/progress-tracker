@@ -37,7 +37,7 @@
   },
   "homepage": "https://progress-tracker-2020-app.herokuapp.com/",
   "scripts": {
-    "postinstall": "npm run build",
+    "heroku-postbuild": "npm run build",
     "start": "node src/server/server.js",
     "start:server:client": "npm run server:test & npm start",
     "build": "react-scripts build",
