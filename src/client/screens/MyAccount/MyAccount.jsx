@@ -1,24 +1,17 @@
 import React, { useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
-
-// COMPONENTS
 import { Container, Row } from 'react-bootstrap'
-import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
-import MyDetailsForm from '../../components/Form/MyDetailsForm'
-
-// QUERY
-import { GET_USER_DETAILS_QUERY } from '../../api/user/user.query'
 
 // COMPONENTS
+import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
 import Box from '../../components/Box/Box'
 import ForgotMyPasswordForm from '../../components/Form/ForgotMyPasswordForm'
 import Loading from '../../components/Loading/Loading'
+import MyDetailsForm from '../../components/Form/MyDetailsForm'
+import { CRUMBS_KEY } from '../../components/BreadCrumbs/crumbs'
 
-// BREADCRUMBS
-const crumbs = [
-  { path: '/', name: 'Home' },
-  { path: '', name: 'My Account' },
-]
+// QUERY
+import { GET_USER_DETAILS_QUERY } from '../../api/user/user.query'
 
 type Props = {
   pageState: string,
@@ -33,7 +26,7 @@ export default function MyAccount(props: Props) {
     <Loading />
   ) : (
     <Container className="pt-5">
-      <BreadCrumbs crumbs={crumbs} />
+      <BreadCrumbs crumbKey={CRUMBS_KEY.MY_ACCOUNT} />
       <MyDetailsForm user={data.getUserDetails} />
 
       <Row className="mt-5">

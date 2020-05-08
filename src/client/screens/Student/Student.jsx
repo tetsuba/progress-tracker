@@ -1,19 +1,13 @@
 import React from 'react'
-
 import { Col, Container, ProgressBar, Row } from 'react-bootstrap'
 import { Link, useParams } from 'react-router-dom'
-import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
-import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
 
-export const STUDENT_QUERY = gql`
-  query($input: StudentIdInput!) {
-    getStudent(input: $input) {
-      firstName
-      lastName
-    }
-  }
-`
+import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
+import { CRUMBS_KEY } from '../../components/BreadCrumbs/crumbs'
+
+// QUERIES
+import { STUDENT_QUERY } from '../../api/student/student.query'
 
 const Student = () => {
   const { id } = useParams()
@@ -21,11 +15,6 @@ const Student = () => {
     variables: { input: { id } },
   })
   if (loading) return <div>LOADING</div>
-  const crumbs = [
-    { path: '/', name: 'Home' },
-    { path: '/students', name: 'Students' },
-    { path: '', name: data.getStudent.firstName },
-  ]
 
   const courses = [
     {
@@ -34,7 +23,7 @@ const Student = () => {
       startDate: '',
       endDate: '',
       active: true,
-      to: '/course/abc',
+      to: `/student/${id}/course/ABC`,
     },
     {
       name: 'French',
@@ -42,7 +31,7 @@ const Student = () => {
       startDate: '',
       endDate: '',
       active: true,
-      to: '/course/abc',
+      to: `/student/${id}/course/ABC`,
     },
     {
       name: 'Japanese',
@@ -50,7 +39,7 @@ const Student = () => {
       startDate: '',
       endDate: '',
       active: false,
-      to: '/course/abc',
+      to: `/student/${id}/course/ABC`,
     },
     {
       name: 'Maths',
@@ -58,7 +47,7 @@ const Student = () => {
       startDate: '',
       endDate: '',
       active: false,
-      to: '/course/abc',
+      to: `/student/${id}/course/ABC`,
     },
   ]
 
@@ -87,7 +76,11 @@ const Student = () => {
     <Container>
       <Row className="mt-5">
         <Row className="mt-5">
-          <BreadCrumbs crumbs={crumbs} />
+          <BreadCrumbs
+            crumbKey={CRUMBS_KEY.STUDENT}
+            name={data.getStudent.firstName}
+            id={id}
+          />
         </Row>
       </Row>
       <Row className="mt-5">

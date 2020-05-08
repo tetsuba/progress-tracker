@@ -12,18 +12,7 @@ exports[`<MyAccount> Should render 1`] = `
       className="pt-5 container"
     >
       <BreadCrumbs
-        crumbs={
-          Array [
-            Object {
-              "name": "Home",
-              "path": "/",
-            },
-            Object {
-              "name": "My Account",
-              "path": "",
-            },
-          ]
-        }
+        crumbKey="myAccount"
       >
         <Row
           noGutters={false}
