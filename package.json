@@ -37,7 +37,7 @@
   },
   "homepage": "https://tetsuba.github.io/",
   "scripts": {
-    "start": "yarn server & react-scripts start",
+    "start": "yarn server",
     "start:server:client": "npm run server:test & npm start",
     "build": "react-scripts build",
     "dev": "yarn server:dev & yarn start",
@@ -111,6 +111,7 @@
   "license": "MIT",
   "engines": {
     "node": "13.9.0",
+    "npm": "6.13.7",
     "yarn": "1.22.0"
   },
   "root": "build/",
