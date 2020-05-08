@@ -110,7 +110,8 @@
   "proxy": "http://localhost:4000",
   "license": "MIT",
   "engines": {
-    "node": "13.9.0"
+    "node": "13.9.0",
+    "yarn": "1.22.0"
   },
   "root": "build/",
   "routes": {
