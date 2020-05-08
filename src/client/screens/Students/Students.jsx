@@ -1,12 +1,13 @@
 import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@apollo/react-hooks'
+import { Button, Col, Container, ListGroup, Row } from 'react-bootstrap'
 
 // COMPONENTS
-import { Button, Col, Container, ListGroup, Row } from 'react-bootstrap'
 // $FlowFixMe - Investigate how to fix flow errors
 import AddStudentModal from '../../components/Modal/AddStudentModal'
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
+import { CRUMBS_KEY } from '../../components/BreadCrumbs/crumbs'
 
 // ICONS
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -23,10 +24,6 @@ export default function Students() {
   // $FlowFixMe - Graphql investigate how to fix
   const { loading, data } = useQuery(STUDENTS_QUERY)
   const { toggleModal, addTemplate } = useContext(ModalContext)
-  const crumbs = [
-    { path: '/', name: 'Home' },
-    { path: '', name: 'Students' },
-  ]
 
   useEffect(() => {
     addTemplate(AddStudentModal)
@@ -46,7 +43,7 @@ export default function Students() {
   return (
     <Container>
       <Row className="mt-5">
-        <BreadCrumbs crumbs={crumbs} />
+        <BreadCrumbs crumbKey={CRUMBS_KEY.STUDENTS} />
       </Row>
       <Row className="mt-5">
         <Col>
