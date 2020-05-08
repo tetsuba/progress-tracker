@@ -1,5 +1,7 @@
 {
   "name": "progress-tracker",
+  "auther": "Tetsuba",
+  "description": "Track the progress of your students",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -35,7 +37,7 @@
   },
   "homepage": "https://tetsuba.github.io/",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "yarn server & react-scripts start",
     "start:server:client": "npm run server:test & npm start",
     "build": "react-scripts build",
     "dev": "yarn server:dev & yarn start",
@@ -105,5 +107,9 @@
     "react-test-renderer": "16.13.1",
     "start-server-and-test": "^1.10.11"
   },
-  "proxy": "http://localhost:4000"
+  "proxy": "http://localhost:4000",
+  "license": "MIT",
+  "engines": {
+    "node": "13.9.0"
+  }
 }
