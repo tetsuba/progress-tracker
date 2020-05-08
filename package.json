@@ -112,8 +112,7 @@
   "license": "MIT",
   "engines": {
     "node": "13.9.0",
-    "npm": "6.13.7",
-    "yarn": "1.22.0"
+    "npm": "6.13.7"
   },
   "root": "build/",
   "routes": {

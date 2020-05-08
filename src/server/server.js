@@ -70,7 +70,7 @@ db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', async function () {
   console.log('🚀 we are connected to mongoose!!!!')
   console.log('🚀 NODE_ENV: ', process.env.REACT_APP_NODE_ENV)
-  const port = process.env.PORT || process.env.REACT_APP_SERVER_PORT || 4000
+  const port = process.env.REACT_APP_SERVER_PORT || process.env.PORT || 4000
 
   app.listen({ port }, function () {
     console.log(`🚀  Server ready at port ${port}`)
