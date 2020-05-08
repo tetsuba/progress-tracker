@@ -35,7 +35,7 @@
     "react-scripts": "^3.4.1",
     "zxcvbn": "^4.4.2"
   },
-  "homepage": "https://tetsuba.github.io/",
+  "homepage": "https://progress-tracker-2020-app.herokuapp.com/",
   "scripts": {
     "start": "yarn server",
     "start:server:client": "npm run server:test & npm start",
