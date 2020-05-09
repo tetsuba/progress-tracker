@@ -1,9 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Button, Form, Row } from 'react-bootstrap'
-import Box from '../Box/Box'
 import { useInputChange } from '../../hooks/hooks'
 import { useMutation } from '@apollo/react-hooks'
+
+// CONTEXT
+// $FlowFixMe - Investigate how to fix context flow issue
+import { LoadingContext } from '../../context/LoadingContext'
+
+// COMPONENTS
+import Box from '../Box/Box'
+
+// MUTATIONS
 import { UPDATE_USER_DETAILS_MUTATION } from '../../api/user/user.mutation'
+
+// QUERIES
 import { GET_USER_DETAILS_QUERY } from '../../api/user/user.query'
 
 // TYPES
@@ -15,6 +25,7 @@ type Props = {
 
 export default function MyDetailsForm(props: Props) {
   const { user } = props
+  const { showLoading, hideLoading } = useContext(LoadingContext)
   const [updateUserDetails] = useMutation(UPDATE_USER_DETAILS_MUTATION, {
     refetchQueries: [{ query: GET_USER_DETAILS_QUERY }],
   })
@@ -40,11 +51,16 @@ export default function MyDetailsForm(props: Props) {
           id="MyDetailsForm"
           onSubmit={(e) => {
             e.preventDefault()
+            showLoading()
             updateUserDetails(options)
-              .then(() => setShowFormElement(false))
-              .catch(({ graphQLErrors }) =>
+              .then(() => {
+                hideLoading()
+                setShowFormElement(false)
+              })
+              .catch(({ graphQLErrors }) => {
+                hideLoading()
                 setErrorMessage(graphQLErrors[0].message)
-              )
+              })
           }}
         >
           <Form.Group controlId="formPlaintextFirstName" className="pb-3">

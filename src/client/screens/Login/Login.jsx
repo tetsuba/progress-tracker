@@ -4,7 +4,6 @@ import { Col, Container, Row } from 'react-bootstrap'
 // COMPONENTS
 import EmailVerificationForm from '../../components/Form/EmailVerificationForm'
 import ForgotMyPasswordForm from '../../components/Form/ForgotMyPasswordForm'
-import Loading from '../../components/Loading/Loading'
 import LoginForm from '../../components/Form/LoginForm'
 
 // TYPES
@@ -19,7 +18,6 @@ export default function Login(props: Props) {
       <Row>
         {
           {
-            loading: <Loading />,
             login: <LoginForm setPageState={setPageState} />,
             forgetMyPassword: (
               <ForgotMyPasswordForm setPageState={setPageState}>

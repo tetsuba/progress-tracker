@@ -1,8 +1,9 @@
 import * as React from 'react'
 // $FlowFixMe
-import ModalCtx from '../components/Modal/ModalContext'
+import ModalProvider from './ModalContext'
 // $FlowFixMe
 import AuthenticatedProvider from './AuthenticatedContext'
+import LoadingProvider from './LoadingContext'
 
 type Props = {
   children: React.Node,
@@ -11,9 +12,11 @@ type Props = {
 export default class GlobalContext extends React.Component<Props> {
   render() {
     return (
-      <ModalCtx>
-        <AuthenticatedProvider>{this.props.children}</AuthenticatedProvider>
-      </ModalCtx>
+      <LoadingProvider>
+        <ModalProvider>
+          <AuthenticatedProvider>{this.props.children}</AuthenticatedProvider>
+        </ModalProvider>
+      </LoadingProvider>
     )
   }
 }

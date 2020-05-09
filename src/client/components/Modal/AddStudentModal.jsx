@@ -1,6 +1,6 @@
 import React, { Fragment, useContext } from 'react'
 import { Container, Modal } from 'react-bootstrap'
-import { ModalContext } from './ModalContext'
+import { ModalContext } from '../../context/ModalContext'
 import AddStudentForm from '../Form/AddStudentForm'
 
 function AddStudentModal() {

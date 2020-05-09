@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Fade, Spinner } from 'react-bootstrap'
+
+// CONTEXT
+// $FlowFixMe - Investigate how to fix context flow issue
+import { LoadingContext } from '../../context/LoadingContext'
 
 type Props = {
   fade?: number,
 }
 
 export default function Loading(props: Props) {
-  const { fade } = props
+  const { loading } = useContext(LoadingContext)
+
   const style = {
     width: '100%',
     height: '100%',
@@ -19,13 +24,17 @@ export default function Loading(props: Props) {
     alignItems: 'center',
     justifyContent: 'center',
   }
-  return (
-    <Fade in={fade}>
-      <div style={style}>
-        <Spinner animation="border" role="status" variant="light">
-          <span className="sr-only">Loading...</span>
-        </Spinner>
-      </div>
-    </Fade>
-  )
+
+  if (loading) {
+    return (
+      <Fade in={loading}>
+        <div style={style}>
+          <Spinner animation="border" role="status" variant="light">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        </div>
+      </Fade>
+    )
+  }
+  return null
 }

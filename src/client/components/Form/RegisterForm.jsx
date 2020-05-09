@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
 import { Button, Col, Form } from 'react-bootstrap'
+import { useMutation } from '@apollo/react-hooks'
+
+// CONTEXT
+// $FlowFixMe - Investigate how to fix context flow issue
+import { LoadingContext } from '../../context/LoadingContext'
 
 // COMPONENTS
 import Box from '../Box/Box'
@@ -8,11 +13,11 @@ import PasswordInputs from './Inputs/PasswordInputs'
 // HOOKS
 import { useInputChange } from '../../hooks/hooks'
 
+// MUTATIONS
+import { REGISTER_NEW_USER_MUTATION } from '../../api/user/user.mutation'
+
 // UTILS
 import { passwordsDoNotMatched } from './utils/form-utils'
-
-import { useMutation } from '@apollo/react-hooks'
-import { REGISTER_NEW_USER_MUTATION } from '../../api/user/user.mutation'
 
 type Props = {
   setPageState: (string) => void,
@@ -20,6 +25,7 @@ type Props = {
 
 export default function RegisterForm(props: Props) {
   const { setPageState } = props
+  const { showLoading, hideLoading } = React.useContext(LoadingContext)
   const [registerNewUser] = useMutation(REGISTER_NEW_USER_MUTATION)
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -50,11 +56,16 @@ export default function RegisterForm(props: Props) {
         className="mt-4 mb-5"
         onSubmit={(e) => {
           e.preventDefault()
+          showLoading()
           registerNewUser(options)
-            .then(() => setPageState('success'))
-            .catch(({ graphQLErrors }) =>
+            .then(() => {
+              hideLoading()
+              setPageState('success')
+            })
+            .catch(({ graphQLErrors }) => {
+              hideLoading()
               setErrorMessage(graphQLErrors[0].message)
-            )
+            })
         }}
       >
         <Form.Row>

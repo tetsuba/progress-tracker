@@ -15,7 +15,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 // CONTEXT
 // $FlowFixMe - Investigate how to fix flow errors
-import { ModalContext } from '../../components/Modal/ModalContext'
+import { ModalContext } from '../../context/ModalContext'
 
 // QUERY
 import { STUDENTS_QUERY } from '../../api/student/student.query'

@@ -2,6 +2,10 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Form, Col } from 'react-bootstrap'
 
+// CONTEXT
+// $FlowFixMe - Investigate how to fix context flow issue
+import { LoadingContext } from '../../context/LoadingContext'
+
 // COMPONENTS
 import Box from '../Box/Box'
 
@@ -23,6 +27,7 @@ type Props = {
 
 export default function EmailVerificationForm(props: Props) {
   const { children, setPageState } = props
+  const { showLoading, hideLoading } = React.useContext(LoadingContext)
   const [inputs, setInputs] = useInputChange({ email: '' })
   const [verifyUserEmail] = useMutation(VERIFY_USER_EMAIL_MUTATION)
   const [errorMessage, setErrorMessage] = React.useState('')
@@ -36,9 +41,14 @@ export default function EmailVerificationForm(props: Props) {
           id="EmailVerificationForm"
           onSubmit={(e) => {
             e.preventDefault()
+            showLoading()
             verifyUserEmail(options)
-              .then(() => setPageState('success'))
+              .then(() => {
+                hideLoading()
+                setPageState('success')
+              })
               .catch(({ graphQLErrors }) => {
+                hideLoading()
                 setErrorMessage(graphQLErrors[0].message)
               })
           }}
