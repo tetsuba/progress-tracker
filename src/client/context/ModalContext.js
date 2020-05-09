@@ -12,7 +12,7 @@ type Props = {
   children: React.Node,
 }
 
-export default class ModalCtx extends React.Component<Props> {
+export default class ModalProvider extends React.Component<Props> {
   state = {
     show: false,
     ModalTemplate: null,

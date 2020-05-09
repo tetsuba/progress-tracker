@@ -1,8 +1,8 @@
 import React, { Fragment, useContext } from 'react'
 import { Modal } from 'react-bootstrap'
-import { ModalContext } from './ModalContext'
+import { ModalContext } from '../../context/ModalContext'
 
-export const GlobalModal = () => {
+export default function GlobalModal() {
   const { show, hideModal, ModalTemplate } = useContext(ModalContext)
   return (
     <Fragment>

@@ -290,67 +290,7 @@ exports[`<ConfirmAccount> @Render should render "loading" 1`] = `
         <div
           className="row"
         >
-          <Loading>
-            <Fade
-              appear={false}
-              in={false}
-              mountOnEnter={false}
-              timeout={300}
-              unmountOnExit={false}
-            >
-              <Transition
-                addEndListener={[Function]}
-                appear={false}
-                enter={true}
-                exit={true}
-                in={false}
-                mountOnEnter={false}
-                onEnter={[Function]}
-                onEntered={[Function]}
-                onEntering={[Function]}
-                onExit={[Function]}
-                onExited={[Function]}
-                onExiting={[Function]}
-                timeout={300}
-                unmountOnExit={false}
-              >
-                <div
-                  className="fade"
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "rgba(0,0,0,0.5)",
-                      "display": "flex",
-                      "height": "100%",
-                      "justifyContent": "center",
-                      "left": "0",
-                      "position": "absolute",
-                      "top": "0",
-                      "width": "100%",
-                      "zIndex": "1000",
-                    }
-                  }
-                >
-                  <Spinner
-                    animation="border"
-                    role="status"
-                    variant="light"
-                  >
-                    <div
-                      className="spinner-border text-light"
-                      role="status"
-                    >
-                      <span
-                        className="sr-only"
-                      >
-                        Loading...
-                      </span>
-                    </div>
-                  </Spinner>
-                </div>
-              </Transition>
-            </Fade>
-          </Loading>
+          <Loading />
         </div>
       </Row>
     </div>

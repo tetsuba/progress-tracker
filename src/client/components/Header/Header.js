@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 // $FlowFixMe - Investigate how to fix this issue
 import { AuthenticatedContext } from '../../context/AuthenticatedContext'
 
-export const Header = () => {
+export default function Header() {
   const { authenticated, toggle: userLogout } = useContext(AuthenticatedContext)
 
   return (

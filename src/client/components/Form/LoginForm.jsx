@@ -7,8 +7,10 @@ import TextLink from '../TextLink/TextLink'
 import Box from '../Box/Box'
 
 // CONTEXT
-// $FlowFixMe - Investigate how to fix this issue
+// $FlowFixMe - Investigate how to fix context flow issue
 import { AuthenticatedContext } from '../../context/AuthenticatedContext'
+// $FlowFixMe - Investigate how to fix context flow issue
+import { LoadingContext } from '../../context/LoadingContext'
 
 // HOOKS
 import { useInputChange } from '../../hooks/hooks'
@@ -22,6 +24,7 @@ type Props = {
 
 export default function LoginForm(props: Props) {
   const { setPageState } = props
+  const { showLoading, hideLoading } = useContext(LoadingContext)
   const [loginUser] = useMutation(LOGIN_USER_MUTATION)
   const { toggle: authenticateUser } = useContext(AuthenticatedContext)
   const [inputs, setInputs] = useInputChange({
@@ -38,12 +41,15 @@ export default function LoginForm(props: Props) {
           id="LoginForm"
           onSubmit={(e) => {
             e.preventDefault()
+            showLoading()
             const options = { variables: { input: inputs } }
             loginUser(options)
               .then((obj: any) => {
                 authenticateUser(obj.data.loginUser.token)
+                hideLoading()
               })
               .catch(({ graphQLErrors }) => {
+                hideLoading()
                 switch (graphQLErrors[0].name) {
                   case 'email_not_verified':
                     setPageState('emailNotVerified')

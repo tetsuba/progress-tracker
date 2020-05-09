@@ -1,6 +1,10 @@
 import * as React from 'react'
 import { Button, Form, Row, Col } from 'react-bootstrap'
 
+// CONTEXT
+// $FlowFixMe - Investigate how to fix context flow issue
+import { LoadingContext } from '../../context/LoadingContext'
+
 // COMPONENT
 import TextLink from '../TextLink/TextLink'
 import Box from '../Box/Box'
@@ -24,6 +28,7 @@ type Props = {
 
 export default function ForgotMyPasswordForm(props: Props) {
   const { children, setPageState, defaultEmail = '' } = props
+  const { showLoading, hideLoading } = React.useContext(LoadingContext)
   const [requestPasswordReset] = useMutation(REQUEST_PASSWORD_RESET_MUTATION)
   const [inputs, setInputs] = useInputChange({ email: defaultEmail })
   const [errorMessage, setErrorMessage] = React.useState('')
@@ -39,10 +44,15 @@ export default function ForgotMyPasswordForm(props: Props) {
             className="w-100"
             onSubmit={(e) => {
               e.preventDefault()
+              showLoading()
               requestPasswordReset(options)
-                .then(() => setPageState('success'))
+                .then(() => {
+                  setPageState('success')
+                  hideLoading()
+                })
                 .catch(({ graphQLErrors }) => {
                   setErrorMessage(graphQLErrors[0].message)
+                  hideLoading()
                 })
             }}
           >

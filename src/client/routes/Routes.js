@@ -18,7 +18,7 @@ import ResetPassword from '../screens/ResetPassword/ResetPassword'
 import ABC from '../screens/Course/ABC/ABC'
 import AbcUnit from '../screens/Course/ABC/AbcUnit'
 
-export const Routes = () => {
+export default function Routes() {
   return (
     <Switch>
       <ProtectedRoute path="/" exact component={Home} />

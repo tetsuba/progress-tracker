@@ -2,11 +2,14 @@ import React, { useState } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { Container, Row } from 'react-bootstrap'
 
+// CONTEXT
+// $FlowFixMe - Investigate how to fix context flow issue
+import { LoadingContext } from '../../context/LoadingContext'
+
 // COMPONENTS
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs'
 import Box from '../../components/Box/Box'
 import ForgotMyPasswordForm from '../../components/Form/ForgotMyPasswordForm'
-import Loading from '../../components/Loading/Loading'
 import MyDetailsForm from '../../components/Form/MyDetailsForm'
 import { CRUMBS_KEY } from '../../components/BreadCrumbs/crumbs'
 
@@ -18,13 +21,23 @@ type Props = {
 }
 
 export default function MyAccount(props: Props) {
+  const { showLoading, hideLoading } = React.useContext(LoadingContext)
   // $FlowFixMe - Passing query data to a child component throws an error
   const { loading, data } = useQuery(GET_USER_DETAILS_QUERY)
   const [pageState, setPageState] = useState(props.pageState)
+  let calledOnce = false
 
-  return loading ? (
-    <Loading />
-  ) : (
+  if (loading) {
+    showLoading()
+    return null
+  }
+
+  if (data && !calledOnce) {
+    calledOnce = true
+    hideLoading()
+  }
+
+  return (
     <Container className="pt-5">
       <BreadCrumbs crumbKey={CRUMBS_KEY.MY_ACCOUNT} />
       <MyDetailsForm user={data.getUserDetails} />

@@ -1,10 +1,11 @@
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { Routes } from './routes/Routes'
+import Routes from './routes/Routes'
 
 // COMPONENTS
-import { GlobalModal } from './components/Modal/GlobalModal'
-import { Header } from './components/Header/Header'
+import GlobalModal from './components/Modal/GlobalModal'
+import Header from './components/Header/Header'
+import Loading from './components/Loading/Loading'
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         </div>
       </Router>
       <GlobalModal />
+      <Loading />
     </>
   )
 }
