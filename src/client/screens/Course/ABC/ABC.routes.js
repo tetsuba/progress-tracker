@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react'
-import { Route } from 'react-router-dom'
+import React from 'react'
 import ABC from './ABC'
 import AbcUnit from './AbcUnit'
+import ProtectedRoute from '../../../routes/ProtectedRoute'
 
 export default () => (
-  <Fragment>
-    <Route exact path="/course/ABC" component={ABC} />
-    <Route path="/course/ABC/:unit" component={AbcUnit} />
-  </Fragment>
+  <>
+    <ProtectedRoute strict path="/student/:id/course/ABC" component={ABC} />
+    <ProtectedRoute path="/student/:id/course/ABC/:unit" component={AbcUnit} />
+  </>
 )
