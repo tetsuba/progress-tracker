@@ -14,7 +14,7 @@ type Props = {
   children?: React.Node,
 }
 
-export default function AuthenticatedCxt(props: Props) {
+export default function AuthenticatedProvider(props: Props) {
   const { children } = props
   const [authenticated, setAuthenticated] = React.useState(false)
   const [setLocalStorage, token] = useLocalStorage(TOKEN_KEY)

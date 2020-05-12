@@ -33,7 +33,7 @@ exports[`<MyAccount> Should render 1`] = `
                   <Crumbs>
                     <li
                       className="breadcrumb-item"
-                      key="Home"
+                      key="Home-0"
                     >
                       <Link
                         to="/"
@@ -43,7 +43,7 @@ exports[`<MyAccount> Should render 1`] = `
                     </li>
                     <BreadcrumbItem
                       active={true}
-                      key="My Account"
+                      key="My Account-1"
                       linkProps={Object {}}
                     >
                       <li

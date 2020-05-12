@@ -17,9 +17,8 @@ export default class ModalProvider extends React.Component<Props> {
     show: false,
     ModalTemplate: null,
     hideModal: () => this.setState({ show: false }),
-    toggleModal: (data) =>
+    toggleModal: () =>
       this.setState({
-        data: data || {},
         show: !this.state.show,
       }),
 

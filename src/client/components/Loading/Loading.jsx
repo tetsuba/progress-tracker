@@ -5,11 +5,7 @@ import { Fade, Spinner } from 'react-bootstrap'
 // $FlowFixMe - Investigate how to fix context flow issue
 import { LoadingContext } from '../../context/LoadingContext'
 
-type Props = {
-  fade?: number,
-}
-
-export default function Loading(props: Props) {
+export default function Loading() {
   const { loading } = useContext(LoadingContext)
 
   const style = {
