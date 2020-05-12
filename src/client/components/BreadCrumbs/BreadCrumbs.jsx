@@ -14,13 +14,13 @@ export default function BreadCrumbs(props: Props) {
 
   function addCrumb({ path, name, id, replace }, index) {
     if (id) path = path.replace('{id}', props.id)
-    if (replace) name = props.name
+    if (replace) name = props.name || ''
     return eof > index ? (
-      <li key={name} className="breadcrumb-item">
+      <li key={`${name}-${index}`} className="breadcrumb-item">
         <Link to={path}>{name}</Link>
       </li>
     ) : (
-      <Breadcrumb.Item key={name} active>
+      <Breadcrumb.Item key={`${name}-${index}`} active>
         {name}
       </Breadcrumb.Item>
     )

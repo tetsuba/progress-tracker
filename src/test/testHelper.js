@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { shallow, mount } from "enzyme";
 import { MockedProvider } from '@apollo/react-testing';
 import GlobalContext from '../client/context/GlobalContext';
@@ -9,6 +9,14 @@ import './localStorage'
 export function testRenderer(Node, props) {
   return shallow(
     <Node { ...props } />
+  )
+}
+
+export function testRendererWithGlobalContext(Node, props) {
+  return mount(
+    <GlobalContext>
+      <Node { ...props } />
+    </GlobalContext>
   )
 }
 
@@ -35,8 +43,8 @@ export function graphRenderer(Node, mocks, props) {
 // TODO: Investigate for a better solution.
 // useMutation is stuck on loading and requires this hack to delay
 // the call for an update.
-export async function delay() {
-  return await new Promise(resolve => setTimeout(resolve));
+export async function delay(ms = 0) {
+  return await new Promise(resolve => setTimeout(resolve, ms));
 }
 // const wait = (amount = 0) => new Promise(resolve => setTimeout(resolve, amount));
 

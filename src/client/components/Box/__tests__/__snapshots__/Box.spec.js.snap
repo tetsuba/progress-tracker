@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Box> should render 1`] = `
+<Box
+  className="mt-5"
+  max={500}
+>
+  <div
+    className="mt-5"
+    style={
+      Object {
+        "backgroundColor": "#f8f9fa",
+        "border": "solid 1px #ccc",
+        "borderRadius": "8px",
+        "margin": "0 auto",
+        "maxWidth": 500,
+        "padding": "20px 20px",
+        "width": "100%",
+      }
+    }
+  />
+</Box>
+`;

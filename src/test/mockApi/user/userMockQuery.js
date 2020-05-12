@@ -1,8 +1,21 @@
 import {
   GET_USER_DETAILS_QUERY,
   VALIDATE_USER_EMAIL_QUERY,
+  IS_USER_SESSION_EXPIRED,
 } from '../../../client/api/user/user.query';
 
+export const isUserSessionExpiredQuerySuccess = {
+  request: {
+    query: IS_USER_SESSION_EXPIRED,
+  },
+  result: {
+    data: {
+      isUserSessionExpired: {
+        success: 'User session active'
+      },
+    },
+  },
+}
 
 export const getUserDetailsQuerySuccess = {
   request: {

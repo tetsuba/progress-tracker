@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header> should render 1`] = `
+<Navbar
+  bg="light"
+  collapseOnSelect={false}
+  expand="lg"
+  variant="light"
+>
+  <NavbarBrand
+    href="/"
+  >
+    Progress Tracker
+  </NavbarBrand>
+  <NavbarToggle
+    aria-controls="basic-navbar-nav"
+    label="Toggle navigation"
+  />
+  <NavbarCollapse
+    id="basic-navbar-nav"
+  >
+    <Nav
+      className="mr-auto"
+      fill={false}
+      justify={false}
+    >
+      <Link
+        className="nav-link"
+        to="/"
+      >
+        Login
+      </Link>
+      <Link
+        className="nav-link"
+        to="/register"
+      >
+        Register
+      </Link>
+    </Nav>
+  </NavbarCollapse>
+</Navbar>
+`;

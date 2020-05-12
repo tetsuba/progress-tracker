@@ -1,0 +1,239 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BreadCrumbs> should render Student 1`] = `
+<BreadCrumbs
+  crumbKey="Student"
+  id="id1234"
+>
+  <Row
+    noGutters={false}
+  >
+    <div
+      className="row"
+    >
+      <Breadcrumb
+        label="breadcrumb"
+        listProps={Object {}}
+      >
+        <nav
+          aria-label="breadcrumb"
+        >
+          <ol
+            className="breadcrumb"
+          >
+            <Crumbs>
+              <li
+                className="breadcrumb-item"
+                key="Home-0"
+              >
+                <Link
+                  to="/"
+                >
+                  Home
+                </Link>
+              </li>
+              <li
+                className="breadcrumb-item"
+                key="Students-1"
+              >
+                <Link
+                  to="/students"
+                >
+                  Students
+                </Link>
+              </li>
+              <BreadcrumbItem
+                active={true}
+                key="-2"
+                linkProps={Object {}}
+              >
+                <li
+                  aria-current="page"
+                  className="breadcrumb-item active"
+                />
+              </BreadcrumbItem>
+            </Crumbs>
+          </ol>
+        </nav>
+      </Breadcrumb>
+    </div>
+  </Row>
+</BreadCrumbs>
+`;
+
+exports[`<BreadCrumbs> should render Students 1`] = `
+<BreadCrumbs
+  crumbKey="Students"
+>
+  <Row
+    noGutters={false}
+  >
+    <div
+      className="row"
+    >
+      <Breadcrumb
+        label="breadcrumb"
+        listProps={Object {}}
+      >
+        <nav
+          aria-label="breadcrumb"
+        >
+          <ol
+            className="breadcrumb"
+          >
+            <Crumbs>
+              <li
+                className="breadcrumb-item"
+                key="Home-0"
+              >
+                <Link
+                  to="/"
+                >
+                  Home
+                </Link>
+              </li>
+              <BreadcrumbItem
+                active={true}
+                key="Students-1"
+                linkProps={Object {}}
+              >
+                <li
+                  aria-current="page"
+                  className="breadcrumb-item active"
+                >
+                  Students
+                </li>
+              </BreadcrumbItem>
+            </Crumbs>
+          </ol>
+        </nav>
+      </Breadcrumb>
+    </div>
+  </Row>
+</BreadCrumbs>
+`;
+
+exports[`<BreadCrumbs> should render abc 1`] = `
+<BreadCrumbs
+  crumbKey="ABC"
+  name="John"
+>
+  <Row
+    noGutters={false}
+  >
+    <div
+      className="row"
+    >
+      <Breadcrumb
+        label="breadcrumb"
+        listProps={Object {}}
+      >
+        <nav
+          aria-label="breadcrumb"
+        >
+          <ol
+            className="breadcrumb"
+          >
+            <Crumbs>
+              <li
+                className="breadcrumb-item"
+                key="Home-0"
+              >
+                <Link
+                  to="/"
+                >
+                  Home
+                </Link>
+              </li>
+              <li
+                className="breadcrumb-item"
+                key="Students-1"
+              >
+                <Link
+                  to="/students"
+                >
+                  Students
+                </Link>
+              </li>
+              <li
+                className="breadcrumb-item"
+                key="John-2"
+              >
+                <Link
+                  to="/student/undefined"
+                >
+                  John
+                </Link>
+              </li>
+              <BreadcrumbItem
+                active={true}
+                key="ABC-3"
+                linkProps={Object {}}
+              >
+                <li
+                  aria-current="page"
+                  className="breadcrumb-item active"
+                >
+                  ABC
+                </li>
+              </BreadcrumbItem>
+            </Crumbs>
+          </ol>
+        </nav>
+      </Breadcrumb>
+    </div>
+  </Row>
+</BreadCrumbs>
+`;
+
+exports[`<BreadCrumbs> should render myAccount 1`] = `
+<BreadCrumbs
+  crumbKey="myAccount"
+>
+  <Row
+    noGutters={false}
+  >
+    <div
+      className="row"
+    >
+      <Breadcrumb
+        label="breadcrumb"
+        listProps={Object {}}
+      >
+        <nav
+          aria-label="breadcrumb"
+        >
+          <ol
+            className="breadcrumb"
+          >
+            <Crumbs>
+              <li
+                className="breadcrumb-item"
+                key="Home-0"
+              >
+                <Link
+                  to="/"
+                >
+                  Home
+                </Link>
+              </li>
+              <BreadcrumbItem
+                active={true}
+                key="My Account-1"
+                linkProps={Object {}}
+              >
+                <li
+                  aria-current="page"
+                  className="breadcrumb-item active"
+                >
+                  My Account
+                </li>
+              </BreadcrumbItem>
+            </Crumbs>
+          </ol>
+        </nav>
+      </Breadcrumb>
+    </div>
+  </Row>
+</BreadCrumbs>
+`;
