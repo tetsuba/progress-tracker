@@ -1,42 +1,236 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Header> should render 1`] = `
-<Navbar
-  bg="light"
-  collapseOnSelect={false}
-  expand="lg"
-  variant="light"
->
-  <NavbarBrand
-    href="/"
+exports[`<Header> should render specific header links for a unauthorised user  1`] = `
+<Header>
+  <Navbar
+    bg="light"
+    collapseOnSelect={false}
+    expand="lg"
+    variant="light"
   >
-    Progress Tracker
-  </NavbarBrand>
-  <NavbarToggle
-    aria-controls="basic-navbar-nav"
-    label="Toggle navigation"
-  />
-  <NavbarCollapse
-    id="basic-navbar-nav"
-  >
-    <Nav
-      className="mr-auto"
-      fill={false}
-      justify={false}
+    <nav
+      className="navbar navbar-expand-lg navbar-light bg-light"
     >
-      <Link
-        className="nav-link"
-        to="/"
+      <NavbarBrand
+        href="/"
       >
-        Login
-      </Link>
-      <Link
-        className="nav-link"
-        to="/register"
+        <a
+          className="navbar-brand"
+          href="/"
+        >
+          Progress Tracker
+        </a>
+      </NavbarBrand>
+      <NavbarToggle
+        aria-controls="basic-navbar-nav"
+        label="Toggle navigation"
       >
-        Register
-      </Link>
-    </Nav>
-  </NavbarCollapse>
-</Navbar>
+        <button
+          aria-controls="basic-navbar-nav"
+          aria-label="Toggle navigation"
+          className="navbar-toggler collapsed"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="navbar-toggler-icon"
+          />
+        </button>
+      </NavbarToggle>
+      <NavbarCollapse
+        id="basic-navbar-nav"
+      >
+        <Collapse
+          appear={false}
+          dimension="height"
+          getDimensionValue={[Function]}
+          id="basic-navbar-nav"
+          in={false}
+          mountOnEnter={false}
+          timeout={300}
+          unmountOnExit={false}
+        >
+          <Transition
+            addEndListener={[Function]}
+            appear={false}
+            aria-expanded={null}
+            enter={true}
+            exit={true}
+            id="basic-navbar-nav"
+            in={false}
+            mountOnEnter={false}
+            onEnter={[Function]}
+            onEntered={[Function]}
+            onEntering={[Function]}
+            onExit={[Function]}
+            onExited={[Function]}
+            onExiting={[Function]}
+            timeout={300}
+            unmountOnExit={false}
+          >
+            <div
+              aria-expanded={null}
+              className="navbar-collapse collapse"
+              id="basic-navbar-nav"
+            >
+              <Nav
+                className="mr-auto"
+                fill={false}
+                justify={false}
+              >
+                <ForwardRef
+                  as="div"
+                  className="mr-auto navbar-nav"
+                  onSelect={[Function]}
+                >
+                  <div
+                    className="mr-auto navbar-nav"
+                    onKeyDown={[Function]}
+                  >
+                    <Link
+                      className="nav-link"
+                      to="/"
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      className="nav-link"
+                      to="/register"
+                    >
+                      Register
+                    </Link>
+                  </div>
+                </ForwardRef>
+              </Nav>
+            </div>
+          </Transition>
+        </Collapse>
+      </NavbarCollapse>
+    </nav>
+  </Navbar>
+</Header>
+`;
+
+exports[`<Header> should render specific header links for an authorised user  1`] = `
+<Header>
+  <Navbar
+    bg="light"
+    collapseOnSelect={false}
+    expand="lg"
+    variant="light"
+  >
+    <nav
+      className="navbar navbar-expand-lg navbar-light bg-light"
+    >
+      <NavbarBrand
+        href="/"
+      >
+        <a
+          className="navbar-brand"
+          href="/"
+        >
+          Progress Tracker
+        </a>
+      </NavbarBrand>
+      <NavbarToggle
+        aria-controls="basic-navbar-nav"
+        label="Toggle navigation"
+      >
+        <button
+          aria-controls="basic-navbar-nav"
+          aria-label="Toggle navigation"
+          className="navbar-toggler collapsed"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="navbar-toggler-icon"
+          />
+        </button>
+      </NavbarToggle>
+      <NavbarCollapse
+        id="basic-navbar-nav"
+      >
+        <Collapse
+          appear={false}
+          dimension="height"
+          getDimensionValue={[Function]}
+          id="basic-navbar-nav"
+          in={false}
+          mountOnEnter={false}
+          timeout={300}
+          unmountOnExit={false}
+        >
+          <Transition
+            addEndListener={[Function]}
+            appear={false}
+            aria-expanded={null}
+            enter={true}
+            exit={true}
+            id="basic-navbar-nav"
+            in={false}
+            mountOnEnter={false}
+            onEnter={[Function]}
+            onEntered={[Function]}
+            onEntering={[Function]}
+            onExit={[Function]}
+            onExited={[Function]}
+            onExiting={[Function]}
+            timeout={300}
+            unmountOnExit={false}
+          >
+            <div
+              aria-expanded={null}
+              className="navbar-collapse collapse"
+              id="basic-navbar-nav"
+            >
+              <Nav
+                className="mr-auto"
+                fill={false}
+                justify={false}
+              >
+                <ForwardRef
+                  as="div"
+                  className="mr-auto navbar-nav"
+                  onSelect={[Function]}
+                >
+                  <div
+                    className="mr-auto navbar-nav"
+                    onKeyDown={[Function]}
+                  >
+                    <Link
+                      className="nav-link"
+                      to="/"
+                    >
+                      Home
+                    </Link>
+                    <Link
+                      className="nav-link"
+                      to="/students"
+                    >
+                      Students
+                    </Link>
+                    <Link
+                      className="nav-link"
+                      to="/myAccount"
+                    >
+                      My Account
+                    </Link>
+                    <Link
+                      className="nav-link"
+                      onClick={[Function]}
+                      to="/login"
+                    >
+                      Logout
+                    </Link>
+                  </div>
+                </ForwardRef>
+              </Nav>
+            </div>
+          </Transition>
+        </Collapse>
+      </NavbarCollapse>
+    </nav>
+  </Navbar>
+</Header>
 `;
