@@ -6,6 +6,7 @@ import Home from '../screens/Home/Home'
 import Login from '../screens/Login/Login'
 import Register from '../screens/Register/Register'
 import MyAccount from '../screens/MyAccount/MyAccount'
+// $FlowFixMe - Investigate how to fix
 import Student from '../screens/Student/Student'
 import Students from '../screens/Students/Students'
 
