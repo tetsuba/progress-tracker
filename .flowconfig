@@ -12,8 +12,6 @@
 .*/src/client/context/.*
 .*/src/client/App.*
 
-.*/src/client/components/Modal/.*
-
 .*/src/client/screens/Student/.*
 
 [include]
