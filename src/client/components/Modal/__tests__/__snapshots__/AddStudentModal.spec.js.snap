@@ -14,9 +14,7 @@ exports[`<AddStudentModal> should render 1`] = `
     <Container
       fluid={false}
     >
-      <AddStudentForm
-        toggleModal={[Function]}
-      />
+      <AddStudentForm />
     </Container>
   </ModalBody>
   <ModalFooter />

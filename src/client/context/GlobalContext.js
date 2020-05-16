@@ -1,7 +1,5 @@
 import * as React from 'react'
-// $FlowFixMe
 import ModalProvider from './ModalContext'
-// $FlowFixMe
 import AuthenticatedProvider from './AuthenticatedContext'
 import LoadingProvider from './LoadingContext'
 
