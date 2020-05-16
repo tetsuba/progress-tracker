@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
-// $FlowFixMe - Investigate how to fix context flow issue
-import { AuthenticatedContext } from '../context/AuthenticatedContext'
 import { Redirect, Route } from 'react-router-dom'
+
+// CONTEXT
+import { AuthenticatedContext } from '../context/AuthenticatedContext'
 
 // TYPES
 import type { ComponentType } from 'react'

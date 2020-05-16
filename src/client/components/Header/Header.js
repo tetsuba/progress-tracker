@@ -3,7 +3,6 @@ import { Nav, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 // CONTEXT
-// $FlowFixMe - Investigate how to fix this issue
 import { AuthenticatedContext } from '../../context/AuthenticatedContext'
 
 export default function Header() {

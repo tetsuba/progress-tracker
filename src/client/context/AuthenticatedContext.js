@@ -5,6 +5,7 @@ import { useLazyQuery } from '@apollo/react-hooks'
 import { IS_USER_SESSION_EXPIRED } from '../api/user/user.query'
 import Loading from '../components/Loading/Loading'
 
+// $FlowFixMe - Applying a type to createContext<T> breaks react from compiling the app.
 export const AuthenticatedContext = React.createContext({
   authenticated: false,
   toggle: (token = '') => {},
