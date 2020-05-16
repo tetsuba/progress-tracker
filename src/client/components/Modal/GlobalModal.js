@@ -1,5 +1,6 @@
 import React, { Fragment, useContext } from 'react'
 import { Modal } from 'react-bootstrap'
+// $FlowFixMe - Investigate how to fix
 import { ModalContext } from '../../context/ModalContext'
 
 export default function GlobalModal() {

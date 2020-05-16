@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddStudentModal> should render 1`] = `
+<Fragment>
+  <ModalHeader
+    closeButton={false}
+    closeLabel="Close"
+  >
+    <ModalTitle>
+      Add Student
+    </ModalTitle>
+  </ModalHeader>
+  <ModalBody>
+    <Container
+      fluid={false}
+    >
+      <AddStudentForm />
+    </Container>
+  </ModalBody>
+  <ModalFooter />
+</Fragment>
+`;

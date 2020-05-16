@@ -5,8 +5,8 @@ import crumbs from './crumbs'
 
 type Props = {
   crumbKey: string,
-  name?: string,
-  id?: string,
+  name?: ?string,
+  id?: ?string,
 }
 
 export default function BreadCrumbs(props: Props) {

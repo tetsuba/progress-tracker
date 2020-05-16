@@ -9,15 +9,10 @@
 .*/src/setupTests.*
 .*/src/serviceWorker.*
 .*/src/index.*
-.*/src/client/context/.*
-.*/src/client/routes/.*
+# .*/src/client/context/.*
 .*/src/client/App.*
 
-.*/src/client/components/Modal/.*
-
-.*/src/client/screens/Course/.*
 .*/src/client/screens/Student/.*
-# .*/src/client/screens/Students/.*
 
 [include]
 
@@ -32,7 +27,3 @@ all=true
 [strict]
 
 [declarations]
-.*/react-router-dom/.*
-.*/react-bootstrap/.*
-.*/@apollo/react-hooks/.*
-.*/graphql-tag/.*

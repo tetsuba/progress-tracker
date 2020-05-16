@@ -7,9 +7,7 @@ import TextLink from '../TextLink/TextLink'
 import Box from '../Box/Box'
 
 // CONTEXT
-// $FlowFixMe - Investigate how to fix context flow issue
 import { AuthenticatedContext } from '../../context/AuthenticatedContext'
-// $FlowFixMe - Investigate how to fix context flow issue
 import { LoadingContext } from '../../context/LoadingContext'
 
 // HOOKS
