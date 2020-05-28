@@ -6,7 +6,6 @@ export const STUDENTS_QUERY = gql`
       id
       firstName
       lastName
-      teacherID
     }
   }
 `
@@ -16,6 +15,7 @@ export const STUDENT_QUERY = gql`
     getStudent(input: $input) {
       firstName
       lastName
+      courses
     }
   }
 `

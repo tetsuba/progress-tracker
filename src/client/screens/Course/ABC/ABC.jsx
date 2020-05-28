@@ -1,121 +1,69 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
+import { useQuery } from '@apollo/react-hooks'
+import { Col, Container, ListGroup, Row } from 'react-bootstrap'
 
-import { Col, Container, ProgressBar, Row } from 'react-bootstrap'
-import { Link, useParams } from 'react-router-dom'
-import gql from 'graphql-tag'
+// COMPONENTS
 import BreadCrumbs from '../../../components/BreadCrumbs/BreadCrumbs'
+import Alphabet from '../../../components/Alphabet/Alphabet'
 import { CRUMBS_KEY } from '../../../components/BreadCrumbs/crumbs'
+import AlphabetForm from '../../../components/Form/AlphabetForm'
 
-export const STUDENT_QUERY = gql`
-  query($input: StudentIdInput!) {
-    getStudent(input: $input) {
-      firstName
-      lastName
-    }
-  }
-`
+// QUERIES
+import { GET_STUDENT_COURSE_ABC } from '../../../api/course/courseABC/courseABC.query'
 
-const ABC = () => {
+export default function ABC() {
   const { id } = useParams()
-  console.log('ABC: ', id)
+  const variables = {
+    input: {
+      id: id || '',
+    },
+  }
+  const options = {
+    variables,
+  }
+  // $FlowFixMe - Investigate how to fix this flow issue
+  const { loading, data } = useQuery(GET_STUDENT_COURSE_ABC, options)
 
-  const units = [
-    {
-      value: 'Aa',
-      progress: 60,
-      startDate: '',
-      endDate: '',
-      active: true,
-      to: '/course/abc/a',
-    },
-    {
-      value: 'Bb',
-      progress: 20,
-      startDate: '',
-      endDate: '',
-      active: true,
-      to: '/course/abc/b',
-    },
-    {
-      value: 'Cc',
-      progress: 2,
-      startDate: '',
-      endDate: '',
-      active: true,
-      to: '/course/abc/c',
-    },
-    {
-      value: 'Dd',
-      progress: 0,
-      startDate: '',
-      endDate: '',
-      active: false,
-      to: '/course/abc/d',
-    },
-    {
-      value: 'Ee',
-      progress: 0,
-      startDate: '',
-      endDate: '',
-      active: false,
-      to: '/course/abc/e',
-    },
-    {
-      value: 'Ff',
-      progress: 0,
-      startDate: '',
-      endDate: '',
-      active: false,
-      to: '/course/abc/f',
-    },
-    {
-      value: 'Gg',
-      progress: 0,
-      startDate: '',
-      endDate: '',
-      active: false,
-      to: '/course/abc/g',
-    },
-  ]
-
-  const renderCards = () =>
-    units.map((card) => (
-      <Col sm={3}>
-        <Link to={card.to} className="card text-body text-decoration-none">
-          <div className="card-body">
-            <h1>{card.value}</h1>
-          </div>
-          <div className="card-footer">
-            {!card.active && <p>Click here to begin</p>}
-            {card.active && (
-              <ProgressBar now={card.progress} label={`${card.progress}%`} />
-            )}
-          </div>
-        </Link>
-      </Col>
-    ))
+  if (loading) return <div>LOADING</div>
 
   return (
     <Container>
       <Row className="mt-5">
         <BreadCrumbs
           crumbKey={CRUMBS_KEY.ABC}
-          name={'NO_QUERY_NO_DATA'}
+          name={data.getStudentCourseABC.studentName}
           id={id}
         />
       </Row>
       <Row className="mt-5">
+        <h1>ABC</h1>
+      </Row>
+      <Row className="mt-5">
         <Col>
-          <h1>ABC</h1>
+          <h3>Summary:</h3>
+          <h3>Letters to start:</h3>
+          <h3>Letters to work on:</h3>
         </Col>
       </Row>
       <Row className="mt-5">
-        <Col></Col>
+        <Col>{id && <AlphabetForm id={id} />}</Col>
       </Row>
-
-      <Row className="mt-5">{renderCards()}</Row>
+      <Row className="mt-5">
+        <Col>
+          <h3>History:</h3>
+          <ListGroup variant="flush">
+            {data.getStudentCourseABC.history
+              .map(({ date, alphabet }) => (
+                <ListGroup.Item key={date}>
+                  <div>{new Date(Number(date)).toDateString()}</div>
+                  <Alphabet letters={alphabet} />
+                </ListGroup.Item>
+              ))
+              .reverse()}
+          </ListGroup>
+        </Col>
+      </Row>
     </Container>
   )
 }
-
-export default ABC

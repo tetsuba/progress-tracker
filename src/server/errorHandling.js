@@ -11,6 +11,7 @@ const errorName = {
   EMAIL_ALREADY_EXIST: 'EMAIL_ALREADY_EXIST',
   INTERNAL_SERVER_ERROR: 'INTERNAL_SERVER_ERROR',
   NOT_VALID_EMAIL: 'NOT_VALID_EMAIL',
+  STUDENT_EXISTS: 'STUDENT_EXISTS',
 }
 
 const errorType = {
@@ -58,6 +59,11 @@ const errorType = {
     message: 'Not a valid email address',
     statusCode: 510, //  Internal server error
     name: 'bad_email_address',
+  },
+  STUDENT_EXISTS: {
+    message: 'student already exists',
+    statusCode: 401, //  unauthorized
+    name: 'unauthorized',
   },
 }
 

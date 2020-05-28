@@ -9,10 +9,7 @@
 .*/src/setupTests.*
 .*/src/serviceWorker.*
 .*/src/index.*
-# .*/src/client/context/.*
 .*/src/client/App.*
-
-.*/src/client/screens/Student/.*
 
 [include]
 

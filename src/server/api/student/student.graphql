@@ -1,28 +1,39 @@
 
 type StudentType {
-    id: String
-    firstName: String
-    lastName: String
-    DOB: String
-    teacherID: String
+  id: String
+  firstName: String
+  lastName: String
+  DOB: String
+  courses: [String]
+}
+
+type StudentsType {
+  id: String
+  firstName: String
+  lastName: String
 }
 
 input StudentIdInput {
-    id: String
+  id: String
 }
 
-input NewStudentInput {
-    firstName: String
-    lastName: String
-    DOB: String
-    teacherID: String
+input StudentCourseInput {
+  studentId: String
+  courseName: String,
 }
 
-type Query {
-    students: [StudentType]
-    getStudent(input: StudentIdInput!): StudentType!
+input AddStudentInput {
+  firstName: String
+  lastName: String
+  DOB: String
+}
+
+extend type Query {
+  students: [StudentsType]!
+  getStudent(input: StudentIdInput!): StudentType!
 }
 
 extend type Mutation {
-    addNewStudent(input: NewStudentInput!): StudentType!
+  addStudent(input: AddStudentInput!): [StudentsType]!
+  addStudentCourse(input: StudentCourseInput!): StudentType!
 }
