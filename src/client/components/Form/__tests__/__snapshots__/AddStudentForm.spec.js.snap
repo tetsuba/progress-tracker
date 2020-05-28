@@ -126,7 +126,6 @@ exports[`<AddStudentForm> @Render should render 1`] = `
             "DOBYear": 2020,
             "firstName": "",
             "lastName": "",
-            "teacherID": "teacherId1234",
           }
         }
         setInputs={[Function]}

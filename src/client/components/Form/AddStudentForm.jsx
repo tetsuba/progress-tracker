@@ -3,7 +3,7 @@ import { Button, Col, Form } from 'react-bootstrap'
 import { useInputChange } from '../../hooks/hooks'
 import { useMutation } from '@apollo/react-hooks'
 import { STUDENTS_QUERY } from '../../api/student/student.query'
-import { ADD_NEW_STUDENT_MUTATION } from '../../api/student/student.mutation'
+import { ADD_STUDENT_MUTATION } from '../../api/student/student.mutation'
 import DobInput from './Inputs/DobInput'
 
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
 
 export default function AddStudentForm(props: Props) {
   const { toggleModal } = props
-  const [addNewStudent] = useMutation(ADD_NEW_STUDENT_MUTATION, {
+  const [addStudent] = useMutation(ADD_STUDENT_MUTATION, {
     refetchQueries: [{ query: STUDENTS_QUERY }],
   })
   const [inputs, setInputs] = useInputChange({
@@ -21,7 +21,6 @@ export default function AddStudentForm(props: Props) {
     DOBDate: '01',
     DOBMonth: '01',
     DOBYear: new Date().getFullYear(),
-    teacherID: 'teacherId1234',
   })
   return (
     <Form
@@ -33,12 +32,11 @@ export default function AddStudentForm(props: Props) {
           input: {
             firstName: inputs.firstName,
             lastName: inputs.lastName,
-            teacherID: 'teacherId1234',
             DOB: String(Date.parse(DOB)),
           },
         }
 
-        addNewStudent({ variables })
+        addStudent({ variables })
           .then(({ data }) => {
             toggleModal()
           })

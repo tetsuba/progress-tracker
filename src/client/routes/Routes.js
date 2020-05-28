@@ -6,7 +6,6 @@ import Home from '../screens/Home/Home'
 import Login from '../screens/Login/Login'
 import Register from '../screens/Register/Register'
 import MyAccount from '../screens/MyAccount/MyAccount'
-// $FlowFixMe - Investigate how to fix
 import Student from '../screens/Student/Student'
 import Students from '../screens/Students/Students'
 
@@ -21,10 +20,6 @@ export default function Routes() {
   return (
     <Switch>
       <ProtectedRoute path="/" exact component={Home} />
-      {
-        // TODO: Do I need a link to courses?
-        /*<ProtectedRoute path="/student/:id/courses" component={} />*/
-      }
       <UnProtectedRoute path="/login" Component={Login} />
       <Route path="/register" component={Register} />
       <Route path="/confirm/:token" component={ConfirmAccount} />

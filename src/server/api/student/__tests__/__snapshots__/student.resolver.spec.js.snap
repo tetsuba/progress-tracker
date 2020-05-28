@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`student.resolver @Mutation addStudent should return students 1`] = `
+Object {
+  "data": Object {
+    "addStudent": Array [
+      Object {
+        "firstName": "Bob",
+        "id": "Hello World",
+        "lastName": "Boo",
+      },
+      Object {
+        "firstName": "John",
+        "id": "Hello World",
+        "lastName": "Doh",
+      },
+    ],
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`student.resolver @Mutation addStudentCourse should return student updated data 1`] = `
+Object {
+  "data": Object {
+    "addStudentCourse": Object {
+      "courses": Array [
+        "Course1",
+        "Course2",
+        "course3",
+      ],
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`student.resolver @Query getStudent should return a student 1`] = `
+Object {
+  "data": Object {
+    "getStudent": Object {
+      "courses": Array [
+        "Course1",
+        "Course2",
+      ],
+      "firstName": "Bob",
+      "lastName": "Boo",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`student.resolver @Query students should return a list of students 1`] = `
+Object {
+  "data": Object {
+    "students": Array [
+      Object {
+        "firstName": "Bob",
+        "id": "Hello World",
+        "lastName": "Boo",
+      },
+      Object {
+        "firstName": "John",
+        "id": "Hello World",
+        "lastName": "Doh",
+      },
+    ],
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;

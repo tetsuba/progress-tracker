@@ -1,7 +1,5 @@
 const mongoose = require('mongoose')
 
-// TODO: Create user schema -- No id. Is this correct?
-
 const studentSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -19,6 +17,7 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  courses: [String],
 })
 
-mongoose.model('student', studentSchema)
+module.exports = studentSchema

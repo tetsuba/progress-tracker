@@ -4,7 +4,6 @@ import { useInputChange } from '../../hooks/hooks'
 import { useMutation } from '@apollo/react-hooks'
 
 // CONTEXT
-// $FlowFixMe - Investigate how to fix context flow issue
 import { LoadingContext } from '../../context/LoadingContext'
 
 // COMPONENTS

@@ -1,0 +1,229 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Students @Render Should render 1`] = `
+<Students>
+  <Container
+    fluid={false}
+  >
+    <div
+      className="container"
+    >
+      <Row
+        className="mt-5"
+        noGutters={false}
+      >
+        <div
+          className="mt-5 row"
+        >
+          <BreadCrumbs
+            crumbKey="Students"
+          >
+            <Row
+              noGutters={false}
+            >
+              <div
+                className="row"
+              >
+                <Breadcrumb
+                  label="breadcrumb"
+                  listProps={Object {}}
+                >
+                  <nav
+                    aria-label="breadcrumb"
+                  >
+                    <ol
+                      className="breadcrumb"
+                    >
+                      <Crumbs>
+                        <li
+                          className="breadcrumb-item"
+                          key="Home-0"
+                        >
+                          <Link
+                            to="/"
+                          >
+                            Home
+                          </Link>
+                        </li>
+                        <BreadcrumbItem
+                          active={true}
+                          key="Students-1"
+                          linkProps={Object {}}
+                        >
+                          <li
+                            aria-current="page"
+                            className="breadcrumb-item active"
+                          >
+                            Students
+                          </li>
+                        </BreadcrumbItem>
+                      </Crumbs>
+                    </ol>
+                  </nav>
+                </Breadcrumb>
+              </div>
+            </Row>
+          </BreadCrumbs>
+        </div>
+      </Row>
+      <Row
+        className="mt-5"
+        noGutters={false}
+      >
+        <div
+          className="mt-5 row"
+        >
+          <Col>
+            <div
+              className="col"
+            >
+              <h1>
+                My Students
+              </h1>
+            </div>
+          </Col>
+        </div>
+      </Row>
+      <Row
+        className="mt-5"
+        noGutters={false}
+      >
+        <div
+          className="mt-5 row"
+        >
+          <Col>
+            <div
+              className="col"
+            >
+              <Button
+                active={false}
+                className="float-right"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+                variant="primary"
+              >
+                <button
+                  className="float-right btn btn-primary"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  <FontAwesomeIcon
+                    border={false}
+                    className=""
+                    fixedWidth={false}
+                    flip={null}
+                    icon={
+                      Object {
+                        "icon": Array [
+                          448,
+                          512,
+                          Array [],
+                          "f067",
+                          "M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z",
+                        ],
+                        "iconName": "plus",
+                        "prefix": "fas",
+                      }
+                    }
+                    inverse={false}
+                    listItem={false}
+                    mask={null}
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    swapOpacity={false}
+                    symbol={false}
+                    title=""
+                    transform={null}
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="svg-inline--fa fa-plus fa-w-14 "
+                      data-icon="plus"
+                      data-prefix="fas"
+                      focusable="false"
+                      role="img"
+                      style={Object {}}
+                      viewBox="0 0 448 512"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                        fill="currentColor"
+                        style={Object {}}
+                      />
+                    </svg>
+                  </FontAwesomeIcon>
+                   Add Student
+                </button>
+              </Button>
+            </div>
+          </Col>
+        </div>
+      </Row>
+      <Row
+        className="mt-1"
+        noGutters={false}
+      >
+        <div
+          className="mt-1 row"
+        >
+          <Col>
+            <div
+              className="col"
+            >
+              <ListGroup
+                horizontal={null}
+                variant={null}
+              >
+                <ForwardRef
+                  as="div"
+                  className="list-group"
+                  onSelect={[Function]}
+                >
+                  <div
+                    className="list-group"
+                    onKeyDown={[Function]}
+                  >
+                    <Link
+                      className="list-group-item"
+                      key="ID001"
+                      to="/student/ID001"
+                    >
+                      FirstName001
+                       
+                      LastName001
+                    </Link>
+                    <Link
+                      className="list-group-item"
+                      key="ID002"
+                      to="/student/ID002"
+                    >
+                      FirstName002
+                       
+                      LastName002
+                    </Link>
+                    <Link
+                      className="list-group-item"
+                      key="ID003"
+                      to="/student/ID003"
+                    >
+                      FirstName003
+                       
+                      LastName003
+                    </Link>
+                  </div>
+                </ForwardRef>
+              </ListGroup>
+            </div>
+          </Col>
+        </div>
+      </Row>
+    </div>
+  </Container>
+</Students>
+`;

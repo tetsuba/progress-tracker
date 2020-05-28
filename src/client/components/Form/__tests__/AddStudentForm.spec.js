@@ -26,7 +26,7 @@ describe('<AddStudentForm>', () => {
 
   describe('@Events', () => {
     describe('onSubmit', () => {
-      it('should call "toggleModal"', async () => {
+      it.skip('should call "toggleModal"', async () => {
         const props = {
           toggleModal: jest.fn(),
         }
