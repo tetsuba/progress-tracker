@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HistogramXAxisValue> @Render Should render a value 1`] = `
+<div
+  style={
+    Object {
+      "textAlign": "center",
+      "width": "3%",
+    }
+  }
+>
+  a
+</div>
+`;

@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import ABC from './ABC/ABC.routes'
+import ABC from './Alphabet/ABC.routes'
 
 export default () => (
   <Fragment>

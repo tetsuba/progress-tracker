@@ -5,6 +5,7 @@ import type { AlphabetType } from './Alphabet.type'
 
 type Props = {
   update?: ((state: Array<AlphabetType>) => Array<AlphabetType>) => void,
+  key?: ?string,
 }
 
 export default function Letter(props: Props & AlphabetType) {

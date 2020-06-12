@@ -7,7 +7,7 @@ import Letter from './Letter'
 import type { AlphabetType } from './Alphabet.type'
 
 type Props = {
-  letters: Array<{ letter: string, value: number }>,
+  letters: Array<AlphabetType>,
   update?: ((state: Array<AlphabetType>) => Array<AlphabetType>) => void,
 }
 
@@ -15,8 +15,13 @@ export default function Alphabet(props: Props) {
   const { letters, update } = props
   return (
     <div style={{ display: 'flex', alignItems: 'left', flexWrap: 'wrap' }}>
-      {letters.map((props) => (
-        <Letter {...props} update={update} />
+      {letters.map(({ letter, value }) => (
+        <Letter
+          key={`${letter}-letter`}
+          letter={letter}
+          value={value}
+          update={update}
+        />
       ))}
     </div>
   )

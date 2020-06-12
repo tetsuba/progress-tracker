@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HistogramChartVRangeBar> @Render Should render a false value 1`] = `
+<div
+  style={
+    Object {
+      "backgroundColor": "#309c3f",
+      "borderTop": "solid 1px #CCC",
+      "boxSizing": "border-box",
+      "height": "20%",
+      "width": "100%",
+    }
+  }
+/>
+`;
+
+exports[`<HistogramChartVRangeBar> @Render Should render a true value 1`] = `
+<div
+  style={
+    Object {
+      "backgroundColor": "#309c3f",
+      "borderTop": "solid 1px #CCC",
+      "boxSizing": "border-box",
+      "height": "20%",
+      "width": "100%",
+    }
+  }
+/>
+`;
