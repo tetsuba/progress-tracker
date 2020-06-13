@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Histogram> @Render Should render 1`] = `
+<div
+  className="Histogram"
+  style={
+    Object {
+      "display": "flex",
+      "flexDirection": "row",
+      "flexWrap": "wrap",
+    }
+  }
+>
+  <HistogramYAxis
+    data={Object {}}
+  />
+  <div
+    style={
+      Object {
+        "width": "99%",
+      }
+    }
+  >
+    <HistogramChart
+      data={Object {}}
+    />
+    <HistogramXAxis
+      data={Object {}}
+    />
+  </div>
+  <HistogramKey />
+</div>
+`;

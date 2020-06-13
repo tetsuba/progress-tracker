@@ -1,16 +1,25 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/react-hooks'
-import { Col, Container, ListGroup, Row } from 'react-bootstrap'
+import { Button, Col, Container, ListGroup, Row } from 'react-bootstrap'
 
 // COMPONENTS
 import BreadCrumbs from '../../../components/BreadCrumbs/BreadCrumbs'
 import Alphabet from '../../../components/Alphabet/Alphabet'
 import { CRUMBS_KEY } from '../../../components/BreadCrumbs/crumbs'
-import AlphabetForm from '../../../components/Form/AlphabetForm'
+import Histogram from '../../../components/Chart/Histogram/Histogram'
+import AlphabetModal from '../../../components/Modal/AlphabetModal'
+
+// CONTEXT
+import { ModalContext } from '../../../context/ModalContext'
+
+// ICONS
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 // QUERIES
 import { GET_STUDENT_COURSE_ABC } from '../../../api/course/courseABC/courseABC.query'
+import { formatDataForHistogram } from './alphabet-utils'
 
 export default function ABC() {
   const { id } = useParams()
@@ -24,6 +33,11 @@ export default function ABC() {
   }
   // $FlowFixMe - Investigate how to fix this flow issue
   const { loading, data } = useQuery(GET_STUDENT_COURSE_ABC, options)
+  const { toggleModal, addTemplate } = useContext(ModalContext)
+
+  useEffect(() => {
+    addTemplate(AlphabetModal, { id: id, data: data })
+  }, [addTemplate, data, id])
 
   if (loading) return <div>LOADING</div>
 
@@ -37,17 +51,20 @@ export default function ABC() {
         />
       </Row>
       <Row className="mt-5">
-        <h1>ABC</h1>
+        <h1>Alphabet (lowercase) assessment</h1>
       </Row>
+
+      <Button
+        className="float-right"
+        variant="primary"
+        onClick={() => toggleModal()}
+      >
+        <FontAwesomeIcon icon={faPlus} /> Add assessment
+      </Button>
       <Row className="mt-5">
         <Col>
-          <h3>Summary:</h3>
-          <h3>Letters to start:</h3>
-          <h3>Letters to work on:</h3>
+          <Histogram data={formatDataForHistogram(data)} />
         </Col>
-      </Row>
-      <Row className="mt-5">
-        <Col>{id && <AlphabetForm id={id} />}</Col>
       </Row>
       <Row className="mt-5">
         <Col>

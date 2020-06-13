@@ -15,6 +15,7 @@ type State = {
   hideModal: () => void,
   toggleModal: () => void,
   addTemplate: () => void,
+  storedProps: any,
 }
 
 export default class ModalProvider extends React.Component<Props, State> {
@@ -26,10 +27,12 @@ export default class ModalProvider extends React.Component<Props, State> {
       this.setState({
         show: !this.state.show,
       }),
+    storedProps: {},
 
-    addTemplate: (template) =>
+    addTemplate: (template, props) =>
       this.setState({
         ModalTemplate: template,
+        storedProps: props,
       }),
   }
 
