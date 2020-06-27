@@ -56,6 +56,7 @@ export default function AlphabetForm(props: Props) {
 
   useEffect(() => {
     setLetters(defaultState)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
