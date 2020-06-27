@@ -1,0 +1,40 @@
+
+type AlphabetType {
+  letter: String,
+  value: Int,
+}
+
+type AlphabetHistoryType {
+  date: String,
+  alphabet: [AlphabetType]
+}
+
+type AlphabetAssessmentType {
+  studentName: String
+  history: [AlphabetHistoryType]!
+}
+
+input AlphabetInput {
+  letter: String,
+  value: Int,
+}
+
+input AlphabetAssessmentInput {
+  alphabet: [AlphabetInput]
+  date: String,
+  studentId: String,
+  typeOfAlphabetAssessment: String,
+}
+
+input GetAlphabetAsessmentInput {
+  studentId: String,
+  typeOfAlphabetAssessment: String,
+}
+
+extend type Query {
+  getAlphabetAssessment(input: GetAlphabetAsessmentInput!): AlphabetAssessmentType!
+}
+
+extend type Mutation {
+  saveAlphabetAssessment(input: AlphabetAssessmentInput!): AlphabetAssessmentType!
+}

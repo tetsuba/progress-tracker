@@ -1,0 +1,884 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AlphabetForm> Should render a default state 1`] = `
+<AlphabetForm
+  data={
+    Object {
+      "getAlphabetAssessment": Object {
+        "history": Array [],
+      },
+    }
+  }
+  id="userId001"
+  toggleModal={[MockFunction]}
+  type="upperCase"
+>
+  <Alphabet
+    letters={
+      Array [
+        Object {
+          "letter": "A",
+          "value": 0,
+        },
+        Object {
+          "letter": "B",
+          "value": 0,
+        },
+        Object {
+          "letter": "C",
+          "value": 0,
+        },
+        Object {
+          "letter": "D",
+          "value": 0,
+        },
+        Object {
+          "letter": "E",
+          "value": 0,
+        },
+        Object {
+          "letter": "F",
+          "value": 0,
+        },
+        Object {
+          "letter": "G",
+          "value": 0,
+        },
+        Object {
+          "letter": "H",
+          "value": 0,
+        },
+        Object {
+          "letter": "I",
+          "value": 0,
+        },
+        Object {
+          "letter": "J",
+          "value": 0,
+        },
+        Object {
+          "letter": "K",
+          "value": 0,
+        },
+        Object {
+          "letter": "L",
+          "value": 0,
+        },
+        Object {
+          "letter": "M",
+          "value": 0,
+        },
+        Object {
+          "letter": "N",
+          "value": 0,
+        },
+        Object {
+          "letter": "O",
+          "value": 0,
+        },
+        Object {
+          "letter": "P",
+          "value": 0,
+        },
+        Object {
+          "letter": "Q",
+          "value": 0,
+        },
+        Object {
+          "letter": "R",
+          "value": 0,
+        },
+        Object {
+          "letter": "S",
+          "value": 0,
+        },
+        Object {
+          "letter": "T",
+          "value": 0,
+        },
+        Object {
+          "letter": "U",
+          "value": 0,
+        },
+        Object {
+          "letter": "V",
+          "value": 0,
+        },
+        Object {
+          "letter": "W",
+          "value": 0,
+        },
+        Object {
+          "letter": "X",
+          "value": 0,
+        },
+        Object {
+          "letter": "Y",
+          "value": 0,
+        },
+        Object {
+          "letter": "Z",
+          "value": 0,
+        },
+      ]
+    }
+    update={[Function]}
+  >
+    <div
+      style={
+        Object {
+          "alignItems": "left",
+          "display": "flex",
+          "flexWrap": "wrap",
+        }
+      }
+    >
+      <Letter
+        key="A-letter"
+        letter="A"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          A
+        </div>
+      </Letter>
+      <Letter
+        key="B-letter"
+        letter="B"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          B
+        </div>
+      </Letter>
+      <Letter
+        key="C-letter"
+        letter="C"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          C
+        </div>
+      </Letter>
+      <Letter
+        key="D-letter"
+        letter="D"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          D
+        </div>
+      </Letter>
+      <Letter
+        key="E-letter"
+        letter="E"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          E
+        </div>
+      </Letter>
+      <Letter
+        key="F-letter"
+        letter="F"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          F
+        </div>
+      </Letter>
+      <Letter
+        key="G-letter"
+        letter="G"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          G
+        </div>
+      </Letter>
+      <Letter
+        key="H-letter"
+        letter="H"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          H
+        </div>
+      </Letter>
+      <Letter
+        key="I-letter"
+        letter="I"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          I
+        </div>
+      </Letter>
+      <Letter
+        key="J-letter"
+        letter="J"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          J
+        </div>
+      </Letter>
+      <Letter
+        key="K-letter"
+        letter="K"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          K
+        </div>
+      </Letter>
+      <Letter
+        key="L-letter"
+        letter="L"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          L
+        </div>
+      </Letter>
+      <Letter
+        key="M-letter"
+        letter="M"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          M
+        </div>
+      </Letter>
+      <Letter
+        key="N-letter"
+        letter="N"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          N
+        </div>
+      </Letter>
+      <Letter
+        key="O-letter"
+        letter="O"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          O
+        </div>
+      </Letter>
+      <Letter
+        key="P-letter"
+        letter="P"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          P
+        </div>
+      </Letter>
+      <Letter
+        key="Q-letter"
+        letter="Q"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          Q
+        </div>
+      </Letter>
+      <Letter
+        key="R-letter"
+        letter="R"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          R
+        </div>
+      </Letter>
+      <Letter
+        key="S-letter"
+        letter="S"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          S
+        </div>
+      </Letter>
+      <Letter
+        key="T-letter"
+        letter="T"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          T
+        </div>
+      </Letter>
+      <Letter
+        key="U-letter"
+        letter="U"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          U
+        </div>
+      </Letter>
+      <Letter
+        key="V-letter"
+        letter="V"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          V
+        </div>
+      </Letter>
+      <Letter
+        key="W-letter"
+        letter="W"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          W
+        </div>
+      </Letter>
+      <Letter
+        key="X-letter"
+        letter="X"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          X
+        </div>
+      </Letter>
+      <Letter
+        key="Y-letter"
+        letter="Y"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          Y
+        </div>
+      </Letter>
+      <Letter
+        key="Z-letter"
+        letter="Z"
+        update={[Function]}
+        value={0}
+      >
+        <div
+          onClick={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "border": "solid 1px #000",
+              "color": "#000",
+              "cursor": "pointer",
+              "display": "flex",
+              "fontSize": "42px",
+              "height": "100px",
+              "justifyContent": "center",
+              "margin": "4px",
+              "padding": "",
+              "width": "80px",
+            }
+          }
+        >
+          Z
+        </div>
+      </Letter>
+    </div>
+  </Alphabet>
+  <Button
+    active={false}
+    className="float-right"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+    variant="primary"
+  >
+    <button
+      className="float-right btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Save Progress
+    </button>
+  </Button>
+</AlphabetForm>
+`;

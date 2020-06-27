@@ -32,8 +32,8 @@ export default function Students() {
   const renderList = (students) =>
     students.map((student) => (
       <Link
-        to={`/student/${student.id}`}
-        key={student.id}
+        to={`/student/${student._id}`}
+        key={student._id}
         className="list-group-item"
       >
         {student.firstName} {student.lastName}

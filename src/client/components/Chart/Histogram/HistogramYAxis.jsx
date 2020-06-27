@@ -7,7 +7,8 @@ type Props = {
 
 export default function HistogramYAxis(props: Props) {
   const { data } = props
-  const YAxis = Array(data.a.total).fill(0)
+  const total = data.a ? data.a.total : data.A.total
+  const YAxis = Array(total).fill(0)
   const styles = {
     width: '1%',
     paddingBottom: '42px',

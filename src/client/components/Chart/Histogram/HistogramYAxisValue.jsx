@@ -7,17 +7,19 @@ type Props = {
 
 export default function HistogramYAxisValue(props: Props) {
   const { data, index } = props
+  const total = data.a ? data.a.total : data.A.total
+
   const styles = {
     alignItems: 'center',
     display: 'flex',
-    height: `${100 / data.a.total}%`,
+    height: `${100 / total}%`,
     justifyContent: 'flex-end',
     borderTop: 'solid 1px #000',
     fontSize: '14px',
     position: 'relative',
   }
   const startValue = index === 0 ? '1' : ''
-  const endValue = index === data.a.total - 1 ? String(data.a.total) : ''
+  const endValue = index === total - 1 ? String(total) : ''
 
   const valueStyles = {
     position: 'absolute',

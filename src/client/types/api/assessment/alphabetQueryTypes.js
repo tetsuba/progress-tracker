@@ -8,8 +8,8 @@ type assessmentAlphabetHistoryType = {
   alphabet: [assessmentAlphabetHistoryAlphabetType],
 }
 
-export type AssessmentAlphabetType = {
-  getStudentCourseABC: {
+export type AlphabetAssessmentType = {
+  getAlphabetAssessment: {
     studentName: string,
     history: [assessmentAlphabetHistoryType],
   },

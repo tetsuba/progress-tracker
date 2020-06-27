@@ -4,22 +4,17 @@ type StudentType {
   firstName: String
   lastName: String
   DOB: String
-  courses: [String]
+  assessments: [String]
 }
 
 type StudentsType {
-  id: String
+  _id: String
   firstName: String
   lastName: String
 }
 
 input StudentIdInput {
   id: String
-}
-
-input StudentCourseInput {
-  studentId: String
-  courseName: String,
 }
 
 input AddStudentInput {
@@ -35,5 +30,4 @@ extend type Query {
 
 extend type Mutation {
   addStudent(input: AddStudentInput!): [StudentsType]!
-  addStudentCourse(input: StudentCourseInput!): StudentType!
 }

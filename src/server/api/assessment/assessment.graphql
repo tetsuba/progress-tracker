@@ -1,0 +1,9 @@
+
+input AddAssessmentInput {
+  studentId: String
+  assessmentName: String,
+}
+
+extend type Mutation {
+  addAssessment(input: AddAssessmentInput!): StudentType!
+}

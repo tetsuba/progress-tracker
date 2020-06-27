@@ -1,0 +1,417 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`alphabet.resolver @Mutation saveAlphabetAssessment Error should return an error "Assessment not found" 1`] = `
+Array [
+  [GraphQLError: ASSESSMENT_NOT_FOUND],
+]
+`;
+
+exports[`alphabet.resolver @Mutation saveAlphabetAssessment Error should return an error "Student not found" 1`] = `
+Array [
+  [GraphQLError: STUDENT_NOT_FOUND],
+]
+`;
+
+exports[`alphabet.resolver @Mutation saveAlphabetAssessment Success should save a lowerCase alphabet assessment 1`] = `
+Object {
+  "history": Array [
+    Object {
+      "alphabet": Array [
+        Object {
+          "letter": "A",
+          "value": 1,
+        },
+        Object {
+          "letter": "B",
+          "value": 2,
+        },
+        Object {
+          "letter": "C",
+          "value": 0,
+        },
+      ],
+      "date": "today",
+    },
+    Object {
+      "alphabet": Array [
+        Object {
+          "letter": "A",
+          "value": 1,
+        },
+        Object {
+          "letter": "B",
+          "value": 2,
+        },
+        Object {
+          "letter": "C",
+          "value": 0,
+        },
+      ],
+      "date": "tomorrow",
+    },
+    Object {
+      "alphabet": Array [
+        Object {
+          "letter": "A",
+          "value": 1,
+        },
+        Object {
+          "letter": "B",
+          "value": 1,
+        },
+        Object {
+          "letter": "C",
+          "value": 1,
+        },
+      ],
+      "date": "new date",
+    },
+  ],
+  "studentName": "David",
+}
+`;
+
+exports[`alphabet.resolver @Mutation saveAlphabetAssessment Success should save a names alphabet assessment 1`] = `
+Object {
+  "history": Array [
+    Object {
+      "alphabet": Array [
+        Object {
+          "letter": "A",
+          "value": 1,
+        },
+        Object {
+          "letter": "B",
+          "value": 2,
+        },
+        Object {
+          "letter": "C",
+          "value": 0,
+        },
+      ],
+      "date": "today",
+    },
+    Object {
+      "alphabet": Array [
+        Object {
+          "letter": "A",
+          "value": 1,
+        },
+        Object {
+          "letter": "B",
+          "value": 2,
+        },
+        Object {
+          "letter": "C",
+          "value": 0,
+        },
+      ],
+      "date": "tomorrow",
+    },
+    Object {
+      "alphabet": Array [
+        Object {
+          "letter": "A",
+          "value": 1,
+        },
+        Object {
+          "letter": "B",
+          "value": 1,
+        },
+        Object {
+          "letter": "C",
+          "value": 1,
+        },
+      ],
+      "date": "new date",
+    },
+  ],
+  "studentName": "David",
+}
+`;
+
+exports[`alphabet.resolver @Mutation saveAlphabetAssessment Success should save a sounds alphabet assessment 1`] = `
+Object {
+  "history": Array [
+    Object {
+      "alphabet": Array [
+        Object {
+          "letter": "A",
+          "value": 1,
+        },
+        Object {
+          "letter": "B",
+          "value": 2,
+        },
+        Object {
+          "letter": "C",
+          "value": 0,
+        },
+      ],
+      "date": "today",
+    },
+    Object {
+      "alphabet": Array [
+        Object {
+          "letter": "A",
+          "value": 1,
+        },
+        Object {
+          "letter": "B",
+          "value": 2,
+        },
+        Object {
+          "letter": "C",
+          "value": 0,
+        },
+      ],
+      "date": "tomorrow",
+    },
+    Object {
+      "alphabet": Array [
+        Object {
+          "letter": "A",
+          "value": 1,
+        },
+        Object {
+          "letter": "B",
+          "value": 1,
+        },
+        Object {
+          "letter": "C",
+          "value": 1,
+        },
+      ],
+      "date": "new date",
+    },
+  ],
+  "studentName": "David",
+}
+`;
+
+exports[`alphabet.resolver @Mutation saveAlphabetAssessment Success should save an upperCase alphabet assessment 1`] = `
+Object {
+  "history": Array [
+    Object {
+      "alphabet": Array [
+        Object {
+          "letter": "A",
+          "value": 1,
+        },
+        Object {
+          "letter": "B",
+          "value": 2,
+        },
+        Object {
+          "letter": "C",
+          "value": 0,
+        },
+      ],
+      "date": "today",
+    },
+    Object {
+      "alphabet": Array [
+        Object {
+          "letter": "A",
+          "value": 1,
+        },
+        Object {
+          "letter": "B",
+          "value": 2,
+        },
+        Object {
+          "letter": "C",
+          "value": 0,
+        },
+      ],
+      "date": "tomorrow",
+    },
+    Object {
+      "alphabet": Array [
+        Object {
+          "letter": "A",
+          "value": 1,
+        },
+        Object {
+          "letter": "B",
+          "value": 1,
+        },
+        Object {
+          "letter": "C",
+          "value": 1,
+        },
+      ],
+      "date": "new date",
+    },
+  ],
+  "studentName": "David",
+}
+`;
+
+exports[`alphabet.resolver @Query getAlphabetAssessment should return a lowerCase alphabet assessment 1`] = `
+Object {
+  "history": Array [
+    Object {
+      "alphabet": Array [
+        Object {
+          "letter": "A",
+          "value": 1,
+        },
+        Object {
+          "letter": "B",
+          "value": 2,
+        },
+        Object {
+          "letter": "C",
+          "value": 0,
+        },
+      ],
+      "date": "today",
+    },
+    Object {
+      "alphabet": Array [
+        Object {
+          "letter": "A",
+          "value": 1,
+        },
+        Object {
+          "letter": "B",
+          "value": 2,
+        },
+        Object {
+          "letter": "C",
+          "value": 0,
+        },
+      ],
+      "date": "tomorrow",
+    },
+  ],
+  "studentName": "David",
+}
+`;
+
+exports[`alphabet.resolver @Query getAlphabetAssessment should return an upperCase alphabet assessment 1`] = `
+Object {
+  "history": Array [
+    Object {
+      "alphabet": Array [
+        Object {
+          "letter": "A",
+          "value": 1,
+        },
+        Object {
+          "letter": "B",
+          "value": 2,
+        },
+        Object {
+          "letter": "C",
+          "value": 0,
+        },
+      ],
+      "date": "today",
+    },
+    Object {
+      "alphabet": Array [
+        Object {
+          "letter": "A",
+          "value": 1,
+        },
+        Object {
+          "letter": "B",
+          "value": 2,
+        },
+        Object {
+          "letter": "C",
+          "value": 0,
+        },
+      ],
+      "date": "tomorrow",
+    },
+  ],
+  "studentName": "David",
+}
+`;
+
+exports[`alphabet.resolver @Query getAlphabetAssessment should return names alphabet assessment 1`] = `
+Object {
+  "history": Array [
+    Object {
+      "alphabet": Array [
+        Object {
+          "letter": "A",
+          "value": 1,
+        },
+        Object {
+          "letter": "B",
+          "value": 2,
+        },
+        Object {
+          "letter": "C",
+          "value": 0,
+        },
+      ],
+      "date": "today",
+    },
+    Object {
+      "alphabet": Array [
+        Object {
+          "letter": "A",
+          "value": 1,
+        },
+        Object {
+          "letter": "B",
+          "value": 2,
+        },
+        Object {
+          "letter": "C",
+          "value": 0,
+        },
+      ],
+      "date": "tomorrow",
+    },
+  ],
+  "studentName": "David",
+}
+`;
+
+exports[`alphabet.resolver @Query getAlphabetAssessment should return sounds alphabet assessment 1`] = `
+Object {
+  "history": Array [
+    Object {
+      "alphabet": Array [
+        Object {
+          "letter": "A",
+          "value": 1,
+        },
+        Object {
+          "letter": "B",
+          "value": 2,
+        },
+        Object {
+          "letter": "C",
+          "value": 0,
+        },
+      ],
+      "date": "today",
+    },
+    Object {
+      "alphabet": Array [
+        Object {
+          "letter": "A",
+          "value": 1,
+        },
+        Object {
+          "letter": "B",
+          "value": 2,
+        },
+        Object {
+          "letter": "C",
+          "value": 0,
+        },
+      ],
+      "date": "tomorrow",
+    },
+  ],
+  "studentName": "David",
+}
+`;

@@ -12,7 +12,7 @@ import Students from '../screens/Students/Students'
 // ROUTES
 import ProtectedRoute from './ProtectedRoute'
 import UnProtectedRoute from './UnProtectedRoute'
-import CourseRoutes from '../screens/Course/routes'
+import AssessmentRoutes from '../screens/Assessment/routes'
 import ConfirmAccount from '../screens/ConfirmAccount/ConfirmAccount'
 import ResetPassword from '../screens/ResetPassword/ResetPassword'
 
@@ -28,7 +28,7 @@ export default function Routes() {
       <ProtectedRoute path="/myAccount" component={MyAccount} />
       <ProtectedRoute path="/students" component={Students} />
       <ProtectedRoute path="/student/:id" exact component={Student} />
-      <CourseRoutes />
+      <AssessmentRoutes />
     </Switch>
   )
 }

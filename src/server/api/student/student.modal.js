@@ -13,11 +13,14 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  teacherID: {
+  userId: {
     type: String,
     required: true,
   },
-  courses: [String],
+  assessments: {
+    type: [String],
+    default: [],
+  },
 })
 
 module.exports = studentSchema
