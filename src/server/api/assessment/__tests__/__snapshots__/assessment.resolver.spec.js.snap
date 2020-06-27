@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`assessment.resolver @Mutation addAssessment Error should return an error if student not found 1`] = `
+Array [
+  [GraphQLError: STUDENT_NOT_FOUND],
+]
+`;
+
+exports[`assessment.resolver @Mutation addAssessment Success Add new assessment to student assessments should add assessment "alphabet-lowerCase" 1`] = `
+Object {
+  "data": Object {
+    "addAssessment": Object {
+      "assessments": Array [
+        "Assessment",
+        "Assessment-1",
+        "alphabet-lowerCase",
+      ],
+      "firstName": "David",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`assessment.resolver @Mutation addAssessment Success Add new assessment to student assessments should add assessment "alphabet-name" 1`] = `
+Object {
+  "data": Object {
+    "addAssessment": Object {
+      "assessments": Array [
+        "Assessment",
+        "Assessment-1",
+        "alphabet-name",
+      ],
+      "firstName": "David",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`assessment.resolver @Mutation addAssessment Success Add new assessment to student assessments should add assessment "alphabet-sound" 1`] = `
+Object {
+  "data": Object {
+    "addAssessment": Object {
+      "assessments": Array [
+        "Assessment",
+        "Assessment-1",
+        "alphabet-sound",
+      ],
+      "firstName": "David",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;
+
+exports[`assessment.resolver @Mutation addAssessment Success Add new assessment to student assessments should add assessment "alphabet-upperCase" 1`] = `
+Object {
+  "data": Object {
+    "addAssessment": Object {
+      "assessments": Array [
+        "Assessment",
+        "Assessment-1",
+        "alphabet-upperCase",
+      ],
+      "firstName": "David",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {},
+    },
+  },
+}
+`;

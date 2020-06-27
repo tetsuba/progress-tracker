@@ -1,0 +1,188 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<StudentAssessmentList> @Render Should render all assessments 1`] = `
+<StudentAssessmentList
+  assessments={
+    Array [
+      "alphabet-upperCase",
+      "alphabet-lowerCase",
+      "alphabet-names",
+      "alphabet-sounds",
+    ]
+  }
+  id="studentId01"
+>
+  <ListGroup
+    horizontal={null}
+    variant={null}
+  >
+    <ForwardRef
+      as="div"
+      className="list-group"
+      onSelect={[Function]}
+    >
+      <div
+        className="list-group"
+        onKeyDown={[Function]}
+      >
+        <ListGroupItem
+          active={false}
+          disabled={false}
+          key="Alphabet Uppercase"
+          onClick={[Function]}
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+          variant={null}
+        >
+          <ForwardRef
+            as="div"
+            className="list-group-item"
+            disabled={false}
+            eventKey={null}
+            onClick={[Function]}
+            style={
+              Object {
+                "cursor": "pointer",
+              }
+            }
+          >
+            <div
+              className="list-group-item"
+              data-rb-event-key={null}
+              disabled={false}
+              onClick={[Function]}
+              style={
+                Object {
+                  "cursor": "pointer",
+                }
+              }
+            >
+              Alphabet Uppercase
+            </div>
+          </ForwardRef>
+        </ListGroupItem>
+        <ListGroupItem
+          active={false}
+          disabled={false}
+          key="Alphabet Lowercase"
+          onClick={[Function]}
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+          variant={null}
+        >
+          <ForwardRef
+            as="div"
+            className="list-group-item"
+            disabled={false}
+            eventKey={null}
+            onClick={[Function]}
+            style={
+              Object {
+                "cursor": "pointer",
+              }
+            }
+          >
+            <div
+              className="list-group-item"
+              data-rb-event-key={null}
+              disabled={false}
+              onClick={[Function]}
+              style={
+                Object {
+                  "cursor": "pointer",
+                }
+              }
+            >
+              Alphabet Lowercase
+            </div>
+          </ForwardRef>
+        </ListGroupItem>
+        <ListGroupItem
+          active={false}
+          disabled={false}
+          key="Alphabet Names"
+          onClick={[Function]}
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+          variant={null}
+        >
+          <ForwardRef
+            as="div"
+            className="list-group-item"
+            disabled={false}
+            eventKey={null}
+            onClick={[Function]}
+            style={
+              Object {
+                "cursor": "pointer",
+              }
+            }
+          >
+            <div
+              className="list-group-item"
+              data-rb-event-key={null}
+              disabled={false}
+              onClick={[Function]}
+              style={
+                Object {
+                  "cursor": "pointer",
+                }
+              }
+            >
+              Alphabet Names
+            </div>
+          </ForwardRef>
+        </ListGroupItem>
+        <ListGroupItem
+          active={false}
+          disabled={false}
+          key="Alphabet Sounds"
+          onClick={[Function]}
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+          variant={null}
+        >
+          <ForwardRef
+            as="div"
+            className="list-group-item"
+            disabled={false}
+            eventKey={null}
+            onClick={[Function]}
+            style={
+              Object {
+                "cursor": "pointer",
+              }
+            }
+          >
+            <div
+              className="list-group-item"
+              data-rb-event-key={null}
+              disabled={false}
+              onClick={[Function]}
+              style={
+                Object {
+                  "cursor": "pointer",
+                }
+              }
+            >
+              Alphabet Sounds
+            </div>
+          </ForwardRef>
+        </ListGroupItem>
+      </div>
+    </ForwardRef>
+  </ListGroup>
+</StudentAssessmentList>
+`;

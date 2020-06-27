@@ -1,10 +1,15 @@
 // TODO: update types
 type Props = {
-  getStudentCourseABC: any,
+  getAlphabetAssessment: {
+    history: [any],
+  },
 }
 
 export function formatDefaultState(data: Props) {
-  const eof = data.getStudentCourseABC.history.length - 1
-  const state = data.getStudentCourseABC.history[eof].alphabet
+  if (data.getAlphabetAssessment.history.length < 1) {
+    return undefined
+  }
+  const eof = data.getAlphabetAssessment.history.length - 1
+  const state = data.getAlphabetAssessment.history[eof].alphabet
   return state.map(({ letter, value }) => ({ letter, value }))
 }

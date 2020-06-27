@@ -1,18 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`student.resolver @Mutation addStudent should return students 1`] = `
+exports[`student.resolver @Mutation addStudent should add a student and return students data 1`] = `
 Object {
   "data": Object {
     "addStudent": Array [
       Object {
+        "_id": "001",
         "firstName": "Bob",
-        "id": "Hello World",
         "lastName": "Boo",
       },
       Object {
-        "firstName": "John",
-        "id": "Hello World",
-        "lastName": "Doh",
+        "_id": "studentId01",
+        "firstName": "David",
+        "lastName": "Blue",
+      },
+      Object {
+        "_id": "Hello World",
+        "firstName": "Bill",
+        "lastName": "Bee",
       },
     ],
   },
@@ -26,47 +31,27 @@ Object {
 }
 `;
 
-exports[`student.resolver @Mutation addStudentCourse should return student updated data 1`] = `
+exports[`student.resolver @Mutation addStudent should return an error if a student is found 1`] = `
+Array [
+  [GraphQLError: STUDENT_EXISTS],
+]
+`;
+
+exports[`student.resolver @Query getStudent should return a student if an id is found 1`] = `
 Object {
-  "data": Object {
-    "addStudentCourse": Object {
-      "courses": Array [
-        "Course1",
-        "Course2",
-        "course3",
-      ],
-    },
-  },
-  "errors": undefined,
-  "extensions": undefined,
-  "http": Object {
-    "headers": Headers {
-      Symbol(map): Object {},
-    },
-  },
+  "assessments": Array [
+    "Assessment",
+    "Assessment-1",
+  ],
+  "firstName": "David",
+  "lastName": "Blue",
 }
 `;
 
-exports[`student.resolver @Query getStudent should return a student 1`] = `
-Object {
-  "data": Object {
-    "getStudent": Object {
-      "courses": Array [
-        "Course1",
-        "Course2",
-      ],
-      "firstName": "Bob",
-      "lastName": "Boo",
-    },
-  },
-  "errors": undefined,
-  "extensions": undefined,
-  "http": Object {
-    "headers": Headers {
-      Symbol(map): Object {},
-    },
-  },
-}
+exports[`student.resolver @Query getStudent should return an error if a student is not found 1`] = `
+Array [
+  [GraphQLError: STUDENT_NOT_FOUND],
+]
 `;
 
 exports[`student.resolver @Query students should return a list of students 1`] = `
@@ -74,14 +59,14 @@ Object {
   "data": Object {
     "students": Array [
       Object {
+        "_id": "001",
         "firstName": "Bob",
-        "id": "Hello World",
         "lastName": "Boo",
       },
       Object {
-        "firstName": "John",
-        "id": "Hello World",
-        "lastName": "Doh",
+        "_id": "studentId01",
+        "firstName": "David",
+        "lastName": "Blue",
       },
     ],
   },

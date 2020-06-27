@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AssessmentCard> @Render Should render a default state 1`] = `
+<AssessmentCard
+  assessment={
+    Object {
+      "assessmentId": "alphabet-upperCase",
+      "description": "description",
+      "title": "Assessment Title",
+    }
+  }
+>
+  <Col
+    key="Assessment Title"
+    sm={4}
+  >
+    <div
+      className="col-sm-4"
+    >
+      <div
+        className="card text-body text-decoration-none"
+      >
+        <div
+          className="card-header"
+        >
+          <h5>
+            Assessment Title
+          </h5>
+        </div>
+        <div
+          className="card-body"
+        >
+          description
+        </div>
+        <div
+          className="card-footer"
+        >
+          <Button
+            active={false}
+            className="float-right"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+            variant="primary"
+          >
+            <button
+              className="float-right btn btn-primary"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              <FontAwesomeIcon
+                border={false}
+                className=""
+                fixedWidth={false}
+                flip={null}
+                icon={
+                  Object {
+                    "icon": Array [
+                      448,
+                      512,
+                      Array [],
+                      "f067",
+                      "M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z",
+                    ],
+                    "iconName": "plus",
+                    "prefix": "fas",
+                  }
+                }
+                inverse={false}
+                listItem={false}
+                mask={null}
+                pull={null}
+                pulse={false}
+                rotation={null}
+                size={null}
+                spin={false}
+                swapOpacity={false}
+                symbol={false}
+                title=""
+                transform={null}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="svg-inline--fa fa-plus fa-w-14 "
+                  data-icon="plus"
+                  data-prefix="fas"
+                  focusable="false"
+                  role="img"
+                  style={Object {}}
+                  viewBox="0 0 448 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                    fill="currentColor"
+                    style={Object {}}
+                  />
+                </svg>
+              </FontAwesomeIcon>
+               Add Assessment
+            </button>
+          </Button>
+        </div>
+      </div>
+    </div>
+  </Col>
+</AssessmentCard>
+`;

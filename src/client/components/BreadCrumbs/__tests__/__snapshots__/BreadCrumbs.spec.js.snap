@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<BreadCrumbs> [SCREEN]: ABC should render crumbs "Home / Students / { student name }, / ABC" 1`] = `
+exports[`<BreadCrumbs> [SCREEN]: AlphabetAssessment should render crumbs "Home / Students / { student name }, / ABC" 1`] = `
 <BreadCrumbs
-  crumbKey="ABC"
+  crumbKey="Alphabet"
   id="ID123456789"
   name="John"
 >
@@ -55,14 +55,14 @@ exports[`<BreadCrumbs> [SCREEN]: ABC should render crumbs "Home / Students / { s
               </li>
               <BreadcrumbItem
                 active={true}
-                key="ABC-3"
+                key="Alphabet-3"
                 linkProps={Object {}}
               >
                 <li
                   aria-current="page"
                   className="breadcrumb-item active"
                 >
-                  ABC
+                  Alphabet
                 </li>
               </BreadcrumbItem>
             </Crumbs>

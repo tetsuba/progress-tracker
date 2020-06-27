@@ -12,6 +12,8 @@ const errorName = {
   INTERNAL_SERVER_ERROR: 'INTERNAL_SERVER_ERROR',
   NOT_VALID_EMAIL: 'NOT_VALID_EMAIL',
   STUDENT_EXISTS: 'STUDENT_EXISTS',
+  STUDENT_NOT_FOUND: 'STUDENT_NOT_FOUND',
+  ASSESSMENT_NOT_FOUND: 'ASSESSMENT_NOT_FOUND',
 }
 
 const errorType = {
@@ -64,6 +66,16 @@ const errorType = {
     message: 'student already exists',
     statusCode: 401, //  unauthorized
     name: 'unauthorized',
+  },
+  STUDENT_NOT_FOUND: {
+    message: 'student not found',
+    statusCode: 401, //  Not found
+    name: 'not_found',
+  },
+  ASSESSMENT_NOT_FOUND: {
+    message: 'assessment not found',
+    statusCode: 401, //  Not found
+    name: 'not_found',
   },
 }
 

@@ -80,12 +80,12 @@ describe('<BreadCrumbs>', () => {
       )
     })
   })
-  describe('[SCREEN]: ABC', () => {
-    const [crumbHome, crumbStudents, crumbStudent, crumbABC] = CRUMBS[
-      CRUMBS_KEY.ABC
+  describe('[SCREEN]: AlphabetAssessment', () => {
+    const [crumbHome, crumbStudents, crumbStudent, crumbAlphabet] = CRUMBS[
+      CRUMBS_KEY.ALPHABET
     ]
     const props = {
-      crumbKey: CRUMBS_KEY.ABC,
+      crumbKey: CRUMBS_KEY.ALPHABET,
       name: 'John',
       id: 'ID123456789',
     }
@@ -111,7 +111,7 @@ describe('<BreadCrumbs>', () => {
 
     it('should render "Student" as list and replace student name with John', () => {
       expect(wrapper.find('BreadcrumbItem > li').props().children).toEqual(
-        crumbABC.name
+        crumbAlphabet.name
       )
     })
   })

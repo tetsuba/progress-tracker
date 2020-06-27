@@ -1,0 +1,568 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Student @Render should render default state 1`] = `
+<Student>
+  <Container
+    fluid={false}
+  >
+    <div
+      className="container"
+    >
+      <Row
+        className="mt-5"
+        noGutters={false}
+      >
+        <div
+          className="mt-5 row"
+        >
+          <BreadCrumbs
+            crumbKey="Student"
+            id="studentId001"
+            name="John"
+          >
+            <Row
+              noGutters={false}
+            >
+              <div
+                className="row"
+              >
+                <Breadcrumb
+                  label="breadcrumb"
+                  listProps={Object {}}
+                >
+                  <nav
+                    aria-label="breadcrumb"
+                  >
+                    <ol
+                      className="breadcrumb"
+                    >
+                      <Crumbs>
+                        <li
+                          className="breadcrumb-item"
+                          key="Home-0"
+                        >
+                          <Link
+                            to="/"
+                          >
+                            Home
+                          </Link>
+                        </li>
+                        <li
+                          className="breadcrumb-item"
+                          key="Students-1"
+                        >
+                          <Link
+                            to="/students"
+                          >
+                            Students
+                          </Link>
+                        </li>
+                        <BreadcrumbItem
+                          active={true}
+                          key="John-2"
+                          linkProps={Object {}}
+                        >
+                          <li
+                            aria-current="page"
+                            className="breadcrumb-item active"
+                          >
+                            John
+                          </li>
+                        </BreadcrumbItem>
+                      </Crumbs>
+                    </ol>
+                  </nav>
+                </Breadcrumb>
+              </div>
+            </Row>
+          </BreadCrumbs>
+        </div>
+      </Row>
+      <Row
+        className="mt-5"
+        noGutters={false}
+      >
+        <div
+          className="mt-5 row"
+        >
+          <h3>
+            Assessments:
+          </h3>
+        </div>
+      </Row>
+      <StudentAssessmentList
+        assessments={Array []}
+        id="studentId001"
+      >
+        <ListGroup
+          horizontal={null}
+          variant={null}
+        >
+          <ForwardRef
+            as="div"
+            className="list-group"
+            onSelect={[Function]}
+          >
+            <div
+              className="list-group"
+              onKeyDown={[Function]}
+            />
+          </ForwardRef>
+        </ListGroup>
+      </StudentAssessmentList>
+      <Row
+        className="mt-5"
+        noGutters={false}
+      >
+        <div
+          className="mt-5 row"
+        >
+          <h3>
+            Available assessments:
+          </h3>
+        </div>
+      </Row>
+      <AssessmentList
+        assessments={Array []}
+      >
+        <CardDeck
+          className="mt-5"
+        >
+          <div
+            className="mt-5 card-deck"
+          >
+            <AssessmentCard
+              assessment={
+                Object {
+                  "assessmentId": "alphabet-upperCase",
+                  "description": "Upper case letter assessment",
+                  "path": "/student/{id}/assessment/alphabet-upperCase",
+                  "title": "Alphabet Uppercase",
+                }
+              }
+              key="card-0"
+            >
+              <Col
+                key="Alphabet Uppercase"
+                sm={4}
+              >
+                <div
+                  className="col-sm-4"
+                >
+                  <div
+                    className="card text-body text-decoration-none"
+                  >
+                    <div
+                      className="card-header"
+                    >
+                      <h5>
+                        Alphabet Uppercase
+                      </h5>
+                    </div>
+                    <div
+                      className="card-body"
+                    >
+                      Upper case letter assessment
+                    </div>
+                    <div
+                      className="card-footer"
+                    >
+                      <Button
+                        active={false}
+                        className="float-right"
+                        disabled={false}
+                        onClick={[Function]}
+                        type="button"
+                        variant="primary"
+                      >
+                        <button
+                          className="float-right btn btn-primary"
+                          disabled={false}
+                          onClick={[Function]}
+                          type="button"
+                        >
+                          <FontAwesomeIcon
+                            border={false}
+                            className=""
+                            fixedWidth={false}
+                            flip={null}
+                            icon={
+                              Object {
+                                "icon": Array [
+                                  448,
+                                  512,
+                                  Array [],
+                                  "f067",
+                                  "M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z",
+                                ],
+                                "iconName": "plus",
+                                "prefix": "fas",
+                              }
+                            }
+                            inverse={false}
+                            listItem={false}
+                            mask={null}
+                            pull={null}
+                            pulse={false}
+                            rotation={null}
+                            size={null}
+                            spin={false}
+                            swapOpacity={false}
+                            symbol={false}
+                            title=""
+                            transform={null}
+                          >
+                            <svg
+                              aria-hidden="true"
+                              className="svg-inline--fa fa-plus fa-w-14 "
+                              data-icon="plus"
+                              data-prefix="fas"
+                              focusable="false"
+                              role="img"
+                              style={Object {}}
+                              viewBox="0 0 448 512"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                                fill="currentColor"
+                                style={Object {}}
+                              />
+                            </svg>
+                          </FontAwesomeIcon>
+                           Add Assessment
+                        </button>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </Col>
+            </AssessmentCard>
+            <AssessmentCard
+              assessment={
+                Object {
+                  "assessmentId": "alphabet-lowerCase",
+                  "description": "Lower case letter assessment",
+                  "path": "/student/{id}/assessment/alphabet-lowerCase",
+                  "title": "Alphabet Lowercase",
+                }
+              }
+              key="card-1"
+            >
+              <Col
+                key="Alphabet Lowercase"
+                sm={4}
+              >
+                <div
+                  className="col-sm-4"
+                >
+                  <div
+                    className="card text-body text-decoration-none"
+                  >
+                    <div
+                      className="card-header"
+                    >
+                      <h5>
+                        Alphabet Lowercase
+                      </h5>
+                    </div>
+                    <div
+                      className="card-body"
+                    >
+                      Lower case letter assessment
+                    </div>
+                    <div
+                      className="card-footer"
+                    >
+                      <Button
+                        active={false}
+                        className="float-right"
+                        disabled={false}
+                        onClick={[Function]}
+                        type="button"
+                        variant="primary"
+                      >
+                        <button
+                          className="float-right btn btn-primary"
+                          disabled={false}
+                          onClick={[Function]}
+                          type="button"
+                        >
+                          <FontAwesomeIcon
+                            border={false}
+                            className=""
+                            fixedWidth={false}
+                            flip={null}
+                            icon={
+                              Object {
+                                "icon": Array [
+                                  448,
+                                  512,
+                                  Array [],
+                                  "f067",
+                                  "M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z",
+                                ],
+                                "iconName": "plus",
+                                "prefix": "fas",
+                              }
+                            }
+                            inverse={false}
+                            listItem={false}
+                            mask={null}
+                            pull={null}
+                            pulse={false}
+                            rotation={null}
+                            size={null}
+                            spin={false}
+                            swapOpacity={false}
+                            symbol={false}
+                            title=""
+                            transform={null}
+                          >
+                            <svg
+                              aria-hidden="true"
+                              className="svg-inline--fa fa-plus fa-w-14 "
+                              data-icon="plus"
+                              data-prefix="fas"
+                              focusable="false"
+                              role="img"
+                              style={Object {}}
+                              viewBox="0 0 448 512"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                                fill="currentColor"
+                                style={Object {}}
+                              />
+                            </svg>
+                          </FontAwesomeIcon>
+                           Add Assessment
+                        </button>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </Col>
+            </AssessmentCard>
+            <AssessmentCard
+              assessment={
+                Object {
+                  "assessmentId": "alphabet-names",
+                  "description": "Name the letters assessment",
+                  "path": "/student/{id}/assessment/alphabet-names",
+                  "title": "Alphabet Names",
+                }
+              }
+              key="card-2"
+            >
+              <Col
+                key="Alphabet Names"
+                sm={4}
+              >
+                <div
+                  className="col-sm-4"
+                >
+                  <div
+                    className="card text-body text-decoration-none"
+                  >
+                    <div
+                      className="card-header"
+                    >
+                      <h5>
+                        Alphabet Names
+                      </h5>
+                    </div>
+                    <div
+                      className="card-body"
+                    >
+                      Name the letters assessment
+                    </div>
+                    <div
+                      className="card-footer"
+                    >
+                      <Button
+                        active={false}
+                        className="float-right"
+                        disabled={false}
+                        onClick={[Function]}
+                        type="button"
+                        variant="primary"
+                      >
+                        <button
+                          className="float-right btn btn-primary"
+                          disabled={false}
+                          onClick={[Function]}
+                          type="button"
+                        >
+                          <FontAwesomeIcon
+                            border={false}
+                            className=""
+                            fixedWidth={false}
+                            flip={null}
+                            icon={
+                              Object {
+                                "icon": Array [
+                                  448,
+                                  512,
+                                  Array [],
+                                  "f067",
+                                  "M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z",
+                                ],
+                                "iconName": "plus",
+                                "prefix": "fas",
+                              }
+                            }
+                            inverse={false}
+                            listItem={false}
+                            mask={null}
+                            pull={null}
+                            pulse={false}
+                            rotation={null}
+                            size={null}
+                            spin={false}
+                            swapOpacity={false}
+                            symbol={false}
+                            title=""
+                            transform={null}
+                          >
+                            <svg
+                              aria-hidden="true"
+                              className="svg-inline--fa fa-plus fa-w-14 "
+                              data-icon="plus"
+                              data-prefix="fas"
+                              focusable="false"
+                              role="img"
+                              style={Object {}}
+                              viewBox="0 0 448 512"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                                fill="currentColor"
+                                style={Object {}}
+                              />
+                            </svg>
+                          </FontAwesomeIcon>
+                           Add Assessment
+                        </button>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </Col>
+            </AssessmentCard>
+            <AssessmentCard
+              assessment={
+                Object {
+                  "assessmentId": "alphabet-sounds",
+                  "description": "Make the letter sounds assessment",
+                  "path": "/student/{id}/assessment/alphabet-sounds",
+                  "title": "Alphabet Sounds",
+                }
+              }
+              key="card-3"
+            >
+              <Col
+                key="Alphabet Sounds"
+                sm={4}
+              >
+                <div
+                  className="col-sm-4"
+                >
+                  <div
+                    className="card text-body text-decoration-none"
+                  >
+                    <div
+                      className="card-header"
+                    >
+                      <h5>
+                        Alphabet Sounds
+                      </h5>
+                    </div>
+                    <div
+                      className="card-body"
+                    >
+                      Make the letter sounds assessment
+                    </div>
+                    <div
+                      className="card-footer"
+                    >
+                      <Button
+                        active={false}
+                        className="float-right"
+                        disabled={false}
+                        onClick={[Function]}
+                        type="button"
+                        variant="primary"
+                      >
+                        <button
+                          className="float-right btn btn-primary"
+                          disabled={false}
+                          onClick={[Function]}
+                          type="button"
+                        >
+                          <FontAwesomeIcon
+                            border={false}
+                            className=""
+                            fixedWidth={false}
+                            flip={null}
+                            icon={
+                              Object {
+                                "icon": Array [
+                                  448,
+                                  512,
+                                  Array [],
+                                  "f067",
+                                  "M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z",
+                                ],
+                                "iconName": "plus",
+                                "prefix": "fas",
+                              }
+                            }
+                            inverse={false}
+                            listItem={false}
+                            mask={null}
+                            pull={null}
+                            pulse={false}
+                            rotation={null}
+                            size={null}
+                            spin={false}
+                            swapOpacity={false}
+                            symbol={false}
+                            title=""
+                            transform={null}
+                          >
+                            <svg
+                              aria-hidden="true"
+                              className="svg-inline--fa fa-plus fa-w-14 "
+                              data-icon="plus"
+                              data-prefix="fas"
+                              focusable="false"
+                              role="img"
+                              style={Object {}}
+                              viewBox="0 0 448 512"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                                fill="currentColor"
+                                style={Object {}}
+                              />
+                            </svg>
+                          </FontAwesomeIcon>
+                           Add Assessment
+                        </button>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </Col>
+            </AssessmentCard>
+          </div>
+        </CardDeck>
+      </AssessmentList>
+    </div>
+  </Container>
+</Student>
+`;

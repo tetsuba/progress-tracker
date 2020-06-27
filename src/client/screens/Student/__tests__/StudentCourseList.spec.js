@@ -1,3 +1,0 @@
-describe.skip('<StudentCourseList>', () => {
-  it('', () => {})
-})

@@ -3,7 +3,7 @@ import gql from 'graphql-tag'
 export const STUDENTS_QUERY = gql`
   {
     students {
-      id
+      _id
       firstName
       lastName
     }
@@ -15,7 +15,7 @@ export const STUDENT_QUERY = gql`
     getStudent(input: $input) {
       firstName
       lastName
-      courses
+      assessments
     }
   }
 `

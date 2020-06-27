@@ -39,7 +39,7 @@ input UserPasswordInput {
     password: String
 }
 
-extend type Query {
+type Query {
     getUserDetails: UserType!
     isUserSessionExpired: SuccessType!
     validateUserEmail(token: String): SuccessType!

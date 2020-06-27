@@ -9,10 +9,10 @@ import { LoadingContext } from '../../context/LoadingContext'
 import Alphabet from './Alphabet'
 
 // QUERIES
-import { GET_STUDENT_COURSE_ABC } from '../../api/course/courseABC/courseABC.query'
+import { GET_ALPHABET_ASSESSMENT } from '../../api/assessment/alphabet/alphabet.query'
 
 // MUTATIONS
-import { SAVE_COURSE_PROGRESS_MUTATION } from '../../api/course/courseABC/courseABC.mutation'
+import { SAVE_ALPHABET_ASSESSMENT_MUTATION } from '../../api/assessment/alphabet/alphabet.mutaion'
 
 // DEFAULT STATE
 import ALPHABET_DEFAULT_STATE from './Alphabet.defualtState'
@@ -23,28 +23,41 @@ type Props = {
   id: string,
   toggleModal: () => void,
   data: any,
+  type: string,
 }
 
 export default function AlphabetForm(props: Props) {
-  const { toggleModal, id, data } = props
-  const defaultState = formatDefaultState(data) || ALPHABET_DEFAULT_STATE
+  const { toggleModal, id, data, type } = props
+  const defaultState =
+    formatDefaultState(data) ||
+    (type === 'lowerCase'
+      ? ALPHABET_DEFAULT_STATE.map((state) => ({
+          ...state,
+          letter: state.letter.toLocaleLowerCase(),
+        }))
+      : ALPHABET_DEFAULT_STATE)
 
   const variables = {
     input: {
-      id: id || '',
+      studentId: id || '',
+      typeOfAlphabetAssessment: type || '',
     },
   }
 
   const { showLoading, hideLoading } = React.useContext(LoadingContext)
 
   const [letters, setLetters] = useState(defaultState)
-  const [saveCourseProgress] = useMutation(SAVE_COURSE_PROGRESS_MUTATION, {
-    refetchQueries: [{ query: GET_STUDENT_COURSE_ABC, variables }],
-  })
+  const [saveAlphabetAssessment] = useMutation(
+    SAVE_ALPHABET_ASSESSMENT_MUTATION,
+    {
+      refetchQueries: [{ query: GET_ALPHABET_ASSESSMENT, variables }],
+    }
+  )
 
   useEffect(() => {
     setLetters(defaultState)
-  }, [data, defaultState])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>
@@ -54,22 +67,21 @@ export default function AlphabetForm(props: Props) {
         onClick={() => {
           const variables = {
             input: {
-              id: id,
+              studentId: id,
               date: String(Date.now()),
               alphabet: letters,
+              typeOfAlphabetAssessment: type,
             },
           }
-
-          console.log('AlphabetForm Submit: ', variables)
-
           showLoading()
-          saveCourseProgress({ variables })
+          saveAlphabetAssessment({ variables })
             .then(() => {
               setLetters(defaultState)
               toggleModal()
               hideLoading()
             })
             .catch(() => {
+              // TODO: An error message should be displayed to the user
               toggleModal()
               hideLoading()
             })
